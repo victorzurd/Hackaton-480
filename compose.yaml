@@ -1,0 +1,23 @@
+services:
+  db:
+    image: postgres:16-alpine
+    container_name: academy-db
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB:-academy}
+      POSTGRES_USER: ${POSTGRES_USER:-academy}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-academy_local}
+    ports:
+      - "${POSTGRES_PORT:-5432}:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./DataBase/Database.sql:/docker-entrypoint-initdb.d/001-database.sql:ro
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-academy} -d ${POSTGRES_DB:-academy}"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+      start_period: 5s
+
+volumes:
+  postgres_data:

@@ -8,7 +8,8 @@
     "build": "tsc -p tsconfig.json && tsc -p tsconfig.web.json",
     "build:web": "tsc -p tsconfig.web.json",
     "start": "node dist/server.js",
-    "migrate": "tsx src/db/migrate.ts"
+    "migrate": "tsx src/db/migrate.ts",
+    "test": "tsc -p tsconfig.test.json && tsx --test \"tests/**/*.test.ts\""
   },
   "dependencies": {
     "dotenv": "^16.4.7",

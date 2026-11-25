@@ -1,0 +1,292 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#111111" />
+    <meta
+      name="description"
+      content="Accede a tu espacio de aprendizaje de 480 Academy."
+    />
+    <title>Accede a 480 Academy</title>
+    <link rel="stylesheet" href="/styles.css" />
+    <script type="module" src="/dist/auth.js"></script>
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="topbar__inner">
+        <a class="wordmark" href="/" aria-label="480 Academy, inicio">
+          <span class="wordmark__accent" aria-hidden="true"></span>
+          <span>480 Academy</span>
+        </a>
+        <span class="topbar__context">Tu espacio de aprendizaje</span>
+      </div>
+    </header>
+
+    <main class="page-main">
+      <div class="auth-shell">
+        <aside class="welcome-panel" aria-labelledby="welcome-title">
+          <p class="welcome-panel__eyebrow">APRENDE A TU RITMO</p>
+          <h1 id="welcome-title">El siguiente paso lo marcas tú.</h1>
+          <p class="welcome-panel__copy">
+            Entra para continuar tu aprendizaje o crea una cuenta para empezar.
+          </p>
+          <div class="welcome-panel__rule" aria-hidden="true"></div>
+          <p class="welcome-panel__note">Un itinerario pensado para ti.</p>
+        </aside>
+
+        <section class="auth-panel" aria-labelledby="auth-title">
+          <div class="auth-heading">
+            <p class="section-kicker">ÁREA DEL ALUMNO</p>
+            <h2 id="auth-title">Inicia sesión</h2>
+            <p id="auth-description" class="auth-heading__copy">
+              Vuelve a tu espacio de aprendizaje.
+            </p>
+          </div>
+
+          <div class="mode-switch" role="group" aria-label="Elige una opción">
+            <button
+              class="mode-switch__option is-active"
+              id="mode-login"
+              type="button"
+              aria-pressed="true"
+            >
+              Iniciar sesión
+            </button>
+            <button
+              class="mode-switch__option"
+              id="mode-register"
+              type="button"
+              aria-pressed="false"
+            >
+              Crear cuenta
+            </button>
+          </div>
+
+          <section id="login-view" aria-labelledby="auth-title">
+            <form id="login-form" class="form-stack" novalidate>
+              <div class="field">
+                <label for="login-email">Correo electrónico</label>
+                <input
+                  id="login-email"
+                  name="correo"
+                  type="email"
+                  autocomplete="email"
+                  inputmode="email"
+                  maxlength="255"
+                  placeholder="nombre@ejemplo.com"
+                  required
+                />
+              </div>
+
+              <div class="field">
+                <label for="login-password">Contraseña</label>
+                <div class="password-control">
+                  <input
+                    id="login-password"
+                    name="contrasena"
+                    type="password"
+                    autocomplete="current-password"
+                    maxlength="128"
+                    required
+                  />
+                  <button
+                    class="password-toggle"
+                    type="button"
+                    data-password-toggle="login-password"
+                    aria-label="Mostrar contraseña"
+                    aria-pressed="false"
+                  >
+                    Mostrar
+                  </button>
+                </div>
+              </div>
+
+              <p class="form-message" id="login-message" role="alert" hidden></p>
+              <button class="button button--primary" id="login-submit" type="submit">
+                <span>Iniciar sesión</span>
+                <span class="button__arrow" aria-hidden="true">→</span>
+              </button>
+            </form>
+            <p class="form-footnote">
+              ¿Aún no tienes cuenta?
+              <button class="text-button" type="button" data-open-register>
+                Crear cuenta
+              </button>
+            </p>
+          </section>
+
+          <section id="register-view" aria-labelledby="auth-title" hidden>
+            <div class="step-indicator" aria-label="Paso 1 de 2" id="step-indicator">
+              <div class="step-indicator__copy">
+                <span id="step-label">Paso 1 de 2</span>
+                <span id="step-name">Tus datos</span>
+              </div>
+              <div
+                class="step-indicator__track"
+                role="progressbar"
+                aria-label="Progreso de creación de cuenta"
+                aria-valuemin="1"
+                aria-valuemax="2"
+                aria-valuenow="1"
+                id="step-progress"
+              >
+                <span id="step-progress-fill"></span>
+              </div>
+            </div>
+
+            <form id="register-step-one" class="form-stack" novalidate>
+              <div class="field">
+                <label for="register-name">Nombre completo</label>
+                <input
+                  id="register-name"
+                  name="nombreCompleto"
+                  type="text"
+                  autocomplete="name"
+                  maxlength="250"
+                  placeholder="Tu nombre y apellidos"
+                  required
+                />
+              </div>
+
+              <div class="field">
+                <label for="register-email">Correo electrónico</label>
+                <input
+                  id="register-email"
+                  name="correo"
+                  type="email"
+                  autocomplete="email"
+                  inputmode="email"
+                  maxlength="255"
+                  placeholder="nombre@ejemplo.com"
+                  required
+                />
+              </div>
+
+              <div class="field">
+                <label for="register-password">Contraseña</label>
+                <div class="password-control">
+                  <input
+                    id="register-password"
+                    name="contrasena"
+                    type="password"
+                    autocomplete="new-password"
+                    minlength="12"
+                    maxlength="128"
+                    aria-describedby="password-hint"
+                    required
+                  />
+                  <button
+                    class="password-toggle"
+                    type="button"
+                    data-password-toggle="register-password"
+                    aria-label="Mostrar contraseña"
+                    aria-pressed="false"
+                  >
+                    Mostrar
+                  </button>
+                </div>
+                <p class="field-hint" id="password-hint">Usa al menos 12 caracteres.</p>
+              </div>
+
+              <p class="form-message" id="register-step-one-message" role="alert" hidden></p>
+              <button class="button button--primary" type="submit">
+                <span>Continuar</span>
+                <span class="button__arrow" aria-hidden="true">→</span>
+              </button>
+            </form>
+
+            <form id="register-step-two" class="form-stack" novalidate hidden>
+              <div class="field">
+                <label for="register-age">Edad</label>
+                <input
+                  id="register-age"
+                  name="edad"
+                  type="number"
+                  inputmode="numeric"
+                  min="0"
+                  max="120"
+                  step="1"
+                  placeholder="Por ejemplo, 17"
+                  aria-describedby="age-hint"
+                  required
+                />
+                <p class="field-hint" id="age-hint">
+                  La necesitamos para aplicar las condiciones de acceso a la bolsa de trabajo.
+                </p>
+              </div>
+
+              <div id="employment-option" class="choice-panel" hidden>
+                <label class="check-row" for="register-employment">
+                  <input id="register-employment" name="bolsaTrabajo" type="checkbox" />
+                  <span>
+                    <span class="check-row__title">Quiero entrar en la bolsa de trabajo</span>
+                    <span class="check-row__copy">
+                      Es opcional. Tu preferencia no se envía al tutor de IA.
+                    </span>
+                  </span>
+                </label>
+              </div>
+              <p id="employment-age-note" class="field-hint">
+                La bolsa de trabajo está disponible para personas de 18 años o más.
+              </p>
+
+              <div class="choice-panel choice-panel--consent">
+                <label class="check-row" for="register-consent">
+                  <input
+                    id="register-consent"
+                    name="consentimientoDatos"
+                    type="checkbox"
+                    required
+                  />
+                  <span>
+                    <span class="check-row__title">Acepto el tratamiento de mis datos</span>
+                    <span class="check-row__copy">
+                      Usaremos tu nombre, correo y edad para gestionar tu cuenta y tu experiencia de aprendizaje.
+                      Tu contraseña se guarda como un hash y no se envía a la IA.
+                    </span>
+                  </span>
+                </label>
+              </div>
+
+              <p class="form-message" id="register-step-two-message" role="alert" hidden></p>
+              <div class="form-actions">
+                <button class="button button--secondary" id="back-to-step-one" type="button">
+                  Atrás
+                </button>
+                <button class="button button--primary" id="register-submit" type="submit">
+                  <span>Crear cuenta</span>
+                  <span class="button__arrow" aria-hidden="true">→</span>
+                </button>
+              </div>
+            </form>
+
+            <p class="form-footnote">
+              ¿Ya tienes cuenta?
+              <button class="text-button" type="button" data-open-login>
+                Iniciar sesión
+              </button>
+            </p>
+          </section>
+
+          <section id="success-view" class="success-view" aria-live="polite" hidden>
+            <div class="success-mark" aria-hidden="true">✓</div>
+            <p class="section-kicker">ACCESO LISTO</p>
+            <h3 id="success-title">Sesión iniciada</h3>
+            <p id="success-copy" class="success-view__copy">
+              Ya has iniciado sesión en 480 Academy.
+            </p>
+            <button class="button button--secondary" type="button" id="logout-button">
+              Cerrar sesión
+            </button>
+          </section>
+        </section>
+      </div>
+    </main>
+
+    <footer class="page-footer">
+      <span>480 Academy</span>
+      <span>Aprende paso a paso.</span>
+    </footer>
+  </body>
+</html>

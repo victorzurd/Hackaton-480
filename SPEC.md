@@ -126,7 +126,7 @@ Para un MVP, un único servidor concentra la lógica y conecta al cliente con lo
 
 | Entidad | Datos principales | Relaciones |
 | --- | --- | --- |
-| Usuario | id, nombre, email, rol (alumno / tutor) | Un tutor tiene varios alumnos |
+| Usuario | id, nombre, apellidos, email, password_hash, edad, consentimiento de datos y fecha, preferencia de bolsa de trabajo, rol | Un tutor tiene varios alumnos; solo cuentas de 18 años o más pueden activar la preferencia de bolsa |
 | Curso | id, título, descripción | Tiene varios módulos |
 | Módulo | id, título, orden | Pertenece a un curso y tiene varios contenidos |
 | Contenido | id, tipo (vídeo / podcast / vídeo corto), título, URL, transcripción | Pertenece a un módulo. El podcast y el vídeo corto se generan a partir de vídeos |
@@ -140,7 +140,9 @@ Para un MVP, un único servidor concentra la lógica y conecta al cliente con lo
 | Dato | ¿Sale hacia la IA? | Para qué |
 | --- | --- | --- |
 | Nombre y email | No | No son necesarios |
+| Contraseña y hash de contraseña | No | Se usan únicamente para autenticación |
 | Identificador real del alumno | No | No es necesario |
+| Edad, consentimiento y preferencia de bolsa | No | Se usan únicamente para registro y reglas de acceso |
 | Preguntas falladas y conceptos asociados | Sí | Personalizar el tutor y los vídeos cortos |
 | Resultado de la encuesta inicial | Sí | Adaptar las explicaciones a lo que ya sabe |
 | Módulo y contenido actual | Sí | Dar contexto al tutor |

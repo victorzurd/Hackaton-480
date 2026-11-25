@@ -210,7 +210,28 @@ Las preguntas tampoco usan IA: quien sube los vídeos escribe a mano las de la e
 
 ## 8. Contenido
 
-Demo de 15 vídeos de un curso de progrmación en Python
+### Curso de prueba: CS50P
+
+Usaremos [CS50’s Introduction to Programming with Python (CS50P)](https://cs50.harvard.edu/python/), curso abierto de Harvard con diez lecciones, organizadas en estos módulos:
+
+| # | Módulo en 480 Academy | Título original |
+| --- | --- | --- |
+| 1 | Funciones y variables | Functions, Variables |
+| 2 | Condicionales | Conditionals |
+| 3 | Bucles | Loops |
+| 4 | Excepciones | Exceptions |
+| 5 | Bibliotecas | Libraries |
+| 6 | Pruebas unitarias | Unit Tests |
+| 7 | Lectura y escritura de archivos | File I/O |
+| 8 | Expresiones regulares | Regular Expressions |
+| 9 | Programación orientada a objetos | Object-Oriented Programming |
+| 10 | Conceptos adicionales | Et Cetera |
+
+Los vídeos se reproducen desde los MP4 oficiales en 360p, enlazados desde las [páginas semanales de CS50P](https://cs50.harvard.edu/python/weeks/) y disponibles también en la [lista oficial de YouTube](https://www.youtube.com/playlist?list=PLhQjrBD2T3817j24-GogXmWqO5Q5vYy0V). No guardamos los MP4 en el repositorio ni en PostgreSQL: la primera lección ocupa aproximadamente 1,27 GB, así que la demo los sirve desde la fuente oficial. El audio original está en inglés.
+
+Los subtítulos SRT/WebVTT y los textos de transcripción se obtienen de las páginas y los recursos oficiales de cada lección. Se guardan los textos y sus marcas temporales en PostgreSQL para alimentar transcripciones, búsquedas y el tutor. El contenido de vídeo y las transcripciones están en inglés; los títulos visibles y los cuestionarios de práctica se prepararon en español para la demo. Las preguntas son material de práctica propio, no evaluaciones oficiales de CS50.
+
+El curso fuente se distribuye bajo [CC BY-NC-SA 4.0](https://cs50.harvard.edu/python/license/): requiere atribución, uso no comercial y compartir las adaptaciones bajo la misma licencia. 480 Academy no está afiliada ni respaldada por Harvard.
 
 
 ## 9. Coste
@@ -224,7 +245,7 @@ Estimación con los precios de `gemini-3.8-flash`
 | Repaso: 8 fragmentos | 24.000 tokens | 3.200 tokens | 0,06 $ |
 | **Total** | **544.000 tokens** | **23.200 tokens** | **0,99 $** |
 
-Aparte, generar los guiones de podcast de 15 vídeos cuesta unos 0,23 $ una sola vez, compartidos entre todos los alumnos.
+Aparte, generar los guiones de podcast de los 10 vídeos de CS50P costaría unos 0,15 $ una sola vez, compartidos entre todos los alumnos, suponiendo el mismo coste medio por vídeo que en la estimación inicial.
 
 ## 10. Idea original
 
@@ -245,14 +266,14 @@ Un ciclo de repaso a partir de los errores: cada fallo en un test se convierte e
 - **Tests durante el vídeo o al final:** permiten comprobar si aprende y generan los errores que usa el resto de la solución.
 - **Tutor IA por voz:** da atención personalizada. Si la voz no está a tiempo, se usará un chat de texto.
 - **Protección de datos y RAG:** son necesarios para usar el tutor con privacidad y dentro de sus límites.
-- **Un curso con 10-15 imágenes de muestra:** suficiente para demostrar el recorrido completo.
+- **CS50P con sus 10 lecciones oficiales:** suficiente para demostrar el recorrido completo con contenido real y transcripciones temporizadas.
 
 Si da tiempo, por este orden: vídeos cortos a partir de los fallos, podcast y panel del tutor.
 
 ### Qué no entra y por qué
 
 - **Embeddings, búsqueda vectorial y caché semántica:** con el volumen del MVP basta con que el RAG recupere el contenido del módulo mediante consultas a PostgreSQL.
-- **Vídeos reales del curso:** en la demo se sustituyen por imágenes de muestra.
+- **Descargar y almacenar los MP4:** la demo reproduce los vídeos desde la fuente oficial para evitar copiar varios GB; sí guarda transcripciones, subtítulos y marcas temporales.
 - **Edición avanzada de vídeo:** los vídeos cortos serían recortes del original, porque generar o editar vídeo es costoso.
 - **Integración real con empresas externas y otros servicios 480:** no es necesaria para probar la experiencia del alumno.
 - **Varios cursos:** con uno basta para validar la solución.

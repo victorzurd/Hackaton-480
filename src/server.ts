@@ -5,6 +5,7 @@ import { randomBytes } from "node:crypto";
 import { resolve } from "node:path";
 import { pool } from "./db/pool";
 import { createAuthRouter } from "./routes/auth";
+import { createCoursesRouter } from "./routes/courses";
 import { hashPassword } from "./security/password";
 
 const port = Number(process.env.PORT ?? 3000);
@@ -57,6 +58,7 @@ app.use((request: Request, response: Response, next: NextFunction) => {
 });
 
 app.use(express.static(resolve(process.cwd(), "web")));
+app.use("/media", express.static(resolve(process.cwd(), "media")));
 
 app.get("/health", async (_request: Request, response: Response) => {
   try {
@@ -74,6 +76,7 @@ async function start(): Promise<void> {
     "/api/auth",
     createAuthRouter({ db: pool, jwtSecret, dummyPasswordHash }),
   );
+  app.use("/api/courses", createCoursesRouter({ db: pool, jwtSecret }));
 
   app.use((request: Request, response: Response) => {
     response.status(404).json({ error: "No se encontró el recurso solicitado." });

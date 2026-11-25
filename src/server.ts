@@ -27,7 +27,7 @@ app.use(
   helmet({
     contentSecurityPolicy: {
       directives: {
-        styleSrcElem: ["'self'", "'unsafe-inline'"],
+        styleSrcElem: ["'self'"],
         // El prototipo se sirve por HTTP en la red local; aún no hay TLS configurado.
         upgradeInsecureRequests: null,
       },

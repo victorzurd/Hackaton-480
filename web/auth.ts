@@ -60,10 +60,10 @@ function setMode(mode: "login" | "register"): void {
   registerModeButton.setAttribute("aria-pressed", String(mode === "register"));
   loginModeButton.disabled = false;
   registerModeButton.disabled = false;
-  authTitle.textContent = mode === "login" ? "Inicia sesión" : "Crea tu cuenta";
+  authTitle.textContent = mode === "login" ? "Vuelve a conectar." : "Crea tu cuenta.";
   authDescription.textContent =
     mode === "login"
-      ? "Vuelve a tu espacio de aprendizaje."
+      ? "Inicia sesión para continuar tu itinerario."
       : "Solo necesitamos unos datos para empezar.";
   clearMessages();
 }
@@ -321,3 +321,5 @@ byId<HTMLButtonElement>("logout-button").addEventListener("click", () => {
 setMode(window.location.hash === "#registro" ? "register" : "login");
 updateEmploymentOption();
 void restoreSession();
+
+export {};

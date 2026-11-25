@@ -23,7 +23,17 @@ if (Buffer.byteLength(jwtSecret, "utf8") < 32) {
 
 const app = express();
 app.disable("x-powered-by");
-app.use(helmet());
+app.use(
+  helmet({
+    contentSecurityPolicy: {
+      directives: {
+        styleSrcElem: ["'self'", "'unsafe-inline'"],
+        // El prototipo se sirve por HTTP en la red local; aún no hay TLS configurado.
+        upgradeInsecureRequests: null,
+      },
+    },
+  }),
+);
 app.use(express.json({ limit: "10kb" }));
 app.use((request: Request, response: Response, next: NextFunction) => {
   const origin = request.header("origin");

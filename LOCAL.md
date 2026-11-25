@@ -27,4 +27,20 @@ El SQL de inicialización solo se ejecuta al crear un volumen de datos vacío. S
 
 ## Aplicación
 
-Este repositorio contiene actualmente la especificación, documentación y el esquema de la base de datos, pero no incluye el código ejecutable de la aplicación. Por eso Compose prepara y arranca la base de datos; para añadir el servicio de la aplicación hace falta incorporar su código y definir su tecnología y comando de inicio.
+La API de autenticación usa Express, TypeScript y PostgreSQL. Tras copiar `.env.example` a `.env`, cambia `AUTH_JWT_SECRET` por una cadena aleatoria propia de al menos 32 bytes. Puedes levantar la base y la API con:
+
+```powershell
+docker compose up --build -d
+```
+
+La interfaz de acceso y la API quedan disponibles en `http://localhost:3000`. Al arrancar, aplica la migración de autenticación de forma idempotente, también si el volumen de PostgreSQL ya existía.
+
+Para ejecutarla fuera de Docker, instala Node.js 22, arranca PostgreSQL y ejecuta:
+
+```powershell
+npm install
+npm run migrate
+npm run dev
+```
+
+`npm run dev` compila el TypeScript de la interfaz antes de iniciar la API. Consulta los endpoints y ejemplos en [docs/auth-api.md](docs/auth-api.md). La edad se declara durante el registro y no se verifica documentalmente. Solo se guarda la preferencia de bolsa de trabajo para cuentas de 18 años o más; la decisión del usuario es opcional y empieza desactivada.

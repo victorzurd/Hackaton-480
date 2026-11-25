@@ -17,10 +17,20 @@ CREATE TABLE usuarios (
     apellidos VARCHAR(150),
     email VARCHAR(255) NOT NULL UNIQUE,
     password_hash TEXT NOT NULL,
+    edad SMALLINT,
+    consentimiento_datos BOOLEAN NOT NULL DEFAULT FALSE,
+    fecha_consentimiento_datos TIMESTAMPTZ,
+    bolsa_trabajo BOOLEAN NOT NULL DEFAULT FALSE,
     rol VARCHAR(20) NOT NULL
         CHECK (rol IN ('alumno', 'tutor', 'admin')),
     activo BOOLEAN NOT NULL DEFAULT TRUE,
-    fecha_registro TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+    fecha_registro TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    CONSTRAINT ck_usuarios_edad_rango
+        CHECK (edad IS NULL OR edad BETWEEN 0 AND 120),
+    CONSTRAINT ck_usuarios_consentimiento_consistente
+        CHECK (consentimiento_datos = (fecha_consentimiento_datos IS NOT NULL)),
+    CONSTRAINT ck_usuarios_bolsa_solo_adultos
+        CHECK ((edad IS NOT NULL AND edad >= 18) OR NOT bolsa_trabajo)
 );
 
 -- Relación entre tutores y alumnos

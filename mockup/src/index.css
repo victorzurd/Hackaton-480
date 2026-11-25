@@ -1,0 +1,35 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;450;500;550;600;650;700&display=swap');
+@import 'tailwindcss';
+
+@keyframes tutor-talk {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+@layer utilities {
+  .tutor-mouth { animation: tutor-talk 650ms steps(1, end) infinite; }
+  @media (prefers-reduced-motion: reduce) {
+    .tutor-mouth { animation: none; }
+  }
+}
+
+@layer base {
+  body { font-family: 'DM Sans', sans-serif; -webkit-font-smoothing: antialiased; }
+  button, select { cursor: pointer; }
+  button, input, select, textarea { -webkit-tap-highlight-color: transparent; }
+  ::selection { background: #a6f3bd; color: #193d24; }
+  :where(a, button, input, select, textarea, summary, [role='button'], [role='tab']):focus-visible {
+    outline: 2px solid currentColor;
+    outline-offset: 2px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      scroll-behavior: auto !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+}

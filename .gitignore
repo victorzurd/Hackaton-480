@@ -1,6 +1,10 @@
 node_modules/
 dist/
 web/dist/
+media/cs50p/*.mp4
+media/cs50p/*.srt
+media/cs50p/*.txt
+media/cs50p/*.vtt
 .env
 .env.*
 !.env.example

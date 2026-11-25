@@ -31,6 +31,29 @@ Ahora mimso el alumnado no se ve los videos enteros dado al problema de la exper
 - **Repaso:** ve vídeos cortos verticales sobre lo que ha fallado.
 - **Tutor IA:** habla por voz con un tutor que conoce sus errores.
 
+### Mockups de las pantallas
+
+<table>
+  <tr>
+    <td align="center"><img src="docs/img/cuestionario-inicial.webp" alt="Mockup: Cuestionario inicial" width="250"><br><em>Cuestionario inicial</em></td>
+    <td align="center"><img src="docs/img/itinerario.webp" alt="Mockup: Itinerario" width="250"><br><em>Itinerario</em></td>
+  </tr>
+</table>
+
+<table>
+  <tr>
+    <td align="center"><img src="docs/img/video-modulo.webp" alt="Mockup: Vídeo módulo" width="400"><br><em>Vídeo módulo</em></td>
+    <td align="center"><img src="docs/img/cuestionario-video.webp" alt="Mockup: Cuestionario vídeo" width="400"><br><em>Cuestionario vídeo</em></td>
+  </tr>
+</table>
+
+<table>
+  <tr>
+    <td align="center"><img src="docs/img/examen-final.webp" alt="Mockup: Examen final" width="250"><br><em>Examen final</em></td>
+    <td align="center"><img src="docs/img/tutor-ia.webp" alt="Mockup: Tutor IA" width="250"><br><em>Tutor IA</em></td>
+  </tr>
+</table>
+
 
 ## 3. Respuesta a los problemas
 

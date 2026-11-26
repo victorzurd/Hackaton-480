@@ -57,6 +57,9 @@ services:
       - caddy_config:/config
     depends_on:
       - api
+    environment:
+      CADDY_HOSTS: ${CADDY_HOSTS:-localhost}
+      CADDY_DEFAULT_SNI: ${CADDY_DEFAULT_SNI:-localhost}
 
 volumes:
   postgres_data:

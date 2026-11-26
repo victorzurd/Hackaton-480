@@ -195,7 +195,7 @@ El RAG recupera de PostgreSQL las transcripciones del módulo actual, los errore
 - **Sin SQL libre:** solo puede solicitar consultas predefinidas de lectura, y el servidor las limita al alumno de la sesión.
 - **Protección de datos:** todo el contexto se filtra antes de llegar a Gemini.
 
-Detalle en [docs/rag.md](docs/rag.md).
+Detalle en [docs/IA/rag.md](docs/IA/rag.md).
 
 ## 7. Agentes de IA
 

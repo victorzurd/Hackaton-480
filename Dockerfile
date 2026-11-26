@@ -10,6 +10,7 @@ COPY tsconfig.web.json ./
 COPY src ./src
 COPY web ./web
 COPY DataBase/migrations ./DataBase/migrations
+COPY DataBase/seeds ./DataBase/seeds
 
 RUN npm run build
 

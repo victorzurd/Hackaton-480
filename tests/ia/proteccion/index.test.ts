@@ -78,6 +78,24 @@ describe("fallo seguro: si algo va mal no hay texto que enviar", () => {
     });
   });
 
+  test("el límite se puede ampliar o reducir por llamada", () => {
+    const largo = "a".repeat(LONGITUD_MAXIMA + 1);
+    assert.equal(protegerTexto(largo, {}, { longitudMaxima: LONGITUD_MAXIMA + 1 }).ok, true);
+    assert.deepEqual(protegerTexto("hola", {}, { longitudMaxima: 3 }), {
+      ok: false,
+      motivo: "texto_demasiado_largo",
+    });
+  });
+
+  for (const longitudMaxima of [0, -1, 1.5, Number.NaN]) {
+    test(`un límite no válido (${longitudMaxima}) no deja pasar el texto`, () => {
+      assert.deepEqual(protegerTexto("hola", {}, { longitudMaxima }), {
+        ok: false,
+        motivo: "error_interno",
+      });
+    });
+  }
+
   test("ante un error interno no devuelve texto ni registra datos personales", () => {
     const alumnoQueFalla = {
       get nombre(): string {

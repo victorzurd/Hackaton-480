@@ -9,7 +9,8 @@
     "build:web": "tsc -p tsconfig.web.json",
     "start": "node dist/server.js",
     "migrate": "tsx src/db/migrate.ts",
-    "test": "tsc -p tsconfig.test.json && tsx --test \"tests/**/*.test.ts\""
+    "test": "tsc -p tsconfig.test.json && tsx --test \"tests/**/*.test.ts\"",
+    "levantar": "powershell -NoProfile -ExecutionPolicy Bypass -File scripts/levantar.ps1"
   },
   "dependencies": {
     "dotenv": "^16.4.7",

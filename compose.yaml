@@ -36,7 +36,7 @@ services:
       GEMINI_MODEL: ${GEMINI_MODEL:-gemini-3.5-flash-lite}
       CORS_ORIGINS: ${CORS_ORIGINS:-http://localhost:5173}
     ports:
-      - "${API_PORT:-3000}:3000"
+      - "127.0.0.1:${API_PORT:-3000}:3000"
     volumes:
       - ./media:/app/media:ro
       - ./DataBase/seeds:/app/DataBase/seeds:ro
@@ -44,5 +44,22 @@ services:
       db:
         condition: service_healthy
 
+  proxy:
+    image: caddy:2.10-alpine
+    container_name: academy-proxy
+    restart: unless-stopped
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile:ro
+      - caddy_data:/data
+      - caddy_config:/config
+    depends_on:
+      - api
+
 volumes:
   postgres_data:
+  # Guarda autoridad certificadora en local
+  caddy_data:
+  caddy_config:

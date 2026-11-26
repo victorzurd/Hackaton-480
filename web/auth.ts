@@ -51,11 +51,47 @@ type InitialAssessmentSession = {
 
 type CourseTab = "available" | "enrolled";
 
+type CoursePageView = "assessment" | "itinerary";
+
+const currentPage = document.body.dataset.page ?? "login";
+
+function goToCourse(course: Course, view: CoursePageView): void {
+  try {
+    window.sessionStorage.setItem("480_selected_course", JSON.stringify(course));
+  } catch {
+    // El identificador también viaja en la URL; si no se puede guardar, el detalle se recupera desde el catálogo.
+  }
+  const url = new URL("/curso.html", window.location.origin);
+  url.searchParams.set("id", course.id);
+  url.searchParams.set("vista", view);
+  window.location.assign(url);
+}
+
 const byId = <T extends HTMLElement>(id: string): T => {
   const element = document.getElementById(id);
-  if (!element) throw new Error(`No se encontró el elemento ${id}.`);
-  return element as T;
+  if (element) return element as T;
+  const detached = detachedElements.get(id);
+  if (detached) return detached as unknown as T;
+
+  // El controlador es compartido; las vistas de otras rutas pueden no estar en este documento.
+  const formIds = new Set(["login-form", "register-step-one", "register-step-two"]);
+  const inputIds = new Set([
+    "login-email", "login-password", "register-name", "register-email",
+    "register-password", "register-age", "register-employment", "register-consent",
+    "course-search",
+  ]);
+  const buttonIds = new Set([
+    "mode-login", "mode-register", "login-submit", "back-to-step-one",
+    "register-submit", "logout-button", "itinerary-back", "assessment-exit",
+    "assessment-view-itinerary", "assessment-retry", "assessment-previous", "assessment-next",
+  ]);
+  const tag = formIds.has(id) ? "form" : inputIds.has(id) ? "input" : buttonIds.has(id) ? "button" : "div";
+  const placeholder = document.createElement(tag);
+  detachedElements.set(id, placeholder);
+  return placeholder as unknown as T;
 };
+
+const detachedElements = new Map<string, HTMLElement>();
 
 const loginModeButton = byId<HTMLButtonElement>("mode-login");
 const registerModeButton = byId<HTMLButtonElement>("mode-register");
@@ -129,10 +165,11 @@ let activeAssessment: InitialAssessmentSession | null = null;
 let activeAssessmentQuestionIndex = 0;
 const pendingAssessmentAnswers = new Map<string, Promise<void>>();
 let assessmentSaveTimer: number | undefined;
+type VoiceRecognitionResult = ArrayLike<{ transcript: string }> & { isFinal?: boolean };
 type VoiceRecognition = {
   lang: string; continuous: boolean; interimResults: boolean;
-  onresult: ((event: { results: ArrayLike<ArrayLike<{ transcript: string }>> }) => void) | null;
-  onerror: ((event: { error?: string }) => void) | null;
+  onresult: ((event: { results: ArrayLike<VoiceRecognitionResult> }) => void) | null;
+  onerror: ((event: { error?: string; message?: string }) => void) | null;
   onend: (() => void) | null;
   start(): void; stop(): void;
 };
@@ -229,12 +266,21 @@ function expireSession(): void {
     // La sesión también se borra de la memoria de esta página.
   }
   accessToken = null;
+  if (currentPage !== "login") {
+    window.location.replace("/index.html?sesion=expirada");
+    return;
+  }
   setMode("login");
   showMessage("login-message", "Tu sesión ha caducado. Inicia sesión de nuevo.");
 }
 
 function showSuccess(result: AuthResponse, created: boolean): void {
   accessToken = result.token ?? accessToken;
+  if (result.token) saveSession(result.token);
+  if (currentPage === "login") {
+    window.location.replace("/cursos.html");
+    return;
+  }
   loginView.hidden = true;
   registerView.hidden = true;
   successView.hidden = false;
@@ -257,11 +303,11 @@ function showSuccess(result: AuthResponse, created: boolean): void {
   dashboardCopy.textContent = created
     ? "Tu cuenta está lista. Explora los cursos y elige por dónde empezar."
     : "Explora cursos nuevos y continúa con los que ya has empezado.";
-  if (result.token) saveSession(result.token);
   activeCourseTab = "available";
-  courseSearch.value = "";
+  if (currentPage !== "curso") courseSearch.value = "";
   selectCourseTab("available", false);
-  void loadCourses();
+  if (currentPage === "cursos") void loadCourses();
+  if (currentPage === "curso") void restoreSelectedCourse();
   dashboardTitle.focus();
 }
 
@@ -378,9 +424,10 @@ function renderCourse(course: Course): HTMLElement {
     open.className = "button button--primary course-card__action";
     open.textContent = course.evaluacionInicialCompletada ? "Ver mi itinerario" : "Completar examen inicial";
     open.setAttribute("aria-label", `${course.evaluacionInicialCompletada ? "Ver mi itinerario" : "Completar examen inicial"} de ${course.titulo}`);
-    open.addEventListener("click", () => void (course.evaluacionInicialCompletada
-      ? openItinerary(course)
-      : openInitialAssessment(course)));
+    open.addEventListener("click", () => goToCourse(
+      course,
+      course.evaluacionInicialCompletada ? "itinerary" : "assessment",
+    ));
     card.append(progress, open);
   } else {
     const enroll = document.createElement("button");
@@ -467,6 +514,8 @@ function renderAssessmentQuestion(): void {
   textarea.className = "assessment-response";
   textarea.rows = 4;
   textarea.maxLength = 4000;
+  textarea.inputMode = "text";
+  textarea.enterKeyHint = "done";
   textarea.placeholder = "Explica lo que sabes. No hace falta que uses palabras técnicas.";
   textarea.value = question.respuesta ?? "";
   textarea.setAttribute("aria-describedby", "assessment-voice-help");
@@ -498,14 +547,25 @@ function renderAssessmentQuestion(): void {
     SpeechRecognition?: VoiceRecognitionConstructor;
     webkitSpeechRecognition?: VoiceRecognitionConstructor;
   };
-  if (!speechWindow.SpeechRecognition && !speechWindow.webkitSpeechRecognition) {
-    voiceButton.hidden = true;
-    voiceHelp.textContent = "El dictado no está disponible en este navegador. Puedes responder por escrito.";
+  const hasBrowserDictation = Boolean(speechWindow.SpeechRecognition || speechWindow.webkitSpeechRecognition) && window.isSecureContext;
+  if (!hasBrowserDictation) {
+    voiceButtonText.textContent = "Dictar con el teclado";
+    voiceHelp.textContent = window.isSecureContext
+      ? "El dictado integrado no está disponible en este navegador. En el móvil, toca el micrófono del teclado para dictar en el campo de respuesta."
+      : "En el móvil, toca este botón y después el micrófono del teclado. Así puedes dictar aunque abras el curso por la red local sin HTTPS.";
   }
   const divider = document.createElement("p");
   divider.className = "assessment-response__divider";
   divider.textContent = "También puedes responder por escrito";
-  voiceButton.addEventListener("click", () => startAssessmentVoiceResponse(question, textarea, voiceButton));
+  voiceButton.addEventListener("click", () => {
+    if (hasBrowserDictation) {
+      startAssessmentVoiceResponse(question, textarea, voiceButton);
+      return;
+    }
+    textarea.focus();
+    assessmentMessage.textContent = "Campo de respuesta abierto. Toca el micrófono del teclado del móvil para dictar y revisa el texto antes de continuar.";
+    assessmentMessage.setAttribute("role", "status");
+  });
   responseActions.append(voiceButton, voiceHelp);
   card.append(responseActions, divider, responseLabel, textarea);
   assessmentQuestion.append(card);
@@ -591,6 +651,8 @@ function startAssessmentVoiceResponse(
     activeVoiceRecognition.stop();
     activeVoiceRecognition = null;
     setAssessmentVoiceButtonLabel(button, "Responder hablando");
+    assessmentMessage.textContent = "Dictado detenido. Revisa la respuesta o continúa por escrito.";
+    assessmentMessage.setAttribute("role", "status");
     return;
   }
   const speechWindow = window as unknown as {
@@ -603,38 +665,77 @@ function startAssessmentVoiceResponse(
     assessmentMessage.setAttribute("role", "status");
     return;
   }
+  if (!window.isSecureContext) {
+    assessmentMessage.textContent = "Para usar el micrófono, abre el curso desde una conexión segura (HTTPS) o desde localhost. También puedes responder por escrito.";
+    assessmentMessage.setAttribute("role", "alert");
+    return;
+  }
 
   const recognition = new Recognition();
   recognition.lang = "es-ES";
-  recognition.continuous = true;
+  // Una sola intervención mejora la compatibilidad con navegadores móviles.
+  recognition.continuous = false;
   recognition.interimResults = false;
   activeVoiceRecognition = recognition;
+  let transcriptReceived = false;
+  let recognitionError = false;
   setAssessmentVoiceButtonLabel(button, "Escuchando… · Terminar");
   assessmentMessage.textContent = "Te escucho. Cuando termines, revisa el texto antes de continuar.";
   assessmentMessage.setAttribute("role", "status");
   recognition.onresult = (event) => {
-    const transcript = Array.from(event.results).map((result) => result[0]?.transcript ?? "").join(" ").trim();
+    const transcript = Array.from(event.results)
+      .filter((result) => result.isFinal !== false)
+      .map((result) => result[0]?.transcript ?? "")
+      .join(" ")
+      .trim();
     if (!transcript) return;
+    transcriptReceived = true;
     const existing = textarea.value.trim();
     textarea.value = [existing, transcript].filter(Boolean).join(" ");
     question.respuesta = textarea.value;
     question.canal = "voz";
     scheduleAssessmentAnswerSave(question);
+    assessmentMessage.textContent = "Respuesta transcrita. Revísala antes de continuar.";
+    assessmentMessage.setAttribute("role", "status");
   };
-  recognition.onerror = () => {
-    assessmentMessage.textContent = "No se pudo transcribir la voz. Puedes continuar por escrito.";
+  recognition.onerror = (event) => {
+    recognitionError = true;
+    activeVoiceRecognition = null;
+    setAssessmentVoiceButtonLabel(button, "Responder hablando");
+    const messages: Record<string, string> = {
+      "not-allowed": "El navegador no ha permitido usar el micrófono. Permite el acceso al micrófono para este sitio y vuelve a intentarlo.",
+      "service-not-allowed": "Este navegador o dispositivo no ofrece el servicio de dictado. Puedes responder por escrito.",
+      "audio-capture": "No se encuentra un micrófono disponible. Comprueba el micrófono y sus permisos, o responde por escrito.",
+      network: "El servicio de dictado no ha podido conectarse. Comprueba la conexión a Internet y vuelve a intentarlo, o responde por escrito.",
+      "no-speech": "No se ha detectado voz. Acerca el micrófono, habla después de que empiece la escucha y vuelve a intentarlo.",
+      "language-not-supported": "El dictado en español no está disponible en este navegador. Puedes responder por escrito.",
+    };
+    if (event.error === "aborted") {
+      assessmentMessage.textContent = "Dictado detenido. Puedes volver a intentarlo o responder por escrito.";
+      assessmentMessage.setAttribute("role", "status");
+      return;
+    }
+    assessmentMessage.textContent = messages[event.error ?? ""] ??
+      "No se pudo transcribir la voz. Revisa los permisos del micrófono o responde por escrito.";
     assessmentMessage.setAttribute("role", "alert");
   };
   recognition.onend = () => {
     if (activeVoiceRecognition === recognition) activeVoiceRecognition = null;
     setAssessmentVoiceButtonLabel(button, "Responder hablando");
+    if (!transcriptReceived && !recognitionError) {
+      assessmentMessage.textContent = "No se ha recibido ninguna respuesta de voz. Inténtalo de nuevo o responde por escrito.";
+      assessmentMessage.setAttribute("role", "status");
+    }
   };
   try {
     recognition.start();
-  } catch {
+  } catch (error) {
+    const name = error instanceof DOMException ? error.name : "";
     activeVoiceRecognition = null;
     setAssessmentVoiceButtonLabel(button, "Responder hablando");
-    assessmentMessage.textContent = "No se pudo activar el dictado. Puedes continuar por escrito.";
+    assessmentMessage.textContent = name === "NotAllowedError"
+      ? "El navegador no ha permitido usar el micrófono. Revisa los permisos de este sitio o responde por escrito."
+      : "No se pudo iniciar el dictado en este dispositivo. Puedes volver a intentarlo o responder por escrito.";
     assessmentMessage.setAttribute("role", "alert");
   }
 }
@@ -776,6 +877,10 @@ async function closeAssessment(): Promise<void> {
   if (activeVoiceRecognition) {
     activeVoiceRecognition.stop();
     activeVoiceRecognition = null;
+  }
+  if (currentPage === "curso") {
+    window.location.assign("/cursos.html");
+    return;
   }
   assessmentView.hidden = true;
   if (courseTabBar) courseTabBar.hidden = false;
@@ -959,6 +1064,10 @@ async function openItinerary(course: Course): Promise<void> {
 }
 
 function closeItinerary(): void {
+  if (currentPage === "curso") {
+    window.location.assign("/cursos.html");
+    return;
+  }
   itineraryView.hidden = true;
   if (courseTabBar) courseTabBar.hidden = false;
   coursePanel.hidden = false;
@@ -1028,6 +1137,53 @@ async function loadCourses(notice = ""): Promise<void> {
   }
 }
 
+async function restoreSelectedCourse(): Promise<void> {
+  if (!accessToken) return;
+  const courseId = new URLSearchParams(window.location.search).get("id");
+  if (!courseId) {
+    window.location.replace("/cursos.html");
+    return;
+  }
+
+  let course: Course | null = null;
+  try {
+    const stored = window.sessionStorage.getItem("480_selected_course");
+    if (stored) {
+      const parsed = JSON.parse(stored) as Course;
+      if (parsed.id === courseId) course = parsed;
+    }
+  } catch {
+    // Si el almacenamiento no está disponible, se recupera el curso desde la API.
+  }
+
+  if (!course) {
+    try {
+      const response = await fetch("/api/courses/enrolled", {
+        headers: { Authorization: `Bearer ${accessToken}` },
+      });
+      if (response.status === 401) { expireSession(); return; }
+      if (!response.ok) throw new Error("No se pudo recuperar el curso.");
+      const result = (await response.json()) as CourseListResponse;
+      course = result.cursos.find((item) => item.id === courseId) ?? null;
+    } catch {
+      course = null;
+    }
+  }
+
+  if (!course) {
+    window.location.replace("/cursos.html");
+    return;
+  }
+
+  activeAssessmentCourse = course;
+  const view = new URLSearchParams(window.location.search).get("vista");
+  if (view === "assessment" || !course.evaluacionInicialCompletada) {
+    await openInitialAssessment(course);
+  } else {
+    await openItinerary(course);
+  }
+}
+
 async function enrollInCourse(course: Course, button: HTMLButtonElement): Promise<void> {
   if (!accessToken) return;
   button.disabled = true;
@@ -1048,7 +1204,7 @@ async function enrollInCourse(course: Course, button: HTMLButtonElement): Promis
     selectCourseTab("enrolled", false);
     course.estado = "activo";
     course.evaluacionInicialCompletada = false;
-    void openInitialAssessment(course);
+    goToCourse(course, "assessment");
   } catch (error) {
     setCourseStatus(
       error instanceof Error ? error.message : "No se pudo completar la inscripción.",
@@ -1074,9 +1230,13 @@ async function restoreSession(): Promise<void> {
   try {
     token = window.sessionStorage.getItem("480_access_token");
   } catch {
+    if (currentPage !== "login") window.location.replace("/index.html");
     return;
   }
-  if (!token) return;
+  if (!token) {
+    if (currentPage !== "login") window.location.replace("/index.html");
+    return;
+  }
 
   try {
     const response = await fetch("/api/auth/me", {
@@ -1086,12 +1246,14 @@ async function restoreSession(): Promise<void> {
       if (response.status === 401) {
         window.sessionStorage.removeItem("480_access_token");
       }
+      if (currentPage !== "login") window.location.replace("/index.html");
       return;
     }
     const result = (await response.json()) as Omit<AuthResponse, "token">;
     showSuccess({ ...result, token }, false);
   } catch {
-    // Si la API no responde, se mantiene el formulario disponible para volver a intentarlo.
+    // La página de acceso mantiene el formulario disponible; las rutas privadas vuelven a acceso.
+    if (currentPage !== "login") window.location.replace("/index.html");
   }
 }
 
@@ -1285,15 +1447,7 @@ byId<HTMLButtonElement>("logout-button").addEventListener("click", () => {
   } catch {
     // El estado visual vuelve a acceso aunque el almacenamiento no esté disponible.
   }
-  loginForm.reset();
-  stepOneForm.reset();
-  stepTwoForm.reset();
-  courseSearch.value = "";
-  courseList.replaceChildren();
-  setCourseStatus("");
-  updateEmploymentOption();
-  setMode("login");
-  byId<HTMLInputElement>("login-email").focus();
+  window.location.assign("/index.html");
 });
 
 setMode(window.location.hash === "#registro" ? "register" : "login");

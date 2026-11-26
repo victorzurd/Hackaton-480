@@ -20,6 +20,18 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+/* Catálogo e itinerario aprovechan el ancho disponible. */
+body[data-page="cursos"] .auth-shell,
+body[data-page="curso"] .auth-shell {
+  width: min(1120px, 100%);
+  grid-template-columns: minmax(0, 1fr);
+}
+
+body[data-page="cursos"] .auth-panel,
+body[data-page="curso"] .auth-panel {
+  padding: clamp(24px, 4vw, 48px);
+}
+
 * {
   box-sizing: border-box;
 }

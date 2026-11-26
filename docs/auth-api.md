@@ -72,7 +72,7 @@ Requiere `Authorization: Bearer <token>`. Crea la matrícula en un curso activo.
 - `POST /api/courses/:id/initial-assessment/submit` envía a Gemini las respuestas filtradas junto con preguntas y referencias del curso. Gemini devuelve los contenidos dominados y el orden de módulos; el servidor valida y guarda el resultado. No calcula ni muestra una nota.
 - `GET /api/courses/:id/itinerary` requiere un examen inicial completado y devuelve el orden personal del alumno.
 
-El examen inicial CS50P es material de práctica original en español: tiene diez preguntas abiertas con ejemplos visuales de código, una por cada contenido de la demo. Se puede contestar por escrito o mediante dictado de voz del navegador; la API del curso guarda texto y filtra las respuestas antes de enviarlas a Gemini.
+El examen inicial CS50P es material de práctica original en español: tiene diez preguntas abiertas con ejemplos visuales de código, una por cada contenido de la demo. Se puede contestar por escrito o mediante dictado de voz. En móviles que abren la web por HTTP en la red local, el botón enfoca la respuesta para usar el micrófono del teclado del sistema, sin necesitar HTTPS ni permiso de micrófono para el sitio. La API del curso guarda solo el texto y filtra las respuestas antes de enviarlas a Gemini.
 
 ## Salud
 

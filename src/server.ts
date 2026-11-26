@@ -25,6 +25,9 @@ if (Buffer.byteLength(jwtSecret, "utf8") < 32) {
 
 const app = express();
 app.disable("x-powered-by");
+// Detrás del proxy HTTPS (Caddy) la API recibe HTTP: confía en su X-Forwarded-Proto
+// para saber que la petición original era HTTPS. Solo desde direcciones locales o privadas.
+app.set("trust proxy", "loopback, uniquelocal");
 app.use(
   helmet({
     contentSecurityPolicy: {

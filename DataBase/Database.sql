@@ -98,7 +98,8 @@ CREATE TABLE contenidos (
     disponible BOOLEAN NOT NULL DEFAULT TRUE,
     fecha_creacion TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
 
-    UNIQUE (modulo_id, orden)
+    UNIQUE (modulo_id, orden),
+    UNIQUE (id, modulo_id)
 );
 
 -- =========================================================
@@ -134,7 +135,8 @@ CREATE TABLE fragmentos_transcripcion (
 CREATE TABLE evaluaciones (
     id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
 
-    modulo_id BIGINT NOT NULL REFERENCES modulos(id) ON DELETE CASCADE,
+    curso_id BIGINT REFERENCES cursos(id) ON DELETE CASCADE,
+    modulo_id BIGINT REFERENCES modulos(id) ON DELETE CASCADE,
     contenido_id BIGINT REFERENCES contenidos(id) ON DELETE CASCADE,
 
     tipo VARCHAR(20) NOT NULL
@@ -144,17 +146,22 @@ CREATE TABLE evaluaciones (
     descripcion TEXT,
     fecha_creacion TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
 
-    CHECK (
-        (tipo = 'inicial' AND contenido_id IS NULL)
+    CONSTRAINT ck_evaluaciones_ubicacion CHECK (
+        (tipo = 'inicial' AND contenido_id IS NULL AND
+            ((curso_id IS NOT NULL AND modulo_id IS NULL) OR (curso_id IS NULL AND modulo_id IS NOT NULL)))
         OR
-        (tipo IN ('intermedia', 'final') AND contenido_id IS NOT NULL)
+        (tipo IN ('intermedia', 'final') AND curso_id IS NULL AND modulo_id IS NOT NULL AND contenido_id IS NOT NULL)
     )
 );
 
--- Un único test inicial por módulo
+-- Un único examen inicial por curso; se conserva el índice para evaluaciones de módulo antiguas.
+CREATE UNIQUE INDEX uq_evaluacion_inicial_curso
+ON evaluaciones(curso_id)
+WHERE tipo = 'inicial' AND curso_id IS NOT NULL;
+
 CREATE UNIQUE INDEX uq_evaluacion_inicial
 ON evaluaciones(modulo_id)
-WHERE tipo = 'inicial';
+WHERE tipo = 'inicial' AND curso_id IS NULL;
 
 -- Un único test intermedio por contenido
 CREATE UNIQUE INDEX uq_evaluacion_intermedia
@@ -357,10 +364,14 @@ CREATE TABLE itinerarios (
     alumno_id BIGINT NOT NULL REFERENCES usuarios(id) ON DELETE CASCADE,
     modulo_id BIGINT NOT NULL REFERENCES modulos(id) ON DELETE CASCADE,
 
+    orden_personalizado INTEGER NOT NULL DEFAULT 1,
+
     fecha_generacion TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     actualizado TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
 
-    UNIQUE (alumno_id, modulo_id)
+    UNIQUE (alumno_id, modulo_id),
+    CONSTRAINT ck_itinerarios_orden_personalizado CHECK (orden_personalizado > 0),
+    UNIQUE (id, modulo_id)
 );
 
 CREATE TABLE itinerario_contenidos (
@@ -371,6 +382,8 @@ CREATE TABLE itinerario_contenidos (
 
     contenido_id BIGINT NOT NULL
         REFERENCES contenidos(id) ON DELETE CASCADE,
+
+    modulo_id BIGINT NOT NULL,
 
     orden INTEGER NOT NULL CHECK (orden > 0),
 
@@ -386,8 +399,43 @@ CREATE TABLE itinerario_contenidos (
         ),
 
     UNIQUE (itinerario_id, contenido_id),
-    UNIQUE (itinerario_id, orden)
+    UNIQUE (itinerario_id, orden),
+    CONSTRAINT fk_itinerario_contenido_modulo
+        FOREIGN KEY (contenido_id, modulo_id)
+        REFERENCES contenidos(id, modulo_id) ON DELETE CASCADE,
+    CONSTRAINT fk_itinerario_padre_modulo
+        FOREIGN KEY (itinerario_id, modulo_id)
+        REFERENCES itinerarios(id, modulo_id) ON DELETE CASCADE
 );
+
+-- Al matricular a un alumno se crea su copia ordenable del itinerario de cada módulo.
+CREATE FUNCTION crear_itinerario_al_matricular()
+RETURNS TRIGGER
+LANGUAGE plpgsql
+AS $$
+BEGIN
+    IF NEW.estado = 'activo' THEN
+        INSERT INTO itinerarios (alumno_id, modulo_id)
+        SELECT NEW.alumno_id, m.id FROM modulos m WHERE m.curso_id = NEW.curso_id
+        ON CONFLICT (alumno_id, modulo_id) DO NOTHING;
+
+        INSERT INTO itinerario_contenidos (itinerario_id, modulo_id, contenido_id, orden)
+        SELECT i.id, m.id, c.id,
+               (COALESCE((SELECT MAX(ic.orden) FROM itinerario_contenidos ic WHERE ic.itinerario_id = i.id), 0)
+                + ROW_NUMBER() OVER (PARTITION BY i.id ORDER BY c.orden, c.id))::integer
+        FROM itinerarios i
+        JOIN modulos m ON m.id = i.modulo_id AND m.curso_id = NEW.curso_id
+        JOIN contenidos c ON c.modulo_id = m.id AND c.disponible = TRUE
+        WHERE i.alumno_id = NEW.alumno_id
+        ON CONFLICT (itinerario_id, contenido_id) DO NOTHING;
+    END IF;
+    RETURN NEW;
+END;
+$$;
+
+CREATE TRIGGER trg_crear_itinerario_al_matricular
+AFTER INSERT OR UPDATE OF estado ON matriculas
+FOR EACH ROW EXECUTE FUNCTION crear_itinerario_al_matricular();
 
 -- =========================================================
 -- 12. TUTORIAS CON IA

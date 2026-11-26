@@ -32,6 +32,8 @@ services:
       PGUSER: ${POSTGRES_USER:-academy}
       PGPASSWORD: ${POSTGRES_PASSWORD:-academy_local}
       AUTH_JWT_SECRET: ${AUTH_JWT_SECRET:-}
+      GEMINI_API_KEY: ${GEMINI_API_KEY:-}
+      GEMINI_MODEL: ${GEMINI_MODEL:-gemini-3.5-flash-lite}
       CORS_ORIGINS: ${CORS_ORIGINS:-http://localhost:5173}
     ports:
       - "${API_PORT:-3000}:3000"

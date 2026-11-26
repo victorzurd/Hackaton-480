@@ -27,13 +27,13 @@ El SQL de inicialización solo se ejecuta al crear un volumen de datos vacío. S
 
 ## Aplicación
 
-La API de autenticación usa Express, TypeScript y PostgreSQL. Tras copiar `.env.example` a `.env`, cambia `AUTH_JWT_SECRET` por una cadena aleatoria propia de al menos 32 bytes. Puedes levantar la base y la API con:
+La API de autenticación usa Express, TypeScript y PostgreSQL. Tras copiar `.env.example` a `.env`, cambia `AUTH_JWT_SECRET` por una cadena aleatoria propia de al menos 32 bytes. Si usas Docker Compose, evita el carácter `$` en esta variable (Compose intenta interpolarlo); usa una cadena hexadecimal o alfanumérica. Para personalizar itinerarios, configura también `GEMINI_API_KEY` con una clave válida de Google AI Studio; `GEMINI_MODEL` permite cambiar el modelo. Puedes levantar la base y la API con:
 
 ```powershell
 docker compose up --build -d
 ```
 
-La interfaz de acceso y la API quedan disponibles en `http://localhost:3000`. Al arrancar, aplica la migración de autenticación de forma idempotente, también si el volumen de PostgreSQL ya existía.
+La interfaz de acceso y la API quedan disponibles en `http://localhost:3000`. Al arrancar, aplica de forma idempotente las migraciones de autenticación, itinerarios personalizados y examen inicial, también si el volumen de PostgreSQL ya existía. El seed crea CS50P con su examen inicial de curso y preguntas asociadas a los diez contenidos de la demo.
 
 Para ejecutarla fuera de Docker, instala Node.js 22, arranca PostgreSQL y ejecuta:
 

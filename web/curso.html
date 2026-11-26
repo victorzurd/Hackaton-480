@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#f5f6f3" />
+    <meta name="description" content="Accede a tu espacio de aprendizaje de 480 Academy." />
+    <title>Curso · 480 Academy</title>
+    <link rel="stylesheet" href="/styles.css" />
+    <script type="module" src="/dist/app.js"></script>
+  </head>
+  <body data-page="curso">
+    <header class="topbar">
+      <div class="topbar__inner">
+        <a class="wordmark" href="/" aria-label="480 Academy, inicio">
+          <span class="wordmark__mark" aria-hidden="true"><span>4</span>80</span>
+          <span class="wordmark__academy">Academy</span>
+        </a>
+      </div>
+    </header>
+    <main class="page-main">
+      <div class="auth-shell">
+        <section class="auth-panel" aria-labelledby="dashboard-title">
+          <section id="success-view" class="dashboard-view" aria-labelledby="dashboard-title" hidden>
+            <header class="dashboard-heading">
+              <div>
+                <p class="section-kicker">TU ESPACIO DE APRENDIZAJE</p>
+                <h2 id="dashboard-title">Hola.</h2>
+                <p id="dashboard-copy" class="dashboard-heading__copy">
+                  Explora cursos y continúa con los que ya has empezado.
+                </p>
+              </div>
+              <button class="button button--secondary dashboard-logout" type="button" id="logout-button">
+                Cerrar sesión
+              </button>
+            </header>
+            <section id="itinerary-view" class="itinerary-view" aria-labelledby="itinerary-title" hidden>
+              <button class="text-button itinerary-back" id="itinerary-back" type="button">← Volver a mis cursos</button>
+              <header class="itinerary-heading">
+                <div>
+                  <p class="section-kicker">TU RUTA DE APRENDIZAJE</p>
+                  <h3 id="itinerary-title"></h3>
+                  <p id="itinerary-description" class="itinerary-description"></p>
+                </div>
+                <div class="itinerary-summary" id="itinerary-summary" aria-live="polite"></div>
+              </header>
+              <p id="itinerary-status" class="course-status" role="status" aria-live="polite"></p>
+              <div id="itinerary-tree" class="itinerary-tree" aria-busy="false"></div>
+            </section>
+            <section id="assessment-view" class="assessment-view" aria-labelledby="assessment-title" hidden>
+              <button class="text-button assessment-exit" id="assessment-exit" type="button">← Guardar y salir</button>
+              <div id="assessment-active">
+                <header class="assessment-heading">
+                  <p class="section-kicker">ANTES DE EMPEZAR</p>
+                  <h3 id="assessment-title">Empecemos por lo que ya sabes.</h3>
+                  <p id="assessment-course-title" class="assessment-course-title"></p>
+                  <p class="assessment-intro">Haremos un recorrido por los contenidos con ejemplos breves. La conversación prioriza la voz; también puedes responder por escrito. No es una nota y puedes retomarlo si sales.</p>
+                </header>
+                <div class="assessment-progress-copy">
+                  <span id="assessment-step-label">Pregunta 1 de 1</span>
+                  <span id="assessment-step-percent">0%</span>
+                </div>
+                <div class="assessment-progress-track" id="assessment-progress-track" role="progressbar" aria-label="Progreso del examen inicial" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><span id="assessment-progress-fill"></span></div>
+                <div id="assessment-question" class="assessment-question" aria-live="polite"></div>
+                <p id="assessment-message" class="assessment-message" role="status" aria-live="polite"></p>
+                <button class="text-button assessment-retry" id="assessment-retry" type="button" hidden>Intentar de nuevo</button>
+                <div class="assessment-actions">
+                  <button class="button button--secondary" id="assessment-previous" type="button">Anterior</button>
+                  <button class="button button--primary" id="assessment-next" type="button">Siguiente</button>
+                </div>
+              </div>
+              <div id="assessment-complete" class="assessment-complete" hidden>
+                <span class="assessment-complete__mark" aria-hidden="true">✓</span>
+                <p class="section-kicker">ITINERARIO PREPARADO</p>
+                <h3>Tu itinerario ya está preparado.</h3>
+                <p id="assessment-result-copy"></p>
+                <p id="assessment-order-copy" class="assessment-order-copy"></p>
+                <div id="assessment-mastered-wrap" class="assessment-mastered-wrap" hidden>
+                  <h4>Contenidos que ya dominas</h4>
+                  <ul id="assessment-mastered-list"></ul>
+                </div>
+                <button class="button button--primary" id="assessment-view-itinerary" type="button">Ver mi itinerario</button>
+              </div>
+            </section>
+          </section>
+        </section>
+      </div>
+    </main>
+    <footer class="page-footer">
+      <span>480 Academy</span>
+      <span>Aprende a tu ritmo.</span>
+    </footer>
+  </body>
+</html>

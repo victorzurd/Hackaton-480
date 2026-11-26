@@ -8,6 +8,14 @@ async function migrate(): Promise<void> {
     resolve(process.cwd(), "DataBase/migrations/001_auth_fields.sql"),
     "utf8",
   );
+  const itineraryMigrationSql = await readFile(
+    resolve(process.cwd(), "DataBase/migrations/002_itinerarios_personalizados.sql"),
+    "utf8",
+  );
+  const initialAssessmentMigrationSql = await readFile(
+    resolve(process.cwd(), "DataBase/migrations/003_examen_inicial_curso.sql"),
+    "utf8",
+  );
   const seedSql = await readFile(
     resolve(process.cwd(), "DataBase/seeds/cs50p_demo.sql"),
     "utf8",
@@ -17,12 +25,14 @@ async function migrate(): Promise<void> {
   try {
     await client.query("BEGIN");
     await client.query(migrationSql);
+    await client.query(itineraryMigrationSql);
+    await client.query(initialAssessmentMigrationSql);
     await client.query(seedSql);
     // El seed establece search_path para sus consultas; no lo dejamos
     // modificado en la conexión que vuelve al pool.
     await client.query("RESET search_path");
     await client.query("COMMIT");
-    console.log("Migración aplicada y curso CS50P de prueba cargado.");
+    console.log("Migraciones aplicadas y curso CS50P cargado con examen inicial de curso.");
   } catch (error) {
     await client.query("ROLLBACK");
     throw error;

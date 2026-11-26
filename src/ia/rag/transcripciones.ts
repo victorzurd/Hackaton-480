@@ -10,11 +10,9 @@
 import { consultarIAJson } from "../gemini";
 import type { OpcionesCliente } from "../gemini/cliente";
 import type { DatosAlumno } from "../proteccion";
+import type { BaseDatos } from "./bd";
 
-// Lo mínimo que se usa del Pool de pg: permite simular la BD en los tests.
-export type BaseDatos = {
-  query: (texto: string, valores?: unknown[]) => Promise<{ rows: any[] }>;
-};
+export type { BaseDatos } from "./bd";
 
 export type FragmentoRelevante = {
   titulo: string; // título del vídeo

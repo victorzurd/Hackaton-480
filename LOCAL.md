@@ -10,7 +10,7 @@ npm run levantar
 
 Crea `.env` si no existe, detecta la IPv4 local, actualiza la configuración de Caddy y levanta los contenedores. En Windows instala el certificado local de Caddy si puede acceder al almacén de certificados; después, abre **`https://localhost`** en el ordenador o la URL HTTPS que muestra el script en el móvil, conectado a la misma red.
 
-Para usar la IA, pon tu `GEMINI_API_KEY` en `.env`.
+Para usar la IA, pon tu `GEMINI_API_KEY` en `.env`. La primera vez también descarga los subtítulos de CS50P (en `media/cs50p/`, fuera de Git) y los importa para el Tutor IA.
 
 | Dirección | Uso |
 | --- | --- |

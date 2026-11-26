@@ -62,7 +62,7 @@ Una tarea está terminada cuando:
 - [ ] Cumple los criterios de aceptación de su historia de usuario en `SPEC.md` (apartado 4).
 - [ ] Funciona en **vista móvil** (el 71 % del tráfico de 480 Academy es móvil).
 - [ ] Todos los textos que ve el alumno están **en español**.
-- [ ] Toda petición a la IA pasa por el **servicio de protección de datos** y solo usa las columnas permitidas del RAG (ver `SPEC.md` apartado 6 y `docs/rag.md`).
+- [ ] Toda petición a la IA pasa por el **servicio de protección de datos** y solo usa las columnas permitidas del RAG (ver `SPEC.md` apartado 6 y `docs/IA/rag.md`).
 - [ ] El proyecto sigue arrancando con `docker compose up` sin errores.
 - [ ] No hay claves, contraseñas ni `.env` subidos al repositorio.
 - [ ] Si se crea o cambia un agente de IA, sus instrucciones y límites están documentados en el repositorio y la tabla de agentes de `SPEC.md` (apartado 7) está al día.

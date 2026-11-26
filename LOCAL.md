@@ -52,6 +52,35 @@ Para detener PostgreSQL sin borrar los datos, ejecuta `docker compose down`. Par
 
 El SQL de inicialización solo se ejecuta al crear un volumen de datos vacío. Si necesitas recrear la base desde cero, `docker compose down -v` elimina también los datos persistidos.
 
+## Subtítulos para los reels
+
+Los reels buscan el tramo del vídeo en los subtítulos de CS50P, que no están en el repositorio. Para descargarlos en `media/cs50p/`:
+
+```powershell
+# Windows
+.\DataBase\seeds\download_cs50p.ps1
+```
+
+```bash
+# Linux y macOS, desde la raíz del proyecto
+cd media/cs50p
+for i in $(seq 0 9); do
+  base="https://cdn.cs50.net/python/2022/x/lectures/$i/lang/en"
+  curl -fL --retry 3 -o "lecture-$i.srt" "$base/lecture$i.srt"
+  curl -fL --retry 3 -o "lecture-$i.txt" "$base/lecture$i.txt"
+  { echo "WEBVTT"; echo; sed -E 's/([0-9]{2}:[0-9]{2}:[0-9]{2}),([0-9]{3})/\1.\2/g' "lecture-$i.srt"; } > "lecture-$i.vtt"
+done
+cd ../..
+```
+
+Con los contenedores levantados, impórtalos a la base de datos:
+
+```bash
+docker exec academy-api node DataBase/seeds/import_cs50p_transcripts.mjs
+```
+
+Debe mostrar una línea por lección. Después de `docker compose down -v` hay que volver a importarlos; los ficheros descargados se conservan.
+
 ## Aplicación
 
 La API de autenticación usa Express, TypeScript y PostgreSQL. Tras copiar `.env.example` a `.env`, cambia `AUTH_JWT_SECRET` por una cadena aleatoria propia de al menos 32 bytes. Si usas Docker Compose, evita el carácter `$` en esta variable (Compose intenta interpolarlo); usa una cadena hexadecimal o alfanumérica. Para personalizar itinerarios, configura también `GEMINI_API_KEY` con una clave válida de Google AI Studio; `GEMINI_MODEL` permite cambiar el modelo. Además de con `npm run levantar`, puedes levantar todo con:

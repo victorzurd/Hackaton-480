@@ -74,6 +74,29 @@ Requiere `Authorization: Bearer <token>`. Crea la matrícula en un curso activo.
 
 El examen inicial CS50P es material de práctica original en español: tiene diez preguntas abiertas con ejemplos visuales de código, una por cada contenido de la demo. Se puede contestar por escrito o mediante dictado de voz. En móviles que abren la web por HTTP en la red local, el botón enfoca la respuesta para usar el micrófono del teclado del sistema, sin necesitar HTTPS ni permiso de micrófono para el sitio. La API del curso guarda solo el texto y filtra las respuestas antes de enviarlas a Gemini.
 
+## Reels de repaso
+
+Requieren `Authorization: Bearer <token>` y solo devuelven los reels del alumno autenticado. Funcionamiento del agente en [IA/reels.md](IA/reels.md).
+
+- `GET /api/reels` devuelve la biblioteca: primero los pendientes, ordenados por las veces que se ha repetido el error. Incluye `resumen` con `total` y `pendientes`. Filtros opcionales: `estado=pendiente|revisado|todos` y `curso=<id>`.
+- `GET /api/reels/:id` devuelve un reel. Responde `404` si no existe o es de otro alumno.
+- `POST /api/reels/:id/revisado` lo marca como revisado. Con `{ "revisada": false }` vuelve a pendiente.
+
+Cada reel incluye `concepto`, `motivo`, `recomendacion`, `vecesDetectado`, `revisada`, `curso`, `leccion` y `clip`:
+
+```json
+"clip": {
+  "url": "https://cdn.cs50.net/python/2022/x/lectures/2/lecture2-360p.mp4",
+  "inicio": 2486,
+  "fin": 2544,
+  "duracion": 58,
+  "inicioTexto": "41:26",
+  "urlFragmento": "https://cdn.cs50.net/python/2022/x/lectures/2/lecture2-360p.mp4#t=2486,2544"
+}
+```
+
+`urlFragmento` se puede usar directamente en un `<video>` para reproducir solo ese tramo. Si no se encontró el tramo, `clip` es `null` y la interfaz muestra la recomendación y la lección.
+
 ## Salud
 
 `GET /health` comprueba la conexión a PostgreSQL y devuelve `503` si la base de datos no está disponible.

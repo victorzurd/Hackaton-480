@@ -8,4 +8,5 @@ media/cs50p/*.vtt
 .env
 .env.*
 !.env.example
+caddy-root.crt
 npm-debug.log*

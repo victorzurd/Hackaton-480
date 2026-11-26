@@ -8,13 +8,14 @@ Con Docker Desktop abierto:
 npm run levantar
 ```
 
-Crea `.env` si no existe, levanta los contenedores y, la primera vez, instala el certificado local de Caddy (**pulsa «Sí» en el aviso de Windows** y reinicia el navegador). Después, abre **`https://localhost`**.
+Crea `.env` si no existe, detecta la IPv4 local, actualiza la configuración de Caddy y levanta los contenedores. En Windows instala el certificado local de Caddy si puede acceder al almacén de certificados; después, abre **`https://localhost`** en el ordenador o la URL HTTPS que muestra el script en el móvil, conectado a la misma red.
 
 Para usar la IA, pon tu `GEMINI_API_KEY` en `.env`.
 
 | Dirección | Uso |
 | --- | --- |
 | `https://localhost` | Aplicación CON HTTPS |
+| `https://<IP-local>` | Aplicación desde el móvil en la misma red |
 | `http://localhost:3000` | Aplicación sin HTTPS, solo desde tu equipo |
 | `localhost:5432` | PostgreSQL |
 
@@ -23,6 +24,8 @@ Para usar la IA, pon tu `GEMINI_API_KEY` en `.env`.
 El contenedor `proxy` ([Caddy](https://caddyserver.com/), configurado en [`Caddyfile`](Caddyfile)) sirve HTTPS y reenvía a la API. Solo para desarrollo.
 
 - Usa `https://localhost`: sin puerto y no `127.0.0.1`.
+- `npm run levantar` detecta la IPv4 local y la guarda en `CADDY_HOSTS` y `CADDY_DEFAULT_SNI` dentro de `.env` en cada arranque.
+- En el móvil, abre la URL `https://<IP-local>` que muestra el script. Si el teléfono no confía en Caddy, instala el certificado raíz `caddy-root.crt` que el script deja en la carpeta del proyecto.
 - Los puertos 80 y 443 deben estar libres.
 - Chrome y Edge no muestran candado: pulsa el icono junto a la dirección y comprueba «La conexión es segura».
 - `docker compose down -v` borra el certificado; vuelve a ejecutar `npm run levantar`.

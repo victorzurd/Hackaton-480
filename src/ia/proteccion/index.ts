@@ -12,7 +12,12 @@ export { RegistroSeudonimos, registroSeudonimos } from "./seudonimos";
 export type { DatosAlumno } from "./nombres";
 
 //TODO medir en tutorIA
+// Límite por defecto: suficiente para un mensaje del alumno. Se puede ampliar por llamada.
 export const LONGITUD_MAXIMA = 4000;
+
+export type OpcionesProteccion = {
+  longitudMaxima?: number;
+};
 
 export type DatosDetectados = Record<TipoDatoConFormato | "nombre", number>;
 
@@ -25,9 +30,16 @@ export type ResultadoProteccion =
   // Caracteres invisibles
   const INVISIBLES = /[\p{Cf}\u0000-\u0008\u000B\u000C\u000E-\u001F\u007F]/gu;
 
-export function protegerTexto(texto: unknown, alumno: DatosAlumno = {}): ResultadoProteccion {
+export function protegerTexto(
+  texto: unknown,
+  alumno: DatosAlumno = {},
+  { longitudMaxima = LONGITUD_MAXIMA }: OpcionesProteccion = {},
+): ResultadoProteccion {
   if (typeof texto !== "string") return { ok: false, motivo: "texto_no_valido" };
-  if (texto.length > LONGITUD_MAXIMA) return { ok: false, motivo: "texto_demasiado_largo" };
+  if (!Number.isInteger(longitudMaxima) || longitudMaxima < 1) {
+    return { ok: false, motivo: "error_interno" };
+  }
+  if (texto.length > longitudMaxima) return { ok: false, motivo: "texto_demasiado_largo" };
 
   try {
     const limpio = texto.normalize("NFC").replace(INVISIBLES, "");

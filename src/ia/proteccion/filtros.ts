@@ -16,7 +16,9 @@ export type ResultadoFiltro = {
 const INICIO = String.raw`(?<![\p{L}\p{N}])`;
 const FIN = String.raw`(?![\p{L}\p{N}])`;
 
-const EMAIL = /[\p{L}\p{N}._%+-]+@[\p{L}\p{N}-]+(?:\.[\p{L}\p{N}-]+)*\.\p{L}{2,}/gu;
+// Solo empieza donde no hay otro carácter de email delante: evita recorrer el texto
+// una vez por cada letra, que con textos largos lo haría muy lento.
+const EMAIL = /(?<![\p{L}\p{N}._%+-])[\p{L}\p{N}._%+-]+@[\p{L}\p{N}-]+(?:\.[\p{L}\p{N}-]+)*\.\p{L}{2,}/gu;
 
 // DNI: 8 dígitos y letra (12345678Z, 12.345.678-Z). NIE: X, Y o Z, 7 dígitos y letra.
 const DOCUMENTO = new RegExp(

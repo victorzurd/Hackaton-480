@@ -1,7 +1,6 @@
 import assert from "node:assert/strict";
 import { afterEach, beforeEach, describe, mock, test } from "node:test";
-import { consultarIA, type ConsultaIA } from "../../../src/ia/gemini";
-import { LONGITUD_MAXIMA } from "../../../src/ia/proteccion";
+import { LIMITES, consultarIA, type ConsultaIA } from "../../../src/ia/gemini";
 
 const CLAVE = "clave-de-prueba";
 const alumna = { nombre: "Ana", apellidos: "García López" };
@@ -104,10 +103,38 @@ describe("vuelta: la respuesta también se filtra", () => {
   });
 });
 
+describe("límites de longitud", () => {
+  test("acepta un contexto largo, como una transcripción, y lo sigue filtrando", async () => {
+    const { opciones, enviados } = geminiFalso();
+    const transcripcion = "En este vídeo explicamos los bucles. ".repeat(500) + "Contacto: ana@gmail.com";
+    assert.ok(transcripcion.length > LIMITES.mensaje && transcripcion.length <= LIMITES.contexto);
+
+    assert.equal((await consultarIA(consulta({ contexto: transcripcion }), opciones)).ok, true);
+    const enviado = JSON.stringify(enviados[0]);
+    assert.ok(enviado.includes("[EMAIL]"));
+    assert.ok(!enviado.includes("ana@gmail.com"));
+  });
+
+  test("acepta una respuesta larga de Gemini", async () => {
+    const { opciones } = geminiFalso("Explicación. ".repeat(600));
+    assert.equal((await consultarIA(consulta(), opciones)).ok, true);
+  });
+
+  test("un mensaje del alumno sigue limitado", async () => {
+    const { opciones, enviados } = geminiFalso();
+    const resultado = await consultarIA(
+      consulta({ mensajes: [{ rol: "usuario", texto: "a".repeat(LIMITES.mensaje + 1) }] }),
+      opciones,
+    );
+    assert.deepEqual(resultado, { ok: false, motivo: "proteccion_entrada" });
+    assert.equal(enviados.length, 0);
+  });
+});
+
 describe("fallo seguro", () => {
   test("si la protección falla en un mensaje, no se llama a Gemini", async () => {
     const { opciones, enviados } = geminiFalso();
-    const largo = "a".repeat(LONGITUD_MAXIMA + 1);
+    const largo = "a".repeat(LIMITES.mensaje + 1);
     assert.deepEqual(
       await consultarIA(consulta({ mensajes: [{ rol: "usuario", texto: largo }] }), opciones),
       { ok: false, motivo: "proteccion_entrada" },
@@ -118,7 +145,7 @@ describe("fallo seguro", () => {
   test("si la protección falla en el contexto, no se llama a Gemini", async () => {
     const { opciones, enviados } = geminiFalso();
     const resultado = await consultarIA(
-      consulta({ contexto: "a".repeat(LONGITUD_MAXIMA + 1) }),
+      consulta({ contexto: "a".repeat(LIMITES.contexto + 1) }),
       opciones,
     );
     assert.deepEqual(resultado, { ok: false, motivo: "proteccion_entrada" });
@@ -126,7 +153,7 @@ describe("fallo seguro", () => {
   });
 
   test("si la protección falla en la respuesta, no se devuelve", async () => {
-    const { opciones } = geminiFalso("a".repeat(LONGITUD_MAXIMA + 1));
+    const { opciones } = geminiFalso("a".repeat(LIMITES.respuesta + 1));
     assert.deepEqual(await consultarIA(consulta(), opciones), {
       ok: false,
       motivo: "proteccion_respuesta",
@@ -160,7 +187,7 @@ describe("fallo seguro", () => {
   }
 
   test("los logs solo incluyen el motivo, nunca el texto", async () => {
-    const { opciones } = geminiFalso("a".repeat(LONGITUD_MAXIMA + 1));
+    const { opciones } = geminiFalso("a".repeat(LIMITES.respuesta + 1));
     await consultarIA(
       consulta({ mensajes: [{ rol: "usuario", texto: "Mi correo es ana@gmail.com" }] }),
       opciones,

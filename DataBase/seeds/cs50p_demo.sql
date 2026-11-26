@@ -9,7 +9,7 @@ DECLARE
   v_lessons JSONB := $lessons$
 [
   {
-    "title":"Funciones y variables","source":"Functions, Variables","topics":"Funciones, argumentos, variables, tipos y valores de retorno.",
+    "title":"Funciones y variables","source":"Functions, Variables","topics":"Funciones, argumentos, variables, tipos y valores de retorno.","stimulus":"def greet(name):\n    return \"Hola \" + name\n\nprint(greet(\"Ana\"))",
     "initial":{"text":"¿Qué devuelve la llamada greet(\"Ana\") si se define def greet(name): return \"Hola \" + name?","concept":"Llamada de función","correct":"b","explanation":"La llamada pasa Ana como argumento y la función devuelve Hola Ana.","options":["Ana","Hola Ana","name","No devuelve nada"]},
     "checks":[
       {"text":"En def suma(a, b), ¿qué representan a y b?","concept":"Parámetros y argumentos","correct":"a","explanation":"a y b son parámetros; reciben los argumentos cuando se llama a la función.","options":["Parámetros","Módulos","Valores de retorno","Comentarios"]},
@@ -17,7 +17,7 @@ DECLARE
     ]
   },
   {
-    "title":"Condicionales","source":"Conditionals","topics":"Expresiones booleanas, if, elif, else, operadores lógicos y match.",
+    "title":"Condicionales","source":"Conditionals","topics":"Expresiones booleanas, if, elif, else, operadores lógicos y match.","stimulus":"edad = 17\n\nif edad >= 18:\n    print(\"Mayor de edad\")\nelse:\n    print(\"Menor de edad\")",
     "initial":{"text":"¿Qué estructura permite ejecutar un bloque solo cuando edad es mayor o igual que 18?","concept":"Condiciones","correct":"b","explanation":"if evalúa la condición y ejecuta el bloque cuando resulta verdadera.","options":["for edad >= 18","if edad >= 18","while edad >= 18 siempre","def edad >= 18"]},
     "checks":[
       {"text":"¿Cuándo se evalúa una rama elif?","concept":"if y elif","correct":"d","explanation":"elif se evalúa cuando las condiciones anteriores de if/elif fueron falsas.","options":["Antes del if","Siempre, aunque el if se cumpla","Solo al terminar el programa","Cuando las condiciones anteriores fueron falsas"]},
@@ -25,7 +25,7 @@ DECLARE
     ]
   },
   {
-    "title":"Bucles","source":"Loops","topics":"Bucles while y for, range, listas, diccionarios, break y continue.",
+    "title":"Bucles","source":"Loops","topics":"Bucles while y for, range, listas, diccionarios, break y continue.","stimulus":"for numero in range(3):\n    print(numero)",
     "initial":{"text":"¿Qué bucle es adecuado para recorrer cada elemento de una lista llamada nombres?","concept":"Bucle for","correct":"c","explanation":"for elemento in nombres recorre los elementos de la lista.","options":["if nombre in nombres","def nombre in nombres","for nombre in nombres","return nombres"]},
     "checks":[
       {"text":"¿Qué valores produce range(3) al recorrerlo?","concept":"range","correct":"b","explanation":"range(3) produce 0, 1 y 2; el límite final no se incluye.","options":["1, 2, 3","0, 1, 2","0, 1, 2, 3","Solo 3"]},
@@ -33,7 +33,7 @@ DECLARE
     ]
   },
   {
-    "title":"Excepciones","source":"Exceptions","topics":"Errores, try, except, else, pass y raise.",
+    "title":"Excepciones","source":"Exceptions","topics":"Errores, try, except, else, pass y raise.","stimulus":"try:\n    edad = int(\"hola\")\nexcept ValueError:\n    print(\"Introduce un número\")",
     "initial":{"text":"¿Qué bloque permite gestionar un ValueError al convertir una entrada con int()?","concept":"Manejo de excepciones","correct":"a","explanation":"El bloque except captura el tipo de error indicado producido dentro del try.","options":["try: ... except ValueError: ...","if ValueError: ...","for ValueError: ...","def except ValueError: ..."]},
     "checks":[
       {"text":"¿Qué error suele producir int(\"hola\")?","concept":"ValueError","correct":"c","explanation":"El texto no representa un entero válido, por lo que int produce ValueError.","options":["SyntaxError","NameError","ValueError","ImportError"]},
@@ -41,7 +41,7 @@ DECLARE
     ]
   },
   {
-    "title":"Bibliotecas","source":"Libraries","topics":"Módulos, import, paquetes, pip, PyPI, argumentos de línea de comandos, APIs y JSON.",
+    "title":"Bibliotecas","source":"Libraries","topics":"Módulos, import, paquetes, pip, PyPI, argumentos de línea de comandos, APIs y JSON.","stimulus":"import random\n\ncolor = random.choice([\"azul\", \"verde\"])\nprint(color)",
     "initial":{"text":"¿Cómo se hace disponible el módulo random en un archivo Python?","concept":"Importación de módulos","correct":"d","explanation":"La sentencia import random importa el módulo para poder usar sus funciones.","options":["use random","include random","pip random","import random"]},
     "checks":[
       {"text":"¿Qué herramienta se usa habitualmente para instalar paquetes de Python desde PyPI?","concept":"Paquetes y pip","correct":"a","explanation":"pip es el instalador de paquetes de Python.","options":["pip","range","pytest","sys.argv"]},
@@ -49,7 +49,7 @@ DECLARE
     ]
   },
   {
-    "title":"Pruebas unitarias","source":"Unit Tests","topics":"Aserciones, AssertionError, pytest y pruebas automatizadas.",
+    "title":"Pruebas unitarias","source":"Unit Tests","topics":"Aserciones, AssertionError, pytest y pruebas automatizadas.","stimulus":"def suma(a, b):\n    return a + b\n\nassert suma(2, 3) == 5",
     "initial":{"text":"¿Qué verifica assert suma(2, 3) == 5 en una prueba?","concept":"Aserciones","correct":"b","explanation":"La aserción comprueba que la expresión sea verdadera; si no, se informa un fallo.","options":["Que suma se ejecute dos veces","Que el resultado sea 5","Que Python instale suma","Que el programa no tenga funciones"]},
     "checks":[
       {"text":"¿Qué indica AssertionError durante una prueba?","concept":"Fallos de aserción","correct":"d","explanation":"La condición comprobada por assert no se cumplió.","options":["Que el archivo no existe siempre","Que la prueba pasó","Que pytest no es compatible","Que una aserción falló"]},
@@ -57,7 +57,7 @@ DECLARE
     ]
   },
   {
-    "title":"Lectura y escritura de archivos","source":"File I/O","topics":"open, with, lectura y escritura de texto, CSV y Pillow.",
+    "title":"Lectura y escritura de archivos","source":"File I/O","topics":"open, with, lectura y escritura de texto, CSV y Pillow.","stimulus":"with open(\"datos.txt\") as archivo:\n    contenido = archivo.read()",
     "initial":{"text":"¿Qué forma recomienda Python para cerrar un archivo incluso si ocurre un error?","concept":"Gestión de archivos","correct":"c","explanation":"with administra el contexto del archivo y lo cierra al salir del bloque.","options":["Abrirlo sin guardarlo","Llamar print al final","Usar with open(...) as archivo:","Usar range sobre el archivo"]},
     "checks":[
       {"text":"¿Qué modo de open se usa normalmente para leer un archivo de texto?","concept":"Modos de apertura","correct":"a","explanation":"El modo r abre el archivo para lectura.","options":["r","w","x","a"]},
@@ -65,7 +65,7 @@ DECLARE
     ]
   },
   {
-    "title":"Expresiones regulares","source":"Regular Expressions","topics":"Patrones, re.search, match, fullmatch, sub, split y findall.",
+    "title":"Expresiones regulares","source":"Regular Expressions","topics":"Patrones, re.search, match, fullmatch, sub, split y findall.","stimulus":"import re\n\ncoincide = re.fullmatch(r\"\\d+\", \"480\")\nprint(coincide is not None)",
     "initial":{"text":"¿Qué módulo de Python incluye funciones para trabajar con expresiones regulares?","concept":"Módulo re","correct":"b","explanation":"El módulo re de la biblioteca estándar permite buscar y manipular patrones.","options":["csv","re","sys","json"]},
     "checks":[
       {"text":"¿Qué comprueba re.fullmatch(patron, texto)?","concept":"fullmatch","correct":"c","explanation":"fullmatch requiere que todo el texto coincida con el patrón.","options":["Solo el primer carácter","Si el patrón aparece en otro archivo","Si todo el texto coincide","Si el texto se puede importar"]},
@@ -73,7 +73,7 @@ DECLARE
     ]
   },
   {
-    "title":"Programación orientada a objetos","source":"Object-Oriented Programming","topics":"Clases, objetos, atributos, métodos, herencia y sobrecarga de operadores.",
+    "title":"Programación orientada a objetos","source":"Object-Oriented Programming","topics":"Clases, objetos, atributos, métodos, herencia y sobrecarga de operadores.","stimulus":"class Persona:\n    def __init__(self, nombre):\n        self.nombre = nombre\n\npersona = Persona(\"Alex\")",
     "initial":{"text":"¿Qué palabra clave se usa para definir una clase en Python?","concept":"Clases","correct":"d","explanation":"Las clases se declaran con la palabra clave class.","options":["object","def","new","class"]},
     "checks":[
       {"text":"¿Qué método inicializa habitualmente el estado de un objeto nuevo?","concept":"Constructor","correct":"b","explanation":"__init__ se ejecuta al crear una instancia y suele inicializar sus atributos.","options":["__main__","__init__","__start__","__newfile__"]},
@@ -81,7 +81,7 @@ DECLARE
     ]
   },
   {
-    "title":"Conceptos adicionales","source":"Et Cetera","topics":"Conjuntos, constantes, anotaciones de tipos, docstrings, argumentos, comprensiones e iteradores.",
+    "title":"Conceptos adicionales","source":"Et Cetera","topics":"Conjuntos, constantes, anotaciones de tipos, docstrings, argumentos, comprensiones e iteradores.","stimulus":"valores = [1, 2, 3]\ncuadrados = [n * n for n in valores]\nprint(cuadrados)",
     "initial":{"text":"¿Qué sintaxis crea una nueva lista con los cuadrados de los números de valores?","concept":"Comprensión de listas","correct":"a","explanation":"Una comprensión de listas expresa la transformación y el recorrido en una sola expresión.","options":["[n * n for n in valores]","{n * n for n in valores}","for n in valores: [n * n]","list = n ** valores"]},
     "checks":[
       {"text":"¿Qué suele indicar *args en la definición de una función?","concept":"Argumentos variables","correct":"d","explanation":"*args recoge argumentos posicionales adicionales en una tupla.","options":["Un argumento obligatorio llamado args","Un diccionario de palabras clave","Una lista global","Argumentos posicionales adicionales"]},
@@ -139,7 +139,7 @@ BEGIN
       USING v_course_id,
         'inicial',
         'Diagnóstico inicial: CS50P',
-        'Diez preguntas breves, una por módulo, para conocer los conceptos previos. Cuestionario de práctica en español preparado para esta demo.';
+        'Diez preguntas abiertas, una por contenido del curso, para adaptar el itinerario a los conocimientos previos. No es una nota. Cuestionario de práctica en español preparado para esta demo.';
   END IF;
 
   FOR v_lesson_index IN 0..jsonb_array_length(v_lessons) - 1 LOOP
@@ -195,14 +195,17 @@ BEGIN
       v_question := v_questions -> v_question_index;
       v_difficulty := 1;
       INSERT INTO academy.preguntas (
-        modulo_id, enunciado, tipo, tipo_interaccion, configuracion,
+        modulo_id, contenido_id, enunciado, tipo, tipo_interaccion, configuracion,
         respuesta_correcta, explicacion, concepto, dificultad
       ) VALUES (
         v_module_id,
+        CASE WHEN v_course_level_initial THEN v_content_id ELSE NULL END,
         v_question->>'text',
         'escrita',
-        'opcion_multiple',
-        jsonb_build_object('seleccion', 'unica'),
+        CASE WHEN v_course_level_initial THEN 'texto' ELSE 'opcion_multiple' END,
+        CASE WHEN v_course_level_initial
+          THEN jsonb_build_object('estimulo', jsonb_build_object('codigo', v_lesson->>'stimulus'))
+          ELSE jsonb_build_object('seleccion', 'unica') END,
         jsonb_build_object('valor', v_question->>'correct'),
         v_question->>'explanation',
         v_question->>'concept',

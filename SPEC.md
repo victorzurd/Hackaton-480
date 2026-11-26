@@ -24,7 +24,7 @@ Ahora mimso el alumnado no se ve los videos enteros dado al problema de la exper
 
 
 - **Inicio:** el alumno ve sus cursos, módulos y progreso.
-- **Encuesta inicial:** responde una sola vez por módulo para detectar lo que ya sabe.
+- **Examen inicial del curso:** al inscribirse, responde una sola evaluación con preguntas de todos los contenidos. No es una nota; adapta el orden de módulos y marca como completados los contenidos que ya domina.
 - **Itinerario:** ve qué contenidos debe hacer y cuáles se salta, y puede recuperar los saltados.
 - **Contenido:** ve el vídeo o escucha el podcast y elige si responde durante el contenido o al final.
 - **Resultados:** ve sus aciertos, sus fallos y la explicación de cada pregunta.
@@ -153,6 +153,7 @@ Para un MVP, un único servidor concentra la lógica y conecta al cliente con lo
 | Curso | id, título, descripción | Tiene varios módulos |
 | Módulo | id, título, orden | Pertenece a un curso y tiene varios contenidos |
 | Contenido | id, tipo (vídeo / podcast / vídeo corto), título, URL, transcripción | Pertenece a un módulo. El podcast y el vídeo corto se generan a partir de vídeos |
+| Evaluación | id, tipo (inicial / intermedia / final), título | La inicial pertenece al curso; las intermedias y finales se asocian a un contenido |
 | Pregunta | id, tipo (encuesta inicial / test), enunciado, opciones, respuesta correcta, explicación, concepto, minuto | Pertenece a un módulo y, si es de test, a un contenido |
 | Respuesta | id, respuesta, acierto, fecha | Une a un alumno con una pregunta |
 | Progreso | estado (pendiente / completado / saltado), fecha | Une a un alumno con un contenido |
@@ -201,10 +202,11 @@ Detalle en [docs/rag.md](docs/rag.md).
 | Agente | Qué hace | Modelo y por qué | Entrada | Salida | Límites |
 | --- | --- | --- | --- | --- | --- |
 | Tutor | Resuelve dudas de forma personalizada | Gemini Flash: rápido y con coste contenido | Pregunta filtrada, transcripciones del módulo y errores del alumno | Respuesta en texto, que se convierte en voz | Solo el curso, solo los datos del alumno y sin SQL libre |
+| Evaluador inicial | Identifica conocimientos previos y adapta el recorrido | Gemini Flash | Respuestas del diagnóstico filtradas, preguntas y referencias del curso | Contenidos dominados y orden de módulos en JSON validado | No recibe identidad del alumno ni decide calificaciones |
 | Selector de repaso | Elige el fragmento de vídeo que explica un fallo | Gemini Flash: trabaja con el texto de la transcripción | Pregunta fallada y transcripción con minutos | Minuto de inicio, minuto de fin y título | Máximo 60 s y no genera imágenes. El recorte lo hace el servidor |
 | Guionista de podcast | Convierte los vídeos en un guion de audio | Gemini Flash: resume y adapta el texto | Transcripciones del módulo | Guion del podcast | Solo contenido del curso y no recibe datos del alumno |
 
-El itinerario no usa IA: el servidor aplica reglas sobre los resultados de la encuesta inicial.
+Gemini analiza las respuestas filtradas del examen inicial y devuelve decisiones estructuradas sobre los contenidos dominados y el orden de módulos. El servidor valida esas decisiones y las guarda en el itinerario personal. El examen inicial ocurre antes del árbol y no aparece como un paso dentro de él.
 
 Las preguntas tampoco usan IA: quien sube los vídeos escribe a mano las de la encuesta inicial y los tests, con su respuesta correcta, explicación, concepto y minuto.
 

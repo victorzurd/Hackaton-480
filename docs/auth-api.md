@@ -57,13 +57,22 @@ El catálogo se lee de PostgreSQL y no se precarga con cursos ficticios. Si `aca
 
 `GET /api/courses/enrolled?search=python`
 
-Requiere `Authorization: Bearer <token>`. Devuelve las matrículas activas y finalizadas del alumno autenticado, con los campos de curso y además `estado`, `fechaMatricula` y `progreso`. El progreso se calcula con los vídeos completados o marcados como saltados; una matrícula `finalizado` se presenta al 100 %.
+Requiere `Authorization: Bearer <token>`. Devuelve las matrículas activas y finalizadas del alumno autenticado, con los campos de curso y además `estado`, `fechaMatricula`, `progreso` y `evaluacionInicialCompletada`. El progreso se calcula con los vídeos completados o marcados como saltados; una matrícula `finalizado` se presenta al 100 %.
 
 ## Inscribirse en un curso
 
 `POST /api/courses/:id/enroll`
 
-Requiere `Authorization: Bearer <token>`. Crea la matrícula en un curso activo. Si la matrícula estaba cancelada, la reactiva; si ya está activa o finalizada, responde `409`. Si se completa, responde `201` con el identificador del curso y el estado de la matrícula.
+Requiere `Authorization: Bearer <token>`. Crea la matrícula en un curso activo. Si la matrícula estaba cancelada, la reactiva; si ya está activa o finalizada, responde `409`. Si se completa, responde `201` con el identificador del curso y el estado de la matrícula. La interfaz inicia a continuación el examen inicial del curso.
+
+## Examen inicial del curso
+
+- `POST /api/courses/:id/initial-assessment/start` comprueba que el alumno está inscrito y crea o retoma su intento. Devuelve preguntas abiertas y ejemplos del curso, sin opciones ni respuestas correctas.
+- `PUT /api/courses/:id/initial-assessment/answer` guarda texto escrito o transcrito por voz para poder retomar el examen.
+- `POST /api/courses/:id/initial-assessment/submit` envía a Gemini las respuestas filtradas junto con preguntas y referencias del curso. Gemini devuelve los contenidos dominados y el orden de módulos; el servidor valida y guarda el resultado. No calcula ni muestra una nota.
+- `GET /api/courses/:id/itinerary` requiere un examen inicial completado y devuelve el orden personal del alumno.
+
+El examen inicial CS50P es material de práctica original en español: tiene diez preguntas abiertas con ejemplos visuales de código, una por cada contenido de la demo. Se puede contestar por escrito o mediante dictado de voz del navegador; la API del curso guarda texto y filtra las respuestas antes de enviarlas a Gemini.
 
 ## Salud
 

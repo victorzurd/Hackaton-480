@@ -44,8 +44,12 @@ button {
 }
 
 button:disabled {
-  cursor: wait;
+  cursor: not-allowed;
   opacity: 0.72;
+}
+
+button[aria-busy="true"]:disabled {
+  cursor: progress;
 }
 
 [hidden] {
@@ -622,6 +626,91 @@ body { background: var(--surface-soft); }
 .page-footer { width: min(560px, calc(100% - 40px)); }
 .privacy-note { margin: 20px 0 0; padding: 16px 18px; border-radius: 12px; color: #526a4e; background: #e9f1e7; font-size: 14px; line-height: 1.65; }
 
+.itinerary-view { padding-top: 22px; }
+.itinerary-back { margin: 0 0 24px; min-height: 44px; text-decoration: none; }
+.itinerary-heading {
+  display: flex; align-items: flex-end; justify-content: space-between; gap: 24px;
+  margin-bottom: 20px; padding: 22px 24px; border: 1px solid var(--border-subtle);
+  border-radius: 14px; background: white;
+}
+.itinerary-heading .section-kicker { margin-bottom: 8px; color: #526a4e; }
+.itinerary-heading h3 { margin: 0; font-size: clamp(25px, 4vw, 34px); letter-spacing: -0.045em; line-height: 1.15; }
+.itinerary-description { margin: 8px 0 0; color: var(--text-secondary); }
+.itinerary-summary { display: grid; width: min(280px, 38%); flex: 0 0 auto; grid-template-columns: auto 1fr; align-items: baseline; gap: 4px 10px; }
+.itinerary-summary strong { font-size: 28px; letter-spacing: -0.04em; }
+.itinerary-summary > span { color: var(--text-secondary); font-size: 12px; }
+.itinerary-summary__track { grid-column: 1 / -1; height: 8px; margin-top: 4px; overflow: hidden; border-radius: 8px; background: #e6ebe6; }
+.itinerary-summary__track span { display: block; height: 100%; border-radius: inherit; background: var(--state-success); transition: width 180ms ease; }
+.itinerary-tree { display: grid; gap: 14px; }
+.itinerary-module { position: relative; padding: 18px 20px 12px; border: 1px solid var(--border-subtle); border-radius: 14px; background: white; }
+.itinerary-module__heading { display: flex; align-items: center; gap: 13px; }
+.itinerary-module__number { display: grid; width: 42px; height: 42px; flex: 0 0 auto; place-items: center; border-radius: 12px; color: #174f3c; background: #e6f4e9; font-size: 13px; font-weight: 750; }
+.itinerary-module__heading h4 { margin: 0; font-size: 18px; letter-spacing: -0.02em; }
+.itinerary-module__heading p, .itinerary-module__description, .itinerary-module__empty { margin: 3px 0 0; color: var(--text-secondary); font-size: 13px; }
+.itinerary-module__description { margin: 12px 0 0 55px; }
+.itinerary-lessons { position: relative; display: grid; gap: 0; margin: 14px 0 0 20px; padding: 0 0 0 28px; list-style: none; }
+.itinerary-lessons::before { position: absolute; top: 13px; bottom: 21px; left: 0; width: 2px; background: #e1e7e1; content: ""; }
+.itinerary-lesson { position: relative; display: grid; min-height: 62px; grid-template-columns: minmax(0, 1fr) auto; align-items: center; gap: 12px; padding: 9px 0; border-bottom: 1px solid #edf0ed; }
+.itinerary-lesson:last-child { border-bottom: 0; }
+.itinerary-lesson__marker { position: absolute; top: 50%; left: -35px; display: grid; width: 16px; height: 16px; transform: translateY(-50%); place-items: center; border: 2px solid #c4cec5; border-radius: 50%; color: white; background: white; font-size: 9px; font-weight: 800; }
+.itinerary-lesson.is-complete .itinerary-lesson__marker { width: 20px; height: 20px; left: -37px; border: 0; color: #123d2a; background: var(--brand-green); font-size: 12px; }
+.itinerary-lesson.is-current .itinerary-lesson__marker { border-color: #155d39; color: #155d39; background: white; font-size: 8px; }
+.itinerary-lesson--test .itinerary-lesson__marker { border-radius: 5px; color: #514170; background: #f1edf8; font-size: 9px; font-weight: 750; }
+.itinerary-lesson--test.is-complete .itinerary-lesson__marker { color: #123d2a; background: var(--brand-green); }
+.itinerary-lesson--test.is-current .itinerary-lesson__marker { color: #514170; background: white; }
+.itinerary-lesson__body { min-width: 0; }
+.itinerary-lesson__title { color: var(--text-primary); font-size: 14px; font-weight: 650; text-decoration: none; }
+a.itinerary-lesson__title:hover { text-decoration: underline; text-underline-offset: 3px; }
+.itinerary-lesson__body p { margin: 3px 0 0; color: var(--text-secondary); font-size: 12px; }
+.itinerary-lesson__state { color: var(--text-secondary); font-size: 12px; font-weight: 600; white-space: nowrap; }
+.itinerary-lesson.is-complete .itinerary-lesson__state { color: #28523c; }
+.itinerary-lesson.is-current .itinerary-lesson__state { color: #155d39; }
+.itinerary-module__empty { margin: 14px 0 4px 55px; }
+
+.assessment-view { width: min(760px, 100%); margin: 0 auto; padding: 18px 0 40px; }
+.assessment-exit { margin-bottom: 18px; text-decoration: none; }
+.assessment-heading { padding: 20px 0 18px; }
+.assessment-heading .section-kicker, .assessment-complete .section-kicker { margin-bottom: 9px; color: #526a4e; }
+.assessment-heading h3, .assessment-complete h3 { margin: 0; font-size: clamp(28px, 5vw, 38px); letter-spacing: -0.05em; line-height: 1.12; }
+.assessment-course-title { margin: 10px 0 0; font-size: 18px; font-weight: 650; }
+.assessment-intro { max-width: 620px; margin: 10px 0 0; color: var(--text-secondary); font-size: 15px; }
+.assessment-progress-copy { display: flex; justify-content: space-between; gap: 16px; margin: 8px 0; color: var(--text-secondary); font-size: 13px; font-weight: 650; }
+.assessment-progress-track { height: 7px; overflow: hidden; border-radius: 8px; background: #e6ebe6; }
+.assessment-progress-track span { display: block; width: 0; height: 100%; border-radius: inherit; background: var(--brand-green); transition: width 160ms ease; }
+.assessment-question { margin-top: 24px; }
+.assessment-question__card { padding: 22px; border: 1px solid var(--border-subtle); border-radius: 14px; background: white; }
+.assessment-question__context { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 18px; }
+.assessment-question__context span { color: #526a4e; font-size: 12px; font-weight: 700; }
+.assessment-question__context span + span::before { margin-right: 8px; color: #9aa49c; content: "·"; }
+.assessment-question__eyebrow { margin: 0 0 8px; color: #526a4e; font-size: 11px; font-weight: 750; letter-spacing: 0.1em; }
+.assessment-stimulus { overflow-x: auto; margin: 0 0 17px; padding: 15px 17px; border-radius: 10px; color: #f3f6f4; background: #202722; font: 14px/1.65 ui-monospace, SFMono-Regular, Consolas, monospace; tab-size: 4; }
+.assessment-stimulus code { font: inherit; white-space: pre; }
+.assessment-stimulus__note { margin: -7px 0 16px; color: var(--text-secondary); font-size: 13px; }
+.assessment-question__prompt { margin: 0 0 20px; font-size: clamp(19px, 3vw, 23px); font-weight: 700; letter-spacing: -0.025em; line-height: 1.4; }
+.assessment-response__label { display: block; margin-bottom: 8px; font-size: 14px; font-weight: 700; }
+.assessment-response { display: block; width: 100%; min-height: 124px; padding: 13px 14px; border: 1px solid #cbd7c7; border-radius: 11px; outline: none; color: var(--text-primary); background: white; font: inherit; line-height: 1.5; resize: vertical; }
+.assessment-response:focus-visible { border-color: #266244; box-shadow: 0 0 0 3px rgb(0 220 203 / 25%); }
+.assessment-response::placeholder { color: #7c8580; }
+.assessment-response__actions { display: flex; align-items: center; gap: 14px; margin-top: 12px; }
+.assessment-voice-button { width: min(100%, 420px); min-height: 56px; flex: 0 0 auto; }
+.assessment-voice-button svg { width: 22px; height: 22px; fill: none; stroke: currentColor; stroke-linecap: round; stroke-linejoin: round; stroke-width: 1.8; }
+.assessment-voice-help { margin: 0; color: var(--text-secondary); font-size: 12px; line-height: 1.4; }
+.assessment-response__divider { display: flex; align-items: center; gap: 12px; margin: 18px 0 14px; color: var(--text-secondary); font-size: 12px; }
+.assessment-response__divider::before, .assessment-response__divider::after { height: 1px; flex: 1; background: var(--border-subtle); content: ""; }
+.assessment-message { min-height: 22px; margin: 12px 0 0; color: var(--text-secondary); font-size: 13px; }
+.assessment-message[role="alert"] { color: var(--state-error); }
+.assessment-retry { margin-top: -8px; }
+.assessment-actions { display: flex; justify-content: space-between; gap: 12px; margin-top: 12px; }
+.assessment-actions .button { width: auto; min-width: 130px; }
+.assessment-complete { padding: 46px 22px 24px; text-align: center; }
+.assessment-complete__mark { display: grid; width: 56px; height: 56px; place-items: center; margin: 0 auto 20px; border-radius: 50%; color: #123d2a; background: var(--brand-green); font-size: 25px; font-weight: 800; }
+.assessment-complete > p:not(.section-kicker) { max-width: 560px; margin: 12px auto 24px; color: var(--text-secondary); }
+.assessment-order-copy { font-weight: 650; }
+.assessment-mastered-wrap { max-width: 520px; margin: 0 auto 24px; padding: 16px 18px; border: 1px solid var(--border-subtle); border-radius: 12px; background: white; text-align: left; }
+.assessment-mastered-wrap h4 { margin: 0 0 8px; font-size: 14px; }
+.assessment-mastered-wrap ul { display: grid; gap: 6px; margin: 0; padding-left: 20px; color: var(--text-secondary); font-size: 14px; }
+.assessment-complete .button { width: min(360px, 100%); }
+
 @media (max-width: 780px) {
   .page-main { min-height: auto; padding: 26px 20px 32px; }
   .welcome-panel { display: none; }
@@ -948,6 +1037,8 @@ body { background: var(--surface-soft); }
   .course-search {
     width: 100%;
   }
+  .itinerary-heading { align-items: stretch; flex-direction: column; gap: 18px; }
+  .itinerary-summary { width: 100%; }
 }
 
 @media (max-width: 560px) {
@@ -977,5 +1068,21 @@ body { background: var(--surface-soft); }
   .course-empty {
     padding: 18px;
   }
+  .itinerary-view { padding-top: 14px; }
+  .itinerary-heading { padding: 18px; }
+  .itinerary-module { padding: 15px 14px 10px; }
+  .itinerary-lesson { gap: 7px; }
+  .itinerary-lesson__state { font-size: 11px; }
+  .itinerary-lessons { margin-left: 16px; padding-left: 25px; }
+  .itinerary-lesson__marker { left: -32px; }
+  .itinerary-lesson.is-complete .itinerary-lesson__marker { left: -34px; }
+  .assessment-view { padding-top: 10px; }
+  .assessment-question__card { padding: 17px 14px; }
+  .assessment-stimulus { padding: 12px; font-size: 12px; }
+  .assessment-response__actions { align-items: flex-start; flex-direction: column; gap: 8px; }
+  .assessment-voice-button { width: 100%; min-height: 58px; }
+  .assessment-response__divider { gap: 9px; margin: 16px 0 12px; font-size: 11px; }
+  .assessment-response { min-height: 112px; font-size: 16px; }
+  .assessment-actions .button { min-width: 0; flex: 1 1 0; }
 }
 

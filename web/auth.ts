@@ -15,11 +15,38 @@ type Course = {
   videos: number;
   estado?: "activo" | "finalizado";
   progreso?: number;
+  evaluacionInicialCompletada?: boolean;
 };
 
 type CourseListResponse = {
   cursos: Course[];
   error?: string;
+};
+
+type ItineraryContent = {
+  id: string; titulo: string; tipo: string; url: string | null;
+  duracionSegundos: number | null; orden: number; estado: string; porcentaje: number;
+};
+type ItineraryModule = {
+  id: string; titulo: string; descripcion: string | null; orden: number;
+  contenidos: ItineraryContent[];
+  evaluaciones: Array<{ id: string; contenidoId: string | null; tipo: string; titulo: string; estado: string }>;
+};
+type ItineraryResponse = {
+  curso: { id: string; titulo: string; descripcion: string | null } | null;
+  modulos: ItineraryModule[];
+  error?: string;
+};
+type InitialAssessmentQuestion = {
+  id: string; enunciado: string; tipoInteraccion: string | null;
+  moduloTitulo: string; contenidoTitulo: string;
+  estimulo: { codigo?: string; nota?: string } | null;
+  respuesta: string | null; canal: "texto" | "voz" | null;
+};
+type InitialAssessmentSession = {
+  intentoId: string;
+  evaluacion: { id: string; titulo: string; descripcion: string | null; totalPreguntas: number };
+  preguntas: InitialAssessmentQuestion[];
 };
 
 type CourseTab = "available" | "enrolled";
@@ -64,11 +91,53 @@ const courseSectionCopy = byId<HTMLParagraphElement>("course-section-copy");
 const courseTabs = Array.from(
   document.querySelectorAll<HTMLButtonElement>("[data-course-tab]"),
 );
+const courseTabBar = courseTabs[0]?.parentElement as HTMLElement | undefined;
+const itineraryView = byId<HTMLElement>("itinerary-view");
+const itineraryTitle = byId<HTMLHeadingElement>("itinerary-title");
+const itineraryDescription = byId<HTMLParagraphElement>("itinerary-description");
+const itinerarySummary = byId<HTMLDivElement>("itinerary-summary");
+const itineraryStatus = byId<HTMLParagraphElement>("itinerary-status");
+const itineraryTree = byId<HTMLDivElement>("itinerary-tree");
+const itineraryBack = byId<HTMLButtonElement>("itinerary-back");
+const assessmentView = byId<HTMLElement>("assessment-view");
+const assessmentActive = byId<HTMLElement>("assessment-active");
+const assessmentCourseTitle = byId<HTMLElement>("assessment-course-title");
+const assessmentQuestion = byId<HTMLDivElement>("assessment-question");
+const assessmentMessage = byId<HTMLParagraphElement>("assessment-message");
+const assessmentStepLabel = byId<HTMLElement>("assessment-step-label");
+const assessmentStepPercent = byId<HTMLElement>("assessment-step-percent");
+const assessmentProgressTrack = byId<HTMLDivElement>("assessment-progress-track");
+const assessmentProgressFill = byId<HTMLSpanElement>("assessment-progress-fill");
+const assessmentPrevious = byId<HTMLButtonElement>("assessment-previous");
+const assessmentNext = byId<HTMLButtonElement>("assessment-next");
+const assessmentComplete = byId<HTMLElement>("assessment-complete");
+const assessmentResultCopy = byId<HTMLElement>("assessment-result-copy");
+const assessmentOrderCopy = byId<HTMLElement>("assessment-order-copy");
+const assessmentMasteredWrap = byId<HTMLElement>("assessment-mastered-wrap");
+const assessmentMasteredList = byId<HTMLUListElement>("assessment-mastered-list");
+const assessmentExit = byId<HTMLButtonElement>("assessment-exit");
+const assessmentViewItinerary = byId<HTMLButtonElement>("assessment-view-itinerary");
+const assessmentRetry = byId<HTMLButtonElement>("assessment-retry");
 
 let accessToken: string | null = null;
 let activeCourseTab: CourseTab = "available";
 let courseSearchTimer: number | undefined;
 let activeCourseRequest: AbortController | null = null;
+let renderedCourseListKey = "";
+let activeAssessmentCourse: Course | null = null;
+let activeAssessment: InitialAssessmentSession | null = null;
+let activeAssessmentQuestionIndex = 0;
+const pendingAssessmentAnswers = new Map<string, Promise<void>>();
+let assessmentSaveTimer: number | undefined;
+type VoiceRecognition = {
+  lang: string; continuous: boolean; interimResults: boolean;
+  onresult: ((event: { results: ArrayLike<ArrayLike<{ transcript: string }>> }) => void) | null;
+  onerror: ((event: { error?: string }) => void) | null;
+  onend: (() => void) | null;
+  start(): void; stop(): void;
+};
+type VoiceRecognitionConstructor = new () => VoiceRecognition;
+let activeVoiceRecognition: VoiceRecognition | null = null;
 
 function showMessage(id: string, message: string): void {
   const element = byId<HTMLParagraphElement>(id);
@@ -304,7 +373,15 @@ function renderCourse(course: Course): HTMLElement {
     fill.style.width = `${percent}%`;
     track.append(fill);
     progress.append(progressHeading, track);
-    card.append(progress);
+    const open = document.createElement("button");
+    open.type = "button";
+    open.className = "button button--primary course-card__action";
+    open.textContent = course.evaluacionInicialCompletada ? "Ver mi itinerario" : "Completar examen inicial";
+    open.setAttribute("aria-label", `${course.evaluacionInicialCompletada ? "Ver mi itinerario" : "Completar examen inicial"} de ${course.titulo}`);
+    open.addEventListener("click", () => void (course.evaluacionInicialCompletada
+      ? openItinerary(course)
+      : openInitialAssessment(course)));
+    card.append(progress, open);
   } else {
     const enroll = document.createElement("button");
     enroll.type = "button";
@@ -315,6 +392,578 @@ function renderCourse(course: Course): HTMLElement {
     card.append(enroll);
   }
   return card;
+}
+
+function formatDuration(seconds: number | null): string {
+  if (seconds === null || !Number.isFinite(seconds)) return "";
+  const minutes = Math.max(1, Math.round(seconds / 60));
+  return `${minutes} min`;
+}
+
+function contentStateLabel(state: string): string {
+  if (state === "completado" || state === "saltado") return "Completado";
+  if (state === "en_curso") return "En curso";
+  return "Pendiente";
+}
+
+function renderAssessmentQuestion(): void {
+  if (!activeAssessment) return;
+  const question = activeAssessment.preguntas[activeAssessmentQuestionIndex];
+  const total = activeAssessment.preguntas.length;
+  const current = activeAssessmentQuestionIndex + 1;
+  const percent = Math.round((current / total) * 100);
+  assessmentStepLabel.textContent = `Contenido ${current} de ${total}`;
+  assessmentStepPercent.textContent = `${percent}%`;
+  assessmentProgressTrack.setAttribute("aria-valuenow", String(percent));
+  assessmentProgressFill.style.width = `${percent}%`;
+  assessmentQuestion.replaceChildren();
+  assessmentMessage.textContent = "";
+  assessmentMessage.setAttribute("role", "status");
+  assessmentRetry.hidden = true;
+
+  if (activeVoiceRecognition) {
+    activeVoiceRecognition.stop();
+    activeVoiceRecognition = null;
+  }
+  const card = document.createElement("article");
+  card.className = "assessment-question__card";
+  const context = document.createElement("div");
+  context.className = "assessment-question__context";
+  const moduleLabel = document.createElement("span");
+  moduleLabel.textContent = question.moduloTitulo;
+  const contentLabel = document.createElement("span");
+  contentLabel.textContent = question.contenidoTitulo;
+  context.append(moduleLabel, contentLabel);
+  const promptLabel = document.createElement("p");
+  promptLabel.className = "assessment-question__eyebrow";
+  promptLabel.textContent = question.estimulo?.codigo ? "OBSERVA EL EJEMPLO" : "PREGUNTA ABIERTA";
+  card.append(context, promptLabel);
+
+  if (question.estimulo?.codigo) {
+    const code = document.createElement("pre");
+    code.className = "assessment-stimulus";
+    const codeText = document.createElement("code");
+    codeText.textContent = question.estimulo.codigo;
+    code.append(codeText);
+    card.append(code);
+    if (question.estimulo.nota) {
+      const note = document.createElement("p");
+      note.className = "assessment-stimulus__note";
+      note.textContent = question.estimulo.nota;
+      card.append(note);
+    }
+  }
+
+  const prompt = document.createElement("h4");
+  prompt.className = "assessment-question__prompt";
+  prompt.textContent = question.enunciado;
+  card.append(prompt);
+  const responseLabel = document.createElement("label");
+  responseLabel.className = "assessment-response__label";
+  responseLabel.htmlFor = `assessment-answer-${question.id}`;
+  responseLabel.textContent = "O, si prefieres, escríbelo con tus palabras";
+  const textarea = document.createElement("textarea");
+  textarea.id = responseLabel.htmlFor;
+  textarea.className = "assessment-response";
+  textarea.rows = 4;
+  textarea.maxLength = 4000;
+  textarea.placeholder = "Explica lo que sabes. No hace falta que uses palabras técnicas.";
+  textarea.value = question.respuesta ?? "";
+  textarea.setAttribute("aria-describedby", "assessment-voice-help");
+  textarea.addEventListener("input", () => {
+    question.respuesta = textarea.value;
+    question.canal = "texto";
+    scheduleAssessmentAnswerSave(question);
+  });
+  const responseActions = document.createElement("div");
+  responseActions.className = "assessment-response__actions";
+  const voiceButton = document.createElement("button");
+  voiceButton.type = "button";
+  voiceButton.className = "button button--primary assessment-voice-button";
+  const voiceIcon = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+  voiceIcon.setAttribute("viewBox", "0 0 24 24");
+  voiceIcon.setAttribute("aria-hidden", "true");
+  voiceIcon.setAttribute("focusable", "false");
+  const voicePath = document.createElementNS("http://www.w3.org/2000/svg", "path");
+  voicePath.setAttribute("d", "M12 15a3 3 0 0 0 3-3V6a3 3 0 0 0-6 0v6a3 3 0 0 0 3 3Zm5-3a5 5 0 0 1-10 0M12 17v4m-4 0h8");
+  voiceIcon.append(voicePath);
+  const voiceButtonText = document.createElement("span");
+  voiceButtonText.textContent = "Responder hablando";
+  voiceButton.append(voiceIcon, voiceButtonText);
+  const voiceHelp = document.createElement("p");
+  voiceHelp.id = "assessment-voice-help";
+  voiceHelp.className = "assessment-voice-help";
+  voiceHelp.textContent = "Toca para hablar. El dictado lo procesa tu navegador; revisa el texto antes de enviarlo. Gemini recibe solo la respuesta filtrada.";
+  const speechWindow = window as unknown as {
+    SpeechRecognition?: VoiceRecognitionConstructor;
+    webkitSpeechRecognition?: VoiceRecognitionConstructor;
+  };
+  if (!speechWindow.SpeechRecognition && !speechWindow.webkitSpeechRecognition) {
+    voiceButton.hidden = true;
+    voiceHelp.textContent = "El dictado no está disponible en este navegador. Puedes responder por escrito.";
+  }
+  const divider = document.createElement("p");
+  divider.className = "assessment-response__divider";
+  divider.textContent = "También puedes responder por escrito";
+  voiceButton.addEventListener("click", () => startAssessmentVoiceResponse(question, textarea, voiceButton));
+  responseActions.append(voiceButton, voiceHelp);
+  card.append(responseActions, divider, responseLabel, textarea);
+  assessmentQuestion.append(card);
+  assessmentPrevious.disabled = activeAssessmentQuestionIndex === 0;
+  assessmentNext.disabled = false;
+  assessmentNext.removeAttribute("aria-busy");
+  assessmentNext.textContent = current === total ? "Preparar mi itinerario" : "Siguiente";
+  window.setTimeout(() => voiceButton.focus(), 0);
+}
+
+function scheduleAssessmentAnswerSave(question: InitialAssessmentQuestion): void {
+  if (assessmentSaveTimer !== undefined) window.clearTimeout(assessmentSaveTimer);
+  assessmentSaveTimer = window.setTimeout(() => {
+    const text = question.respuesta ?? "";
+    const save = saveAssessmentAnswer(question, text, question.canal ?? "texto");
+    void save.catch(() => undefined);
+  }, 700);
+}
+
+function saveAssessmentAnswer(
+  question: InitialAssessmentQuestion,
+  respuesta: string,
+  canal: "texto" | "voz",
+): Promise<void> {
+  if (!activeAssessment || !activeAssessmentCourse) return Promise.reject(new Error("No hay un examen activo."));
+  const previous = pendingAssessmentAnswers.get(question.id);
+  const save = Promise.resolve(previous).catch(() => undefined).then(async () => {
+    const controller = new AbortController();
+    const timeout = window.setTimeout(() => controller.abort(), 20_000);
+    let response: Response;
+    try {
+      response = await fetch(`/api/courses/${encodeURIComponent(activeAssessmentCourse!.id)}/initial-assessment/answer`, {
+        method: "PUT",
+        headers: { Authorization: `Bearer ${accessToken}`, "Content-Type": "application/json" },
+        body: JSON.stringify({ intentoId: activeAssessment!.intentoId, preguntaId: question.id, respuesta, canal }),
+        signal: controller.signal,
+      });
+    } catch (error) {
+      if (error instanceof DOMException && error.name === "AbortError") {
+        throw new Error("El guardado está tardando demasiado. Comprueba tu conexión y vuelve a intentarlo.");
+      }
+      throw new Error("No se pudo conectar con el curso. Comprueba tu conexión y vuelve a intentarlo.");
+    } finally {
+      window.clearTimeout(timeout);
+    }
+    const result = (await response.json().catch(() => ({}))) as { error?: string };
+    if (response.status === 401) { expireSession(); throw new Error("Tu sesión ha caducado."); }
+    if (!response.ok) throw new Error(result.error ?? "No se pudo guardar la respuesta.");
+    assessmentMessage.textContent = respuesta.trim() ? "Respuesta guardada." : "Respuesta borrada.";
+    assessmentMessage.setAttribute("role", "status");
+  }).catch((error: unknown) => {
+    assessmentMessage.textContent = error instanceof Error ? error.message : "No se pudo guardar la respuesta.";
+    assessmentMessage.setAttribute("role", "alert");
+    throw error;
+  });
+  void save.catch(() => undefined);
+  pendingAssessmentAnswers.set(question.id, save);
+  return save;
+}
+
+function setAssessmentVoiceButtonLabel(button: HTMLButtonElement, label: string): void {
+  let icon = button.querySelector("svg");
+  if (!icon) {
+    icon = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+    icon.setAttribute("viewBox", "0 0 24 24");
+    icon.setAttribute("aria-hidden", "true");
+    icon.setAttribute("focusable", "false");
+    const path = document.createElementNS("http://www.w3.org/2000/svg", "path");
+    path.setAttribute("d", "M12 15a3 3 0 0 0 3-3V6a3 3 0 0 0-6 0v6a3 3 0 0 0 3 3Zm5-3a5 5 0 0 1-10 0M12 17v4m-4 0h8");
+    icon.append(path);
+  }
+  const text = document.createElement("span");
+  text.textContent = label;
+  button.replaceChildren(icon, text);
+}
+
+function startAssessmentVoiceResponse(
+  question: InitialAssessmentQuestion,
+  textarea: HTMLTextAreaElement,
+  button: HTMLButtonElement,
+): void {
+  if (activeVoiceRecognition) {
+    activeVoiceRecognition.stop();
+    activeVoiceRecognition = null;
+    setAssessmentVoiceButtonLabel(button, "Responder hablando");
+    return;
+  }
+  const speechWindow = window as unknown as {
+    SpeechRecognition?: VoiceRecognitionConstructor;
+    webkitSpeechRecognition?: VoiceRecognitionConstructor;
+  };
+  const Recognition = speechWindow.SpeechRecognition ?? speechWindow.webkitSpeechRecognition;
+  if (!Recognition) {
+    assessmentMessage.textContent = "El dictado no está disponible en este navegador. Puedes responder por escrito.";
+    assessmentMessage.setAttribute("role", "status");
+    return;
+  }
+
+  const recognition = new Recognition();
+  recognition.lang = "es-ES";
+  recognition.continuous = true;
+  recognition.interimResults = false;
+  activeVoiceRecognition = recognition;
+  setAssessmentVoiceButtonLabel(button, "Escuchando… · Terminar");
+  assessmentMessage.textContent = "Te escucho. Cuando termines, revisa el texto antes de continuar.";
+  assessmentMessage.setAttribute("role", "status");
+  recognition.onresult = (event) => {
+    const transcript = Array.from(event.results).map((result) => result[0]?.transcript ?? "").join(" ").trim();
+    if (!transcript) return;
+    const existing = textarea.value.trim();
+    textarea.value = [existing, transcript].filter(Boolean).join(" ");
+    question.respuesta = textarea.value;
+    question.canal = "voz";
+    scheduleAssessmentAnswerSave(question);
+  };
+  recognition.onerror = () => {
+    assessmentMessage.textContent = "No se pudo transcribir la voz. Puedes continuar por escrito.";
+    assessmentMessage.setAttribute("role", "alert");
+  };
+  recognition.onend = () => {
+    if (activeVoiceRecognition === recognition) activeVoiceRecognition = null;
+    setAssessmentVoiceButtonLabel(button, "Responder hablando");
+  };
+  try {
+    recognition.start();
+  } catch {
+    activeVoiceRecognition = null;
+    setAssessmentVoiceButtonLabel(button, "Responder hablando");
+    assessmentMessage.textContent = "No se pudo activar el dictado. Puedes continuar por escrito.";
+    assessmentMessage.setAttribute("role", "alert");
+  }
+}
+
+async function openInitialAssessment(course: Course): Promise<void> {
+  if (!accessToken) return;
+  activeAssessmentCourse = course;
+  activeAssessment = null;
+  pendingAssessmentAnswers.clear();
+  if (courseTabBar) courseTabBar.hidden = true;
+  coursePanel.hidden = true;
+  itineraryView.hidden = true;
+  assessmentView.hidden = false;
+  assessmentActive.hidden = false;
+  assessmentComplete.hidden = true;
+  assessmentCourseTitle.textContent = course.titulo;
+  assessmentQuestion.replaceChildren();
+  assessmentMessage.textContent = "Cargando el examen inicial…";
+  assessmentMessage.setAttribute("role", "status");
+  assessmentRetry.hidden = true;
+  assessmentNext.disabled = true;
+  assessmentPrevious.disabled = true;
+
+  try {
+    const response = await fetch(`/api/courses/${encodeURIComponent(course.id)}/initial-assessment/start`, {
+      method: "POST",
+      headers: { Authorization: `Bearer ${accessToken}` },
+    });
+    const result = (await response.json().catch(() => ({}))) as InitialAssessmentSession & { error?: string; yaCompletada?: boolean };
+    if (response.status === 401) { expireSession(); return; }
+    if (response.status === 409 && result.yaCompletada) {
+      course.evaluacionInicialCompletada = true;
+      await closeAssessment();
+      await openItinerary(course);
+      return;
+    }
+    if (!response.ok) throw new Error(result.error ?? "No se pudo cargar el examen inicial.");
+    activeAssessment = result;
+    activeAssessmentQuestionIndex = 0;
+    assessmentMessage.textContent = "";
+    assessmentNext.disabled = false;
+    renderAssessmentQuestion();
+  } catch (error) {
+    assessmentMessage.textContent = error instanceof Error ? error.message : "No se pudo cargar el examen inicial.";
+    assessmentMessage.setAttribute("role", "alert");
+    assessmentRetry.hidden = false;
+    assessmentNext.disabled = true;
+  }
+}
+
+async function advanceInitialAssessment(): Promise<void> {
+  if (!activeAssessment || !activeAssessmentCourse) return;
+  const question = activeAssessment.preguntas[activeAssessmentQuestionIndex];
+  if (!question.respuesta) {
+    assessmentMessage.textContent = "Cuéntanos lo que sabes, hablando o por escrito, para continuar.";
+    assessmentMessage.setAttribute("role", "alert");
+    return;
+  }
+  assessmentNext.disabled = true;
+  assessmentPrevious.disabled = true;
+  assessmentNext.setAttribute("aria-busy", "true");
+  assessmentNext.textContent = "Guardando…";
+  assessmentMessage.textContent = "Guardando tu respuesta…";
+  assessmentMessage.setAttribute("role", "status");
+  try {
+    if (assessmentSaveTimer !== undefined) window.clearTimeout(assessmentSaveTimer);
+    await saveAssessmentAnswer(question, question.respuesta, question.canal ?? "texto");
+  } catch {
+    assessmentNext.disabled = false;
+    assessmentPrevious.disabled = activeAssessmentQuestionIndex === 0;
+    assessmentNext.removeAttribute("aria-busy");
+    assessmentNext.textContent = activeAssessmentQuestionIndex === activeAssessment.preguntas.length - 1
+      ? "Preparar mi itinerario"
+      : "Siguiente";
+    return;
+  }
+  assessmentNext.removeAttribute("aria-busy");
+  if (activeAssessmentQuestionIndex < activeAssessment.preguntas.length - 1) {
+    activeAssessmentQuestionIndex += 1;
+    renderAssessmentQuestion();
+    return;
+  }
+
+  assessmentMessage.textContent = "Preparando tu itinerario…";
+  assessmentMessage.setAttribute("role", "status");
+  assessmentNext.setAttribute("aria-busy", "true");
+  assessmentNext.textContent = "Preparando…";
+  try {
+    const response = await fetch(`/api/courses/${encodeURIComponent(activeAssessmentCourse.id)}/initial-assessment/submit`, {
+      method: "POST",
+      headers: { Authorization: `Bearer ${accessToken}`, "Content-Type": "application/json" },
+      body: JSON.stringify({ intentoId: activeAssessment.intentoId }),
+    });
+    const result = (await response.json().catch(() => ({}))) as {
+      error?: string; yaCompletada?: boolean; contenidosDominados?: string[];
+      modulosOrdenados?: Array<{ titulo: string; orden: number }>;
+    };
+    if (response.status === 401) { expireSession(); return; }
+    if (response.status === 409 && result.yaCompletada) {
+      activeAssessmentCourse.evaluacionInicialCompletada = true;
+      await openItinerary(activeAssessmentCourse);
+      return;
+    }
+    if (!response.ok) throw new Error(result.error ?? "No se pudo finalizar el examen.");
+    activeAssessmentCourse.evaluacionInicialCompletada = true;
+    const mastered = result.contenidosDominados ?? [];
+    assessmentResultCopy.textContent = "Gemini ha analizado tus respuestas. El diagnóstico no es una nota y puedes consultar cualquier contenido aunque aparezca como completado.";
+    assessmentOrderCopy.textContent = result.modulosOrdenados?.length
+      ? `Empezarás por «${result.modulosOrdenados[0].titulo}», donde podrás reforzar más conceptos.`
+      : "Tu recorrido ya está ordenado para ti.";
+    assessmentMasteredList.replaceChildren();
+    assessmentMasteredWrap.hidden = mastered.length === 0;
+    for (const title of mastered) {
+      const item = document.createElement("li");
+      item.textContent = title;
+      assessmentMasteredList.append(item);
+    }
+    assessmentActive.hidden = true;
+    assessmentComplete.hidden = false;
+    assessmentViewItinerary.focus();
+  } catch (error) {
+    assessmentMessage.textContent = error instanceof Error ? error.message : "No se pudo finalizar el examen.";
+    assessmentMessage.setAttribute("role", "alert");
+    assessmentNext.disabled = false;
+    assessmentPrevious.disabled = false;
+    assessmentNext.removeAttribute("aria-busy");
+    assessmentNext.textContent = "Reintentar preparación";
+  }
+}
+
+async function closeAssessment(): Promise<void> {
+  if (activeAssessment && activeAssessmentCourse) {
+    const question = activeAssessment.preguntas[activeAssessmentQuestionIndex];
+    if (assessmentSaveTimer !== undefined) window.clearTimeout(assessmentSaveTimer);
+    if (question) {
+      try { await saveAssessmentAnswer(question, question.respuesta ?? "", question.canal ?? "texto"); } catch { return; }
+    }
+  }
+  if (activeVoiceRecognition) {
+    activeVoiceRecognition.stop();
+    activeVoiceRecognition = null;
+  }
+  assessmentView.hidden = true;
+  if (courseTabBar) courseTabBar.hidden = false;
+  coursePanel.hidden = false;
+  selectCourseTab("enrolled", false);
+  void loadCourses();
+}
+
+function renderItinerary(modules: ItineraryModule[]): void {
+  itineraryTree.replaceChildren();
+  let total = 0;
+  let completed = 0;
+  for (const module of modules) {
+    const section = document.createElement("section");
+    section.className = "itinerary-module";
+    const heading = document.createElement("div");
+    heading.className = "itinerary-module__heading";
+    const number = document.createElement("span");
+    number.className = "itinerary-module__number";
+    number.textContent = String(module.orden).padStart(2, "0");
+    const titleGroup = document.createElement("div");
+    const title = document.createElement("h4");
+    title.textContent = module.titulo;
+    const count = document.createElement("p");
+    const moduleSteps = [
+      ...module.contenidos,
+      ...module.evaluaciones,
+    ];
+    const moduleDone = moduleSteps.filter((item) => item.estado === "completado" || item.estado === "saltado").length;
+    count.textContent = `${moduleDone} de ${moduleSteps.length} pasos completados`;
+    titleGroup.append(title, count);
+    heading.append(number, titleGroup);
+    section.append(heading);
+    if (module.descripcion) {
+      const description = document.createElement("p");
+      description.className = "itinerary-module__description";
+      description.textContent = module.descripcion;
+      section.append(description);
+    }
+    if (module.contenidos.length === 0 && module.evaluaciones.length === 0) {
+      const empty = document.createElement("p");
+      empty.className = "itinerary-module__empty";
+      empty.textContent = "Este módulo aún no tiene contenidos en tu itinerario.";
+      section.append(empty);
+    } else {
+      const list = document.createElement("ol");
+      list.className = "itinerary-lessons";
+      const appendEvaluation = (evaluation: ItineraryModule["evaluaciones"][number]) => {
+        total += 1;
+        const isDone = evaluation.estado === "completado";
+        if (isDone) completed += 1;
+        const row = document.createElement("li");
+        row.className = `itinerary-lesson itinerary-lesson--test${isDone ? " is-complete" : evaluation.estado === "en_curso" ? " is-current" : ""}`;
+        const marker = document.createElement("span");
+        marker.className = "itinerary-lesson__marker";
+        marker.setAttribute("aria-hidden", "true");
+        marker.textContent = isDone ? "✓" : evaluation.estado === "en_curso" ? "▶" : "T";
+        const body = document.createElement("div");
+        body.className = "itinerary-lesson__body";
+        const name = document.createElement("span");
+        name.className = "itinerary-lesson__title";
+        name.textContent = evaluation.titulo;
+        const meta = document.createElement("p");
+        meta.textContent = evaluation.tipo === "final" ? "Evaluación final" : "Test del contenido";
+        body.append(name, meta);
+        const state = document.createElement("span");
+        state.className = "itinerary-lesson__state";
+        state.textContent = contentStateLabel(evaluation.estado);
+        row.append(marker, body, state);
+        list.append(row);
+      };
+      for (const item of module.contenidos) {
+        total += 1;
+        const isDone = item.estado === "completado" || item.estado === "saltado";
+        if (isDone) completed += 1;
+        const row = document.createElement("li");
+        row.className = `itinerary-lesson${isDone ? " is-complete" : item.estado === "en_curso" ? " is-current" : ""}`;
+        const marker = document.createElement("span");
+        marker.className = "itinerary-lesson__marker";
+        marker.setAttribute("aria-hidden", "true");
+        marker.textContent = isDone ? "✓" : item.estado === "en_curso" ? "▶" : "";
+        const body = document.createElement("div");
+        body.className = "itinerary-lesson__body";
+        let safeUrl: string | null = null;
+        if (item.url) {
+          try {
+            const parsed = new URL(item.url, window.location.origin);
+            if (parsed.protocol === "https:" || parsed.protocol === "http:") safeUrl = parsed.href;
+          } catch { /* Una URL no válida se muestra como título sin enlace. */ }
+        }
+        const name = document.createElement(safeUrl ? "a" : "span");
+        name.className = "itinerary-lesson__title";
+        name.textContent = item.titulo;
+        if (safeUrl) {
+          (name as HTMLAnchorElement).href = safeUrl;
+          (name as HTMLAnchorElement).target = "_blank";
+          (name as HTMLAnchorElement).rel = "noopener noreferrer";
+          (name as HTMLAnchorElement).setAttribute("aria-label", `Abrir ${item.titulo} en una pestaña nueva`);
+        }
+        const meta = document.createElement("p");
+        const typeLabel = item.tipo === "video_corto" ? "Vídeo corto" : item.tipo === "podcast" ? "Pódcast" : "Vídeo";
+        const duration = formatDuration(item.duracionSegundos);
+        meta.textContent = [typeLabel, duration].filter(Boolean).join(" · ");
+        body.append(name, meta);
+        const state = document.createElement("span");
+        state.className = "itinerary-lesson__state";
+        state.textContent = contentStateLabel(item.estado);
+        row.append(marker, body, state);
+        list.append(row);
+        for (const evaluation of module.evaluaciones.filter((test) => test.contenidoId === item.id)) {
+          appendEvaluation(evaluation);
+        }
+      }
+      const placedEvaluationIds = new Set(module.contenidos.flatMap((item) =>
+        module.evaluaciones.filter((test) => test.contenidoId === item.id).map((test) => test.id)));
+      for (const evaluation of module.evaluaciones) {
+        if (!placedEvaluationIds.has(evaluation.id)) appendEvaluation(evaluation);
+      }
+      section.append(list);
+    }
+    itineraryTree.append(section);
+  }
+  const percent = total ? Math.round((completed / total) * 100) : 0;
+  itinerarySummary.replaceChildren();
+  const value = document.createElement("strong");
+  value.textContent = `${percent}%`;
+  const copy = document.createElement("span");
+  copy.textContent = `${completed} de ${total} contenidos completados`;
+  const track = document.createElement("div");
+  track.className = "itinerary-summary__track";
+  track.setAttribute("role", "progressbar");
+  track.setAttribute("aria-label", "Progreso total del itinerario");
+  track.setAttribute("aria-valuemin", "0");
+  track.setAttribute("aria-valuemax", "100");
+  track.setAttribute("aria-valuenow", String(percent));
+  const fill = document.createElement("span");
+  fill.style.width = `${percent}%`;
+  track.append(fill);
+  itinerarySummary.append(value, copy, track);
+}
+
+async function openItinerary(course: Course): Promise<void> {
+  if (!accessToken) return;
+  if (!course.evaluacionInicialCompletada) {
+    await openInitialAssessment(course);
+    return;
+  }
+  if (courseTabBar) courseTabBar.hidden = true;
+  coursePanel.hidden = true;
+  assessmentView.hidden = true;
+  itineraryView.hidden = false;
+  itineraryTitle.textContent = course.titulo;
+  itineraryDescription.textContent = course.descripcion ?? "Sigue el recorrido de contenidos preparado para ti.";
+  itineraryStatus.textContent = "Cargando tu itinerario…";
+  itineraryStatus.setAttribute("role", "status");
+  itineraryTree.replaceChildren();
+  itineraryTree.setAttribute("aria-busy", "true");
+  try {
+    const response = await fetch(`/api/courses/${encodeURIComponent(course.id)}/itinerary`, {
+      headers: { Authorization: `Bearer ${accessToken}` },
+    });
+    const result = (await response.json().catch(() => ({}))) as ItineraryResponse;
+    if (response.status === 401) { expireSession(); return; }
+    if (!response.ok) throw new Error(result.error ?? "No se pudo cargar tu itinerario.");
+    renderItinerary(result.modulos);
+    itineraryStatus.textContent = result.modulos.length
+      ? "Avanza por los módulos y consulta qué tienes completado y qué te queda por hacer."
+      : "Este curso todavía no tiene módulos disponibles.";
+  } catch (error) {
+    itineraryStatus.textContent = error instanceof Error ? error.message : "No se pudo cargar tu itinerario.";
+    itineraryStatus.setAttribute("role", "alert");
+    const retry = document.createElement("button");
+    retry.type = "button";
+    retry.className = "text-button";
+    retry.textContent = "Volver a intentar";
+    retry.addEventListener("click", () => void openItinerary(course));
+    itineraryTree.append(retry);
+  } finally {
+    itineraryTree.setAttribute("aria-busy", "false");
+  }
+}
+
+function closeItinerary(): void {
+  itineraryView.hidden = true;
+  if (courseTabBar) courseTabBar.hidden = false;
+  coursePanel.hidden = false;
+  selectCourseTab("enrolled", false);
+  byId<HTMLButtonElement>("tab-enrolled").focus();
 }
 
 async function loadCourses(notice = ""): Promise<void> {
@@ -328,7 +977,8 @@ async function loadCourses(notice = ""): Promise<void> {
   activeCourseRequest = controller;
   const search = courseSearch.value.trim();
   const endpoint = activeCourseTab === "enrolled" ? "enrolled" : "available";
-  courseList.replaceChildren();
+  const listKey = `${endpoint}\u0000${search}`;
+  if (renderedCourseListKey !== listKey) courseList.replaceChildren();
   courseList.setAttribute("aria-busy", "true");
   setCourseStatus("Cargando cursos…");
 
@@ -349,6 +999,7 @@ async function loadCourses(notice = ""): Promise<void> {
     if (!response.ok) throw new Error(result.error ?? "No se pudieron cargar los cursos.");
 
     courseList.replaceChildren();
+    renderedCourseListKey = listKey;
     if (result.cursos.length === 0) {
       setCourseStatus("");
       renderEmptyState(search);
@@ -362,7 +1013,6 @@ async function loadCourses(notice = ""): Promise<void> {
     );
   } catch (error) {
     if (controller.signal.aborted) return;
-    courseList.replaceChildren();
     setCourseStatus(
       error instanceof Error ? error.message : "No se pudieron cargar los cursos.",
       true,
@@ -396,7 +1046,9 @@ async function enrollInCourse(course: Course, button: HTMLButtonElement): Promis
     if (!response.ok) throw new Error(result.error ?? "No se pudo completar la inscripción.");
     courseSearch.value = "";
     selectCourseTab("enrolled", false);
-    void loadCourses(`Ya estás inscrito en «${course.titulo}».`);
+    course.estado = "activo";
+    course.evaluacionInicialCompletada = false;
+    void openInitialAssessment(course);
   } catch (error) {
     setCourseStatus(
       error instanceof Error ? error.message : "No se pudo completar la inscripción.",
@@ -485,6 +1137,28 @@ courseTabs.forEach((button, index) => {
     nextTab.focus();
     selectCourseTab(nextTab.dataset.courseTab === "enrolled" ? "enrolled" : "available");
   });
+});
+itineraryBack.addEventListener("click", closeItinerary);
+assessmentExit.addEventListener("click", () => void closeAssessment());
+assessmentRetry.addEventListener("click", () => {
+  if (activeAssessmentCourse) void openInitialAssessment(activeAssessmentCourse);
+});
+assessmentNext.addEventListener("click", () => void advanceInitialAssessment());
+assessmentPrevious.addEventListener("click", async () => {
+  if (!activeAssessment || activeAssessmentQuestionIndex === 0) return;
+  const question = activeAssessment.preguntas[activeAssessmentQuestionIndex];
+  assessmentPrevious.disabled = true;
+  try {
+    if (assessmentSaveTimer !== undefined) window.clearTimeout(assessmentSaveTimer);
+    await saveAssessmentAnswer(question, question.respuesta ?? "", question.canal ?? "texto");
+    activeAssessmentQuestionIndex -= 1;
+    renderAssessmentQuestion();
+  } catch {
+    assessmentPrevious.disabled = false;
+  }
+});
+assessmentViewItinerary.addEventListener("click", () => {
+  if (activeAssessmentCourse) void openItinerary(activeAssessmentCourse);
 });
 
 courseSearch.addEventListener("input", () => {

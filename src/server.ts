@@ -48,7 +48,7 @@ app.use((request: Request, response: Response, next: NextFunction) => {
     response.setHeader("Access-Control-Allow-Origin", origin);
     response.setHeader("Vary", "Origin");
     response.setHeader("Access-Control-Allow-Headers", "Authorization, Content-Type");
-    response.setHeader("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
+    response.setHeader("Access-Control-Allow-Methods", "GET, POST, PUT, OPTIONS");
   }
   if (request.method === "OPTIONS") {
     response.sendStatus(204);

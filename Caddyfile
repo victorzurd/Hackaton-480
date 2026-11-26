@@ -1,0 +1,16 @@
+# Caddy crea su propia autoridad certificadora local y emite los certificados
+{
+	local_certs
+	# No intenta instalar la autoridad en el contenedor: se instala a mano en el PC y el móvil.
+	skip_install_trust
+	# Al entrar por IP el cliente no indica el dominio (SNI): se usa el certificado de esta IP.
+	default_sni {$CADDY_DEFAULT_SNI:localhost}
+}
+{$CADDY_HOSTS:localhost} {
+        tls internal
+
+        reverse_proxy api:3000 {
+                # Sin HSTS en desarrollo, para no forzar HTTPS en localhost durante un año.
+                header_down -Strict-Transport-Security
+        }
+}

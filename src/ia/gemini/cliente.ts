@@ -15,6 +15,8 @@ export type PeticionGemini = {
   mensajes: MensajeGemini[];
   temperatura?: number;
   maxTokensSalida?: number;
+  // Si se indica, Gemini responde con JSON que sigue este esquema.
+  esquemaJson?: object;
 };
 
 export type MotivoErrorGemini =
@@ -77,6 +79,10 @@ export async function llamarGemini(
         generationConfig: {
           temperature: peticion.temperatura ?? 0.3,
           maxOutputTokens: peticion.maxTokensSalida ?? 1024,
+          ...(peticion.esquemaJson && {
+            responseMimeType: "application/json",
+            responseJsonSchema: peticion.esquemaJson,
+          }),
         },
       }),
     });

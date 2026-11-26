@@ -7,6 +7,7 @@
   4. Instala en tu usuario de Windows la autoridad certificadora local de Caddy, si aún no
      está, para que el navegador muestre el candado. Windows pide confirmación la primera vez.
   5. Espera a que la aplicación responda por HTTPS.
+  6. La primera vez, descarga e importa las transcripciones de CS50P para el Tutor IA.
 
   Uso:  npm run levantar
         powershell -ExecutionPolicy Bypass -File scripts\levantar.ps1 [-SinConfianza]
@@ -168,6 +169,35 @@ for ($i = 0; $i -lt 90; $i++) {
   Start-Sleep -Seconds 1
 }
 if (-not $lista) { Detener "La API no responde. Revisa: docker compose logs api" }
+
+# --- Transcripciones de CS50P (para el RAG del Tutor IA) ------------------------
+# Solo la primera vez: si la BD ya las tiene, no se hace nada. Si falla, la app funciona
+# igual, pero el Tutor IA no podrá citar el vídeo.
+Escribir-Paso "Comprobando las transcripciones de los vídeos"
+$anterior = $ErrorActionPreference
+$ErrorActionPreference = "Continue"
+try {
+  # Sin comillas dobles dentro: PowerShell 5.1 las pierde al pasarlas a docker.
+  $total = docker compose exec -T db sh -c 'psql -U $POSTGRES_USER -d $POSTGRES_DB -tAc ''SELECT count(*) FROM academy.transcripciones''' 2> $null
+} finally { $ErrorActionPreference = $anterior }
+
+if ("$total".Trim() -match '^[1-9]\d*$') {
+  Write-Host "  Ya están cargadas ($("$total".Trim()) vídeos)."
+} elseif ("$total".Trim() -ne "0") {
+  Write-Host "  No se pudo consultar la base de datos; se omiten las transcripciones." -ForegroundColor Yellow
+} else {
+  $faltan = 0..9 | Where-Object { -not (Test-Path "media\cs50p\lecture-$_.srt") }
+  if ($faltan) {
+    Write-Host "  Descargando los subtítulos de CS50P (unos 6 MB)..."
+    $null = Invocar-Silencioso { powershell -NoProfile -ExecutionPolicy Bypass -File "DataBase\seeds\download_cs50p.ps1" }
+  }
+  Write-Host "  Importándolas en la base de datos..."
+  if ((Invocar-Silencioso { docker compose exec -T api node DataBase/seeds/import_cs50p_transcripts.mjs }) -eq 0) {
+    Write-Host "  Transcripciones cargadas." -ForegroundColor Green
+  } else {
+    Write-Host "  No se pudieron cargar. Reinténtalo con: docker compose exec api node DataBase/seeds/import_cs50p_transcripts.mjs" -ForegroundColor Yellow
+  }
+}
 
 # Después a través del proxy: solo funciona si Windows confía en la autoridad de Caddy.
 if (Responde $url) {

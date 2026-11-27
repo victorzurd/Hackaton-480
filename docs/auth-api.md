@@ -59,6 +59,30 @@ El catálogo se lee de PostgreSQL y no se precarga con cursos ficticios. Si `aca
 
 Requiere `Authorization: Bearer <token>`. Devuelve las matrículas activas y finalizadas del alumno autenticado, con los campos de curso y además `estado`, `fechaMatricula`, `progreso` y `evaluacionInicialCompletada`. El progreso se calcula con los vídeos completados o marcados como saltados; una matrícula `finalizado` se presenta al 100 %.
 
+## Consultar una lección
+
+`GET /api/courses/:courseId/lessons/:contentId`
+
+Requiere `Authorization: Bearer <token>`. El alumno debe tener una matrícula `activo` o `finalizado` en el curso, y el contenido solicitado debe ser un vídeo que pertenezca a ese curso. Responde con el identificador, título, módulo, URL, duración y la transcripción completa:
+
+```json
+{
+  "leccion": {
+    "contenidoId": "123",
+    "titulo": "Funciones y variables",
+    "moduloTitulo": "Introducción a Python",
+    "videoUrl": "https://...",
+    "duracionSegundos": 600,
+    "transcripcion": {
+      "texto": "Texto completo de la transcripción",
+      "idioma": "en"
+    }
+  }
+}
+```
+
+`videoUrl` y `duracionSegundos` pueden ser `null`. Si no hay transcripción, `transcripcion` es `null`; esto no impide obtener el resto de los datos. Si hay varias, se elige primero español, luego inglés y después los demás idiomas por código; los duplicados del mismo idioma se desempatan por el identificador más bajo. Una sesión inválida responde `401`, una matrícula no autorizada `403`, un vídeo que no pertenece al curso `404` y los identificadores mal formados `400`.
+
 ## Inscribirse en un curso
 
 `POST /api/courses/:id/enroll`

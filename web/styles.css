@@ -679,6 +679,200 @@ a.itinerary-lesson__title:hover { text-decoration: underline; text-underline-off
 .itinerary-lesson.is-current .itinerary-lesson__state { color: #155d39; }
 .itinerary-module__empty { margin: 14px 0 4px 55px; }
 
+.lesson-main {
+  align-items: flex-start;
+  padding-top: 36px;
+}
+
+.lesson-shell {
+  width: min(1120px, 100%);
+  margin: 0 auto;
+}
+
+.lesson-status,
+.lesson-navigation-status {
+  margin: 0;
+  color: var(--text-secondary);
+}
+
+.lesson-error {
+  width: min(720px, 100%);
+  margin: 48px auto;
+  padding: clamp(22px, 4vw, 36px);
+  border: 1px solid var(--border-subtle);
+  border-radius: 14px;
+  background: var(--brand-paper);
+}
+
+.lesson-error h1 {
+  margin: 0;
+  font-size: clamp(25px, 4vw, 34px);
+  letter-spacing: -0.045em;
+  line-height: 1.15;
+}
+
+.lesson-error p {
+  margin: 10px 0 0;
+  color: var(--text-secondary);
+}
+
+.lesson-error__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 22px;
+}
+
+.lesson-content {
+  width: min(1120px, 100%);
+  margin: 0 auto;
+}
+
+.lesson-heading {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 24px;
+  margin-bottom: 22px;
+}
+
+.lesson-heading__copy {
+  min-width: 0;
+}
+
+.lesson-eyebrow {
+  margin: 0 0 8px;
+  color: #526a4e;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.lesson-heading h1 {
+  margin: 0;
+  font-size: clamp(26px, 4vw, 38px);
+  font-weight: 760;
+  letter-spacing: -0.05em;
+  line-height: 1.13;
+}
+
+.lesson-duration {
+  margin: 9px 0 0;
+  color: var(--text-secondary);
+  font-size: 14px;
+}
+
+.lesson-heading > .button {
+  flex: 0 0 auto;
+}
+
+.lesson-media {
+  overflow: hidden;
+  border-radius: 14px;
+  background: #10221b;
+}
+
+.lesson-media-status {
+  margin: 0;
+  padding: 28px;
+  color: var(--brand-paper);
+  text-align: center;
+}
+
+.lesson-player {
+  width: 100%;
+  background: #10221b;
+}
+
+.lesson-player__video {
+  display: block;
+  width: 100%;
+  max-height: min(72vh, 760px);
+  aspect-ratio: 16 / 9;
+  margin: 0 auto;
+  background: #10221b;
+  object-fit: contain;
+}
+
+.lesson-navigation {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: 18px;
+}
+
+.lesson-navigation .button {
+  max-width: min(48%, 420px);
+  overflow: hidden;
+  text-decoration: none;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.lesson-navigation .button--primary {
+  width: auto;
+  margin-left: auto;
+  color: var(--text-primary);
+  background: var(--surface-tint);
+}
+
+.lesson-navigation .button--primary:hover {
+  background: #dcebd8;
+}
+
+.lesson-transcript {
+  margin-top: 26px;
+  padding: clamp(20px, 3vw, 30px);
+  border: 1px solid var(--border-subtle);
+  border-radius: 14px;
+  background: var(--brand-paper);
+}
+
+.lesson-transcript__heading {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 16px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.lesson-transcript__heading .section-kicker {
+  margin-bottom: 6px;
+}
+
+.lesson-transcript__heading h2 {
+  margin: 0;
+  font-size: 22px;
+  letter-spacing: -0.035em;
+}
+
+.lesson-transcript__language {
+  flex: 0 0 auto;
+  padding: 4px 9px;
+  border-radius: 999px;
+  color: var(--state-success);
+  background: var(--surface-tint);
+  font-size: 11px;
+  font-weight: 750;
+  letter-spacing: 0.06em;
+}
+
+.lesson-transcript__text {
+  padding-top: 18px;
+  color: var(--text-primary);
+  line-height: 1.8;
+  overflow-wrap: anywhere;
+  white-space: pre-wrap;
+}
+
+.lesson-transcript__empty {
+  margin: 18px 0 0;
+  color: var(--text-secondary);
+}
+
 .assessment-view { width: min(760px, 100%); margin: 0 auto; padding: 18px 0 40px; }
 .assessment-exit { margin-bottom: 18px; text-decoration: none; }
 .assessment-heading { padding: 20px 0 18px; }
@@ -1051,6 +1245,10 @@ a.itinerary-lesson__title:hover { text-decoration: underline; text-underline-off
   }
   .itinerary-heading { align-items: stretch; flex-direction: column; gap: 18px; }
   .itinerary-summary { width: 100%; }
+  .lesson-main { padding-top: 24px; }
+  .lesson-heading { align-items: stretch; flex-direction: column; gap: 14px; }
+  .lesson-heading > .button { align-self: flex-start; }
+  .lesson-player__video { max-height: 56vh; }
 }
 
 @media (max-width: 560px) {
@@ -1083,6 +1281,16 @@ a.itinerary-lesson__title:hover { text-decoration: underline; text-underline-off
   .itinerary-view { padding-top: 14px; }
   .itinerary-heading { padding: 18px; }
   .itinerary-module { padding: 15px 14px 10px; }
+  .lesson-main { padding: 16px 16px 24px; }
+  .lesson-heading h1 { font-size: clamp(25px, 7vw, 32px); }
+  .lesson-media { border-radius: 10px; }
+  .lesson-media-status { padding: 22px 16px; }
+  .lesson-navigation { align-items: stretch; }
+  .lesson-navigation .button { min-width: 0; min-height: 48px; padding: 10px 12px; }
+  .lesson-transcript { margin-top: 18px; padding: 18px 15px; }
+  .lesson-transcript__heading h2 { font-size: 20px; }
+  .lesson-error__actions { flex-direction: column; }
+  .lesson-error__actions .button { width: 100%; }
   .itinerary-lesson { gap: 7px; }
   .itinerary-lesson__state { font-size: 11px; }
   .itinerary-lessons { margin-left: 16px; padding-left: 25px; }

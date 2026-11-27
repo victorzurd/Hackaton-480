@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#f5f6f3" />
+    <meta name="description" content="Reproduce la lección y consulta su transcripción en 480 Academy." />
+    <title>Lección · 480 Academy</title>
+    <link rel="stylesheet" href="/styles.css" />
+    <script type="module" src="/dist/leccion.js"></script>
+  </head>
+  <body data-page="leccion">
+    <header class="topbar">
+      <div class="topbar__inner">
+        <a class="wordmark" href="/cursos.html" aria-label="480 Academy, cursos">
+          <span class="wordmark__mark" aria-hidden="true"><span>4</span>80</span>
+          <span class="wordmark__academy">Academy</span>
+        </a>
+        <span class="topbar__context">Tu espacio de aprendizaje</span>
+      </div>
+    </header>
+    <main class="page-main lesson-main">
+      <div class="lesson-shell">
+        <p id="lesson-loading" class="lesson-status" role="status" aria-live="polite">
+          Cargando la lección…
+        </p>
+        <section id="lesson-error" class="lesson-error" role="alert" hidden>
+          <h1 id="lesson-error-title">No se pudo cargar la lección</h1>
+          <p id="lesson-error-message"></p>
+          <div class="lesson-error__actions">
+            <a id="lesson-login-link" class="button button--primary" href="/index.html" hidden>
+              Iniciar sesión
+            </a>
+            <a id="lesson-error-back" class="button button--secondary" href="/cursos.html">
+              Volver a mis cursos
+            </a>
+          </div>
+        </section>
+        <article id="lesson-content" class="lesson-content" hidden>
+          <header class="lesson-heading">
+            <div class="lesson-heading__copy">
+              <p id="lesson-eyebrow" class="lesson-eyebrow"></p>
+              <h1 id="lesson-title"></h1>
+              <p id="lesson-duration" class="lesson-duration" hidden></p>
+            </div>
+            <a id="lesson-back" class="button button--secondary" href="/cursos.html">
+              <span aria-hidden="true">←</span>
+              Volver al itinerario
+            </a>
+          </header>
+          <section class="lesson-media" aria-label="Reproductor de vídeo">
+            <p id="lesson-media-status" class="lesson-media-status" role="status" hidden></p>
+            <div id="lesson-player" class="lesson-player" hidden>
+              <video
+                id="lesson-video"
+                class="lesson-player__video"
+                controls
+                playsinline
+                preload="metadata"
+              >
+                Tu navegador no admite la reproducción de vídeo.
+              </video>
+            </div>
+          </section>
+          <nav id="lesson-navigation" class="lesson-navigation" aria-label="Navegar entre lecciones" hidden>
+            <a id="lesson-previous" class="button button--secondary" hidden>
+              <span aria-hidden="true">←</span>
+              <span id="lesson-previous-title"></span>
+            </a>
+            <a id="lesson-next" class="button button--primary" hidden>
+              <span id="lesson-next-title"></span>
+              <span aria-hidden="true">→</span>
+            </a>
+            <p id="lesson-navigation-status" class="lesson-navigation-status" role="status" hidden></p>
+          </nav>
+          <section class="lesson-transcript" aria-labelledby="lesson-transcript-title">
+            <header class="lesson-transcript__heading">
+              <div>
+                <p class="section-kicker">MATERIAL DE APOYO</p>
+                <h2 id="lesson-transcript-title">Transcripción</h2>
+              </div>
+              <span id="lesson-transcript-language" class="lesson-transcript__language" hidden></span>
+            </header>
+            <p id="lesson-transcript-empty" class="lesson-transcript__empty" hidden>
+              Esta lección todavía no tiene una transcripción disponible.
+            </p>
+            <div id="lesson-transcript-text" class="lesson-transcript__text"></div>
+          </section>
+        </article>
+      </div>
+    </main>
+    <footer class="page-footer">
+      <span>480 Academy</span>
+      <span>Aprende a tu ritmo.</span>
+    </footer>
+  </body>
+</html>

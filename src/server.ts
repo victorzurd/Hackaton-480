@@ -32,6 +32,7 @@ app.use(
     contentSecurityPolicy: {
       directives: {
         styleSrcElem: ["'self'"],
+        mediaSrc: ["'self'", "https:"],
         // El prototipo se sirve por HTTP en la red local; aún no hay TLS configurado.
         upgradeInsecureRequests: null,
       },
@@ -55,6 +56,19 @@ app.use((request: Request, response: Response, next: NextFunction) => {
   }
   if (request.method === "OPTIONS") {
     response.sendStatus(204);
+    return;
+  }
+  next();
+});
+
+app.use((request: Request, response: Response, next: NextFunction) => {
+  if (
+    request.method === "GET" &&
+    request.path === "/leccion.html" &&
+    request.query.preview === "1" &&
+    process.env.NODE_ENV !== "development"
+  ) {
+    response.sendStatus(404);
     return;
   }
   next();

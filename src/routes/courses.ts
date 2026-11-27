@@ -29,6 +29,10 @@ function getSearchTerm(request: Request): string | null {
   return normalized.length <= 100 ? normalized : null;
 }
 
+function isValidDatabaseId(value: string): boolean {
+  return /^\d{1,19}$/.test(value) && BigInt(value) <= 9_223_372_036_854_775_807n;
+}
+
 function mapCourse(row: CourseRow) {
   const videos = Number(row.total_videos);
   const completados = Number(row.videos_completados ?? 0);
@@ -81,6 +85,94 @@ export function createCoursesRouter({ db, jwtSecret }: CourseDependencies) {
     } catch (error) {
       console.error("Error al validar la sesión de cursos:", error);
       response.status(500).json({ error: "No se pudo validar la sesión." });
+    }
+  });
+
+  router.get("/:courseId/lessons/:contentId", async (request: Request, response: Response) => {
+    const { courseId, contentId } = request.params;
+    if (!isValidDatabaseId(courseId) || !isValidDatabaseId(contentId)) {
+      response.status(400).json({ error: "El curso o la lección indicados no son válidos." });
+      return;
+    }
+
+    try {
+      const result = await db.query<{
+        autorizado: boolean;
+        contenido_id: string | null;
+        titulo: string | null;
+        modulo_titulo: string | null;
+        video_url: string | null;
+        duracion_segundos: number | null;
+        transcripcion_texto: string | null;
+        transcripcion_idioma: string | null;
+      }>(
+        `SELECT EXISTS (
+           SELECT 1
+           FROM academy.matriculas matricula
+           WHERE matricula.alumno_id = $1
+             AND matricula.curso_id = $2
+             AND matricula.estado IN ('activo', 'finalizado')
+         ) AS autorizado,
+         contenido.id::text AS contenido_id,
+         contenido.titulo,
+         modulo.titulo AS modulo_titulo,
+         contenido.url AS video_url,
+         contenido.duracion_segundos,
+         transcripcion.texto AS transcripcion_texto,
+         transcripcion.idioma AS transcripcion_idioma
+         FROM (SELECT 1) AS solicitud
+         LEFT JOIN academy.contenidos contenido
+           ON contenido.id = $3
+          AND contenido.tipo = 'video'
+          AND EXISTS (
+            SELECT 1
+            FROM academy.modulos modulo_curso
+            WHERE modulo_curso.id = contenido.modulo_id
+              AND modulo_curso.curso_id = $2
+          )
+         LEFT JOIN academy.modulos modulo ON modulo.id = contenido.modulo_id
+         LEFT JOIN LATERAL (
+           SELECT transcripciones.texto, transcripciones.idioma
+           FROM academy.transcripciones transcripciones
+           WHERE transcripciones.contenido_id = contenido.id
+           ORDER BY CASE transcripciones.idioma
+             WHEN 'es' THEN 0
+             WHEN 'en' THEN 1
+             ELSE 2
+           END, transcripciones.idioma, transcripciones.id
+           LIMIT 1
+         ) transcripcion ON TRUE`,
+        [response.locals.alumnoId, courseId, contentId],
+      );
+      const lesson = result.rows[0];
+
+      if (!lesson.autorizado) {
+        response.status(403).json({ error: "No estás inscrito en este curso." });
+        return;
+      }
+      if (!lesson.contenido_id) {
+        response.status(404).json({ error: "No se encontró el vídeo solicitado en este curso." });
+        return;
+      }
+
+      response.json({
+        leccion: {
+          contenidoId: lesson.contenido_id,
+          titulo: lesson.titulo,
+          moduloTitulo: lesson.modulo_titulo,
+          videoUrl: lesson.video_url,
+          duracionSegundos: lesson.duracion_segundos,
+          transcripcion: lesson.transcripcion_texto === null
+            ? null
+            : {
+                texto: lesson.transcripcion_texto,
+                idioma: lesson.transcripcion_idioma,
+              },
+        },
+      });
+    } catch (error) {
+      console.error("Error al consultar la lección:", error);
+      response.status(500).json({ error: "No se pudo cargar la lección." });
     }
   });
 

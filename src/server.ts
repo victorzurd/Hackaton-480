@@ -6,6 +6,7 @@ import { resolve } from "node:path";
 import { pool } from "./db/pool";
 import { createAuthRouter } from "./routes/auth";
 import { createCoursesRouter } from "./routes/courses";
+import { createReelsRouter } from "./routes/reels";
 import { hashPassword } from "./security/password";
 
 const port = Number(process.env.PORT ?? 3000);
@@ -94,6 +95,7 @@ async function start(): Promise<void> {
     createAuthRouter({ db: pool, jwtSecret, dummyPasswordHash }),
   );
   app.use("/api/courses", createCoursesRouter({ db: pool, jwtSecret }));
+  app.use("/api/reels", createReelsRouter({ db: pool, jwtSecret }));
 
   app.use((request: Request, response: Response) => {
     response.status(404).json({ error: "No se encontró el recurso solicitado." });

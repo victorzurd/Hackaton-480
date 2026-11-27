@@ -1,0 +1,4744 @@
+WEBVTT
+
+00:00:00.000 --> 00:00:03.451
+[MÚSICA SONANDO]
+
+00:00:24.160 --> 00:00:25.180
+DAVID MALAN: Muy bien.
+
+00:00:25.180 --> 00:00:28.540
+Esto es CS50 Introducción a la programación con Python.
+
+00:00:28.540 --> 00:00:33.010
+Me llamo David Malan, y esta semana nos centramos en los bucles, esa capacidad de Python
+
+00:00:33.010 --> 00:00:37.000
+y de muchos otros lenguajes de programación de hacer algo una y otra vez,
+
+00:00:37.000 --> 00:00:38.500
+una especie de ciclo.
+
+00:00:38.500 --> 00:00:40.420
+Y vamos a ver si podemos empezar motivando
+
+00:00:40.420 --> 00:00:45.310
+exactamente por qué tenemos esta capacidad de hacer cosas de forma cíclica con estos bucles.
+
+00:00:45.310 --> 00:00:48.130
+Voy a abrir VS Code.
+
+00:00:48.130 --> 00:00:50.260
+Y en la ventana de mi terminal, vamos
+
+00:00:50.260 --> 00:00:57.100
+a crear con code cat.py un programa en Python que maúlla como un gato.
+
+00:00:57.100 --> 00:01:00.910
+Y aquí, en esta pestaña de código, de forma muy sencilla, quizás,
+
+00:01:00.910 --> 00:01:03.760
+voy a empezar implementando este gato simplemente con print.
+
+00:01:03.760 --> 00:01:06.010
+Vamos a hacer que este gato no emita sonidos audibles,
+
+00:01:06.010 --> 00:01:08.860
+sino que simplemente imprima miau, miau, miau en la pantalla tres veces.
+
+00:01:08.860 --> 00:01:12.640
+Bueno, creo que la forma más sencilla de hacerlo es imprimir miau una vez,
+
+00:01:12.640 --> 00:01:18.590
+imprimir miau otra vez, e imprimir miau una última vez en la pantalla.
+
+00:01:18.590 --> 00:01:23.320
+Y ahora déjame bajar a mi ventana de terminal, ejecutar python de cat.py,
+
+00:01:23.320 --> 00:01:25.480
+Enter, y miau, miau, miau.
+
+00:01:25.480 --> 00:01:27.670
+Muy bien, así que este programa funciona.
+
+00:01:27.670 --> 00:01:31.120
+Este programa funciona, efectivamente, si mi objetivo es que el gato maúlle tres veces.
+
+00:01:31.120 --> 00:01:34.280
+Y permitidme proponer, solo para ayudarnos a entender
+
+00:01:34.280 --> 00:01:36.430
+lo que ocurre dentro del ordenador, que
+
+00:01:36.430 --> 00:01:38.810
+consideremos este diagrama de flujo.
+
+00:01:38.810 --> 00:01:40.810
+Como antes, tenemos este diagrama de flujo que
+
+00:01:40.810 --> 00:01:44.140
+empieza con este óvalo, que simplemente significa empieza a leer aquí.
+
+00:01:44.140 --> 00:01:50.050
+Y fijaos, va mediante flechas a un miau, miau, miau, y luego termina.
+
+00:01:50.050 --> 00:01:53.890
+Es perfectamente correcto y, sinceramente, es maravillosamente simple,
+
+00:01:53.890 --> 00:01:58.090
+pero me atrevo a decir que aun así podemos encontrar fallos en mi código.
+
+00:01:58.090 --> 00:02:03.550
+¿Por qué está, discutiblemente, mal diseñado mi código?
+
+00:02:03.550 --> 00:02:05.680
+Ahora bien, la respuesta va a tener que ver con los bucles de alguna manera,
+
+00:02:05.680 --> 00:02:08.169
+pero veamos si podemos identificar en qué sentido
+
+00:02:08.169 --> 00:02:12.950
+el código está realmente mal diseñado.
+
+00:02:12.950 --> 00:02:13.660
+A ver.
+
+00:02:13.660 --> 00:02:14.260
+¿Alguna idea?
+
+00:02:14.260 --> 00:02:15.608
+¿Alex?
+
+00:02:15.608 --> 00:02:16.150
+AUDIENCE: Vale.
+
+00:02:16.150 --> 00:02:21.580
+Bueno, quiero decir que repetir la misma acción tres veces o incluso más
+
+00:02:21.580 --> 00:02:23.095
+no es un buen hábito.
+
+00:02:23.095 --> 00:02:24.970
+DAVID MALAN: Sí, simplemente me estoy repitiendo.
+
+00:02:24.970 --> 00:02:27.340
+Y sinceramente, no es para tanto.
+
+00:02:27.340 --> 00:02:31.780
+Si volvemos a mi código aquí, ¿realmente estoy haciendo algo tan malo
+
+00:02:31.780 --> 00:02:34.180
+por imprimir miau, miau, miau tres veces?
+
+00:02:34.180 --> 00:02:37.250
+No mucho, pero consideremos la extensión lógica de esto.
+
+00:02:37.250 --> 00:02:43.510
+Supongamos que quisiera maullar cuatro veces o cinco veces o 50 veces o 500 veces.
+
+00:02:43.510 --> 00:02:46.150
+¿De verdad creéis, aunque nunca hayáis programado,
+
+00:02:46.150 --> 00:02:50.350
+que la solución a este problema va a ser darle a copiar y pegar 50 veces?
+
+00:02:50.350 --> 00:02:51.310
+Probablemente no.
+
+00:02:51.310 --> 00:02:52.840
+Probablemente podemos hacerlo mejor.
+
+00:02:52.840 --> 00:02:54.850
+Y más allá de que simplemente sea feo llegado ese punto,
+
+00:02:54.850 --> 00:02:57.732
+tener tantas líneas de código idénticas, solo
+
+00:02:57.732 --> 00:02:59.440
+imaginad que quisierais cambiar el código.
+
+00:02:59.440 --> 00:03:02.607
+Quizás cambio de opinión y no quiero hacer un gato, quiero hacer un perro.
+
+00:03:02.607 --> 00:03:04.930
+Entonces ahora tiene que decir guau, guau, guau varias veces.
+
+00:03:04.930 --> 00:03:07.780
+Ahora tendría que cambiarlo en 50 sitios distintos.
+
+00:03:07.780 --> 00:03:10.030
+Y sí, claro, podría usar buscar y reemplazar,
+
+00:03:10.030 --> 00:03:12.070
+pero venga ya, que ahora somos programadores, tiene
+
+00:03:12.070 --> 00:03:15.080
+que haber una forma mejor que simplemente repetirnos.
+
+00:03:15.080 --> 00:03:18.400
+Así que apuesto a que podemos hacerlo mejor si pensamos un poco
+
+00:03:18.400 --> 00:03:22.960
+más a fondo cómo estructuramos este programa.
+
+00:03:22.960 --> 00:03:26.750
+Y podemos hacerlo si ampliamos un poquito nuestro vocabulario.
+
+00:03:26.750 --> 00:03:28.870
+Resulta que en Python, y también en otros lenguajes,
+
+00:03:28.870 --> 00:03:31.270
+existe una palabra clave llamada while.
+
+00:03:31.270 --> 00:03:34.960
+Y while es una forma de expresar lo que se llama un bucle,
+
+00:03:34.960 --> 00:03:38.530
+un bloque de código que va a hacer algo una y otra y otra vez...
+
+00:03:38.530 --> 00:03:43.480
+0 veces, 1 vez, 2 veces, 50 veces, tantas veces como queramos.
+
+00:03:43.480 --> 00:03:48.520
+Pero while nos deja a nosotros los detalles
+
+00:03:48.520 --> 00:03:52.010
+de cómo expresamos que se haga algo una y otra vez.
+
+00:03:52.010 --> 00:03:56.260
+Así que déjame volver a VS Code y proponer que haga esto.
+
+00:03:56.260 --> 00:04:01.765
+While es una construcción que me permite hacer una pregunta una y otra vez.
+
+00:04:01.765 --> 00:04:03.640
+Y siempre que hemos visto una pregunta, ha sido
+
+00:04:03.640 --> 00:04:07.180
+en forma de expresión booleana, una pregunta cuya respuesta es
+
+00:04:07.180 --> 00:04:08.900
+verdadero o falso.
+
+00:04:08.900 --> 00:04:10.250
+Bueno, ¿cómo podría hacer esto?
+
+00:04:10.250 --> 00:04:15.340
+¿Cómo podría imprimir miau tres veces y hacer tres veces una pregunta
+
+00:04:15.340 --> 00:04:18.079
+cuya respuesta sea verdadero o falso?
+
+00:04:18.079 --> 00:04:20.110
+Bueno, ¿y si hiciera algo de contar?
+
+00:04:20.110 --> 00:04:21.560
+Literalmente con los dedos.
+
+00:04:21.560 --> 00:04:25.360
+Y si intento contar hacia atrás desde tres, quiero maullar tres veces,
+
+00:04:25.360 --> 00:04:28.060
+puedo levantar tres dedos y puedo maullar.
+
+00:04:28.060 --> 00:04:31.342
+Y luego puedo bajar uno de los dedos y maullar.
+
+00:04:31.342 --> 00:04:33.550
+Y puedo bajar otro de los dedos y maullar.
+
+00:04:33.550 --> 00:04:34.870
+Bajar otro de los dedos.
+
+00:04:34.870 --> 00:04:38.200
+Y quizás la pregunta que puedo hacerme cada vez que maúllo
+
+00:04:38.200 --> 00:04:40.840
+es: ¿todavía me queda algún dedo levantado?
+
+00:04:40.840 --> 00:04:42.370
+¿Todavía me queda algún dedo levantado?
+
+00:04:42.370 --> 00:04:43.662
+¿Todavía me queda algún dedo levantado?
+
+00:04:43.662 --> 00:04:45.490
+Y si la respuesta es verdadero, sigo.
+
+00:04:45.490 --> 00:04:48.040
+Si la respuesta es falso, paro.
+
+00:04:48.040 --> 00:04:50.710
+Entonces, ¿cómo puedo traducir eso a código?
+
+00:04:50.710 --> 00:04:53.020
+Bueno, una vez que hemos añadido esta palabra clave while...
+
+00:04:53.020 --> 00:04:57.590
+creo que ya tenemos todos los ingredientes, déjame proponer que haga esto.
+
+00:04:57.590 --> 00:04:59.860
+Déjame proponer que me dé a mí mismo una variable.
+
+00:04:59.860 --> 00:05:02.740
+Y la llamaré i de integer (entero), pero podría llamarla como quisiera,
+
+00:05:02.740 --> 00:05:04.780
+y la voy a inicializar a 3.
+
+00:05:04.780 --> 00:05:07.780
+Luego voy a usar esta nueva característica de Python, while,
+
+00:05:07.780 --> 00:05:12.380
+y voy a hacer una pregunta cuya respuesta tiene que ser verdadero o falso.
+
+00:05:12.380 --> 00:05:17.470
+Y voy a decir: while i no es igual a 0.
+
+00:05:17.470 --> 00:05:22.630
+Así que voy a hacer la pregunta: while i no es igual a 0, haz lo siguiente.
+
+00:05:22.630 --> 00:05:24.760
+Fijaos en los dos puntos al final de la línea.
+
+00:05:24.760 --> 00:05:25.890
+Fijaos en mi sangría.
+
+00:05:25.890 --> 00:05:28.470
+Y, igual que con las funciones, igual que con los condicionales,
+
+00:05:28.470 --> 00:05:34.440
+se sangran las líneas que solo queréis que se ejecuten como parte de esta otra cosa.
+
+00:05:34.440 --> 00:05:37.920
+¿Qué quiero hacer mientras i no sea igual a 0?
+
+00:05:37.920 --> 00:05:41.130
+Bueno, creo que simplemente quiero maullar.
+
+00:05:41.130 --> 00:05:44.820
+Pero no basta con escribir este código.
+
+00:05:44.820 --> 00:05:52.380
+Si ejecutara, muy peligrosamente, python de cat.py y pulsara Enter ahora mismo,
+
+00:05:52.380 --> 00:05:55.560
+¿qué podría pasar en la pantalla?
+
+00:05:55.560 --> 00:05:58.320
+Hayáis programado antes o no.
+
+00:05:58.320 --> 00:06:01.200
+¿Por qué esto es potencialmente algo muy malo?
+
+00:06:01.200 --> 00:06:05.700
+No va a romper nada, pero podría hacer que perdiera el control de mi ordenador
+
+00:06:05.700 --> 00:06:07.270
+de alguna manera.
+
+00:06:07.270 --> 00:06:08.620
+¿Alguna idea?
+
+00:06:08.620 --> 00:06:10.120
+Sí, ¿Timo?
+
+00:06:10.120 --> 00:06:11.020
+AUDIENCE: Hola.
+
+00:06:11.020 --> 00:06:18.790
+Creo que va a seguir imprimiendo miau, ya que i siempre es igual a 3
+
+00:06:18.790 --> 00:06:20.995
+y el while siempre es verdadero.
+
+00:06:20.995 --> 00:06:22.120
+DAVID MALAN: Sí, exacto.
+
+00:06:22.120 --> 00:06:26.320
+Si inicializo i a 3, es decir, lo igualo a 3 en la línea 1,
+
+00:06:26.320 --> 00:06:29.440
+luego hago la pregunta: while i no es igual a 0,
+
+00:06:29.440 --> 00:06:31.810
+y eso va a ser verdadero, no es igual a 0,
+
+00:06:31.810 --> 00:06:34.240
+obviamente es igual a 3, imprime miau.
+
+00:06:34.240 --> 00:06:38.950
+Y la forma en que funciona un bucle while es que el intérprete de Python
+
+00:06:38.950 --> 00:06:40.480
+va y viene constantemente.
+
+00:06:40.480 --> 00:06:45.310
+Va de la línea 1 a la línea 2, luego a la línea 3,
+
+00:06:45.310 --> 00:06:48.490
+y después vuelve a la línea 2 para hacer la pregunta otra vez.
+
+00:06:48.490 --> 00:06:50.950
+Si la respuesta sigue siendo verdadero, va a la línea 3.
+
+00:06:50.950 --> 00:06:52.420
+Luego vuelve a la línea 2.
+
+00:06:52.420 --> 00:06:55.090
+Si la respuesta sigue siendo verdadero, vuelve a la línea 3.
+
+00:06:55.090 --> 00:07:00.100
+Y, como dice Timo, si nunca cambias realmente el valor de i,
+
+00:07:00.100 --> 00:07:04.450
+siempre es 3, vas a estar en bucle literalmente para siempre,
+
+00:07:04.450 --> 00:07:07.028
+y esto es un bucle infinito accidental.
+
+00:07:07.028 --> 00:07:08.570
+Así que tenemos que ser más listos que eso.
+
+00:07:08.570 --> 00:07:09.820
+Y no voy a pulsar Enter porque no
+
+00:07:09.820 --> 00:07:12.195
+quiero perder el control de mi ordenador de manera que
+
+00:07:12.195 --> 00:07:14.080
+esté imprimiendo miau para siempre.
+
+00:07:14.080 --> 00:07:16.960
+Afortunadamente, si alguna vez hacéis eso y os encontráis
+
+00:07:16.960 --> 00:07:21.940
+en un bucle infinito accidental, Control-C, de cancelar o interrumpir,
+
+00:07:21.940 --> 00:07:23.110
+va a ser vuestro amigo.
+
+00:07:23.110 --> 00:07:26.110
+Si alguna vez parece que perdéis el control, no hace falta reiniciar
+
+00:07:26.110 --> 00:07:27.520
+ni apagar el ordenador.
+
+00:07:27.520 --> 00:07:30.430
+Simplemente podéis pulsar Control-C en la ventana de vuestro terminal
+
+00:07:30.430 --> 00:07:32.560
+y probablemente eso lo arreglará.
+
+00:07:32.560 --> 00:07:35.920
+Muy bien, entonces, ¿qué quiero hacer después de maullar cada vez?
+
+00:07:35.920 --> 00:07:39.820
+Creo que lo que me gustaría hacer aquí es algo como esto.
+
+00:07:39.820 --> 00:07:46.750
+Déjame actualizar i para que sea igual al valor actual menos 1...
+
+00:07:46.750 --> 00:07:47.530
+huy, perdón.
+
+00:07:47.530 --> 00:07:48.820
+Menos 1.
+
+00:07:48.820 --> 00:07:51.310
+Así que si i en cada iteración...
+
+00:07:51.310 --> 00:07:55.090
+la actualizo para que sea uno menos, uno menos, uno menos,
+
+00:07:55.090 --> 00:08:00.610
+debería llegar eventualmente a 0, momento en el que la respuesta a la pregunta del while
+
+00:08:00.610 --> 00:08:02.540
+será falso.
+
+00:08:02.540 --> 00:08:03.770
+Veamos si funciona.
+
+00:08:03.770 --> 00:08:06.790
+Voy a bajar a mi ventana de terminal y ejecutar python de cat.py,
+
+00:08:06.790 --> 00:08:09.700
+y efectivamente obtengo tres maullidos.
+
+00:08:09.700 --> 00:08:10.360
+¿Por qué?
+
+00:08:10.360 --> 00:08:14.230
+Porque lo he montado como una máquina en software, por así decirlo.
+
+00:08:14.230 --> 00:08:17.360
+He puesto i igual a 3, y luego sigo haciendo esta pregunta.
+
+00:08:17.360 --> 00:08:21.940
+Pero sigo moviendo los engranajes, sigo cambiando el valor de la variable
+
+00:08:21.940 --> 00:08:25.180
+para asegurarme de que, en última instancia,
+
+00:08:25.180 --> 00:08:30.468
+se decrementa, es decir, se reduce en 1 hasta que finalmente llegamos a 0.
+
+00:08:30.468 --> 00:08:33.010
+Ahora, para quienes pensáis de forma un poco más gráfica,
+
+00:08:33.010 --> 00:08:35.110
+déjame abrir uno de nuestros diagramas de flujo habituales.
+
+00:08:35.110 --> 00:08:38.610
+Esto es simplemente una representación gráfica exactamente de lo mismo.
+
+00:08:38.610 --> 00:08:39.610
+Fijaos en lo que ocurre.
+
+00:08:39.610 --> 00:08:44.020
+Primero inicio el programa, luego inicializo i a 3,
+
+00:08:44.020 --> 00:08:46.300
+y después hago la primera de mis preguntas.
+
+00:08:46.300 --> 00:08:48.577
+De nuevo, los rombos siempre representan preguntas.
+
+00:08:48.577 --> 00:08:50.410
+Y la respuesta va a ser verdadero o falso.
+
+00:08:50.410 --> 00:08:52.690
+¿i no es igual a 0?
+
+00:08:52.690 --> 00:08:54.190
+Pues no, es igual a 3.
+
+00:08:54.190 --> 00:08:56.710
+Así que si sigo la línea del verdadero, maúllo.
+
+00:08:56.710 --> 00:09:01.690
+Y luego sigo esta flecha y actualizo i para que sea igual a i menos 1.
+
+00:09:01.690 --> 00:09:05.200
+En este punto de la historia, i presumiblemente es igual a 2 matemáticamente.
+
+00:09:05.200 --> 00:09:06.400
+Sigo la flecha.
+
+00:09:06.400 --> 00:09:07.483
+Y ahí está el bucle.
+
+00:09:07.483 --> 00:09:09.400
+Por eso es agradable verlo gráficamente,
+
+00:09:09.400 --> 00:09:12.770
+quizás porque puedes ver literalmente el bucle de ida y vuelta.
+
+00:09:12.770 --> 00:09:14.240
+Ahora hago la pregunta otra vez.
+
+00:09:14.240 --> 00:09:16.270
+¿2 no es igual a 0?
+
+00:09:16.270 --> 00:09:20.060
+Pues no es igual a 0, es 2, así que maullamos otra vez.
+
+00:09:20.060 --> 00:09:21.940
+Cambiamos i de 2 a 1.
+
+00:09:21.940 --> 00:09:23.770
+Bueno, ¿1 no es igual a 0?
+
+00:09:23.770 --> 00:09:27.490
+Pues obviamente 1 no es 0, así que maullamos otra vez.
+
+00:09:27.490 --> 00:09:30.580
+Decrementamos i otra vez. Ahora i es 0.
+
+00:09:30.580 --> 00:09:33.070
+¿0 no es igual a 0?
+
+00:09:33.070 --> 00:09:37.930
+No, es igual a 0, así que la respuesta es falso y paramos.
+
+00:09:37.930 --> 00:09:41.260
+Así que ahí, quizás más que en cualquiera de nuestros diagramas de flujo anteriores,
+
+00:09:41.260 --> 00:09:45.295
+¿se ve de verdad la estructura de lo que ocurre dentro del programa?
+
+00:09:45.295 --> 00:09:47.920
+Y no hace falta que cojáis el hábito de hacer estos diagramas
+
+00:09:47.920 --> 00:09:50.830
+ni de crearlos, pero como primera aproximación a lo que
+
+00:09:50.830 --> 00:09:55.010
+ocurre dentro del ordenador, esa es desde luego una forma de visualizarlo.
+
+00:09:55.010 --> 00:09:57.760
+Bueno, permitidme proponer que, como siempre, hay muchas formas distintas
+
+00:09:57.760 --> 00:09:58.690
+de resolver este problema.
+
+00:09:58.690 --> 00:10:01.023
+Y supongamos que simplemente os gusta pensar de otra manera.
+
+00:10:01.023 --> 00:10:04.700
+Quizás no os gusta empezar en 3 y contar hacia atrás hasta 0.
+
+00:10:04.700 --> 00:10:05.200
+¿Por qué?
+
+00:10:05.200 --> 00:10:07.075
+Quizás simplemente vuestro cerebro no funciona así
+
+00:10:07.075 --> 00:10:09.100
+y preferís contar hacia arriba en lugar de hacia abajo.
+
+00:10:09.100 --> 00:10:10.400
+Totalmente válido.
+
+00:10:10.400 --> 00:10:15.700
+Voy a cambiar mi código aquí para poner i igual a 1 en lugar de 3.
+
+00:10:15.700 --> 00:10:18.040
+Y aquí, voy a cambiar mi lógica.
+
+00:10:18.040 --> 00:10:20.500
+En lugar de comprobar si es distinto de 0, como quizás
+
+00:10:20.500 --> 00:10:23.500
+no os gusta pensar en términos de «no» porque es un poco confuso,
+
+00:10:23.500 --> 00:10:28.720
+y puede serlo, comprobemos simplemente que i es menor o igual que 3.
+
+00:10:28.720 --> 00:10:30.310
+Así seremos un poco más explícitos.
+
+00:10:30.310 --> 00:10:34.690
+Contaremos de 1 hasta 3, imprimiendo miau cada vez,
+
+00:10:34.690 --> 00:10:36.970
+pero voy a necesitar cambiar esta línea de aquí.
+
+00:10:36.970 --> 00:10:40.240
+Veamos si podemos pedir a alguien que cambie la línea por mí.
+
+00:10:40.240 --> 00:10:47.560
+¿Cómo quiero cambiar la línea 4 para que sea coherente con contar desde 1 hasta
+
+00:10:47.560 --> 00:10:52.080
+3 inclusive?
+
+00:10:52.080 --> 00:10:57.465
+AUDIENCE: Sería sumar 1 cada vez que maúllas.
+
+00:10:57.465 --> 00:10:58.590
+DAVID MALAN: Sí, exacto.
+
+00:10:58.590 --> 00:11:01.800
+En este caso, queremos sumar uno, no restar 1.
+
+00:11:01.800 --> 00:11:05.460
+Y de hecho, si lo pensáis, esto podría acabar muy mal.
+
+00:11:05.460 --> 00:11:09.630
+Si empezáis a contar en 1 y seguís restando 1, restando 1,
+
+00:11:09.630 --> 00:11:11.850
+restando 1, creo que nos encontraremos
+
+00:11:11.850 --> 00:11:15.780
+con el mismo problema, que es que nunca vamos a parar porque
+
+00:11:15.780 --> 00:11:19.140
+vamos a ir obteniendo números cada vez más negativos en lugar de llegar
+
+00:11:19.140 --> 00:11:20.160
+al número 3.
+
+00:11:20.160 --> 00:11:24.660
+Así que creo que tienes razón, necesito cambiar esto para que sea i igual a i más 1.
+
+00:11:24.660 --> 00:11:27.840
+Y ahora fijaos, también por claridad, que el signo igual
+
+00:11:27.840 --> 00:11:30.810
+es, de nuevo, nuestro operador de asignación, de derecha a izquierda.
+
+00:11:30.810 --> 00:11:33.150
+Lógicamente, esto podría resultaros extraño.
+
+00:11:33.150 --> 00:11:35.880
+Como, ¿cómo puede i ser igual a sí misma más 1?
+
+00:11:35.880 --> 00:11:39.720
+Pues no lo es, hasta que ejecutas este código de derecha a izquierda.
+
+00:11:39.720 --> 00:11:44.550
+Sumas 1 a i o restas 1 a i, y luego actualizas el valor de i
+
+00:11:44.550 --> 00:11:45.240
+a la izquierda.
+
+00:11:45.240 --> 00:11:48.400
+La asignación copia el valor de la derecha a la izquierda.
+
+00:11:48.400 --> 00:11:49.780
+Bueno, ¿de qué otra manera podría hacer esto?
+
+00:11:49.780 --> 00:11:55.110
+Pues diré que la mayoría de los programadores, y de los informáticos en general,
+
+00:11:55.110 --> 00:11:57.180
+suelen empezar a contar desde 0.
+
+00:11:57.180 --> 00:11:59.640
+Es una convención y de hecho tiene ventajas incluso
+
+00:11:59.640 --> 00:12:02.440
+en Python y otros lenguajes, donde, en general,
+
+00:12:02.440 --> 00:12:04.600
+es bueno empezar a contar desde 0
+
+00:12:04.600 --> 00:12:07.620
+en lugar de contar desde 1 como haríamos en el mundo real.
+
+00:12:07.620 --> 00:12:10.170
+Adoptemos ahora esa convención.
+
+00:12:10.170 --> 00:12:14.400
+Voy a poner i igual a 0, y ahora necesito hacer un cambio.
+
+00:12:14.400 --> 00:12:19.560
+Fijaos, si no cambio mi lógica, este programa acaba de tener un error.
+
+00:12:19.560 --> 00:12:20.730
+El gato tiene un error.
+
+00:12:20.730 --> 00:12:23.940
+Ahora maúlla cuatro veces si lo ejecuto tal cual.
+
+00:12:23.940 --> 00:12:27.660
+Pero la solución más fácil aquí sería cambiar mi desigualdad
+
+00:12:27.660 --> 00:12:31.810
+para que sea esta, menor que en lugar de menor o igual que.
+
+00:12:31.810 --> 00:12:36.480
+Ahora empiezo en 0, pero voy hasta 3 sin incluirlo.
+
+00:12:36.480 --> 00:12:40.020
+Y aunque esto quizás, de todo lo que hemos visto hasta ahora,
+
+00:12:40.020 --> 00:12:44.400
+parezca lo menos familiar, la mayoría empezaríamos en 1, 2, luego 3,
+
+00:12:44.400 --> 00:12:47.220
+es un buen hábito adquirirlo ahora: empezar en 0
+
+00:12:47.220 --> 00:12:52.110
+e ir hasta el valor que nos interesa, sin llegar a incluirlo,
+
+00:12:52.110 --> 00:12:53.510
+3 en este caso.
+
+00:12:53.510 --> 00:12:55.260
+Bueno, déjame pulir un poco esto.
+
+00:12:55.260 --> 00:12:57.630
+No solo esto arregla ahora mi problema de conteo,
+
+00:12:57.630 --> 00:13:00.330
+ahora maúlla 3 veces como se esperaba, sino que hay
+
+00:13:00.330 --> 00:13:03.240
+una forma más concisa de expresar i igual a i
+
+00:13:03.240 --> 00:13:06.690
+más 1, y esto es porque es algo muy habitual en el código.
+
+00:13:06.690 --> 00:13:11.830
+En su lugar puedes simplemente decir i más igual 1, y ya está.
+
+00:13:11.830 --> 00:13:14.250
+No hace falta poner todo en el lado derecho.
+
+00:13:14.250 --> 00:13:19.320
+Es una sintaxis especial que dice exactamente lo mismo, incrementar i,
+
+00:13:19.320 --> 00:13:21.742
+pero con algunas pulsaciones de teclas menos.
+
+00:13:21.742 --> 00:13:24.700
+Es un poco más agradable de escribir, es un poco más rápido de leer,
+
+00:13:24.700 --> 00:13:25.830
+es simplemente una convención.
+
+00:13:25.830 --> 00:13:29.745
+Quienes hayáis programado en C, C++, Python...
+
+00:13:29.745 --> 00:13:30.660
+no, Python no.
+
+00:13:30.660 --> 00:13:36.990
+C, C++, Java, JavaScript, quizás hayáis visto más-más o menos-menos antes.
+
+00:13:36.990 --> 00:13:40.080
+Perdón, Python no lo tiene, así que no se puede usar.
+
+00:13:40.080 --> 00:13:44.040
+Esto es lo más conciso que puede llegar a ser vuestra línea de código.
+
+00:13:44.040 --> 00:13:44.870
+Muy bien.
+
+00:13:44.870 --> 00:13:46.620
+Hagamos una pausa aquí para ver si hay
+
+00:13:46.620 --> 00:13:53.400
+alguna pregunta sobre estas implementaciones de bucles while.
+
+00:13:53.400 --> 00:13:55.620
+AUDIENCE: ¿Podemos usar cosas como bucles for
+
+00:13:55.620 --> 00:14:02.760
+que tienen un valor de i inicializado al principio
+
+00:14:02.760 --> 00:14:09.300
+y se ejecutan desde la condición particular que pones en ello
+
+00:14:09.300 --> 00:14:12.090
+y lo incrementas a medida que avanza?
+
+00:14:12.090 --> 00:14:15.700
+DAVID MALAN: La respuesta corta es no, no puedes hacer lo que describes,
+
+00:14:15.700 --> 00:14:18.790
+pero hay otro tipo de bucle for que veremos pronto.
+
+00:14:18.790 --> 00:14:20.520
+Pero llegaremos a eso en un momento.
+
+00:14:20.520 --> 00:14:26.080
+¿Otras preguntas sobre bucles con while?
+
+00:14:26.080 --> 00:14:28.443
+AUDIENCE: Tenía una pregunta sobre ese diagrama de flujo.
+
+00:14:28.443 --> 00:14:29.110
+DAVID MALAN: Vale.
+
+00:14:29.110 --> 00:14:30.490
+AUDIENCE: Había... sí.
+
+00:14:30.490 --> 00:14:36.510
+Había ciertos símbolos para cierto tipo de instrucciones, ¿verdad?
+
+00:14:36.510 --> 00:14:42.283
+¿Se usan siempre para ese tipo de instrucción que...?
+
+00:14:42.283 --> 00:14:43.200
+DAVID MALAN: Así es.
+
+00:14:43.200 --> 00:14:44.790
+Así que utilicé deliberadamente
+
+00:14:44.790 --> 00:14:47.340
+ciertos tipos de símbolos, ciertas formas
+
+00:14:47.340 --> 00:14:51.570
+en las que un óvalo es lo convencional para inicio y fin.
+
+00:14:51.570 --> 00:14:56.820
+Usé rectángulos para cualquier instrucción de código, como una asignación o una impresión
+
+00:14:56.820 --> 00:14:57.630
+y demás.
+
+00:14:57.630 --> 00:15:02.040
+Y usé rombos para representar preguntas que podrías hacer,
+
+00:15:02.040 --> 00:15:03.988
+condiciones, como hemos visto.
+
+00:15:03.988 --> 00:15:06.030
+Si lo haces para ti mismo, si simplemente estás
+
+00:15:06.030 --> 00:15:07.950
+intentando entender tu código y apuntándolo,
+
+00:15:07.950 --> 00:15:10.158
+desde luego no necesitas usar estos símbolos formales,
+
+00:15:10.158 --> 00:15:13.367
+pero intenté ser coherente con algunas buenas prácticas.
+
+00:15:13.367 --> 00:15:15.450
+Y de hecho, déjame volver a la misma imagen,
+
+00:15:15.450 --> 00:15:17.533
+porque esta era la primera versión de nuestra imagen,
+
+00:15:17.533 --> 00:15:19.830
+pero desde entonces hemos modificado nuestro código un par de veces.
+
+00:15:19.830 --> 00:15:22.455
+Esta, recordad, era la versión en la que la pregunta que hacíamos
+
+00:15:22.455 --> 00:15:26.340
+era i distinto de 0, voy a cambiar este código ahora
+
+00:15:26.340 --> 00:15:29.250
+para representar la siguiente versión que hicimos, que, recordad,
+
+00:15:29.250 --> 00:15:31.950
+cambiaba nuestra lógica para empezar a contar desde 1,
+
+00:15:31.950 --> 00:15:36.060
+cambió nuestra pregunta para comprobar si i es menor o igual que 3,
+
+00:15:36.060 --> 00:15:39.570
+pero luego todo lo demás era igual excepto el conteo, que
+
+00:15:39.570 --> 00:15:41.580
+ahora es más en lugar de menos.
+
+00:15:41.580 --> 00:15:47.040
+Y luego lo refinamos un poco más contando ahora desde 0 hasta
+
+00:15:47.040 --> 00:15:48.570
+3 sin incluirlo.
+
+00:15:48.570 --> 00:15:52.170
+Y compactamos este código simplemente incrementando 1
+
+00:15:52.170 --> 00:15:54.220
+con la sintaxis algo más concisa.
+
+00:15:54.220 --> 00:15:57.120
+Así que en este punto, estos diagramas de flujo pueden ser cada vez menos útiles
+
+00:15:57.120 --> 00:16:00.690
+para nosotros, porque una vez que has entendido el concepto
+
+00:16:00.690 --> 00:16:03.750
+y, con suerte, la imagen ha ayudado a que ese concepto cobre vida,
+
+00:16:03.750 --> 00:16:06.600
+es perfectamente válido centrarse únicamente en el código
+
+00:16:06.600 --> 00:16:09.240
+y solo pensar en algo así, o incluso dibujarlo,
+
+00:16:09.240 --> 00:16:12.120
+si necesitas entender algo más complicado
+
+00:16:12.120 --> 00:16:13.200
+de lo que estás acostumbrado.
+
+00:16:13.200 --> 00:16:15.240
+Bueno, si me lo permitís, voy a proponer
+
+00:16:15.240 --> 00:16:20.490
+que pasemos a otro enfoque, a otro tipo de bucles que usa otra
+
+00:16:20.490 --> 00:16:22.740
+palabra clave, a saber, un bucle for.
+
+00:16:22.740 --> 00:16:25.050
+Y es una palabra que existe en otros lenguajes,
+
+00:16:25.050 --> 00:16:28.290
+pero que no necesariamente tiene tantas funcionalidades como las que otros lenguajes
+
+00:16:28.290 --> 00:16:29.260
+le dan.
+
+00:16:29.260 --> 00:16:33.300
+Pero hay un tipo de bucle diferente: no un bucle while, sino un bucle for.
+
+00:16:33.300 --> 00:16:37.620
+Y un bucle for nos va a permitir expresarnos de forma un poco distinta,
+
+00:16:37.620 --> 00:16:40.020
+pero para ello, propongo que la forma más fácil
+
+00:16:40.020 --> 00:16:43.890
+es introducir otra idea de Python, que es la de lista.
+
+00:16:43.890 --> 00:16:48.120
+Y aquí también, sin ánimo de hacer un juego de palabras, estamos añadiendo a la lista de tipos de datos
+
+00:16:48.120 --> 00:16:49.290
+que admite Python.
+
+00:16:49.290 --> 00:16:51.480
+Hemos visto str o cadenas.
+
+00:16:51.480 --> 00:16:53.050
+Int o enteros.
+
+00:16:53.050 --> 00:16:54.780
+Float o valores de coma flotante.
+
+00:16:54.780 --> 00:16:56.670
+Bool o expresiones booleanas.
+
+00:16:56.670 --> 00:17:00.480
+Python también tiene listas, que es otro tipo de dato,
+
+00:17:00.480 --> 00:17:02.730
+pero, afortunadamente, este probablemente os resulte bastante familiar.
+
+00:17:02.730 --> 00:17:06.240
+Una lista de cosas en el mundo real es una lista de cosas en Python.
+
+00:17:06.240 --> 00:17:11.490
+Es una forma de contener varios valores todos en el mismo sitio, todos
+
+00:17:11.490 --> 00:17:12.940
+en la misma variable.
+
+00:17:12.940 --> 00:17:14.319
+Entonces, ¿a qué me refiero con esto?
+
+00:17:14.319 --> 00:17:18.480
+Bueno, propongo que volvamos a nuestro VS Code,
+
+00:17:18.480 --> 00:17:22.480
+y empiezo de cero con mi código y no uso ningún bucle while,
+
+00:17:22.480 --> 00:17:24.690
+sino que uso esta nueva palabra clave for.
+
+00:17:24.690 --> 00:17:30.363
+La forma en que funciona un bucle for es que te permite iterar sobre una lista de elementos.
+
+00:17:30.363 --> 00:17:31.530
+Entonces, ¿qué pinta tiene esto?
+
+00:17:31.530 --> 00:17:32.940
+Podría ser algo así:
+
+00:17:32.940 --> 00:17:39.030
+for i in la siguiente lista de elementos, 0, 1, 2.
+
+00:17:39.030 --> 00:17:41.640
+Este es mi punto de partida, y en cada iteración
+
+00:17:41.640 --> 00:17:45.450
+de este bucle, es decir, en cada ejecución de este bucle una y otra vez,
+
+00:17:45.450 --> 00:17:47.550
+quiero imprimir miau.
+
+00:17:47.550 --> 00:17:51.360
+Ahora bien, admito que ya me gusta el aspecto de este código
+
+00:17:51.360 --> 00:17:53.580
+aunque haya alguna sintaxis nueva,
+
+00:17:53.580 --> 00:17:55.770
+porque es más corto que el bucle while.
+
+00:17:55.770 --> 00:17:58.480
+El bucle while tenía varias líneas hace un momento
+
+00:17:58.480 --> 00:18:01.320
+y dependía enteramente de mí decidir qué es i.
+
+00:18:01.320 --> 00:18:04.530
+Tengo que comprobar una condición, tengo que incrementar o decrementar i.
+
+00:18:04.530 --> 00:18:07.230
+Era como si estuviera haciendo mucho trabajo, relativamente hablando,
+
+00:18:07.230 --> 00:18:10.710
+para hacer girar eso, para hacer que ese bucle funcionara.
+
+00:18:10.710 --> 00:18:12.720
+Era muy mecánico en cierto sentido.
+
+00:18:12.720 --> 00:18:18.030
+Podéis, con el ojo de la mente, quizás ver los engranajes girando mientras todas estas variables
+
+00:18:18.030 --> 00:18:21.120
+cambian y se hacen estas preguntas.
+
+00:18:21.120 --> 00:18:24.450
+Un bucle for simplifica todo eso, y simplemente
+
+00:18:24.450 --> 00:18:27.480
+dice: si quieres una variable como i, un número,
+
+00:18:27.480 --> 00:18:31.770
+y sabes de antemano cuántas veces quieres que se ejecute este bucle, tres
+
+00:18:31.770 --> 00:18:34.380
+veces, simplemente especificaremos de forma explícita
+
+00:18:34.380 --> 00:18:37.560
+qué valores quieres que tome i.
+
+00:18:37.560 --> 00:18:41.940
+En este bucle, Python inicializará i automáticamente a 0,
+
+00:18:41.940 --> 00:18:43.530
+luego se imprimirá miau.
+
+00:18:43.530 --> 00:18:48.870
+Después Python actualizará automáticamente i para que sea 1, y se imprimirá miau.
+
+00:18:48.870 --> 00:18:53.520
+Luego Python actualizará automáticamente i para que sea 2 y se imprimirá miau.
+
+00:18:53.520 --> 00:18:57.270
+Y como eso es todo lo que hay en esa lista de valores, Python se detendrá
+
+00:18:57.270 --> 00:19:00.090
+y solo maullará un total de tres veces.
+
+00:19:00.090 --> 00:19:01.170
+¿Qué es la lista?
+
+00:19:01.170 --> 00:19:05.130
+La lista en este programa es exactamente eso, 0, coma, 1, coma, 2,
+
+00:19:05.130 --> 00:19:07.200
+y fijaos en los corchetes.
+
+00:19:07.200 --> 00:19:11.350
+Esos no son paréntesis, son corchetes, que representan una lista.
+
+00:19:11.350 --> 00:19:15.540
+Así es como, visualmente, como programador, Python sabe, como lenguaje,
+
+00:19:15.540 --> 00:19:18.460
+que pretendes que eso sea una lista.
+
+00:19:18.460 --> 00:19:23.490
+Así que voy a ejecutar esto con python de cat.py, y funciona igual.
+
+00:19:23.490 --> 00:19:24.660
+Pero son solo dos líneas.
+
+00:19:24.660 --> 00:19:28.330
+Es bastante legible una vez que te has familiarizado con esa construcción,
+
+00:19:28.330 --> 00:19:33.970
+pero, volviendo a mi insistencia en que que sea correcto no es necesariamente
+
+00:19:33.970 --> 00:19:38.800
+lo mismo que estar bien diseñado, ¿en qué sentido está este programa quizás
+
+00:19:38.800 --> 00:19:40.150
+mal diseñado?
+
+00:19:40.150 --> 00:19:41.140
+Parece que funciona.
+
+00:19:41.140 --> 00:19:45.790
+Maúlla tres veces, pero ¿por qué esta podría no
+
+00:19:45.790 --> 00:19:48.130
+ser la mejor forma de resolver este problema?
+
+00:19:48.130 --> 00:19:51.190
+Aunque nunca hayáis programado, de nuevo,
+
+00:19:51.190 --> 00:19:54.310
+pensad en casos límite, cosas que pueden ocurrir o no.
+
+00:19:54.310 --> 00:19:59.168
+Pensad en casos extremos que ponen realmente a prueba la calidad de este código.
+
+00:19:59.168 --> 00:19:59.710
+AUDIENCE: Vale.
+
+00:19:59.710 --> 00:20:06.880
+Creo que es porque estamos diciendo 0, 1, 2 para 3 veces.
+
+00:20:06.880 --> 00:20:11.030
+Y si quieres hacerlo un millón de veces, tendrías que decir 1, 2, 3.
+
+00:20:11.030 --> 00:20:12.967
+DAVID MALAN: Sí, exacto.
+
+00:20:12.967 --> 00:20:15.550
+Y eso es a lo que me refiero con pensar en los casos extremos.
+
+00:20:15.550 --> 00:20:18.430
+Si estáis intentando decidir si vuestro propio código es bueno
+
+00:20:18.430 --> 00:20:22.120
+o si el código de otra persona es bueno, puede parecerlo a primera vista,
+
+00:20:22.120 --> 00:20:23.530
+pero pensad en el extremo.
+
+00:20:23.530 --> 00:20:26.410
+Bueno, ¿y si no son tres cosas, sino un millón de cosas?
+
+00:20:26.410 --> 00:20:31.180
+Quiero decir, ¿de verdad vais a escribir de 0 a un millón o de 0
+
+00:20:31.180 --> 00:20:33.160
+a 9...
+
+00:20:33.160 --> 00:20:38.090
+999.999?
+
+00:20:38.090 --> 00:20:40.840
+Pues no, no vais a escribir tantos números en la pantalla,
+
+00:20:40.840 --> 00:20:42.500
+tiene que haber una forma mejor.
+
+00:20:42.500 --> 00:20:45.100
+Así que hagámoslo de la mejor manera desde el principio
+
+00:20:45.100 --> 00:20:47.980
+en lugar de preparar el terreno para hacer algo mal.
+
+00:20:47.980 --> 00:20:52.090
+Y una forma de resolver este problema para mejorar el diseño
+
+00:20:52.090 --> 00:20:56.950
+es no especificar manualmente la lista de valores, sino usar una función,
+
+00:20:56.950 --> 00:20:59.140
+la función de otra persona que viene con Python
+
+00:20:59.140 --> 00:21:00.850
+y que te da la lista que quieres.
+
+00:21:00.850 --> 00:21:02.680
+Y la forma más fácil de hacerlo en Python es
+
+00:21:02.680 --> 00:21:07.480
+usar una función llamada range que devuelve un rango de valores.
+
+00:21:07.480 --> 00:21:09.940
+Espera como entrada al menos un argumento,
+
+00:21:09.940 --> 00:21:14.170
+y ese número va a ser la cantidad de valores que quieres recibir.
+
+00:21:14.170 --> 00:21:18.620
+Esos valores van a empezar en 0 y seguir con 1, 2, y así sucesivamente,
+
+00:21:18.620 --> 00:21:22.910
+pero llegarán hasta el número que especifiques sin incluirlo.
+
+00:21:22.910 --> 00:21:26.200
+Así que al especificar range 3, básicamente
+
+00:21:26.200 --> 00:21:29.350
+te devuelven 1, 2, 3 valores.
+
+00:21:29.350 --> 00:21:33.730
+Y por defecto, esos valores son 0, 1 y 2, y nada más.
+
+00:21:33.730 --> 00:21:37.240
+Pero lo brillante de esto es que ahora, como decía Hope, si quiero
+
+00:21:37.240 --> 00:21:38.950
+maullar un millón de veces...
+
+00:21:38.950 --> 00:21:44.320
+bueno, ese sería un gato furioso, ahora puedo hacer un millón simplemente escribiendo un millón.
+
+00:21:44.320 --> 00:21:48.910
+No tengo que escribir literalmente 0, coma, 1, coma, 2, coma, 3, coma,
+
+00:21:48.910 --> 00:21:53.620
+4, hasta 999.999, simplemente hago esto.
+
+00:21:53.620 --> 00:21:57.140
+Así que esa tiene que ser una forma mejor a largo plazo.
+
+00:21:57.140 --> 00:21:59.080
+Esa es, pues, una mejora que podemos
+
+00:21:59.080 --> 00:22:03.050
+hacer aquí, usando todavía un bucle for, pero ahora con esta función range.
+
+00:22:03.050 --> 00:22:05.470
+Y solo para mostraros algo más que es pythónico...
+
+00:22:05.470 --> 00:22:07.690
+esto no es estrictamente necesario, pero se hace
+
+00:22:07.690 --> 00:22:11.560
+habitualmente, hay una mejora menor que podemos hacer aquí,
+
+00:22:11.560 --> 00:22:14.180
+incluso si solo maullamos tres veces.
+
+00:22:14.180 --> 00:22:20.710
+Y fijaos en que, aunque estoy definiendo una variable i, nunca la uso.
+
+00:22:20.710 --> 00:22:24.700
+Y es algo necesario lógicamente, porque Python, presumiblemente,
+
+00:22:24.700 --> 00:22:26.620
+tiene que usar algo para contar.
+
+00:22:26.620 --> 00:22:28.960
+Tiene que saber sobre qué está iterando.
+
+00:22:28.960 --> 00:22:30.970
+Pero hay una convención en Python por la cual
+
+00:22:30.970 --> 00:22:35.320
+si necesitas una variable solo porque la funcionalidad del lenguaje la requiere
+
+00:22:35.320 --> 00:22:38.890
+para hacer algún tipo de conteo o actualización automática, pero a ti, como humano,
+
+00:22:38.890 --> 00:22:42.550
+no te importa su valor, una mejora pythónica aquí
+
+00:22:42.550 --> 00:22:45.520
+sería nombrar esa variable con un único guion bajo.
+
+00:22:45.520 --> 00:22:48.280
+Aunque no es obligatorio, no
+
+00:22:48.280 --> 00:22:50.410
+cambia la corrección del programa, pero
+
+00:22:50.410 --> 00:22:54.190
+te señala a ti mismo más adelante, y señala a compañeros o profesores que
+
+00:22:54.190 --> 00:22:57.207
+estén mirando tu código, que sí, es una variable,
+
+00:22:57.207 --> 00:23:00.040
+pero no te importa su nombre porque no la vas a usar después,
+
+00:23:00.040 --> 00:23:04.840
+simplemente es necesaria para usar esta funcionalidad, este bucle en este caso.
+
+00:23:04.840 --> 00:23:09.190
+Así que es solo una mejora o cambio menor.
+
+00:23:09.190 --> 00:23:13.510
+Pero para que os intrigue de verdad lo que es posible en Python,
+
+00:23:13.510 --> 00:23:15.140
+vamos a dar un paso más.
+
+00:23:15.140 --> 00:23:19.780
+Si de verdad queremos ser pythónicos, esto, si habéis programado antes,
+
+00:23:19.780 --> 00:23:22.310
+os va a dejar boquiabiertos, por así decirlo:
+
+00:23:22.310 --> 00:23:27.820
+si quiero que el gato maúlle tres veces, ¿y si hago esto?
+
+00:23:27.820 --> 00:23:34.350
+print, abrir paréntesis, comillas, miau, por 3.
+
+00:23:34.350 --> 00:23:37.620
+Hay que ser un poco friki para pensar que esto mola, pero esto mola un poco.
+
+00:23:37.620 --> 00:23:40.620
+Así que literalmente puedes imprimir lo que quieras,
+
+00:23:40.620 --> 00:23:44.070
+multiplicarlo por el número de veces que lo quieras,
+
+00:23:44.070 --> 00:23:47.760
+y obtendrás exactamente ese resultado.
+
+00:23:47.760 --> 00:23:50.763
+Ahora he cometido un pequeño error aquí.
+
+00:23:50.763 --> 00:23:51.930
+Veamos qué hace esto.
+
+00:23:51.930 --> 00:23:56.730
+No es tan bonito como este código quizás os parece a algunos de vosotros,
+
+00:23:56.730 --> 00:23:57.240
+o a mí.
+
+00:23:57.240 --> 00:24:00.300
+Voy a ejecutar python de cat.py, Enter.
+
+00:24:00.300 --> 00:24:02.820
+Vale, es un gato con mucha hambre o algo así.
+
+00:24:02.820 --> 00:24:04.350
+Está maullando muy rápido.
+
+00:24:04.350 --> 00:24:06.830
+Pero apuesto a que puedo arreglarlo.
+
+00:24:06.830 --> 00:24:10.010
+Pensemos ahora en algunos de los componentes básicos que hemos comentado.
+
+00:24:10.010 --> 00:24:13.160
+El problema es claramente que literalmente miau, miau,
+
+00:24:13.160 --> 00:24:16.460
+miau se repite tres veces, pero no queda tan bonito como quiero.
+
+00:24:16.460 --> 00:24:19.910
+Quiero que sea miau, miau, miau en líneas separadas.
+
+00:24:19.910 --> 00:24:22.850
+¿Cuál podría ser una posible solución aquí, usando todavía
+
+00:24:22.850 --> 00:24:26.780
+este operador de multiplicación?
+
+00:24:26.780 --> 00:24:27.560
+Y recordad.
+
+00:24:27.560 --> 00:24:30.170
+Hemos usado el más para concatenar cadenas.
+
+00:24:30.170 --> 00:24:33.980
+Aparentemente se puede usar la multiplicación para concatenar cadenas, pero más de una vez,
+
+00:24:33.980 --> 00:24:35.180
+una y otra y otra vez.
+
+00:24:35.180 --> 00:24:37.580
+¿Cómo podría arreglar esto sin volver
+
+00:24:37.580 --> 00:24:42.240
+a mi bucle for o a mi bucle while y usando todavía la multiplicación de esta manera?
+
+00:24:42.240 --> 00:24:45.975
+AUDIENCE: Podemos usar la secuencia de escape, que sería barra invertida n.
+
+00:24:45.975 --> 00:24:46.850
+DAVID MALAN: Increíble.
+
+00:24:46.850 --> 00:24:47.350
+Sí.
+
+00:24:47.350 --> 00:24:50.750
+Recordad la barra invertida n, que es la forma en que vosotros, como programadores,
+
+00:24:50.750 --> 00:24:52.970
+podéis expresar un salto de línea en el código.
+
+00:24:52.970 --> 00:24:57.560
+Y creo que, si sigo tu consejo, pongo una barra invertida ahí dentro
+
+00:24:57.560 --> 00:25:02.390
+de mis comillas, de modo que al final de cada M-I-A-U haya un salto de línea,
+
+00:25:02.390 --> 00:25:03.470
+veamos cómo queda.
+
+00:25:03.470 --> 00:25:06.650
+Voy a limpiar la pantalla y ejecutar python de cat.py.
+
+00:25:06.650 --> 00:25:08.270
+Vale, casi.
+
+00:25:08.270 --> 00:25:09.030
+Me gusta.
+
+00:25:09.030 --> 00:25:10.490
+Voy a preguntar a otra persona.
+
+00:25:10.490 --> 00:25:13.670
+Lo único que no me gusta, y sé que ahora estoy siendo muy quisquilloso,
+
+00:25:13.670 --> 00:25:15.840
+es que es miau, miau, miau en líneas separadas,
+
+00:25:15.840 --> 00:25:20.300
+pero hay esta línea en blanco extra, que estéticamente no me convence.
+
+00:25:20.300 --> 00:25:25.430
+AUDIENCE: Creo que podemos hacer que n sea igual a dos puntos...
+
+00:25:25.430 --> 00:25:27.410
+dos puntos, no... como una barra n.
+
+00:25:27.410 --> 00:25:28.160
+DAVID MALAN: Sí.
+
+00:25:28.160 --> 00:25:31.010
+Aquí también, todas estas cosas que hemos visto en semanas anteriores
+
+00:25:31.010 --> 00:25:32.630
+se van uniendo.
+
+00:25:32.630 --> 00:25:37.010
+Recordad que la función print te permite controlar cómo termina la línea.
+
+00:25:37.010 --> 00:25:39.570
+Por defecto, es la propia barra invertida n.
+
+00:25:39.570 --> 00:25:41.540
+Por eso, al final de este print,
+
+00:25:41.540 --> 00:25:44.300
+el cursor se mueve de nuevo a la línea siguiente.
+
+00:25:44.300 --> 00:25:46.260
+Bueno, solo tenemos que sobrescribir eso.
+
+00:25:46.260 --> 00:25:50.420
+Así que voy a ir a mi código y cambiar esto a coma end
+
+00:25:50.420 --> 00:25:54.890
+igual a comillas-comillas, de modo que ya no sea la barra invertida n por defecto,
+
+00:25:54.890 --> 00:25:59.150
+sino que ahora va a ser absolutamente nada.
+
+00:25:59.150 --> 00:26:03.890
+Eso debería eliminar, con suerte, esa línea en blanco adicional.
+
+00:26:03.890 --> 00:26:07.220
+Así que voy a ejecutar esto una última vez, python de cat.py, Enter,
+
+00:26:07.220 --> 00:26:08.640
+y ahí lo tenemos.
+
+00:26:08.640 --> 00:26:12.200
+Así que ahora, al menos en lo que respecta a programar, es
+
+00:26:12.200 --> 00:26:15.530
+bastante guay que pueda condensar esto en una línea corta
+
+00:26:15.530 --> 00:26:17.120
+y expresarme todo de una vez.
+
+00:26:17.120 --> 00:26:19.520
+Ahora bien, para ser justos, es un poco menos legible.
+
+00:26:19.520 --> 00:26:21.950
+Ahora tengo barra invertida n, tengo por 3,
+
+00:26:21.950 --> 00:26:23.390
+tengo end igual a comillas-comillas.
+
+00:26:23.390 --> 00:26:25.400
+Así que no tenéis que hacer las cosas de esta manera.
+
+00:26:25.400 --> 00:26:28.440
+Mi enfoque anterior con un bucle for, totalmente válido.
+
+00:26:28.440 --> 00:26:31.940
+Mi enfoque anterior con un bucle while, totalmente válido y, en cierto sentido,
+
+00:26:31.940 --> 00:26:33.740
+perfectamente bien diseñado.
+
+00:26:33.740 --> 00:26:36.600
+Pero esta es otra forma más de hacerlo,
+
+00:26:36.600 --> 00:26:40.250
+aunque no es bueno que vosotros, vuestro profesor, vuestro compañero o vuestro amigo
+
+00:26:40.250 --> 00:26:42.410
+os cueste leer vuestro propio código.
+
+00:26:42.410 --> 00:26:47.870
+Pero esta es una característica de Python que algunos lenguajes, de hecho, no tienen.
+
+00:26:47.870 --> 00:26:51.110
+Muy bien, pues propongo que las cosas se pongan todavía más interesantes
+
+00:26:51.110 --> 00:26:53.690
+si no solo maullamos tres veces, sino
+
+00:26:53.690 --> 00:26:56.180
+un número variable de veces.
+
+00:26:56.180 --> 00:26:58.940
+Preguntemos al usuario cuántas veces debería maullar este gato.
+
+00:26:58.940 --> 00:27:03.540
+Así que voy a limpiar la pantalla y a averiguar, bueno,
+
+00:27:03.540 --> 00:27:05.760
+¿cómo obtengo un número del usuario?
+
+00:27:05.760 --> 00:27:08.670
+El problema aquí es que si quiero que el usuario me dé un número,
+
+00:27:08.670 --> 00:27:12.290
+no estoy haciendo matemáticas, propiamente, estoy maullando, y por tanto, el usuario
+
+00:27:12.290 --> 00:27:14.630
+tiene que darme un valor positivo.
+
+00:27:14.630 --> 00:27:17.100
+El usuario tiene que darme un valor positivo.
+
+00:27:17.100 --> 00:27:18.860
+Entonces, ¿cómo puedo exigirlo?
+
+00:27:18.860 --> 00:27:25.800
+Bueno, si hago simplemente esto, n igual a int de input, ¿cuánto vale n?, signo de interrogación.
+
+00:27:25.800 --> 00:27:28.040
+Bueno, quiero comprobar...
+
+00:27:28.040 --> 00:27:32.150
+Podría decir si n es menor que 0...
+
+00:27:32.150 --> 00:27:34.430
+es decir, si es negativo, bueno, podría hacer esto.
+
+00:27:34.430 --> 00:27:35.870
+Entonces, volver a preguntar.
+
+00:27:35.870 --> 00:27:40.370
+Int, input, ¿cuánto vale n?, signo de interrogación.
+
+00:27:40.370 --> 00:27:43.312
+Vale, ¿y si el usuario sigue sin darme un número positivo?
+
+00:27:43.312 --> 00:27:45.770
+¿Y si, siendo realmente difícil, no está prestando atención
+
+00:27:45.770 --> 00:27:47.395
+y escribió dos números negativos?
+
+00:27:47.395 --> 00:27:53.000
+Bueno, si n es menor que 0, pues hagámoslo otra vez. n igual a...
+
+00:27:53.000 --> 00:27:54.170
+esto no acaba bien.
+
+00:27:54.170 --> 00:27:58.070
+No puedes seguir comprobando infinitas veces: ¿es negativo?,
+
+00:27:58.070 --> 00:27:59.630
+¿es negativo?, ¿o es negativo?
+
+00:27:59.630 --> 00:28:01.700
+El programa nunca acabaría de escribirse.
+
+00:28:01.700 --> 00:28:05.010
+Así que creo que podemos hacerlo mejor con un bucle.
+
+00:28:05.010 --> 00:28:06.200
+Así que propongo esto.
+
+00:28:06.200 --> 00:28:09.020
+Un paradigma muy común en Python, cuando
+
+00:28:09.020 --> 00:28:14.000
+quieres obtener una entrada del usuario que cumpla una determinada expectativa que tienes,
+
+00:28:14.000 --> 00:28:17.570
+que sea toda positiva, que sea toda negativa, o algo así,
+
+00:28:17.570 --> 00:28:20.840
+es decir inmediatamente while true.
+
+00:28:20.840 --> 00:28:24.380
+Provocas deliberadamente, y de forma un poco peligrosa pero muy convencional,
+
+00:28:24.380 --> 00:28:25.962
+un bucle infinito.
+
+00:28:25.962 --> 00:28:27.170
+Ahora bien, ¿qué es un bucle infinito?
+
+00:28:27.170 --> 00:28:28.550
+Es simplemente uno que continúa para siempre.
+
+00:28:28.550 --> 00:28:31.430
+Y hemos visto cómo puede ocurrir accidentalmente de forma matemática.
+
+00:28:31.430 --> 00:28:34.700
+Va a ocurrir sin ninguna duda cuando dices while true.
+
+00:28:34.700 --> 00:28:35.240
+¿Por qué?
+
+00:28:35.240 --> 00:28:39.180
+Pues porque la respuesta a la pregunta true es siempre verdadero.
+
+00:28:39.180 --> 00:28:41.570
+Así que esta es una forma de provocar deliberadamente un bucle que
+
+00:28:41.570 --> 00:28:43.470
+por defecto va a continuar para siempre.
+
+00:28:43.470 --> 00:28:46.940
+Así que vamos a necesitar una forma de salir de este bucle cuando
+
+00:28:46.940 --> 00:28:48.350
+tengamos el número que queremos.
+
+00:28:48.350 --> 00:28:50.600
+La convención, dentro de este bucle por lo demás
+
+00:28:50.600 --> 00:28:52.970
+infinito, es hacer la pregunta que te interesa,
+
+00:28:52.970 --> 00:28:55.760
+como obtener un int pidiendo al usuario una entrada.
+
+00:28:55.760 --> 00:28:57.800
+Como ¿cuánto vale n?, signo de interrogación.
+
+00:28:57.800 --> 00:28:59.330
+Y luego simplemente haz tu pregunta.
+
+00:28:59.330 --> 00:29:04.580
+Así que si n es menor que 0, entonces creo que queremos que Python simplemente continúe
+
+00:29:04.580 --> 00:29:05.910
+pidiendo al usuario de nuevo.
+
+00:29:05.910 --> 00:29:09.760
+Es decir, queremos que el código se quede en el bucle, vuelva a llamar a la función input,
+
+00:29:09.760 --> 00:29:11.760
+y esperar que el usuario nos dé una respuesta mejor.
+
+00:29:11.760 --> 00:29:14.730
+Si esta vez sigue siendo menor que 0, usemos literalmente
+
+00:29:14.730 --> 00:29:16.980
+la palabra clave continue de Python, que dice
+
+00:29:16.980 --> 00:29:20.100
+justo eso: continúa dentro de este bucle.
+
+00:29:20.100 --> 00:29:24.000
+Si no (else), si no es menor que 0, vamos a salir
+
+00:29:24.000 --> 00:29:27.120
+del bucle por completo usando otra palabra clave de Python, break.
+
+00:29:27.120 --> 00:29:31.140
+Break te saca del bucle iniciado más recientemente, en este caso
+
+00:29:31.140 --> 00:29:34.080
+si no ocurre que n sea menor que 0.
+
+00:29:34.080 --> 00:29:38.310
+Así que esto funcionará y nos permitirá obtener del usuario un valor que sea 0 o mayor,
+
+00:29:38.310 --> 00:29:41.340
+pero creo que podemos compactarlo aún más para no
+
+00:29:41.340 --> 00:29:43.500
+tener que molestarnos con un if, y, y un else.
+
+00:29:43.500 --> 00:29:49.227
+¿Por qué no decimos, en su lugar, si n es mayor que 0, haz break?
+
+00:29:49.227 --> 00:29:51.060
+De hecho, no es un programa muy interesante
+
+00:29:51.060 --> 00:29:52.830
+si permitimos siquiera que el usuario escriba 0.
+
+00:29:52.830 --> 00:29:56.430
+Así que esperemos hasta que nos den un entero que sea mayor que 0
+
+00:29:56.430 --> 00:29:59.040
+y entonces salgamos de este bucle.
+
+00:29:59.040 --> 00:30:00.960
+¿Y qué puedo hacer ahora aquí abajo?
+
+00:30:00.960 --> 00:30:07.260
+For i in range del valor que tenga n, print miau.
+
+00:30:07.260 --> 00:30:10.340
+Y sinceramente, aquí no necesito i, así que vuelvo a ese principio
+
+00:30:10.340 --> 00:30:10.840
+de antes.
+
+00:30:10.840 --> 00:30:12.590
+Y voy a cambiarlo por un guion bajo
+
+00:30:12.590 --> 00:30:14.110
+solo para ser pythónico, por así decirlo.
+
+00:30:14.110 --> 00:30:15.360
+Entonces, ¿qué está pasando?
+
+00:30:15.360 --> 00:30:20.130
+Las líneas 1 a 4 implementan deliberadamente un bucle infinito
+
+00:30:20.130 --> 00:30:23.280
+que por lo demás, por defecto, continuaría para siempre.
+
+00:30:23.280 --> 00:30:26.370
+Pero estoy haciendo una pregunta, dentro de ese bucle,
+
+00:30:26.370 --> 00:30:30.450
+tras obtener un int del usuario en la línea 2, y luego compruebo:
+
+00:30:30.450 --> 00:30:32.310
+¿es mayor que 0?
+
+00:30:32.310 --> 00:30:33.570
+¿O es 0?
+
+00:30:33.570 --> 00:30:34.220
+¿Es negativo?
+
+00:30:34.220 --> 00:30:35.970
+Nada de lo cual tiene sentido para un gato que maúlla.
+
+00:30:35.970 --> 00:30:38.380
+Como que quiero que el gato maúlle al menos una vez.
+
+00:30:38.380 --> 00:30:41.220
+Así que si es mayor que 0, break.
+
+00:30:41.220 --> 00:30:45.030
+Y esta instrucción break, aunque esté sangrada, sangrada dos veces,
+
+00:30:45.030 --> 00:30:50.140
+tiene el efecto de salir del bucle while iniciado más recientemente.
+
+00:30:50.140 --> 00:30:53.670
+Así que una vez que el usuario te da un valor positivo,
+
+00:30:53.670 --> 00:30:58.650
+llegamos a la línea 6, momento en el que maullamos tantas veces como indique
+
+00:30:58.650 --> 00:30:59.850
+por las líneas 6 y 7.
+
+00:30:59.850 --> 00:31:03.960
+Así que si ejecuto esto ahora python de cat.py, Enter, bueno, ¿cuánto vale n?
+
+00:31:03.960 --> 00:31:06.895
+Empecemos con 3, como al principio: miau, miau, miau.
+
+00:31:06.895 --> 00:31:10.020
+Bueno, esta vez, voy a aumentar el tamaño de la ventana de mi terminal
+
+00:31:10.020 --> 00:31:11.100
+solo temporalmente.
+
+00:31:11.100 --> 00:31:16.140
+Voy a ejecutar python de cat.py, voy a poner 10 veces, y ahora aparece miau 10 veces
+
+00:31:16.140 --> 00:31:17.520
+en la pantalla.
+
+00:31:17.520 --> 00:31:20.640
+Y lo que hay que sacar de aquí no es solo que podemos maullar 10 veces
+
+00:31:20.640 --> 00:31:22.890
+o hacer algo una y otra vez, sino que esto
+
+00:31:22.890 --> 00:31:26.880
+es un paradigma muy común en Python cuando quieres hacer algo una y otra
+
+00:31:26.880 --> 00:31:31.320
+y otra vez, pero solo hasta que el usuario realmente te da
+
+00:31:31.320 --> 00:31:34.230
+un valor que te interesa.
+
+00:31:34.230 --> 00:31:36.540
+Y propongo ahora que practiquemos
+
+00:31:36.540 --> 00:31:41.830
+un poco más lo que hemos estado predicando, especialmente cuando se trata de, por ejemplo...
+
+00:31:41.830 --> 00:31:45.075
+especialmente cuando se trata de escribir tus propias funciones.
+
+00:31:45.075 --> 00:31:46.950
+Ahora que estoy maullando tanto, sería
+
+00:31:46.950 --> 00:31:50.970
+bonito tener realmente una función meow que los inventores de Python
+
+00:31:50.970 --> 00:31:52.680
+no previeron, así que voy a hacer esto.
+
+00:31:52.680 --> 00:31:56.050
+Voy a deshacerme de todo este código y voy a hacer lo siguiente.
+
+00:31:56.050 --> 00:31:59.950
+Voy a definir una función main, como he hecho antes,
+
+00:31:59.950 --> 00:32:02.400
+y voy a llamar a ciegas a meow con 3.
+
+00:32:02.400 --> 00:32:05.910
+Meow todavía no existe, pero cuando exista, será estupendo.
+
+00:32:05.910 --> 00:32:08.640
+Así que voy a definir meow ahora.
+
+00:32:08.640 --> 00:32:11.850
+Mi función meow debería recibir como entrada
+
+00:32:11.850 --> 00:32:16.350
+un parámetro llamado n o como yo quiera, y esta parte ahora es bastante fácil.
+
+00:32:16.350 --> 00:32:17.880
+¿Cómo se maúlla n veces?
+
+00:32:17.880 --> 00:32:22.470
+Pues for guion bajo in range de n, simplemente haz print miau.
+
+00:32:22.470 --> 00:32:24.780
+Es el mismo código de antes, nada nuevo aquí,
+
+00:32:24.780 --> 00:32:28.470
+simplemente estoy poniendo esa lógica dentro de una función meow
+
+00:32:28.470 --> 00:32:30.810
+que va a tener este efecto secundario de imprimir miau.
+
+00:32:30.810 --> 00:32:34.620
+Y ahora, como antes, voy a bajar aquí y asegurarme de llamar a main.
+
+00:32:34.620 --> 00:32:39.420
+Y si ahora ejecuto este código, python de cat.py, miau, miau, miau.
+
+00:32:39.420 --> 00:32:42.960
+Siempre va a hacer tres porque lo he fijado a 3 en el código.
+
+00:32:42.960 --> 00:32:44.730
+Bueno, hagamos una mejora aquí.
+
+00:32:44.730 --> 00:32:48.720
+Voy a hacer esto ahora.
+
+00:32:48.720 --> 00:32:50.350
+Voy a pedir un número al usuario.
+
+00:32:50.350 --> 00:32:54.700
+Digamos algo así: number igual a get number.
+
+00:32:54.700 --> 00:32:55.200
+Muy bien.
+
+00:32:55.200 --> 00:32:57.210
+Por desgracia, no existe ninguna función en Python
+
+00:32:57.210 --> 00:32:59.940
+llamada get number que obtenga un número positivo del usuario,
+
+00:32:59.940 --> 00:33:01.080
+pero puedo inventarla.
+
+00:33:01.080 --> 00:33:05.070
+Así que define get number, abrir paréntesis, cerrar paréntesis.
+
+00:33:05.070 --> 00:33:07.260
+Y luego, dentro de esta función, voy a hacer esto.
+
+00:33:07.260 --> 00:33:11.160
+While true, obtén un número del usuario,
+
+00:33:11.160 --> 00:33:14.730
+convirtiéndolo a int, preguntándole: ¿cuánto vale n?, signo de interrogación.
+
+00:33:14.730 --> 00:33:19.260
+Y luego, si n es lo que quiero, un valor mayor que 0,
+
+00:33:19.260 --> 00:33:24.710
+un número positivo, esta vez no necesariamente quiero hacer break,
+
+00:33:24.710 --> 00:33:26.000
+aunque podría.
+
+00:33:26.000 --> 00:33:30.750
+En su lugar quiero devolver el valor, así que puedo hacer esto.
+
+00:33:30.750 --> 00:33:32.600
+Y esto también es una característica de Python.
+
+00:33:32.600 --> 00:33:35.690
+Esta capacidad de no solo salir de un bloque de código,
+
+00:33:35.690 --> 00:33:38.750
+sino también de devolver un valor en el código.
+
+00:33:38.750 --> 00:33:42.590
+Devolver realmente un valor te da la capacidad, en última instancia,
+
+00:33:42.590 --> 00:33:47.030
+de devolver explícitamente un valor para que tu función no tenga solo un efecto
+
+00:33:47.030 --> 00:33:51.650
+secundario, necesariamente, sino que realmente entregue, igual que input,
+
+00:33:51.650 --> 00:33:56.220
+igual que int, igual que float, un valor real al usuario.
+
+00:33:56.220 --> 00:33:58.790
+Ahora bien, para ser claros, no tengo que devolver n aquí.
+
+00:33:58.790 --> 00:34:02.330
+Todavía puedo salir del bucle como he hecho en el pasado con código
+
+00:34:02.330 --> 00:34:06.860
+como este, pero luego, después del bucle, todavía tengo que hacer return.
+
+00:34:06.860 --> 00:34:10.969
+Y lo que ocurre aquí es que si usas break para salir del bucle,
+
+00:34:10.969 --> 00:34:13.730
+pero necesitas entregar un valor desde una función,
+
+00:34:13.730 --> 00:34:15.980
+todavía tienes que usar la palabra clave return
+
+00:34:15.980 --> 00:34:20.389
+explícitamente, ya sea dentro del bucle, como hice yo, o ahora fuera del bucle
+
+00:34:20.389 --> 00:34:24.110
+pero todavía dentro de la función.
+
+00:34:24.110 --> 00:34:26.420
+Lo último que voy a hacer aquí es cambiar
+
+00:34:26.420 --> 00:34:28.969
+ese 3, que fijamos antes en el código, para que
+
+00:34:28.969 --> 00:34:31.590
+sea el valor de la variable que hemos obtenido del usuario,
+
+00:34:31.590 --> 00:34:36.380
+de modo que ahora, aquí abajo, si ejecuto python de cat.py, Enter, ¿cuánto vale n?
+
+00:34:36.380 --> 00:34:40.219
+Puedo escribir 3 y obtengo mis tres maullidos, o si solo quiero uno,
+
+00:34:40.219 --> 00:34:43.020
+ahora obtengo un solo maullido.
+
+00:34:43.020 --> 00:34:43.520
+Muy bien.
+
+00:34:43.520 --> 00:34:48.230
+Así que si ahora tenemos esta capacidad de hacer cosas una y otra vez en estos bucles,
+
+00:34:48.230 --> 00:34:51.800
+veamos si podemos resolver otros problemas con los que
+
+00:34:51.800 --> 00:34:55.894
+expresarnos cíclicamente, pero obtener también algunas respuestas interesantes.
+
+00:34:55.894 --> 00:34:58.898
+Y propongo, por ejemplo, que miremos
+
+00:34:58.898 --> 00:35:00.440
+un poco más de cerca estas listas.
+
+00:35:00.440 --> 00:35:03.107
+Resulta que en Python, y en realidad en los programas en general,
+
+00:35:03.107 --> 00:35:05.600
+es útil tener una lista de valores, porque vamos a
+
+00:35:05.600 --> 00:35:10.160
+poder trabajar con más y más datos, con conjuntos de datos cada vez más grandes.
+
+00:35:10.160 --> 00:35:12.530
+Así que propongo que volvamos a VS Code aquí
+
+00:35:12.530 --> 00:35:15.620
+y hagamos algo que quizás resulte algo familiar a algunos,
+
+00:35:15.620 --> 00:35:17.030
+el mundo de Hogwarts.
+
+00:35:17.030 --> 00:35:19.850
+Voy a crear un archivo llamado hogwarts,
+
+00:35:19.850 --> 00:35:23.840
+y veamos si podemos tener aquí una lista de estudiantes de Hogwarts.
+
+00:35:23.840 --> 00:35:26.270
+Así que tengo una pestaña nueva llamada hogwarts.py
+
+00:35:26.270 --> 00:35:30.710
+y propongo que simplemente defina en este programa
+
+00:35:30.710 --> 00:35:32.780
+una lista de estudiantes cuyos nombres conozco de antemano.
+
+00:35:32.780 --> 00:35:34.572
+Así que por ahora no voy a pedir entrada al usuario.
+
+00:35:34.572 --> 00:35:37.250
+Simplemente voy a saber desde el principio que los tres
+
+00:35:37.250 --> 00:35:39.110
+estudiantes que quiero considerar son estos.
+
+00:35:39.110 --> 00:35:41.030
+Nuestra variable se va a llamar students.
+
+00:35:41.030 --> 00:35:44.540
+Va a ser igual, como he hecho en el pasado, a un corchete, que
+
+00:35:44.540 --> 00:35:46.100
+significa: eh, aquí viene una lista.
+
+00:35:46.100 --> 00:35:49.520
+Y esos valores van a ser Hermione entre comillas, porque es
+
+00:35:49.520 --> 00:35:53.980
+una cadena; Harry entre comillas, porque es una cadena; y luego Ron entre comillas,
+
+00:35:53.980 --> 00:35:55.230
+porque también es una cadena.
+
+00:35:55.230 --> 00:35:57.800
+Así que esta es una lista de longitud 3.
+
+00:35:57.800 --> 00:36:00.500
+Es similar en espíritu a mi lista de longitud 3 de antes,
+
+00:36:00.500 --> 00:36:02.960
+pero aquella tenía 3 enteros, 0, 1, 2.
+
+00:36:02.960 --> 00:36:06.020
+Ahora tengo una lista de tres cadenas.
+
+00:36:06.020 --> 00:36:08.940
+Y esto no es muy útil de momento,
+
+00:36:08.940 --> 00:36:11.600
+pero voy a hacer algo como comprobación para mí mismo.
+
+00:36:11.600 --> 00:36:14.510
+Voy a imprimir cada uno de estos estudiantes.
+
+00:36:14.510 --> 00:36:19.760
+Pero un momento, ¿cómo imprimo el contenido de una lista?
+
+00:36:19.760 --> 00:36:22.610
+Bueno, en el pasado, cuando hemos impreso una variable,
+
+00:36:22.610 --> 00:36:24.900
+simplemente hemos impreso el nombre de la variable.
+
+00:36:24.900 --> 00:36:28.970
+Pero no quiero imprimir todo Hermione y Harry y Ron de golpe.
+
+00:36:28.970 --> 00:36:33.350
+Quizás quiero imprimir primero Hermione, luego Harry, luego Ron.
+
+00:36:33.350 --> 00:36:36.050
+Así que necesito una forma de expresar con más precisión qué
+
+00:36:36.050 --> 00:36:37.790
+valor quiero de esta lista.
+
+00:36:37.790 --> 00:36:42.590
+Y la forma de hacerlo en Python es usar los corchetes de otra manera.
+
+00:36:42.590 --> 00:36:45.890
+Si tienes una variable, en este caso llamada students,
+
+00:36:45.890 --> 00:36:49.850
+y quieres entrar en esa variable y obtener un valor concreto,
+
+00:36:49.850 --> 00:36:52.940
+es decir, quieres indexar la lista,
+
+00:36:52.940 --> 00:36:57.500
+usas los corchetes de esta manera con números dentro de los corchetes.
+
+00:36:57.500 --> 00:37:02.570
+Y aquí es donde vemos que es útil pensar y contar a partir de 0
+
+00:37:02.570 --> 00:37:04.280
+en lugar de a partir de 1.
+
+00:37:04.280 --> 00:37:08.120
+Estas listas en Python están, digamos, indexadas desde cero.
+
+00:37:08.120 --> 00:37:13.700
+El primer elemento de una lista está en la posición 0, el segundo elemento de una lista de Python
+
+00:37:13.700 --> 00:37:16.760
+está en la posición 1, y el tercero en la posición 2.
+
+00:37:16.760 --> 00:37:19.940
+Así que mentalmente siempre vas con un desfase de uno, pero te acostumbras
+
+00:37:19.940 --> 00:37:22.275
+con el tiempo, si nunca has programado antes.
+
+00:37:22.275 --> 00:37:23.900
+Así que voy a imprimir los tres estudiantes.
+
+00:37:23.900 --> 00:37:27.410
+Voy a imprimir students corchete 0, luego students corchete 1.
+
+00:37:27.410 --> 00:37:30.290
+Y por último, voy a imprimir students corchete 2,
+
+00:37:30.290 --> 00:37:32.078
+y esta es mi tercera y última línea.
+
+00:37:32.078 --> 00:37:35.120
+Y por supuesto, si ejecuto este código, probablemente hace lo que os imaginaríais.
+
+00:37:35.120 --> 00:37:39.500
+Si ejecuto python de hogwarts.py, ahí están Hermione, Harry y Ron
+
+00:37:39.500 --> 00:37:41.450
+cada uno en su propia línea.
+
+00:37:41.450 --> 00:37:43.443
+Pero tiene que haber una forma mejor, especialmente
+
+00:37:43.443 --> 00:37:45.860
+si no sé de antemano quién va a estar en esta lista,
+
+00:37:45.860 --> 00:37:48.230
+si el año que viene hay nuevos estudiantes en Hogwarts,
+
+00:37:48.230 --> 00:37:50.930
+podemos usar un bucle para hacer algo automáticamente
+
+00:37:50.930 --> 00:37:54.590
+sin tener que escribir a mano 0 y luego 1 y 2.
+
+00:37:54.590 --> 00:37:57.110
+Pues bien, he aquí otra característica de Python.
+
+00:37:57.110 --> 00:38:01.310
+Puedes usar un bucle for no solo para contar de 0 a 1 a 2,
+
+00:38:01.310 --> 00:38:03.870
+puedes usar Python para iterar sobre cualquier cosa.
+
+00:38:03.870 --> 00:38:05.420
+No solo números, sino cadenas.
+
+00:38:05.420 --> 00:38:07.100
+Así que en realidad podría hacer esto.
+
+00:38:07.100 --> 00:38:13.460
+For student in students, dos puntos, y luego, sangrado debajo,
+
+00:38:13.460 --> 00:38:15.050
+puedo decir print student.
+
+00:38:15.050 --> 00:38:19.700
+Ahora da igual que tenga 3 estudiantes o 4 o 400,
+
+00:38:19.700 --> 00:38:23.930
+estas dos líneas de código, este bucle, imprimirá todos esos estudiantes por mí
+
+00:38:23.930 --> 00:38:24.810
+uno a uno.
+
+00:38:24.810 --> 00:38:28.490
+Así que si ahora ejecuto python de hogwarts.py, ahí está la misma lista,
+
+00:38:28.490 --> 00:38:32.420
+pero no necesito saber de antemano cuánto mide esa lista.
+
+00:38:32.420 --> 00:38:35.130
+Fijaos, aquí he tomado una decisión consciente.
+
+00:38:35.130 --> 00:38:39.680
+No he llamado a esta variable guion bajo, porque esta vez
+
+00:38:39.680 --> 00:38:40.970
+estoy usando la variable.
+
+00:38:40.970 --> 00:38:44.210
+Y aunque podría hacerlo, ahora no, no, no, no,
+
+00:38:44.210 --> 00:38:46.130
+vuestro código se vuelve demasiado críptico.
+
+00:38:46.130 --> 00:38:48.860
+Si nombras la variable guion bajo y
+
+00:38:48.860 --> 00:38:51.530
+usas la variable guion bajo, ya no ayudas a nadie.
+
+00:38:51.530 --> 00:38:54.890
+Ahora confundes al lector, y a ti mismo dentro de un tiempo,
+
+00:38:54.890 --> 00:38:57.370
+deberíais llamar a vuestras variables por lo que son.
+
+00:38:57.370 --> 00:39:00.470
+Así que un nombre muy apropiado, aunque seguro que se os ocurren otros,
+
+00:39:00.470 --> 00:39:04.430
+sería student, y aquí podríais decir que os quedaríais con student también.
+
+00:39:04.430 --> 00:39:06.710
+Si preferís ser más concisos, no
+
+00:39:06.710 --> 00:39:09.380
+es descabellado hacer algo conciso en un bucle como este.
+
+00:39:09.380 --> 00:39:13.430
+For s in students, usando quizás la misma letra con la que empieza la propia
+
+00:39:13.430 --> 00:39:15.740
+lista, pero, de nuevo, ¿para qué molestarse?
+
+00:39:15.740 --> 00:39:17.510
+Python está pensado para ser más legible.
+
+00:39:17.510 --> 00:39:22.530
+Si tienes una lista de estudiantes, itera sobre ellos de estudiante en estudiante.
+
+00:39:22.530 --> 00:39:25.490
+Hagamos una pausa aquí para ver si hay preguntas sobre las listas
+
+00:39:25.490 --> 00:39:28.220
+tal como las he definido, una lista de cadenas en este caso,
+
+00:39:28.220 --> 00:39:33.860
+o sobre el uso de un bucle for para iterar e imprimir cada uno de esos nombres.
+
+00:39:33.860 --> 00:39:34.550
+AUDIENCE: Sí.
+
+00:39:34.550 --> 00:39:38.150
+¿No es necesario inicializar student en este caso?
+
+00:39:38.150 --> 00:39:40.575
+¿O podemos simplemente declarar una variable en el bucle?
+
+00:39:40.575 --> 00:39:41.700
+DAVID MALAN: Buena pregunta.
+
+00:39:41.700 --> 00:39:43.450
+No necesitas inicializarla manualmente.
+
+00:39:43.450 --> 00:39:47.810
+Python se encarga de inicializar la variable student a Hermione
+
+00:39:47.810 --> 00:39:49.960
+primero, luego a Harry en segundo lugar, luego a Ron en tercero.
+
+00:39:49.960 --> 00:39:53.210
+A diferencia de otros lenguajes, no necesitas inicializarla tú a algo,
+
+00:39:53.210 --> 00:39:55.250
+simplemente existe y funcionará.
+
+00:39:55.250 --> 00:39:58.662
+¿Otras preguntas sobre bucles y listas de esta manera?
+
+00:39:58.662 --> 00:40:00.620
+AUDIENCE: Ya que has descrito break, ¿existe
+
+00:40:00.620 --> 00:40:04.232
+algún concepto de continuar para poder saltar un caso concreto en los bucles?
+
+00:40:04.232 --> 00:40:04.940
+DAVID MALAN: Sí.
+
+00:40:04.940 --> 00:40:06.933
+Puedes continuar usando otra sintaxis también.
+
+00:40:06.933 --> 00:40:07.850
+No la hemos mostrado.
+
+00:40:07.850 --> 00:40:10.668
+Por ahora nos hemos centrado solo en break.
+
+00:40:10.668 --> 00:40:11.210
+AUDIENCE: Vale.
+
+00:40:11.210 --> 00:40:15.770
+¿Y este bucle for puede funcionar con tablas hash o con otros tipos
+
+00:40:15.770 --> 00:40:17.607
+de tablas o arrays?
+
+00:40:17.607 --> 00:40:18.440
+DAVID MALAN: Efectivamente.
+
+00:40:18.440 --> 00:40:20.190
+Nos estamos adelantando un poco,
+
+00:40:20.190 --> 00:40:22.610
+pero hay otros tipos de datos en Python,
+
+00:40:22.610 --> 00:40:26.550
+y efectivamente, puedes usar un bucle for para iterar sobre ellos también.
+
+00:40:26.550 --> 00:40:28.940
+Cualquier cosa que sea iterable, por así decirlo, es
+
+00:40:28.940 --> 00:40:32.030
+un dato que se puede usar con un bucle como este.
+
+00:40:32.030 --> 00:40:34.290
+Pero más sobre eso... más sobre eso pronto.
+
+00:40:34.290 --> 00:40:37.967
+De hecho, pasemos ahora a mostrar otra forma de resolver
+
+00:40:37.967 --> 00:40:40.550
+este mismo problema, porque hasta ahora, cuando hemos usado bucles,
+
+00:40:40.550 --> 00:40:43.040
+nos hemos apoyado realmente en números, y eso está bien
+
+00:40:43.040 --> 00:40:45.620
+si preferís quedaros en ese terreno.
+
+00:40:45.620 --> 00:40:49.610
+Supongamos que sí quisiera iterar usando números como i y 0,
+
+00:40:49.610 --> 00:40:50.910
+1, 2, y así sucesivamente.
+
+00:40:50.910 --> 00:40:53.700
+Propongo que podríamos cambiar este código de la siguiente manera.
+
+00:40:53.700 --> 00:40:56.930
+Si preferís pensar así, o si el programa que estáis
+
+00:40:56.930 --> 00:40:59.810
+intentando implementar requiere que uséis números de esta forma,
+
+00:40:59.810 --> 00:41:00.830
+podríais hacer esto.
+
+00:41:00.830 --> 00:41:04.820
+For i in... bueno, no quiero decir simplemente students,
+
+00:41:04.820 --> 00:41:07.580
+porque entonces i no va a ser un número.
+
+00:41:07.580 --> 00:41:13.010
+i va a ser literalmente Hermione, luego Harry, luego Ron.
+
+00:41:13.010 --> 00:41:17.030
+Necesito iterar de 0 a 1 a 2.
+
+00:41:17.030 --> 00:41:21.320
+Si una lista con tres elementos tiene estas posiciones, 0, 1, 2,
+
+00:41:21.320 --> 00:41:25.400
+necesito crear de algún modo un bucle que empiece en 0 y termine en 2.
+
+00:41:25.400 --> 00:41:28.340
+Antes, cuando quería hacer eso, necesitaba range,
+
+00:41:28.340 --> 00:41:30.290
+pero esto no va a funcionar.
+
+00:41:30.290 --> 00:41:32.750
+No puedo decir simplemente in range de students,
+
+00:41:32.750 --> 00:41:36.030
+porque students no es un número, no es un entero,
+
+00:41:36.030 --> 00:41:37.640
+así que no se lo puedes pasar a range.
+
+00:41:37.640 --> 00:41:39.260
+Range espera un entero.
+
+00:41:39.260 --> 00:41:41.840
+Pero hay una solución aquí.
+
+00:41:41.840 --> 00:41:47.390
+Resulta que hay una función en Python llamada length o len, L-E-N,
+
+00:41:47.390 --> 00:41:51.890
+que te dice la longitud de una lista y de otras cosas más adelante también.
+
+00:41:51.890 --> 00:41:55.850
+Y ahora creo que puedo ensamblar estos componentes de una manera que
+
+00:41:55.850 --> 00:41:57.740
+me permita usar números de esta forma.
+
+00:41:57.740 --> 00:42:02.870
+Así que range no acepta una lista de cadenas, acepta un número,
+
+00:42:02.870 --> 00:42:04.790
+e idealmente, ese número va a ser 3,
+
+00:42:04.790 --> 00:42:07.580
+de modo que obtengo un rango de valores, 0, 1 y 2.
+
+00:42:07.580 --> 00:42:10.640
+Así que creo que puedo anidar mis funciones así.
+
+00:42:10.640 --> 00:42:15.410
+Si primero obtengo la longitud de la lista students, eso va a ser 3,
+
+00:42:15.410 --> 00:42:18.620
+luego paso ese valor de retorno como argumento
+
+00:42:18.620 --> 00:42:23.840
+a range, que me devolverá un rango de valores, 0, luego 1, luego 2.
+
+00:42:23.840 --> 00:42:26.570
+Y lo que eso me va a permitir hacer entonces en el código, si quiero,
+
+00:42:26.570 --> 00:42:28.310
+no es solo esto.
+
+00:42:28.310 --> 00:42:33.650
+Podría hacer print ahora students corchete i, y es aquí
+
+00:42:33.650 --> 00:42:38.270
+donde la sintaxis que vemos se vuelve muy expresiva, nueva y quizás
+
+00:42:38.270 --> 00:42:39.200
+poco familiar.
+
+00:42:39.200 --> 00:42:44.090
+Pero si puedo hacer abrir corchete, 0, cerrar corchete, o abrir corchete, 1,
+
+00:42:44.090 --> 00:42:47.990
+cerrar corchete, o abrir corchete, 2, cerrar corchete, resulta que
+
+00:42:47.990 --> 00:42:49.940
+en realidad puedo poner una variable ahí dentro y
+
+00:42:49.940 --> 00:42:52.490
+puedo expresar cualquier número dentro de esos corchetes
+
+00:42:52.490 --> 00:42:54.800
+para imprimirlos todos dinámicamente en un bucle.
+
+00:42:54.800 --> 00:42:57.680
+Voy a hacer esto, python de hogwarts.py, Enter,
+
+00:42:57.680 --> 00:43:00.140
+ahí están Hermione, Harry y Ron.
+
+00:43:00.140 --> 00:43:02.570
+Y ahora, si simplemente tengo curiosidad, si solo quiero explorar
+
+00:43:02.570 --> 00:43:05.060
+un poco o quizás quiero hacer una clasificación, como quiénes
+
+00:43:05.060 --> 00:43:08.240
+son los tres mejores estudiantes del colegio o de Gryffindor.
+
+00:43:08.240 --> 00:43:11.000
+Bueno, puedo imprimir varias cosas a la vez, como hemos visto.
+
+00:43:11.000 --> 00:43:14.540
+Voy a imprimir no solo el estudiante en la posición
+
+00:43:14.540 --> 00:43:19.340
+i, sino que imprimamos primero i y luego el estudiante en la posición i.
+
+00:43:19.340 --> 00:43:22.850
+Así que dos cosas que imprimir, y sabemos que print puede aceptar dos argumentos,
+
+00:43:22.850 --> 00:43:25.280
+lo hemos visto antes, se separarán con un espacio.
+
+00:43:25.280 --> 00:43:26.900
+Voy a volver a ejecutarlo.
+
+00:43:26.900 --> 00:43:31.533
+Ahora veo que, vale, Hermione es la mejor estudiante, pero está en el puesto cero.
+
+00:43:31.533 --> 00:43:32.450
+Es un poco raro.
+
+00:43:32.450 --> 00:43:35.930
+No necesitamos mostrarle a la persona que usa mi programa
+
+00:43:35.930 --> 00:43:37.430
+que empezamos a contar desde 0.
+
+00:43:37.430 --> 00:43:38.570
+Puedo arreglar esto.
+
+00:43:38.570 --> 00:43:41.600
+Puedo simplemente sumar 1 a la i de aquí arriba, y ahora
+
+00:43:41.600 --> 00:43:43.640
+vemos una lista de los tres mejores estudiantes.
+
+00:43:43.640 --> 00:43:47.540
+Hermione es la número 1, Harry es la número 2 y, por supuesto, Ron es el número 3.
+
+00:43:47.540 --> 00:43:50.960
+Así que también podemos acceder a todos esos mismos valores.
+
+00:43:50.960 --> 00:43:55.320
+¿Hay alguna pregunta ahora sobre estas listas?
+
+00:43:55.320 --> 00:43:58.320
+¿Alguna pregunta ahora sobre estas listas?
+
+00:43:58.320 --> 00:44:01.050
+¿Sobre esta longitud, estos rangos, o lo que sea?
+
+00:44:01.050 --> 00:44:08.350
+AUDIENCE: Mi pregunta es, for i in range, ¿puedes explicar esto una vez más?
+
+00:44:08.350 --> 00:44:10.210
+DAVID MALAN: Claro.
+
+00:44:10.210 --> 00:44:12.640
+Voy a retroceder en el tiempo.
+
+00:44:12.640 --> 00:44:13.960
+Empezamos haciendo esto.
+
+00:44:13.960 --> 00:44:20.770
+For i in 0, 1, 2, y luego imprimimos miau tres veces de esa manera.
+
+00:44:20.770 --> 00:44:23.830
+La forma en que funciona ese bucle for es que crea
+
+00:44:23.830 --> 00:44:27.730
+por ti una variable que yo he llamado i, pero podría llamarla como quisiera.
+
+00:44:27.730 --> 00:44:31.390
+Luego asigna i inicialmente al primer elemento de la lista.
+
+00:44:31.390 --> 00:44:34.690
+Luego asigna automáticamente i al siguiente elemento de la lista.
+
+00:44:34.690 --> 00:44:37.210
+Y luego asigna i al tercer elemento de la lista.
+
+00:44:37.210 --> 00:44:41.520
+Y cada vez ejecuta todo el código sangrado que hay debajo.
+
+00:44:41.520 --> 00:44:43.740
+Nos dimos cuenta, sin embargo, de que esto no va
+
+00:44:43.740 --> 00:44:46.380
+a escalar bien si quiero hacer algo como un millón de veces.
+
+00:44:46.380 --> 00:44:48.480
+Así que introdujimos range en su lugar.
+
+00:44:48.480 --> 00:44:51.240
+Eso tiene el efecto de hacer lo mismo.
+
+00:44:51.240 --> 00:44:55.080
+Me devuelve un rango de valores, una lista de tres cosas, en realidad,
+
+00:44:55.080 --> 00:44:57.330
+así que el comportamiento es exactamente el mismo.
+
+00:44:57.330 --> 00:45:01.890
+Si ahora avanzamos rápido a este ejemplo de Hogwarts, lo que estoy haciendo
+
+00:45:01.890 --> 00:45:04.500
+es simplemente combinar estas ideas más pequeñas.
+
+00:45:04.500 --> 00:45:06.330
+Sigo creando un bucle for.
+
+00:45:06.330 --> 00:45:08.520
+Sigo creando una variable llamada i.
+
+00:45:08.520 --> 00:45:11.760
+Quiero hacerlo sobre un rango de valores, pero ¿cuántos valores?
+
+00:45:11.760 --> 00:45:15.390
+Pues si uso la función length y le paso a la función length
+
+00:45:15.390 --> 00:45:18.300
+la lista de valores, el propósito en la vida de length
+
+00:45:18.300 --> 00:45:21.120
+es decirme cuánto mide esta lista, y mide 3.
+
+00:45:21.120 --> 00:45:25.740
+Así que es casi como si antes hubiera hecho algo así,
+
+00:45:25.740 --> 00:45:29.220
+pero no quiero fijar 3 en el código, quiero averiguar dinámicamente
+
+00:45:29.220 --> 00:45:30.870
+cuántos estudiantes hay en Hogwarts.
+
+00:45:30.870 --> 00:45:32.910
+Así que simplemente estoy componiendo, componiendo, componiendo,
+
+00:45:32.910 --> 00:45:36.210
+o anidando todas estas ideas diversas.
+
+00:45:36.210 --> 00:45:38.880
+Muy bien, si me lo permitís, paso ahora a...
+
+00:45:38.880 --> 00:45:42.540
+seguimos en Hogwarts, a introducir un último tipo de dato antes de
+
+00:45:42.540 --> 00:45:45.690
+combinar todo con algunos programas finales.
+
+00:45:45.690 --> 00:45:49.410
+Resulta que en Python no solo hay cadenas, no solo
+
+00:45:49.410 --> 00:45:51.600
+enteros, no solo valores de coma flotante, no
+
+00:45:51.600 --> 00:45:53.790
+solo booleanos, no solo listas, también hay
+
+00:45:53.790 --> 00:45:58.560
+lo que se llaman diccionarios o dics, una estructura de datos que te permite
+
+00:45:58.560 --> 00:46:02.250
+asociar un valor con otro.
+
+00:46:02.250 --> 00:46:04.380
+Literalmente un diccionario como en el mundo humano.
+
+00:46:04.380 --> 00:46:07.680
+Si abrierais un diccionario, ya sea en inglés o en cualquier otro idioma humano,
+
+00:46:07.680 --> 00:46:09.190
+¿qué hay dentro de un diccionario?
+
+00:46:09.190 --> 00:46:12.480
+Pues un montón de palabras y definiciones.
+
+00:46:12.480 --> 00:46:14.760
+Un informático, sin embargo, y un programador
+
+00:46:14.760 --> 00:46:19.470
+las describiría de forma más genérica como claves y valores, algo
+
+00:46:19.470 --> 00:46:21.360
+asociado con otra cosa.
+
+00:46:21.360 --> 00:46:22.950
+Eso es todo lo que es un diccionario.
+
+00:46:22.950 --> 00:46:25.930
+Te permite asociar algo con otra cosa.
+
+00:46:25.930 --> 00:46:29.160
+Y fijaos, esto ya es más potente, más interesante que una lista.
+
+00:46:29.160 --> 00:46:32.670
+Una lista es simplemente un conjunto de varios valores.
+
+00:46:32.670 --> 00:46:36.240
+Pero un diccionario es bidimensional, por así decirlo.
+
+00:46:36.240 --> 00:46:39.390
+Igual que un diccionario humano, un libro, asocia algo
+
+00:46:39.390 --> 00:46:42.210
+con otra cosa, como palabras con sus definiciones.
+
+00:46:42.210 --> 00:46:44.500
+Ahora bien, ¿qué significa esto realmente en la práctica?
+
+00:46:44.500 --> 00:46:48.390
+Pues supongamos que quisiéramos llevar la cuenta
+
+00:46:48.390 --> 00:46:51.810
+de quién está en qué casa de Hogwarts.
+
+00:46:51.810 --> 00:46:54.240
+Bueno, podría hacerlo usando solo listas.
+
+00:46:54.240 --> 00:46:55.950
+Voy a volver a VS Code y
+
+00:46:55.950 --> 00:46:59.470
+solo temporalmente, pero de una manera que en última instancia no me va a gustar,
+
+00:46:59.470 --> 00:47:01.620
+voy a crear otra variable llamada houses,
+
+00:47:01.620 --> 00:47:06.750
+igualada a Gryffindor, correspondiente a la casa de Hermione,
+
+00:47:06.750 --> 00:47:09.960
+Gryffindor, correspondiente a la casa de Harry, y Gryffindor,
+
+00:47:09.960 --> 00:47:11.250
+correspondiente a la casa de Ron.
+
+00:47:11.250 --> 00:47:12.730
+Y añadamos ahí a Draco.
+
+00:47:12.730 --> 00:47:14.640
+Así que ahora tenemos cuatro estudiantes en lugar de tres
+
+00:47:14.640 --> 00:47:18.810
+solo para tener algo de variedad, y él estaba en Slytherin.
+
+00:47:18.810 --> 00:47:21.300
+Así que ahora tenemos dos listas.
+
+00:47:21.300 --> 00:47:24.750
+Y podríamos simplemente ponernos de acuerdo entre nosotros en que
+
+00:47:24.750 --> 00:47:28.680
+quien esté primero en la variable students vive
+
+00:47:28.680 --> 00:47:31.410
+en el primer valor de houses.
+
+00:47:31.410 --> 00:47:34.770
+Quien esté segundo en students vive en la segunda casa.
+
+00:47:34.770 --> 00:47:37.680
+Quien esté tercero en students vive en la tercera casa.
+
+00:47:37.680 --> 00:47:38.730
+Podríamos hacer eso.
+
+00:47:38.730 --> 00:47:41.430
+Pero, sinceramente, eso se va a venir abajo rápidamente
+
+00:47:41.430 --> 00:47:44.102
+cuando tengamos muchos estudiantes, cuando tengamos muchas casas,
+
+00:47:44.102 --> 00:47:46.560
+y ¿qué pasa si queremos llevar la cuenta de más cosas que esas?
+
+00:47:46.560 --> 00:47:48.810
+¿Y si queremos llevar la cuenta de la casa de cada estudiante
+
+00:47:48.810 --> 00:47:52.890
+y de su patronus, esa imagen que conjuran mágicamente?
+
+00:47:52.890 --> 00:47:55.290
+Pues entonces necesitamos una tercera lista, como... esto simplemente
+
+00:47:55.290 --> 00:47:58.440
+se va a volver desordenado enseguida si nos basamos solo en la confianza
+
+00:47:58.440 --> 00:48:02.640
+usando varias listas en las que todo cuadra lógicamente.
+
+00:48:02.640 --> 00:48:05.940
+No acaba bien cuando tu código se vuelve más complicado.
+
+00:48:05.940 --> 00:48:07.740
+Pero sí quiero implementar esta idea.
+
+00:48:07.740 --> 00:48:09.990
+Quiero asociar algo con algo.
+
+00:48:09.990 --> 00:48:12.960
+Un estudiante con una casa, un estudiante con una casa, un estudiante con una casa
+
+00:48:12.960 --> 00:48:15.970
+y así sucesivamente, entonces, ¿cómo puedo hacerlo?
+
+00:48:15.970 --> 00:48:18.570
+Bueno, voy a volver a mi código y
+
+00:48:18.570 --> 00:48:22.410
+propongo que lo hagamos usando un diccionario de Python.
+
+00:48:22.410 --> 00:48:25.560
+Y esta es la última de las sintaxis nuevas, en realidad, que veremos.
+
+00:48:25.560 --> 00:48:26.880
+Aquí está la nueva sintaxis.
+
+00:48:26.880 --> 00:48:29.280
+En lugar de usar corchetes, vamos
+
+00:48:29.280 --> 00:48:32.500
+a usar llaves también para los diccionarios.
+
+00:48:32.500 --> 00:48:37.050
+Hemos visto las llaves en el contexto de las f-strings, algo completamente distinto.
+
+00:48:37.050 --> 00:48:40.360
+A veces se te acaban las teclas del teclado y los autores de un lenguaje
+
+00:48:40.360 --> 00:48:43.302
+tienen que empezar a reutilizar símbolos de maneras distintas, eso es
+
+00:48:43.302 --> 00:48:44.260
+lo que está a punto de pasar.
+
+00:48:44.260 --> 00:48:46.150
+Estamos usando las llaves de una manera diferente.
+
+00:48:46.150 --> 00:48:48.690
+Así que voy a crear una variable llamada students.
+
+00:48:48.690 --> 00:48:51.960
+Y voy a igualarla a abrir
+
+00:48:51.960 --> 00:48:54.030
+llave y cerrar llave.
+
+00:48:54.030 --> 00:48:56.670
+Este es un diccionario vacío por ahora.
+
+00:48:56.670 --> 00:48:58.590
+Y así es como funciona un diccionario.
+
+00:48:58.590 --> 00:49:01.150
+Te permite asociar algo con otra cosa,
+
+00:49:01.150 --> 00:49:02.400
+y lo haces así.
+
+00:49:02.400 --> 00:49:07.777
+Hermione, entre comillas, dos puntos, y luego el valor correspondiente.
+
+00:49:07.777 --> 00:49:09.610
+¿Qué quieres asociar con Hermione?
+
+00:49:09.610 --> 00:49:11.280
+Pues Gryffindor.
+
+00:49:11.280 --> 00:49:13.680
+¿Con qué quiero asociar a Harry?
+
+00:49:13.680 --> 00:49:16.560
+Pues quiero asociarlo con Gryffindor.
+
+00:49:16.560 --> 00:49:18.630
+¿Con qué quiero asociar a Ron?
+
+00:49:18.630 --> 00:49:21.240
+Pues quiero asociarlo con Gryffindor.
+
+00:49:21.240 --> 00:49:24.600
+Bueno, esto en realidad no va a... esto se va a poner muy feo enseguida.
+
+00:49:24.600 --> 00:49:27.502
+Cuando añadamos a Draco y Slytherin, mi código va a ser demasiado largo,
+
+00:49:27.502 --> 00:49:28.710
+va a empezar a saltar de línea.
+
+00:49:28.710 --> 00:49:30.390
+Así que esto es puramente estético.
+
+00:49:30.390 --> 00:49:33.450
+Es perfectamente aceptable en Python y en otros lenguajes
+
+00:49:33.450 --> 00:49:36.570
+dar un formato un poco más legible a tu código y simplemente añadir saltos de línea
+
+00:49:36.570 --> 00:49:38.040
+si lo hace más legible.
+
+00:49:38.040 --> 00:49:40.480
+Y una forma de hacerlo podría ser la siguiente.
+
+00:49:40.480 --> 00:49:44.920
+Sigo teniendo mi llave aquí arriba, sigo teniendo mi llave aquí abajo,
+
+00:49:44.920 --> 00:49:47.400
+pero fijaos, ahora es un poco más legible
+
+00:49:47.400 --> 00:49:51.743
+porque tengo mis claves a la izquierda, mis algos, y mis valores
+
+00:49:51.743 --> 00:49:53.160
+a la derecha, mis otros algos.
+
+00:49:53.160 --> 00:49:55.800
+Es un poco más fácil de leer en diagonal de arriba abajo.
+
+00:49:55.800 --> 00:49:57.480
+También podríais darle otro formato.
+
+00:49:57.480 --> 00:50:00.690
+Pero voy a añadir ahora a Draco,
+
+00:50:00.690 --> 00:50:03.210
+que vive, por supuesto, en Slytherin.
+
+00:50:03.210 --> 00:50:07.320
+Así que ahora tengo cada una de estas claves a la izquierda
+
+00:50:07.320 --> 00:50:09.910
+y los valores a la derecha, que es realmente, de nuevo,
+
+00:50:09.910 --> 00:50:13.200
+solo una implementación en código de esta idea, un pequeño cuadro
+
+00:50:13.200 --> 00:50:15.300
+que podrías hacer con papel y lápiz
+
+00:50:15.300 --> 00:50:17.620
+al asociar algo con otra cosa.
+
+00:50:17.620 --> 00:50:20.680
+Entonces, ¿cómo uso ahora este código de una manera interesante?
+
+00:50:20.680 --> 00:50:22.230
+La sintaxis es casi la misma.
+
+00:50:22.230 --> 00:50:26.160
+Si quiero imprimir el primer estudiante, la casa de Hermione,
+
+00:50:26.160 --> 00:50:27.150
+podría hacer esto.
+
+00:50:27.150 --> 00:50:31.960
+Imprimir el nombre de la variable, pero necesito entrar dentro de la variable.
+
+00:50:31.960 --> 00:50:33.810
+Necesito indexarla.
+
+00:50:33.810 --> 00:50:38.280
+Y lo bueno de los diccionarios es que, mientras que las listas
+
+00:50:38.280 --> 00:50:41.010
+tienen posiciones numéricas...
+
+00:50:41.010 --> 00:50:45.270
+0, 1, 2; Hermione, Harry, Ron respectivamente,
+
+00:50:45.270 --> 00:50:50.520
+los diccionarios te permiten usar palabras reales como índices, por así decirlo,
+
+00:50:50.520 --> 00:50:52.750
+como índices para entrar en ellos.
+
+00:50:52.750 --> 00:50:55.740
+Así que si quieres imprimir la casa de Hermione,
+
+00:50:55.740 --> 00:50:59.160
+la clave que te interesa es, entre comillas, Hermione,
+
+00:50:59.160 --> 00:51:04.050
+y lo que hará esta sintaxis... fijaos, no es un número 0 o 1 o 2.
+
+00:51:04.050 --> 00:51:05.970
+Es literalmente el nombre de Hermione.
+
+00:51:05.970 --> 00:51:11.070
+Es como ir al cuadro de antes y decir: vale, dame Hermione
+
+00:51:11.070 --> 00:51:13.628
+es mi clave, Gryffindor es el valor.
+
+00:51:13.628 --> 00:51:15.420
+Eso es lo que hacemos aquí sintácticamente.
+
+00:51:15.420 --> 00:51:18.300
+Estamos buscando a Hermione y obteniendo su valor.
+
+00:51:18.300 --> 00:51:21.120
+Así que si vuelvo a mi código, eso debería imprimir Gryffindor.
+
+00:51:21.120 --> 00:51:24.330
+Y si hago esto varias veces, students, corchete, entre comillas,
+
+00:51:24.330 --> 00:51:26.280
+Harry debería darme la casa de Harry.
+
+00:51:26.280 --> 00:51:30.630
+Print students, abrir corchete, Ron, eso debería darme la casa de Ron.
+
+00:51:30.630 --> 00:51:33.660
+Y por último, si hago esto con students, corchete, Draco,
+
+00:51:33.660 --> 00:51:35.727
+eso debería darme la casa de Draco.
+
+00:51:35.727 --> 00:51:38.310
+Todavía es un poco manual, y apuesto a que podemos mejorarlo,
+
+00:51:38.310 --> 00:51:40.620
+pero voy a ejecutar python de hogwarts.py y deberíamos
+
+00:51:40.620 --> 00:51:44.790
+ver Gryffindor, Gryffindor, Gryffindor, Slytherin, que
+
+00:51:44.790 --> 00:51:46.500
+es exactamente lo que esperaríamos.
+
+00:51:46.500 --> 00:51:48.810
+Ahora, lo único que hemos hecho, de nuevo, es pasar
+
+00:51:48.810 --> 00:51:52.710
+de tener una simple lista de nombres a, otra vez, dos dimensiones,
+
+00:51:52.710 --> 00:51:56.070
+asociando, como haríamos con papel y lápiz, algo con otra
+
+00:51:56.070 --> 00:51:58.920
+cosa, claves con valores respectivamente.
+
+00:51:58.920 --> 00:52:02.580
+Permitidme, aunque me doy cuenta de que esto se está poniendo un poco sofisticado,
+
+00:52:02.580 --> 00:52:07.200
+subir ligeramente el nivel aquí y pasar de mirar
+
+00:52:07.200 --> 00:52:13.020
+solo, por ejemplo, ese patrón de ahí, fijando esos valores
+
+00:52:13.020 --> 00:52:15.660
+en el código, a imprimirlos de forma más dinámica.
+
+00:52:15.660 --> 00:52:19.510
+Voy a usar nuestro bucle, y esta pregunta surgió antes también,
+
+00:52:19.510 --> 00:52:25.450
+voy a decir for each student in students,
+
+00:52:25.450 --> 00:52:31.240
+imprime, por ejemplo, la variable students en...
+
+00:52:31.240 --> 00:52:32.920
+bueno, digamos simplemente student primero.
+
+00:52:32.920 --> 00:52:33.950
+Mantengámoslo sencillo.
+
+00:52:33.950 --> 00:52:35.950
+Así que esto todavía no va a ser muy interesante,
+
+00:52:35.950 --> 00:52:41.470
+pero cuando ejecute python de hogwarts.py y pulse Enter, fijaos, ¿qué debería ver?
+
+00:52:41.470 --> 00:52:44.200
+Voy a tomar una pregunta aquí para ver qué voy
+
+00:52:44.200 --> 00:52:48.910
+a ver cuando pulse Enter ahora que hago for student in students.
+
+00:52:48.910 --> 00:52:51.305
+AUDIENCE: Sí, creo que solo veremos las claves.
+
+00:52:51.305 --> 00:52:52.180
+DAVID MALAN: Perfecto.
+
+00:52:52.180 --> 00:52:53.020
+Muy buena intuición.
+
+00:52:53.020 --> 00:52:53.980
+Podría haber sido de ambas formas.
+
+00:52:53.980 --> 00:52:55.540
+Podrían haber sido los valores, las casas.
+
+00:52:55.540 --> 00:53:01.300
+Pero cuando usas un bucle for en Python para iterar sobre un diccionario, por diseño,
+
+00:53:01.300 --> 00:53:03.550
+itera sobre todas las claves.
+
+00:53:03.550 --> 00:53:07.960
+Así que deberíamos ver, creo, Hermione, Harry, Ron y Draco.
+
+00:53:07.960 --> 00:53:11.260
+Voy a pulsar Enter ahora, Enter, y efectivamente, tienes toda la razón,
+
+00:53:11.260 --> 00:53:12.580
+vemos solo las claves.
+
+00:53:12.580 --> 00:53:15.580
+Pero eso no es muy útil si lo que realmente me importa
+
+00:53:15.580 --> 00:53:18.430
+es quién vive dónde, ¿puedo imprimir ambos?
+
+00:53:18.430 --> 00:53:19.930
+Bueno, creo que sí.
+
+00:53:19.930 --> 00:53:21.350
+Voy a hacer esto.
+
+00:53:21.350 --> 00:53:24.850
+Voy a imprimir no solo el nombre del estudiante, la clave,
+
+00:53:24.850 --> 00:53:30.537
+sino que voy a usar la clave, su nombre, para indexar el diccionario.
+
+00:53:30.537 --> 00:53:33.370
+Si conozco la palabra en el diccionario, busco su definición.
+
+00:53:33.370 --> 00:53:35.980
+Si conozco el nombre del estudiante, busco su casa,
+
+00:53:35.980 --> 00:53:40.720
+y la sintaxis para esto, igual que con una lista, es students, corchete.
+
+00:53:40.720 --> 00:53:44.480
+Y así como en el pasado usábamos i cuando i era un número,
+
+00:53:44.480 --> 00:53:48.080
+también podemos usar una cadena con un diccionario.
+
+00:53:48.080 --> 00:53:55.180
+Así que si el nombre del estudiante es la clave, entonces esta sintaxis, students,
+
+00:53:55.180 --> 00:54:00.340
+abrir corchete, student, cerrar corchete irá a la posición de Hermione
+
+00:54:00.340 --> 00:54:01.330
+y devolverá su casa.
+
+00:54:01.330 --> 00:54:04.970
+Irá a la posición de Harry y devolverá su casa, y así sucesivamente.
+
+00:54:04.970 --> 00:54:08.943
+Así que si hago python de hogwarts.py, Enter, ahora
+
+00:54:08.943 --> 00:54:11.485
+veo Hermione, Gryffindor; Harry, Gryffindor; Ron, Gryffindor;
+
+00:54:11.485 --> 00:54:12.730
+y Draco, Slytherin.
+
+00:54:12.730 --> 00:54:14.940
+Ahora parece que les he puesto a todos apellidos nuevos,
+
+00:54:14.940 --> 00:54:15.940
+pero puedo arreglarlo.
+
+00:54:15.940 --> 00:54:17.170
+Esto es solo cuestión del print.
+
+00:54:17.170 --> 00:54:20.110
+Cambiemos nuestro separador del espacio por defecto
+
+00:54:20.110 --> 00:54:21.790
+a quizás una coma y un espacio.
+
+00:54:21.790 --> 00:54:26.110
+Y usando solo funcionalidades de print, voy a ejecutar el mismo programa otra vez, Enter,
+
+00:54:26.110 --> 00:54:29.050
+ahora tengo unas comas bonitas ahí para dejar claro
+
+00:54:29.050 --> 00:54:31.810
+que el apellido de Hermione no es, de hecho, Gryffindor,
+
+00:54:31.810 --> 00:54:33.730
+pero eso es solo un detalle del print.
+
+00:54:33.730 --> 00:54:37.120
+¿Alguna pregunta, entonces, sobre estos diccionarios y lo que acabo de hacer?
+
+00:54:39.650 --> 00:54:45.410
+¿Preguntas sobre estos diccionarios y este recorrido en bucle?
+
+00:54:45.410 --> 00:54:52.190
+AUDIENCE: Es que no consigo entender el for student in students.
+
+00:54:52.190 --> 00:54:54.860
+Si estoy... corrígeme si me equivoco.
+
+00:54:54.860 --> 00:55:01.850
+¿Significa que importa la lista de estudiantes y usa los índices...
+
+00:55:01.850 --> 00:55:09.140
+o, en otras palabras, Hermione, Harry y Ron como los índices en la propia...
+
+00:55:09.140 --> 00:55:10.455
+la lista de estudiantes?
+
+00:55:10.455 --> 00:55:11.330
+DAVID MALAN: Correcto.
+
+00:55:11.330 --> 00:55:13.100
+Esto es simplemente una característica de Python.
+
+00:55:13.100 --> 00:55:17.150
+Cuando usas un bucle for con un diccionario, lo que ocurre es esto.
+
+00:55:17.150 --> 00:55:20.513
+Si este es el diccionario con las claves arriba y los valores abajo,
+
+00:55:20.513 --> 00:55:22.430
+tú eliges cómo se llama la variable.
+
+00:55:22.430 --> 00:55:24.818
+Yo llamé a mi variable student simplemente porque tiene sentido,
+
+00:55:24.818 --> 00:55:26.360
+porque quiero un estudiante cada vez.
+
+00:55:26.360 --> 00:55:29.510
+Y lo que hace el bucle for, igual que hacía con los números antes,
+
+00:55:29.510 --> 00:55:33.060
+el 0, el 1 y el 2, me permite, por ejemplo,
+
+00:55:33.060 --> 00:55:35.810
+poner student igual inicialmente al nombre de Hermione.
+
+00:55:35.810 --> 00:55:38.990
+Y luego en la siguiente iteración del bucle, el siguiente ciclo,
+
+00:55:38.990 --> 00:55:42.800
+pone student igual al nombre de Harry, luego Ron, luego Draco.
+
+00:55:42.800 --> 00:55:44.300
+Ocurre automáticamente.
+
+00:55:44.300 --> 00:55:47.480
+Eso es lo que hace por ti el intérprete de Python cuando
+
+00:55:47.480 --> 00:55:49.140
+ve un bucle for como ese.
+
+00:55:49.140 --> 00:55:53.090
+Así que es muy similar en espíritu a iterar con un bucle for sobre una lista,
+
+00:55:53.090 --> 00:55:55.670
+pero en lugar de iterar sobre la posición numérica,
+
+00:55:55.670 --> 00:56:01.700
+0, 1, 2, itera sobre las claves en negrita en esta representación
+
+00:56:01.700 --> 00:56:02.930
+gráfica.
+
+00:56:02.930 --> 00:56:05.960
+Y permitidme daros otro ejemplo más con Hogwarts
+
+00:56:05.960 --> 00:56:09.320
+antes de ver otro ámbito familiar.
+
+00:56:09.320 --> 00:56:11.670
+A riesgo de que las cosas escalen un poco,
+
+00:56:11.670 --> 00:56:15.320
+propongo que continuemos la historia con un último ejemplo de Hogwarts
+
+00:56:15.320 --> 00:56:17.100
+como este.
+
+00:56:17.100 --> 00:56:21.280
+¿Y si tenemos más información sobre cada uno de nuestros estudiantes?
+
+00:56:21.280 --> 00:56:23.030
+Y esto es inevitable.
+
+00:56:23.030 --> 00:56:26.760
+Si estás implementando un programa que es una base de datos con personas o clientes,
+
+00:56:26.760 --> 00:56:29.060
+o empleados o cualquier otra cosa, podéis imaginar
+
+00:56:29.060 --> 00:56:33.230
+que se tienen muchos datos sobre lo que sea que representes en tu programa
+
+00:56:33.230 --> 00:56:33.740
+aquí.
+
+00:56:33.740 --> 00:56:37.470
+Para la discusión, supongamos que cada estudiante de Hogwarts, por supuesto,
+
+00:56:37.470 --> 00:56:41.480
+tiene un nombre, ya tiene una casa, pero también tiene un patronus.
+
+00:56:41.480 --> 00:56:44.360
+Para quienes no lo conozcan, es el animal o entidad
+
+00:56:44.360 --> 00:56:48.260
+que sale de la punta de su varita cuando hacen cierto hechizo mágico.
+
+00:56:48.260 --> 00:56:51.410
+El caso es que queremos asociar no
+
+00:56:51.410 --> 00:56:55.670
+solo una cosa con el estudiante, sino varias cosas
+
+00:56:55.670 --> 00:57:00.110
+también: su nombre, su casa y su patronus en este caso.
+
+00:57:00.110 --> 00:57:02.400
+Bueno, ¿qué aspecto podría tener un código así?
+
+00:57:02.400 --> 00:57:07.100
+Pues voy a volver a hogwarts.py y empezar de cero un momento.
+
+00:57:07.100 --> 00:57:10.650
+Y propongo que lo mejore con algunos datos más.
+
+00:57:10.650 --> 00:57:12.800
+Y estos datos van a ser como sigue.
+
+00:57:12.800 --> 00:57:18.360
+Mi variable students ahora, propongo que la pensemos como una lista.
+
+00:57:18.360 --> 00:57:21.320
+¿Y si tenemos una lista de diccionarios de la siguiente manera?
+
+00:57:21.320 --> 00:57:24.960
+De hecho, quiero implementar literalmente esta imagen de aquí.
+
+00:57:24.960 --> 00:57:29.210
+Fijaos en que mi imagen anterior representaba un único diccionario.
+
+00:57:29.210 --> 00:57:33.500
+Pero supongamos que quisiera componer una lista de diccionarios.
+
+00:57:33.500 --> 00:57:36.650
+Es decir, para students: una lista de cuatro estudiantes.
+
+00:57:36.650 --> 00:57:41.240
+Y supongamos que cada uno de esos estudiantes es en sí mismo un diccionario,
+
+00:57:41.240 --> 00:57:46.130
+una colección de pares clave-valor, claves y valores,
+
+00:57:46.130 --> 00:57:48.180
+algo y otra cosa.
+
+00:57:48.180 --> 00:57:50.990
+Pues bien, esta es otra forma de hacerlo en código.
+
+00:57:50.990 --> 00:57:55.130
+Voy a volver a VS Code y definir una variable llamada
+
+00:57:55.130 --> 00:57:58.100
+students que es igual a una lista.
+
+00:57:58.100 --> 00:58:01.343
+Y voy a mover preventivamente mi cursor a líneas separadas,
+
+00:58:01.343 --> 00:58:03.260
+porque sé que esto va a ser largo, y
+
+00:58:03.260 --> 00:58:07.320
+quiero que quepan todos los elementos de esta lista dentro.
+
+00:58:07.320 --> 00:58:10.555
+Ahora voy a crear un diccionario, un diccionario por estudiante.
+
+00:58:10.555 --> 00:58:11.930
+¿Y cómo creo un diccionario?
+
+00:58:11.930 --> 00:58:13.670
+Simplemente uso esas llaves.
+
+00:58:13.670 --> 00:58:16.220
+Pero me corresponde a mí definir cuáles son esas claves.
+
+00:58:16.220 --> 00:58:18.500
+Y propongo que una clave esta vez
+
+00:58:18.500 --> 00:58:20.750
+no sea el nombre del estudiante explícitamente, sino
+
+00:58:20.750 --> 00:58:24.980
+que sea literalmente la palabra name, y ahí va a estar el nombre Hermione.
+
+00:58:24.980 --> 00:58:28.700
+El mismo estudiante va a tener otra clave llamada house
+
+00:58:28.700 --> 00:58:31.010
+y el valor va a ser Gryffindor.
+
+00:58:31.010 --> 00:58:34.700
+Y el mismo estudiante va a tener una tercera clave llamada patronus,
+
+00:58:34.700 --> 00:58:36.620
+y el valor de esa va a ser...
+
+00:58:36.620 --> 00:58:39.710
+tuve que buscarlo, una nutria, según el libro.
+
+00:58:39.710 --> 00:58:43.012
+Ahora voy a crear un segundo diccionario dentro de esta lista.
+
+00:58:43.012 --> 00:58:44.720
+Y de nuevo, un diccionario es literalmente
+
+00:58:44.720 --> 00:58:46.710
+como el diccionario humano de palabras.
+
+00:58:46.710 --> 00:58:50.750
+Es un libro que contiene claves y valores, palabras y definiciones.
+
+00:58:50.750 --> 00:58:53.630
+¿Cuáles son las tres palabras que almaceno en cada uno de mis diccionarios?
+
+00:58:53.630 --> 00:58:55.640
+Name, house y patronus.
+
+00:58:55.640 --> 00:58:58.940
+¿Cuáles son las definiciones de esas palabras para Hermione?
+
+00:58:58.940 --> 00:59:01.850
+Hermione, Gryffindor y nutria respectivamente.
+
+00:59:01.850 --> 00:59:05.840
+Para Harry, las definiciones van a ser distintas en este nuevo diccionario.
+
+00:59:05.840 --> 00:59:08.270
+Voy a ponerme otro par de llaves
+
+00:59:08.270 --> 00:59:12.230
+y decir esto, name, entre comillas, dos puntos, Harry.
+
+00:59:12.230 --> 00:59:15.500
+House aquí va a ser, de nuevo, Gryffindor.
+
+00:59:15.500 --> 00:59:21.620
+Y este lo sabía, su patronus va a ser, en este caso, un ciervo.
+
+00:59:21.620 --> 00:59:23.330
+Después, un tercer diccionario.
+
+00:59:23.330 --> 00:59:25.130
+El nombre aquí será Ron.
+
+00:59:25.130 --> 00:59:27.560
+Y voy a hacerlo justo así.
+
+00:59:27.560 --> 00:59:31.070
+Luego tengo la casa, y él también era de Gryffindor.
+
+00:59:31.070 --> 00:59:38.120
+Por último, tuve que buscar este, el patronus de Ron era un terrier Jack Russell.
+
+00:59:38.120 --> 00:59:42.100
+Por último está Draco.
+
+00:59:42.100 --> 00:59:45.070
+En un cuarto diccionario, es decir, otro par de llaves,
+
+00:59:45.070 --> 00:59:47.380
+el nombre del estudiante es, por supuesto, Draco.
+
+00:59:47.380 --> 00:59:50.650
+La casa de este estudiante es Slytherin.
+
+00:59:50.650 --> 00:59:55.630
+Y Draco, curiosamente, al menos según internet,
+
+00:59:55.630 --> 00:59:57.010
+no tiene patronus.
+
+00:59:57.010 --> 00:59:59.230
+Nunca se reveló en los libros ni en las películas.
+
+00:59:59.230 --> 01:00:02.290
+Así que resulta que este es un maravilloso momento didáctico.
+
+01:00:02.290 --> 01:00:08.170
+Hay una palabra clave especial en Python que es literalmente None, N-O-N-E,
+
+01:00:08.170 --> 01:00:10.360
+con la primera letra en mayúscula.
+
+01:00:10.360 --> 01:00:14.210
+Esto representa oficialmente la ausencia de un valor.
+
+01:00:14.210 --> 01:00:17.440
+Así que podría hacer, de forma un poco chapucera, algo como comillas-comillas,
+
+01:00:17.440 --> 01:00:20.410
+pero ¿eso significa que no me puse a escribirlo o que no hay nada?
+
+01:00:20.410 --> 01:00:24.880
+Es un poco más claro semánticamente decir literalmente None, una palabra clave especial
+
+01:00:24.880 --> 01:00:29.620
+de Python, para dejar claro que sé que Draco no tiene patronus,
+
+01:00:29.620 --> 01:00:32.320
+no es simplemente un descuido mío.
+
+01:00:32.320 --> 01:00:36.370
+Ahora que tengo esto, ¿qué tengo en la memoria del ordenador?
+
+01:00:36.370 --> 01:00:37.360
+Tengo una lista.
+
+01:00:37.360 --> 01:00:38.620
+¿Cómo sé que es una lista?
+
+01:00:38.620 --> 01:00:42.310
+Porque veo un corchete al principio y otro corchete
+
+01:00:42.310 --> 01:00:42.850
+al final.
+
+01:00:42.850 --> 01:00:45.730
+Esa es mi pista visual: vale, no sé necesariamente
+
+01:00:45.730 --> 01:00:48.910
+qué más está pasando aquí, pero hay una lista de algo.
+
+01:00:48.910 --> 01:00:50.960
+¿Qué hay en esa lista?
+
+01:00:50.960 --> 01:00:53.560
+Pues aquí también la sintaxis es nuestra pista.
+
+01:00:53.560 --> 01:00:57.820
+Como esta línea 2 empieza con una llave y termina con una llave,
+
+01:00:57.820 --> 01:01:02.570
+simplemente sé que eso es un diccionario, una colección de pares clave-valor.
+
+01:01:02.570 --> 01:01:04.930
+Ahora, todo esto cabía perfectamente en mi pantalla, así que
+
+01:01:04.930 --> 01:01:08.020
+no me molesté en pasar todos los pares clave-valor a líneas nuevas,
+
+01:01:08.020 --> 01:01:11.620
+habría quedado muy alto, así que esta vez lo mantuve todo junto.
+
+01:01:11.620 --> 01:01:15.520
+Pero ¿cuántas claves tiene este primer diccionario?
+
+01:01:15.520 --> 01:01:17.897
+Dicho de otra manera, en el diccionario físico de Hermione,
+
+01:01:17.897 --> 01:01:19.480
+¿cuántas palabras hay en ese diccionario?
+
+01:01:19.480 --> 01:01:20.230
+Tres.
+
+01:01:20.230 --> 01:01:22.990
+Las palabras son name, house y patronus.
+
+01:01:22.990 --> 01:01:26.140
+¿Cuáles son las tres definiciones o valores de esas palabras
+
+01:01:26.140 --> 01:01:27.640
+en el diccionario de Hermione?
+
+01:01:27.640 --> 01:01:31.000
+Hermione, Gryffindor y nutria respectivamente.
+
+01:01:31.000 --> 01:01:35.360
+Y lo mismo ocurre con Harry, luego con Ron,
+
+01:01:35.360 --> 01:01:39.190
+luego con Draco: por diseño, he elegido
+
+01:01:39.190 --> 01:01:44.440
+darles diccionarios que tienen todas las mismas claves, todos los mismos nombres,
+
+01:01:44.440 --> 01:01:47.200
+pero todos tienen valores únicos.
+
+01:01:47.200 --> 01:01:50.080
+Y ese es mi diseño, esa es mi prerrogativa como programador.
+
+01:01:50.080 --> 01:01:53.200
+Entonces, ¿por qué es útil esto al fin y al cabo?
+
+01:01:53.200 --> 01:01:57.130
+Ahora tengo acceso a toda una colección de datos interesantes sobre todos
+
+01:01:57.130 --> 01:01:59.620
+estos estudiantes, y todavía puedo hacer un bucle.
+
+01:01:59.620 --> 01:02:02.980
+Puedo decir for student in students, eso
+
+01:02:02.980 --> 01:02:05.590
+me va a permitir iterar sobre esta lista de estudiantes.
+
+01:02:05.590 --> 01:02:08.240
+Y voy a imprimir una sola cosa cada vez.
+
+01:02:08.240 --> 01:02:10.610
+Voy a imprimir el nombre del estudiante actual.
+
+01:02:10.610 --> 01:02:14.470
+Así que, por complicado que sea el diccionario, esto debería resultar bastante cómodo.
+
+01:02:14.470 --> 01:02:18.490
+For student in students va a iterar sobre cada estudiante de la lista.
+
+01:02:18.490 --> 01:02:20.420
+1, 2, 3, 4 en total.
+
+01:02:20.420 --> 01:02:24.580
+La siguiente línea va a imprimir el valor de la clave name.
+
+01:02:24.580 --> 01:02:27.850
+Es como abrir un diccionario físico, buscar la palabra name
+
+01:02:27.850 --> 01:02:30.670
+y darnos Hermione, Harry, Ron y Draco
+
+01:02:30.670 --> 01:02:32.480
+respectivamente de cada diccionario.
+
+01:02:32.480 --> 01:02:36.880
+Así que si ejecuto esta versión de Hogwarts y pulso Enter, ahí obtengo los cuatro
+
+01:02:36.880 --> 01:02:37.780
+nombres.
+
+01:02:37.780 --> 01:02:39.790
+Pero ¿y si quiero más información que esa?
+
+01:02:39.790 --> 01:02:42.040
+Quiero tanto sus nombres como sus casas.
+
+01:02:42.040 --> 01:02:47.650
+Pues simplemente añado a los argumentos de print student, abrir corchete, house,
+
+01:02:47.650 --> 01:02:48.910
+cerrar corchete.
+
+01:02:48.910 --> 01:02:50.740
+Muy bien, ejecutemos esto.
+
+01:02:50.740 --> 01:02:53.170
+Python de hogwarts.py y pulso Enter.
+
+01:02:53.170 --> 01:02:56.078
+Ahora veo Hermione, Gryffindor; Harry, Gryffindor; y así sucesivamente.
+
+01:02:56.078 --> 01:02:58.120
+Podemos limpiar esto un poco estéticamente
+
+01:02:58.120 --> 01:03:01.480
+añadiendo un separador con print, como una coma y un espacio,
+
+01:03:01.480 --> 01:03:03.760
+para que cuando lo ejecute otra vez, ahora
+
+01:03:03.760 --> 01:03:05.680
+vea unas comas separando estos valores.
+
+01:03:05.680 --> 01:03:08.290
+Pero recordad que los estudiantes no tienen solo un nombre, no solo
+
+01:03:08.290 --> 01:03:09.910
+una casa, sino también ese patronus.
+
+01:03:09.910 --> 01:03:12.700
+Así que si queremos imprimir eso también, ahora
+
+01:03:12.700 --> 01:03:18.040
+tenemos la sintaxis para entrar en ese mismo diccionario de cada estudiante
+
+01:03:18.040 --> 01:03:22.010
+y mostrar también su patronus además de su casa y su nombre.
+
+01:03:22.010 --> 01:03:24.520
+Así que si ejecuto este programa una última vez, ahora
+
+01:03:24.520 --> 01:03:28.490
+veo todos los datos de este diccionario.
+
+01:03:28.490 --> 01:03:31.390
+Seguro que esto es mucho para asimilar de golpe.
+
+01:03:31.390 --> 01:03:33.367
+Es el último de nuestros nuevos tipos de datos.
+
+01:03:33.367 --> 01:03:35.200
+Además de las listas, tenemos estos diccionarios,
+
+01:03:35.200 --> 01:03:37.750
+pero, de nuevo, un diccionario, al fin y al cabo,
+
+01:03:37.750 --> 01:03:41.740
+es simplemente una colección de valores similar a estos valores
+
+01:03:41.740 --> 01:03:44.780
+de aquí que te permiten asociar claves con valores.
+
+01:03:44.780 --> 01:03:48.520
+Y la primera versión de este programa asociaba literalmente los nombres
+
+01:03:48.520 --> 01:03:51.040
+de los estudiantes con sus casas, pero luego me di cuenta
+
+01:03:51.040 --> 01:03:53.920
+en mi siguiente versión: un momento, ¿y si cada estudiante no tiene
+
+01:03:53.920 --> 01:03:55.990
+solo un nombre y una casa, sino un patronus?
+
+01:03:55.990 --> 01:03:59.230
+Estandaricemos realmente los nombres de nuestras claves
+
+01:03:59.230 --> 01:04:03.850
+para que sean name, house y patronus, y entonces los valores de esas claves
+
+01:04:03.850 --> 01:04:08.530
+pueden ser los datos reales, como Hermione, Gryffindor, nutria, y así sucesivamente.
+
+01:04:08.530 --> 01:04:13.240
+¿Preguntas ahora sobre estos diccionarios y su iteración?
+
+01:04:13.240 --> 01:04:18.710
+AUDIENCE: Solo me preguntaba, supongamos que el diccionario es enorme,
+
+01:04:18.710 --> 01:04:22.270
+y quiero buscar a un estudiante concreto,
+
+01:04:22.270 --> 01:04:26.650
+¿cómo sé dónde buscar a ese estudiante?
+
+01:04:26.650 --> 01:04:29.470
+¿Se puede ordenar, por ejemplo, alfabéticamente
+
+01:04:29.470 --> 01:04:32.163
+o numéricamente o algo así?
+
+01:04:32.163 --> 01:04:33.580
+DAVID MALAN: La respuesta corta es sí.
+
+01:04:33.580 --> 01:04:37.570
+Una de las características de Python es que hace que estos diccionarios sean muy eficientes
+
+01:04:37.570 --> 01:04:38.680
+para ti.
+
+01:04:38.680 --> 01:04:42.280
+Es decir, incluso si son muy grandes, como lo serán en próximas semanas
+
+01:04:42.280 --> 01:04:45.910
+cuando manipulemos más datos, Python encontrará rápidamente
+
+01:04:45.910 --> 01:04:48.520
+los datos que te interesan.
+
+01:04:48.520 --> 01:04:50.650
+Y de hecho, esa es una característica del lenguaje,
+
+01:04:50.650 --> 01:04:53.560
+una característica de un diccionario: darte los datos rápidamente.
+
+01:04:53.560 --> 01:04:55.480
+Y hay funciones que puedes usar.
+
+01:04:55.480 --> 01:04:57.550
+Puedes ordenar los datos, puedes filtrarlos,
+
+01:04:57.550 --> 01:05:01.870
+puedes hacer operaciones muy eficientes, como acabaremos haciendo.
+
+01:05:01.870 --> 01:05:05.800
+Permitidme proponer, entonces, para cerrar estos bucles,
+
+01:05:05.800 --> 01:05:08.740
+que resolvamos unos últimos problemas que quizás
+
+01:05:08.740 --> 01:05:11.050
+evoquen recuerdos entrañables de tiempos pasados, al menos
+
+01:05:11.050 --> 01:05:13.540
+para mí, en los que uno de mis juegos favoritos de la infancia
+
+01:05:13.540 --> 01:05:15.850
+fue este de aquí en la Nintendo original.
+
+01:05:15.850 --> 01:05:19.240
+Y es un mundo bidimensional donde los personajes se mueven hacia arriba,
+
+01:05:19.240 --> 01:05:23.020
+hacia abajo y hacia la derecha, no tanto hacia la izquierda, saltando por encima de
+
+01:05:23.020 --> 01:05:25.060
+pirámides y obstáculos como estos.
+
+01:05:25.060 --> 01:05:27.670
+Y permitidme proponer que usemos esto solo como inspiración,
+
+01:05:27.670 --> 01:05:31.180
+no para hacer algo tan colorido o gráfico como esto, sino solo
+
+01:05:31.180 --> 01:05:34.990
+para centrarnos, por ejemplo, en esta barrera en medio del mundo
+
+01:05:34.990 --> 01:05:38.080
+que Mario o Luigi tenían que saltar.
+
+01:05:38.080 --> 01:05:42.372
+Y esto de aquí parece ser como tres ladrillos escalonados uno encima de otro.
+
+01:05:42.372 --> 01:05:44.080
+Y no lo haremos de forma gráfica,
+
+01:05:44.080 --> 01:05:48.190
+sino que implementaremos una versión muy sencilla en Python en modo texto
+
+01:05:48.190 --> 01:05:50.440
+usando quizás solo almohadillas como ladrillos.
+
+01:05:50.440 --> 01:05:53.500
+Porque aquí hay un patrón, uno encima de otro, y
+
+01:05:53.500 --> 01:05:56.170
+apuesto a que podemos resolverlo de muchas maneras.
+
+01:05:56.170 --> 01:05:58.720
+Bueno, voy a volver a VS Code
+
+01:05:58.720 --> 01:06:03.340
+y propongo que creemos un programa llamado mario.py usando code
+
+01:06:03.340 --> 01:06:04.750
+en la ventana del terminal.
+
+01:06:04.750 --> 01:06:07.630
+Y luego aquí arriba, voy a empezar implementando esa misma imagen
+
+01:06:07.630 --> 01:06:11.590
+de la forma más simple posible, imprimiendo literalmente la almohadilla,
+
+01:06:11.590 --> 01:06:14.830
+y luego la almohadilla, y luego una tercera y última almohadilla.
+
+01:06:14.830 --> 01:06:17.500
+Esto va a ser una aproximación muy textual,
+
+01:06:17.500 --> 01:06:20.440
+pero creo que si ejecuto python mario.py,
+
+01:06:20.440 --> 01:06:25.840
+tengo una versión muy simple de esa misma columna de ladrillos, por así decirlo.
+
+01:06:25.840 --> 01:06:28.150
+Pero podéis imaginar que, desde luego, en un juego
+
+01:06:28.150 --> 01:06:31.380
+donde quizás estas columnas son más altas o más bajas,
+
+01:06:31.380 --> 01:06:33.880
+sería bonito escribir código que sea un poco más
+
+01:06:33.880 --> 01:06:37.690
+dinámico que eso y que no use simplemente print, print, print, que es literalmente
+
+01:06:37.690 --> 01:06:39.340
+copiar y pegar, según parece.
+
+01:06:39.340 --> 01:06:42.550
+Así que al menos voy a adoptar algunas de las lecciones aprendidas hoy
+
+01:06:42.550 --> 01:06:44.650
+y hacer algo como esto en su lugar.
+
+01:06:44.650 --> 01:06:50.620
+For guion bajo in range de 3, imprimamos ahora solo una de estas cada vez.
+
+01:06:50.620 --> 01:06:53.230
+Pero el hecho de que ahora haya usado un 3 en range
+
+01:06:53.230 --> 01:06:55.840
+significa que si quiero cambiarlo por algo mayor o menor,
+
+01:06:55.840 --> 01:06:59.350
+lo cambio en un solo sitio, no en tres o más.
+
+01:06:59.350 --> 01:07:01.450
+Y este código, por supuesto, si lo he hecho bien,
+
+01:07:01.450 --> 01:07:05.150
+va a imprimir exactamente lo mismo.
+
+01:07:05.150 --> 01:07:06.610
+Así que estamos iterando aquí.
+
+01:07:06.610 --> 01:07:08.860
+Pero veamos si podemos integrar ahora nuestra discusión
+
+01:07:08.860 --> 01:07:13.420
+sobre escribir nuestras propias funciones para empezar a escribir algo un poco más dinámico
+
+01:07:13.420 --> 01:07:16.180
+y resolver, en última instancia, problemas más complicados.
+
+01:07:16.180 --> 01:07:18.130
+Una de las cosas buenas de las funciones es
+
+01:07:18.130 --> 01:07:21.550
+que no solo nos permiten escribir código que podemos usar y reutilizar,
+
+01:07:21.550 --> 01:07:24.640
+sino que nos permiten crear abstracciones, por así decirlo.
+
+01:07:24.640 --> 01:07:28.990
+Una abstracción es una simplificación de una idea potencialmente más complicada.
+
+01:07:28.990 --> 01:07:31.870
+Y hemos visto esto varias veces a lo largo de las semanas.
+
+01:07:31.870 --> 01:07:35.650
+Por ejemplo, teníamos una función llamada hello que, es cierto, no hacía
+
+01:07:35.650 --> 01:07:37.480
+gran cosa, simplemente imprimía hello.
+
+01:07:37.480 --> 01:07:40.960
+Pero me permitía pensar en la función exactamente como lo que hace,
+
+01:07:40.960 --> 01:07:44.590
+no como imprimir algo genéricamente, sino literalmente decir hola.
+
+01:07:44.590 --> 01:07:48.520
+He podido obtener un número usando algo similar al definir
+
+01:07:48.520 --> 01:07:50.320
+mi propia función como get number.
+
+01:07:50.320 --> 01:07:53.650
+Pues vamos a suponer, por ejemplo, por un momento
+
+01:07:53.650 --> 01:07:57.160
+que he tenido la previsión de usar, en mi función main,
+
+01:07:57.160 --> 01:07:59.770
+una función llamada print column.
+
+01:07:59.770 --> 01:08:03.190
+Parece un nombre tan bueno como cualquier otro para una función que
+
+01:08:03.190 --> 01:08:05.290
+imprime una columna de ladrillos.
+
+01:08:05.290 --> 01:08:07.660
+Bueno, ¿cómo puedo implementar ahora
+
+01:08:07.660 --> 01:08:12.100
+esta abstracción, esta idea simple de print column, con código real?
+
+01:08:12.100 --> 01:08:14.500
+Pues ya hemos visto antes con def que podemos hacer justo eso.
+
+01:08:14.500 --> 01:08:16.720
+Voy a definir una función llamada print column.
+
+01:08:16.720 --> 01:08:21.220
+Voy a aceptar como entrada, hablando en términos genéricos, un parámetro llamado height.
+
+01:08:21.220 --> 01:08:25.029
+Podría llamarlo n o h, pero será un poco más explícito con height,
+
+01:08:25.029 --> 01:08:27.250
+para recordarme lo que está haciendo.
+
+01:08:27.250 --> 01:08:30.819
+Y ahora creo que puedo tomar prestado parte de ese mismo código de antes.
+
+01:08:30.819 --> 01:08:37.990
+For guion bajo n range de height, imprime una sola almohadilla.
+
+01:08:37.990 --> 01:08:41.050
+Y luego, al final de todo este programa, simplemente llamemos a main.
+
+01:08:41.050 --> 01:08:43.120
+Así que he complicado un poco el código.
+
+01:08:43.120 --> 01:08:45.580
+Todavía no hace nada más, pero
+
+01:08:45.580 --> 01:08:48.310
+me está preparando para resolver lo que creo que van a ser
+
+01:08:48.310 --> 01:08:50.080
+problemas más sofisticados.
+
+01:08:50.080 --> 01:08:53.170
+Si ejecuto python de mario.py, volvemos al punto de partida.
+
+01:08:53.170 --> 01:08:57.520
+Pero ahora tengo una función, una abstracción, print column,
+
+01:08:57.520 --> 01:09:00.040
+que me va a permitir pensar en imprimir
+
+01:09:00.040 --> 01:09:03.432
+un trozo del mundo de Mario cada vez.
+
+01:09:03.432 --> 01:09:05.140
+Y puedo hacerlo también de maneras distintas.
+
+01:09:05.140 --> 01:09:09.080
+Fijaos en que, si realmente quiero, podría hacer algo como esto.
+
+01:09:09.080 --> 01:09:12.260
+Podría implementar ahora print column de maneras diferentes,
+
+01:09:12.260 --> 01:09:15.260
+especialmente si uso print column por todo mi código,
+
+01:09:15.260 --> 01:09:19.220
+o quizás incluso si un compañero mío, un amigo, otra persona en internet
+
+01:09:19.220 --> 01:09:21.200
+está usando mi función print column.
+
+01:09:21.200 --> 01:09:23.899
+Lo bueno de las funciones que has escrito
+
+01:09:23.899 --> 01:09:27.770
+es que puedes cambiar sus detalles internos de implementación,
+
+01:09:27.770 --> 01:09:31.850
+pero siempre que no cambies el nombre de la función ni sus parámetros
+
+01:09:31.850 --> 01:09:35.870
+ni lo que devuelve, si es que devuelve algo, nadie más nota la diferencia.
+
+01:09:35.870 --> 01:09:37.970
+Puedes cambiar la implementación interna
+
+01:09:37.970 --> 01:09:41.760
+todo lo que quieras si quieres mejorarla o hacer correcciones con el tiempo.
+
+01:09:41.760 --> 01:09:44.390
+Así que, por ejemplo, otra forma en que podríamos implementar print column,
+
+01:09:44.390 --> 01:09:46.340
+recordad, sería algo como esto.
+
+01:09:46.340 --> 01:09:48.920
+Un poco ingenioso, con una almohadilla y luego un salto de línea,
+
+01:09:48.920 --> 01:09:51.750
+y luego quizás podríamos multiplicar cadenas,
+
+01:09:51.750 --> 01:09:54.080
+y terminar esta línea con comillas-comillas.
+
+01:09:54.080 --> 01:09:57.110
+De nuevo, no pasa nada si no os sentís cómodos con esta sintaxis.
+
+01:09:57.110 --> 01:09:59.660
+Este fue un enfoque más ingenioso que vimos en el pasado.
+
+01:09:59.660 --> 01:10:04.280
+Pero si ejecuto python de mario.py aquí, seguiré viendo una columna de tres.
+
+01:10:04.280 --> 01:10:07.040
+Pero lo importante aquí es que main no
+
+01:10:07.040 --> 01:10:12.110
+necesita saber que la implementación subyacente de print column
+
+01:10:12.110 --> 01:10:13.980
+ha cambiado.
+
+01:10:13.980 --> 01:10:15.980
+Bueno, pasemos a una dimensión distinta,
+
+01:10:15.980 --> 01:10:19.400
+por así decirlo, y en lugar de imprimir solo estos ladrillos verticales,
+
+01:10:19.400 --> 01:10:22.160
+avancemos en el juego hasta esta parte del mundo de aquí.
+
+01:10:22.160 --> 01:10:25.490
+En cierto punto, Mario se encuentra con estos ladrillos en el cielo
+
+01:10:25.490 --> 01:10:27.690
+que, si salta por debajo, se convierten en monedas.
+
+01:10:27.690 --> 01:10:29.780
+Y así suma a su puntuación.
+
+01:10:29.780 --> 01:10:32.270
+Pero centrémonos solo en esas monedas,
+
+01:10:32.270 --> 01:10:34.460
+y propongo que imprimamos, oh, solo
+
+01:10:34.460 --> 01:10:36.110
+estos cuatro signos de interrogación de aquí.
+
+01:10:36.110 --> 01:10:38.150
+Y voy a volver a VS Code.
+
+01:10:38.150 --> 01:10:41.480
+Y propongo que, dentro de VS Code, igual que antes,
+
+01:10:41.480 --> 01:10:43.010
+intentemos abstraer esto.
+
+01:10:43.010 --> 01:10:45.290
+Así que voy a deshacerme de esta versión,
+
+01:10:45.290 --> 01:10:49.520
+porque ahora vamos en horizontal en lugar de en vertical con nuestra salida.
+
+01:10:49.520 --> 01:10:53.690
+Y simplemente digo: bueno, print row cuatro veces.
+
+01:10:53.690 --> 01:10:56.360
+Simplemente voy a abstraer el problema que tenemos entre manos.
+
+01:10:56.360 --> 01:10:59.180
+Todavía no sé cómo voy a imprimir esos cuatro signos de interrogación,
+
+01:10:59.180 --> 01:11:03.770
+pero llamémoslo print row 4, y asumiré que ya resolveré este problema.
+
+01:11:03.770 --> 01:11:06.800
+Bajemos ahora por esa madriguera para resolver el problema.
+
+01:11:06.800 --> 01:11:09.020
+Define una función llamada print row.
+
+01:11:09.020 --> 01:11:11.570
+Va a recibir un width en lugar de un height,
+
+01:11:11.570 --> 01:11:14.030
+porque es horizontal en lugar de vertical.
+
+01:11:14.030 --> 01:11:15.750
+¿Y cómo puedo hacerlo?
+
+01:11:15.750 --> 01:11:19.160
+Bueno, ahora tenemos la oportunidad de hacer multiplicación de cadenas de forma aún más
+
+01:11:19.160 --> 01:11:19.760
+elegante.
+
+01:11:19.760 --> 01:11:23.300
+Puedo decir comillas, signo de interrogación, por width.
+
+01:11:23.300 --> 01:11:28.010
+Y esta es una forma muy bonita y pythónica de imprimir lo que de otro modo
+
+01:11:28.010 --> 01:11:29.990
+podría ser un bucle, y eso está bien, pero esto va
+
+01:11:29.990 --> 01:11:32.630
+a imprimir esos signos de interrogación por mí.
+
+01:11:32.630 --> 01:11:37.130
+Hagamos python de mario.py, Enter, y ahora tengo cuatro signos de interrogación.
+
+01:11:37.130 --> 01:11:39.530
+No es ni de lejos tan bonito como la versión más gráfica,
+
+01:11:39.530 --> 01:11:44.390
+pero es al menos un bloque de construcción para tener
+
+01:11:44.390 --> 01:11:47.870
+ahora una función reutilizable como print row.
+
+01:11:47.870 --> 01:11:49.130
+¿Y por qué estoy haciendo todo esto?
+
+01:11:49.130 --> 01:11:52.820
+¿Por qué estamos sobrediseñando la solución a estos problemas
+
+01:11:52.820 --> 01:11:54.920
+teniendo print column y print row?
+
+01:11:54.920 --> 01:11:57.620
+Pues es una técnica útil de resolución de problemas.
+
+01:11:57.620 --> 01:12:00.410
+En cuanto tu mundo no parece unidimensional
+
+01:12:00.410 --> 01:12:04.130
+como este o como la versión de la columna, ¿y qué tal esto?
+
+01:12:04.130 --> 01:12:08.270
+Más adelante en Super Mario Bros., Mario tiene que saltar hacia abajo a este mundo
+
+01:12:08.270 --> 01:12:11.000
+donde hay muchas de estas barreras subterráneas.
+
+01:12:11.000 --> 01:12:13.400
+Y esta de aquí, por ejemplo, parece un cuadrado.
+
+01:12:13.400 --> 01:12:16.400
+Es bidimensional, tiene una altura y una anchura.
+
+01:12:16.400 --> 01:12:18.830
+Es decir, hay un montón de maneras distintas
+
+01:12:18.830 --> 01:12:21.980
+en que podríamos implementar esto si, por ejemplo, para la discusión,
+
+01:12:21.980 --> 01:12:26.780
+es como una cuadrícula de 3 por 3, un cuadrado de 3 por 3, por así decirlo.
+
+01:12:26.780 --> 01:12:29.570
+Bueno, ¿cómo podemos resolver este problema?
+
+01:12:29.570 --> 01:12:32.060
+Pues propongo que volvamos a VS Code
+
+01:12:32.060 --> 01:12:36.420
+y que pensemos en esto de un par de maneras distintas.
+
+01:12:36.420 --> 01:12:39.740
+Podría hacerlo así.
+
+01:12:39.740 --> 01:12:44.450
+Si sé adónde voy, quizás soy un programador experimentado, voy a hacer
+
+01:12:44.450 --> 01:12:45.060
+esto.
+
+01:12:45.060 --> 01:12:48.530
+Voy a imprimir un cuadrado cuyo ancho y alto son 3.
+
+01:12:48.530 --> 01:12:49.487
+Eso es una abstracción.
+
+01:12:49.487 --> 01:12:52.070
+Simplemente doy por sentado por un momento que ya existe
+
+01:12:52.070 --> 01:12:56.180
+una función llamada print square que va a ser con ancho 3 y alto 3
+
+01:12:56.180 --> 01:12:57.068
+también.
+
+01:12:57.068 --> 01:12:59.360
+Pero alguien tiene que implementar esto, y en este momento
+
+01:12:59.360 --> 01:13:01.580
+solo estoy yo al teclado, así que vamos a
+
+01:13:01.580 --> 01:13:03.020
+implementar ese cuadrado.
+
+01:13:03.020 --> 01:13:05.000
+Voy a definir una función llamada
+
+01:13:05.000 --> 01:13:10.250
+print square que recibe un tamaño específico, tanto para el alto como para el ancho.
+
+01:13:10.250 --> 01:13:13.310
+Y aquí es donde tenemos la oportunidad de usar algunos de esos bucles.
+
+01:13:13.310 --> 01:13:16.250
+Y podemos usar esos bucles de una manera que todavía no hemos usado.
+
+01:13:16.250 --> 01:13:21.500
+Si quiero imprimir todas estas filas, pero también todas estas columnas,
+
+01:13:21.500 --> 01:13:24.620
+ahora tengo que pensar no solo cíclicamente como permite un bucle,
+
+01:13:24.620 --> 01:13:26.960
+sino que necesito pensar de forma bidimensional.
+
+01:13:26.960 --> 01:13:30.560
+Y si estáis familiarizados con una máquina de escribir de la vieja escuela o incluso con una impresora
+
+01:13:30.560 --> 01:13:33.570
+de hoy en día, generalmente imprime de arriba abajo.
+
+01:13:33.570 --> 01:13:38.550
+Así que aunque tengas varias columnas, imprimes una línea cada vez,
+
+01:13:38.550 --> 01:13:41.360
+y mientras estás en esa línea, la impresora o la máquina de escribir
+
+01:13:41.360 --> 01:13:42.750
+imprime de izquierda a derecha.
+
+01:13:42.750 --> 01:13:46.550
+Y ese es el modelo mental que hay que tener con vuestra ventana de terminal en blanco y negro.
+
+01:13:46.550 --> 01:13:50.810
+Toda la salida de todos los ejemplos hasta ahora empieza arriba
+
+01:13:50.810 --> 01:13:52.340
+y baja hasta el final.
+
+01:13:52.340 --> 01:13:54.120
+De arriba abajo, de izquierda a derecha.
+
+01:13:54.120 --> 01:13:58.770
+Así que tenemos que generar nuestra salida, nuestro cuadrado, de esa misma manera.
+
+01:13:58.770 --> 01:14:01.070
+Así que propongo que hagamos esto.
+
+01:14:01.070 --> 01:14:04.790
+Propongo que, sabiendo que necesitamos iterar esta cantidad de veces, 3 o, más
+
+01:14:04.790 --> 01:14:05.810
+generalmente, size.
+
+01:14:05.810 --> 01:14:06.560
+Así que voy a hacer esto.
+
+01:14:06.560 --> 01:14:12.200
+For i in range de size, ¿qué necesito hacer tres veces?
+
+01:14:12.200 --> 01:14:14.520
+Bueno, ¿qué quiero imprimir?
+
+01:14:14.520 --> 01:14:17.790
+1, 2, 3 filas de ladrillos.
+
+01:14:17.790 --> 01:14:20.850
+Pero dentro de cada fila de ladrillos, ¿qué quiero imprimir?
+
+01:14:20.850 --> 01:14:24.220
+1, 2, 3 ladrillos concretamente.
+
+01:14:24.220 --> 01:14:26.790
+Así que si volvemos a nuestro diagrama de aquí y estipulo
+
+01:14:26.790 --> 01:14:33.700
+que efectivamente debe ser un cuadrado de 3 por 3, 3 de ancho y 3 de alto,
+
+01:14:33.700 --> 01:14:35.880
+¿qué quería hacer para imprimir la primera fila?
+
+01:14:35.880 --> 01:14:40.095
+Quiero imprimir ladrillo, ladrillo, ladrillo.
+
+01:14:40.095 --> 01:14:42.720
+¿Qué quiero imprimir en la segunda fila? Ladrillo, ladrillo, ladrillo.
+
+01:14:42.720 --> 01:14:44.580
+Y en la tercera fila, ladrillo, ladrillo, ladrillo.
+
+01:14:44.580 --> 01:14:48.390
+Así que estoy haciendo tres cosas tres veces.
+
+01:14:48.390 --> 01:14:50.650
+Hay mucho que imprimir.
+
+01:14:50.650 --> 01:14:53.670
+Así que voy a volver a mi código y propongo ahora
+
+01:14:53.670 --> 01:14:57.540
+que pensemos en este bucle exterior que acabo de empezar
+
+01:14:57.540 --> 01:15:00.960
+como representando cada una de nuestras filas.
+
+01:15:00.960 --> 01:15:04.950
+For i in range de size va a asegurar, haga lo que haga después,
+
+01:15:04.950 --> 01:15:10.920
+que puedo imprimir 1, 2, 3 filas, o, más generalmente,
+
+01:15:10.920 --> 01:15:15.030
+size, donde size podría ser 3, pero podría ser menor o mayor.
+
+01:15:15.030 --> 01:15:17.520
+¿Qué quiero hacer en cada una de las filas?
+
+01:15:17.520 --> 01:15:21.270
+Pues, igual que una máquina de escribir o una impresora de la vieja escuela, en cada fila
+
+01:15:21.270 --> 01:15:24.420
+quiero imprimir ladrillo, ladrillo, ladrillo; ladrillo, ladrillo, ladrillo; ladrillo, ladrillo,
+
+01:15:24.420 --> 01:15:25.470
+ladrillo.
+
+01:15:25.470 --> 01:15:28.260
+Bueno, eso suena a un ciclo, a algún tipo de bucle.
+
+01:15:28.260 --> 01:15:31.740
+Así que quizás puedo tener dentro de un bucle otro bucle.
+
+01:15:31.740 --> 01:15:35.100
+No quiero usar i otra vez porque no quiero usar la misma variable
+
+01:15:35.100 --> 01:15:36.450
+y estropear mi conteo.
+
+01:15:36.450 --> 01:15:38.860
+Así que voy a usar j, por convención.
+
+01:15:38.860 --> 01:15:41.460
+Es muy habitual usar i y luego j, quizás k,
+
+01:15:41.460 --> 01:15:44.800
+pero después de eso, no deberíais seguir anidando unos dentro de otros.
+
+01:15:44.800 --> 01:15:47.790
+Voy a decir for j in range de size 2,
+
+01:15:47.790 --> 01:15:50.940
+porque es un cuadrado, y luego en cada una de estas filas,
+
+01:15:50.940 --> 01:15:57.660
+voy a imprimir una sola almohadilla, pero sin salto de línea, y después de cada fila,
+
+01:15:57.660 --> 01:16:00.750
+voy a imprimir solo un salto de línea.
+
+01:16:00.750 --> 01:16:03.720
+Así que están pasando muchas cosas aquí, especialmente si nunca habéis
+
+01:16:03.720 --> 01:16:08.220
+tocado Python, y mucho menos los bucles, pero fijaos en lo que he hecho aquí también,
+
+01:16:08.220 --> 01:16:10.800
+y añadiré algunos comentarios para mayor claridad.
+
+01:16:10.800 --> 01:16:22.300
+Para cada fila del cuadrado, para cada ladrillo de la fila, imprime un ladrillo.
+
+01:16:22.300 --> 01:16:25.330
+Y aquí es donde los comentarios, y más en general,
+
+01:16:25.330 --> 01:16:28.990
+el pseudocódigo pueden ayudar de verdad a explicarte a ti mismo y a los demás
+
+01:16:28.990 --> 01:16:30.820
+lo que hacen tus líneas de código.
+
+01:16:30.820 --> 01:16:35.410
+En la línea 8, estoy iterando desde i igual a 0 hasta size.
+
+01:16:35.410 --> 01:16:37.180
+Es decir, 0, 1, 2.
+
+01:16:37.180 --> 01:16:41.560
+En la línea 11, estoy haciendo exactamente lo mismo, pero usando j de 0, 1, 2.
+
+01:16:41.560 --> 01:16:45.490
+Pero está bien, porque i representa cada una de mis filas.
+
+01:16:45.490 --> 01:16:49.300
+Y mientras estoy en cada una de esas filas, dentro de este bucle exterior,
+
+01:16:49.300 --> 01:16:53.110
+voy a hacer ladrillo, ladrillo, ladrillo; 1, 2, 3; 1, 2, 3; 1, 2, 3.
+
+01:16:53.110 --> 01:16:56.830
+Pero no quiero que mi cursor siga pasando a la línea siguiente
+
+01:16:56.830 --> 01:17:01.260
+mientras estoy en una fila, así que simplemente sobrescribo ese final de línea.
+
+01:17:01.260 --> 01:17:03.010
+Pero déjame hacer una pregunta al grupo:
+
+01:17:03.010 --> 01:17:10.160
+¿por qué en la línea 16 tengo un print aquí solo, sin nada más?
+
+01:17:10.160 --> 01:17:13.820
+¿Por qué tengo un print solo?
+
+01:17:13.820 --> 01:17:19.180
+Fijaos en que está debajo del bucle interior, pero dentro
+
+01:17:19.180 --> 01:17:22.300
+del bucle exterior, por así decirlo.
+
+01:17:22.300 --> 01:17:26.650
+¿Qué está haciendo, en última instancia, esa instrucción de la línea 16?
+
+01:17:26.650 --> 01:17:29.080
+AUDIENCE: Cada vez que terminas una línea,
+
+01:17:29.080 --> 01:17:33.490
+tienes que añadir un salto de línea al final.
+
+01:17:33.490 --> 01:17:36.905
+Así que print, imprime un salto de línea.
+
+01:17:36.905 --> 01:17:37.780
+DAVID MALAN: Perfecto.
+
+01:17:37.780 --> 01:17:40.330
+No quiero un salto de línea después de cada ladrillo.
+
+01:17:40.330 --> 01:17:42.670
+Solo quiero hacerlo al final de la fila,
+
+01:17:42.670 --> 01:17:45.460
+y por eso mis comentarios ahora quizás resultan esclarecedores.
+
+01:17:45.460 --> 01:17:51.460
+Fijaos en que este bucle de aquí simplemente itera para cada ladrillo de la fila.
+
+01:17:51.460 --> 01:17:54.190
+Una vez que termino con ese bucle interior, por así decirlo,
+
+01:17:54.190 --> 01:17:57.760
+una vez que termino con estas líneas resaltadas, como dice Evelyn,
+
+01:17:57.760 --> 01:17:59.927
+necesito imprimir un salto de línea en blanco.
+
+01:17:59.927 --> 01:18:03.010
+Y no lo hemos hecho antes, pero cuando llamas a print sin argumentos,
+
+01:18:03.010 --> 01:18:05.770
+lo único que obtienes es ese final de línea automático,
+
+01:18:05.770 --> 01:18:09.110
+la barra invertida n con la que el cursor pasa a la línea siguiente.
+
+01:18:09.110 --> 01:18:13.540
+Así que si ahora vuelvo a la ventana de mi terminal y ejecuto mario.py,
+
+01:18:13.540 --> 01:18:16.653
+creo que debería obtener un cuadrado de 3 por 3.
+
+01:18:16.653 --> 01:18:18.820
+Y no se ve del todo como un cuadrado en mi pantalla
+
+01:18:18.820 --> 01:18:22.300
+porque estas almohadillas son un poco más altas que anchas, pero es, de hecho,
+
+01:18:22.300 --> 01:18:23.680
+de 3 por 3.
+
+01:18:23.680 --> 01:18:26.140
+Pero propongo, como siempre hemos hecho aquí, cómo
+
+01:18:26.140 --> 01:18:28.030
+podríamos compactar aún más este código.
+
+01:18:28.030 --> 01:18:32.050
+Solo por claridad, voy a quitar mis comentarios un momento
+
+01:18:32.050 --> 01:18:35.680
+para que veamos cuántas líneas de código tenemos en total.
+
+01:18:35.680 --> 01:18:39.040
+Y propongo que quizás hagamos esto.
+
+01:18:39.040 --> 01:18:41.737
+Propongo que, ¿sabéis qué?, este bucle interior,
+
+01:18:41.737 --> 01:18:43.570
+especialmente si os cuesta entender
+
+01:18:43.570 --> 01:18:46.360
+un bucle dentro de otro bucle,
+
+01:18:46.360 --> 01:18:47.710
+no lo necesitáis estrictamente.
+
+01:18:47.710 --> 01:18:49.270
+¿Y si hacemos otra vez este truco?
+
+01:18:49.270 --> 01:18:54.130
+¿Y si imprimimos, dentro del único bucle exterior, cada
+
+01:18:54.130 --> 01:18:57.910
+una de esas almohadillas multiplicadas por el número de veces que las queremos?
+
+01:18:57.910 --> 01:19:00.400
+Nos inspiramos en un enfoque anterior
+
+01:19:00.400 --> 01:19:03.980
+y ejecutamos ahora python de mario.py, mismo resultado,
+
+01:19:03.980 --> 01:19:07.480
+pero ahora print square es realmente agradable y compacto.
+
+01:19:07.480 --> 01:19:10.810
+Tiene un bucle explícito, y sigue imprimiendo
+
+01:19:10.810 --> 01:19:15.340
+con multiplicación de cadenas todas las almohadillas de una vez en esa fila.
+
+01:19:15.340 --> 01:19:19.600
+Si os gusta la abstracción y queréis entender mejor
+
+01:19:19.600 --> 01:19:21.580
+lo que hace el código, hagamos esto.
+
+01:19:21.580 --> 01:19:23.770
+Si no tenéis del todo claro lo que está pasando,
+
+01:19:23.770 --> 01:19:25.870
+propongamos que implementéis una función llamada
+
+01:19:25.870 --> 01:19:28.150
+print row, pasándole size.
+
+01:19:28.150 --> 01:19:33.850
+Y propongo que esta función print row simplemente reciba ese ancho
+
+01:19:33.850 --> 01:19:39.260
+e imprima la almohadilla individual multiplicada esa cantidad de veces.
+
+01:19:39.260 --> 01:19:43.870
+En otras palabras, aquí hay una oportunidad de abstracción, porque, bueno, ¿qué
+
+01:19:43.870 --> 01:19:45.157
+significa imprimir una fila?
+
+01:19:45.157 --> 01:19:46.990
+Pues cuando estás implementando print square,
+
+01:19:46.990 --> 01:19:49.720
+en realidad no me importa qué significa imprimir una fila,
+
+01:19:49.720 --> 01:19:53.440
+solo necesito saber que alguien se encarga de imprimir la fila.
+
+01:19:53.440 --> 01:19:56.740
+Puedes pasarle la pelota a otra función por completo.
+
+01:19:56.740 --> 01:19:58.360
+¿Y cómo funciona print row?
+
+01:19:58.360 --> 01:20:02.500
+Pues podría usar un bucle for, podría usar este truco de la multiplicación de cadenas.
+
+01:20:02.500 --> 01:20:05.980
+Esta es una forma de tomar un programa más grande, y este es probablemente el más
+
+01:20:05.980 --> 01:20:08.120
+complicado que hemos visto hasta ahora,
+
+01:20:08.120 --> 01:20:13.600
+y descomponerlo en estos componentes más pequeños que, una vez ensamblados,
+
+01:20:13.600 --> 01:20:16.390
+logran tu idea final.
+
+01:20:16.390 --> 01:20:19.780
+Como no veo preguntas, ese es el final de nuestro repaso a los bucles
+
+01:20:19.780 --> 01:20:22.900
+en Python, esta capacidad de hacer cosas cíclicamente una y otra vez,
+
+01:20:22.900 --> 01:20:25.480
+y cuando los combinamos con los condicionales, esta capacidad
+
+01:20:25.480 --> 01:20:28.870
+de hacer y responder preguntas, y los combinamos con nuestras funciones y variables,
+
+01:20:28.870 --> 01:20:31.450
+ya tenemos realmente la mayoría de los bloques de construcción
+
+01:20:31.450 --> 01:20:34.060
+que necesitamos para resolver preguntas mucho más grandes, mucho más interesantes, mucho
+
+01:20:34.060 --> 01:20:35.260
+más personales.
+
+01:20:35.260 --> 01:20:39.100
+Así que en las próximas semanas empezaremos a ver exactamente qué podría salir mal
+
+01:20:39.100 --> 01:20:41.080
+cuando hagamos eso, pero os presentaremos
+
+01:20:41.080 --> 01:20:45.600
+muchas más herramientas con las que podréis resolver esos mismos problemas.

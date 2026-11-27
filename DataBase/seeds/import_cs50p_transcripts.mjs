@@ -48,6 +48,27 @@ async function readText(filePath) {
   return (await fs.readFile(filePath, "utf8")).replace(/^\uFEFF/, "").trim();
 }
 
+// Sustituye la transcripción de un idioma sin tocar las de otros idiomas.
+async function saveTranscript(client, contentId, language, text, captions) {
+  await client.query(
+    "DELETE FROM academy.transcripciones WHERE contenido_id = $1 AND idioma = $2",
+    [contentId, language],
+  );
+  const inserted = await client.query(
+    `INSERT INTO academy.transcripciones (contenido_id, texto, idioma)
+     VALUES ($1, $2, $3) RETURNING id`,
+    [contentId, text, language],
+  );
+  await client.query(
+    `INSERT INTO academy.fragmentos_transcripcion
+       (transcripcion_id, tiempo_inicio, tiempo_fin, texto)
+     SELECT $1, cues.tiempo_inicio, cues.tiempo_fin, cues.texto
+     FROM jsonb_to_recordset($2::jsonb)
+       AS cues(tiempo_inicio integer, tiempo_fin integer, texto text)`,
+    [inserted.rows[0].id, JSON.stringify(captions)],
+  );
+}
+
 async function importTranscripts() {
   const client = await pool.connect();
   try {
@@ -82,26 +103,32 @@ async function importTranscripts() {
       if (!transcript) transcript = captions.map(({ texto }) => texto).join(" ");
 
       const contentId = module.rows[0].contenido_id;
-      await client.query("DELETE FROM academy.transcripciones WHERE contenido_id = $1", [contentId]);
-      const inserted = await client.query(
-        `INSERT INTO academy.transcripciones (contenido_id, texto, idioma)
-         VALUES ($1, $2, 'en') RETURNING id`,
-        [contentId, transcript],
-      );
-      await client.query(
-        `INSERT INTO academy.fragmentos_transcripcion
-           (transcripcion_id, tiempo_inicio, tiempo_fin, texto)
-         SELECT $1, cues.tiempo_inicio, cues.tiempo_fin, cues.texto
-         FROM jsonb_to_recordset($2::jsonb)
-           AS cues(tiempo_inicio integer, tiempo_fin integer, texto text)`,
-        [inserted.rows[0].id, JSON.stringify(captions)],
-      );
+      await saveTranscript(client, contentId, "en", transcript, captions);
       const duration = Math.max(...captions.map(({ tiempo_fin }) => tiempo_fin));
       await client.query(
         "UPDATE academy.contenidos SET duracion_segundos = $1 WHERE id = $2",
         [duration, contentId],
       );
-      console.log(`Lección ${week}: ${captions.length} fragmentos, ${duration} s.`);
+
+      // Traducción al español (opcional): lecture-N.es.srt, con los mismos tiempos.
+      let spanish = "";
+      try {
+        const spanishCaptions = parseSrt(await readText(path.join(mediaDirectory, `lecture-${week}.es.srt`)));
+        if (spanishCaptions.length) {
+          await saveTranscript(
+            client,
+            contentId,
+            "es",
+            spanishCaptions.map(({ texto }) => texto).join(" "),
+            spanishCaptions,
+          );
+          spanish = `, ${spanishCaptions.length} en español`;
+        }
+      } catch (error) {
+        if (error?.code !== "ENOENT") throw error;
+      }
+
+      console.log(`Lección ${week}: ${captions.length} fragmentos${spanish}, ${duration} s.`);
     }
 
     await client.query("COMMIT");

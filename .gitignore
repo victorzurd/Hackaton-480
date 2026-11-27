@@ -5,6 +5,10 @@ media/cs50p/*.mp4
 media/cs50p/*.srt
 media/cs50p/*.txt
 media/cs50p/*.vtt
+# Las traducciones al español sí se suben (docs/transcripciones.md); las partes de trabajo, no.
+!media/cs50p/*.es.srt
+!media/cs50p/*.es.vtt
+media/cs50p/traduccion/
 .env
 .env.*
 !.env.example

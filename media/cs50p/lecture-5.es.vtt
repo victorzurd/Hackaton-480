@@ -1,0 +1,3070 @@
+WEBVTT
+
+00:00:25.250 --> 00:00:28.400
+DAVID MALAN: Esto es CS50 Introducción a la programación con Python.
+
+00:00:28.400 --> 00:00:29.480
+Me llamo David Malan.
+
+00:00:29.480 --> 00:00:31.940
+Y esta es nuestra semana sobre pruebas unitarias.
+
+00:00:31.940 --> 00:00:34.070
+Hasta ahora hemos escrito mucho código,
+
+00:00:34.070 --> 00:00:37.207
+y puede que hayas probado tu código ejecutando tu programa,
+
+00:00:37.207 --> 00:00:40.040
+introduciendo algunas entradas de ejemplo, volviendo a ejecutarlo e introduciendo
+
+00:00:40.040 --> 00:00:42.530
+otras entradas de ejemplo, o puede que hayas estado esperando
+
+00:00:42.530 --> 00:00:44.180
+a que fuéramos nosotros quienes probáramos tu código.
+
+00:00:44.180 --> 00:00:47.270
+Pero en realidad es mucha mejor práctica coger cuanto antes el hábito
+
+00:00:47.270 --> 00:00:51.877
+de probar tu propio código usando código tuyo.
+
+00:00:51.877 --> 00:00:53.960
+De hecho, tanto si estás escribiendo un proyecto personal
+
+00:00:53.960 --> 00:00:57.065
+como si trabajas en la industria, hoy en día es muy habitual no solo escribir código
+
+00:00:57.065 --> 00:00:58.940
+para resolver los problemas que quieres resolver,
+
+00:00:58.940 --> 00:01:03.260
+sino también escribir un poco de código extra para probar el código que escribiste.
+
+00:01:03.260 --> 00:01:06.590
+Y eso es en lo que nos vamos a centrar hoy: escribir nuestras propias pruebas para
+
+00:01:06.590 --> 00:01:08.900
+tener mucha más confianza, mucha más certeza,
+
+00:01:08.900 --> 00:01:12.930
+de que los problemas que hemos intentado resolver están, en efecto, resueltos correctamente.
+
+00:01:12.930 --> 00:01:17.720
+Así que retrocedamos unas semanas hasta un programa que escribimos hace un tiempo,
+
+00:01:17.720 --> 00:01:20.540
+concretamente para calcular números.
+
+00:01:20.540 --> 00:01:23.450
+Y en concreto, lo dejamos con esta calculadora
+
+00:01:23.450 --> 00:01:27.050
+intentando calcular la potencia de un número, como x al cuadrado,
+
+00:01:27.050 --> 00:01:31.250
+donde x podría ser dos o tres o algún otro número también.
+
+00:01:31.250 --> 00:01:34.850
+Voy a resucitar ese archivo yendo a mi ventana de terminal
+
+00:01:34.850 --> 00:01:38.750
+y ejecutando de nuevo code calculator.py.
+
+00:01:38.750 --> 00:01:42.410
+Y voy a retomar el punto en el que lo dejamos hace tiempo
+
+00:01:42.410 --> 00:01:44.367
+definiendo aquí una función main.
+
+00:01:44.367 --> 00:01:46.700
+Y luego, en mi función main, hice algo así.
+
+00:01:46.700 --> 00:01:49.550
+Dije: x igual a int de input.
+
+00:01:49.550 --> 00:01:52.730
+Y le pregunto al usuario: ¿cuánto vale x?, signo de interrogación.
+
+00:01:52.730 --> 00:01:55.880
+Y entonces imprimí inmediatamente algo como:
+
+00:01:55.880 --> 00:02:00.020
+x al cuadrado es, y luego pasé como segundo argumento
+
+00:02:00.020 --> 00:02:02.450
+a print el resultado de llamar a una función llamada
+
+00:02:02.450 --> 00:02:04.790
+square pasándole ese valor, x.
+
+00:02:04.790 --> 00:02:08.639
+Ahora bien, por supuesto, todavía no he implementado la función square.
+
+00:02:08.639 --> 00:02:10.110
+Así que vamos a definirla también.
+
+00:02:10.110 --> 00:02:12.560
+Voy a bajar un par de líneas y definir square.
+
+00:02:12.560 --> 00:02:15.938
+Y recibe un argumento, recordad, un parámetro que en su momento
+
+00:02:15.938 --> 00:02:18.980
+llamé n, de número, así que lo haré otra vez, aunque técnicamente podría
+
+00:02:18.980 --> 00:02:21.140
+elegir cualquier nombre para esta variable.
+
+00:02:21.140 --> 00:02:22.730
+Y recuerdo que hice esto.
+
+00:02:22.730 --> 00:02:25.190
+Devolví n por n.
+
+00:02:25.190 --> 00:02:27.560
+Y había varias maneras de hacerlo.
+
+00:02:27.560 --> 00:02:30.120
+Elevar un número al cuadrado es multiplicarlo por sí mismo.
+
+00:02:30.120 --> 00:02:32.150
+Así que también podría usar otra sintaxis aquí, pero esto
+
+00:02:32.150 --> 00:02:34.130
+es con lo que nos quedamos finalmente, y luego
+
+00:02:34.130 --> 00:02:37.430
+recordad que al final llamé a main para poner en marcha
+
+00:02:37.430 --> 00:02:39.090
+el proceso de ejecución de este programa.
+
+00:02:39.090 --> 00:02:41.900
+Así que, como prueba manual, voy a ejecutar
+
+00:02:41.900 --> 00:02:44.750
+Python de calculator.py y pulsar Intro.
+
+00:02:44.750 --> 00:02:45.530
+¿Cuánto vale x?
+
+00:02:45.530 --> 00:02:47.180
+Empecemos con 2.
+
+00:02:47.180 --> 00:02:48.530
+x al cuadrado es 4.
+
+00:02:48.530 --> 00:02:49.595
+Creo que es correcto.
+
+00:02:49.595 --> 00:02:51.470
+Así que ejecutémoslo otra vez, por si acaso.
+
+00:02:51.470 --> 00:02:55.880
+Python de calculator.py, escribamos 3 para x esta vez.
+
+00:02:55.880 --> 00:02:57.110
+x al cuadrado es 9.
+
+00:02:57.110 --> 00:02:58.370
+Y creo que eso es correcto.
+
+00:02:58.370 --> 00:03:00.412
+Y puede que en este punto me sienta bastante bien,
+
+00:03:00.412 --> 00:03:02.450
+y vaya a entregar mi código a un curso,
+
+00:03:02.450 --> 00:03:04.580
+o lo publique en internet para que otros lo usen.
+
+00:03:04.580 --> 00:03:07.550
+Pero en realidad no he probado este código de forma metódica.
+
+00:03:07.550 --> 00:03:10.280
+Y no necesariamente funciona del todo.
+
+00:03:10.280 --> 00:03:13.100
+De hecho, no he considerado realmente varios casos límite.
+
+00:03:13.100 --> 00:03:17.570
+Elegí algunos números bastante obvios como 2 y 3, pero ¿qué pasa con el 0?
+
+00:03:17.570 --> 00:03:18.930
+¿Qué pasa con los números negativos?
+
+00:03:18.930 --> 00:03:20.990
+¿Qué pasa con cualquier otro de los infinitos números?
+
+00:03:20.990 --> 00:03:23.090
+No vamos a probar un número infinito de entradas
+
+00:03:23.090 --> 00:03:25.007
+porque el programa nunca terminaría,
+
+00:03:25.007 --> 00:03:28.610
+pero deberíamos probar algunas entradas representativas.
+
+00:03:28.610 --> 00:03:31.970
+Pero antes de eso, cojamos el hábito de asegurarnos
+
+00:03:31.970 --> 00:03:33.770
+de que main no se llama siempre.
+
+00:03:33.770 --> 00:03:43.910
+Adoptemos de nuevo el hábito de hacer If__name__=="__main__",
+
+00:03:43.910 --> 00:03:45.920
+y solo entonces ejecutar main.
+
+00:03:45.920 --> 00:03:48.320
+Y lo hago ahora de forma proactiva, porque
+
+00:03:48.320 --> 00:03:53.210
+quiero asegurarme de que, cuando importe mi función square, quizá
+
+00:03:53.210 --> 00:03:56.930
+desde otra biblioteca, desde otro archivo, tratándolo como si fuera una biblioteca,
+
+00:03:56.930 --> 00:04:00.840
+main no se llame automáticamente por sí sola.
+
+00:04:00.840 --> 00:04:03.920
+Ahora, ¿qué quiero hacer a partir de aquí, una vez que he
+
+00:04:03.920 --> 00:04:06.320
+modificado este programa de la siguiente manera?
+
+00:04:06.320 --> 00:04:09.560
+Vamos a escribir un programa completamente distinto cuya única razón
+
+00:04:09.560 --> 00:04:12.210
+de ser sea probar este programa.
+
+00:04:12.210 --> 00:04:15.410
+Así que tengo mi calculadora real en calculator.py.
+
+00:04:15.410 --> 00:04:18.200
+Me he preparado para llamar a main de forma condicional
+
+00:04:18.200 --> 00:04:23.568
+para poder importar con seguridad una o más cosas de este archivo en otro archivo.
+
+00:04:23.568 --> 00:04:24.860
+¿Cómo debería llamarse ese otro archivo?
+
+00:04:24.860 --> 00:04:28.340
+Por convención, voy a crear un archivo que se llame test_,
+
+00:04:28.340 --> 00:04:31.580
+y como lo que estoy probando es esta calculadora,
+
+00:04:31.580 --> 00:04:34.910
+llamemos a este archivo test_calculator.py.
+
+00:04:34.910 --> 00:04:36.920
+Eso me dará una pestaña nueva en la que
+
+00:04:36.920 --> 00:04:39.080
+puedo escribir un programa completamente nuevo cuyo propósito
+
+00:04:39.080 --> 00:04:41.330
+es probar específicamente ese programa,
+
+00:04:41.330 --> 00:04:43.850
+o más bien la funcionalidad concreta de ese programa.
+
+00:04:43.850 --> 00:04:46.700
+Dentro de ese programa está la función square.
+
+00:04:46.700 --> 00:04:49.730
+Centrémonos en probar esa función.
+
+00:04:49.730 --> 00:04:52.760
+Entonces, ¿cómo accedo a esa función desde este programa?
+
+00:04:52.760 --> 00:04:55.610
+Recordad que puedo importar una función de otro archivo
+
+00:04:55.610 --> 00:04:58.480
+como si fuera una biblioteca mía, un llamado módulo.
+
+00:04:58.480 --> 00:04:59.480
+Así que voy a hacer esto.
+
+00:04:59.480 --> 00:05:03.170
+From calculator, import square.
+
+00:05:03.170 --> 00:05:05.600
+Podría simplemente importar square directamente.
+
+00:05:05.600 --> 00:05:09.440
+Pero entonces tendría que anteponer a cada uso de square, recordad,
+
+00:05:09.440 --> 00:05:12.440
+calculator punto en todas partes, y queda un poco más limpio
+
+00:05:12.440 --> 00:05:14.060
+importar solo la función.
+
+00:05:14.060 --> 00:05:16.440
+Y ahora voy a hacer lo siguiente.
+
+00:05:16.440 --> 00:05:19.910
+Voy a definir una función llamada test square.
+
+00:05:19.910 --> 00:05:21.270
+Esto también es una convención.
+
+00:05:21.270 --> 00:05:25.390
+Si quieres probar una función llamada square, tu función de prueba
+
+00:05:25.390 --> 00:05:27.700
+debería llamarse test_square.
+
+00:05:27.700 --> 00:05:30.430
+O, alternativamente, podrías usar square_test,
+
+00:05:30.430 --> 00:05:31.930
+pero yo adoptaré esta convención aquí.
+
+00:05:31.930 --> 00:05:34.270
+Ahora bien, ¿qué tipo de pruebas podemos hacer?
+
+00:05:34.270 --> 00:05:38.920
+No me desagradan las pruebas que hice antes, probar x igual a 2 y x igual a 3.
+
+00:05:38.920 --> 00:05:41.745
+Pero cada vez que quería probar mi programa antes,
+
+00:05:41.745 --> 00:05:43.120
+tenía que hacerlo manualmente.
+
+00:05:43.120 --> 00:05:44.050
+Y eso se va a volver tedioso.
+
+00:05:44.050 --> 00:05:45.880
+No va a ser fácil para otra persona probarlo.
+
+00:05:45.880 --> 00:05:47.990
+Y si realmente estoy trabajando en el mundo real,
+
+00:05:47.990 --> 00:05:49.720
+sería bueno poder hacer que mi programa se probara
+
+00:05:49.720 --> 00:05:54.040
+automáticamente una y otra vez mediante algún proceso automatizado que ejecutara
+
+00:05:54.040 --> 00:05:54.910
+mi propio código.
+
+00:05:54.910 --> 00:05:58.130
+Así que hagámoslo y saquemos al humano de la ecuación.
+
+00:05:58.130 --> 00:06:00.850
+Entonces, ¿cómo podría probar la función square
+
+00:06:00.850 --> 00:06:03.670
+que ya he importado en la línea uno?
+
+00:06:03.670 --> 00:06:05.800
+En mi función test square, ¿por qué no hago esto?
+
+00:06:05.800 --> 00:06:11.198
+Si el resultado de llamar a square de 2 no es igual a 4,
+
+00:06:11.198 --> 00:06:13.240
+imprimamos un mensaje de error,
+
+00:06:13.240 --> 00:06:17.080
+porque sé que en el mundo real 2 al cuadrado debería ser 4,
+
+00:06:17.080 --> 00:06:21.572
+así que si square de 2 no es igual a 4, hay un error en mi programa.
+
+00:06:21.572 --> 00:06:22.780
+Hay un error en mi función.
+
+00:06:22.780 --> 00:06:23.780
+He cometido un fallo.
+
+00:06:23.780 --> 00:06:26.655
+Así que voy a imprimir algo así para que yo u otra persona
+
+00:06:26.655 --> 00:06:30.050
+sepa que 2 al cuadrado no era 4, por ejemplo.
+
+00:06:30.050 --> 00:06:31.640
+Podría imprimir cualquier cosa aquí.
+
+00:06:31.640 --> 00:06:33.163
+¿Qué debería probar a continuación?
+
+00:06:33.163 --> 00:06:34.330
+Hagamos más de una prueba.
+
+00:06:34.330 --> 00:06:40.120
+Digamos que si el cuadrado de 3 no es igual a 9, entonces imprimamos
+
+00:06:40.120 --> 00:06:43.390
+que 3 al cuadrado no era 9.
+
+00:06:43.390 --> 00:06:46.240
+Así que no he hecho más pruebas que antes.
+
+00:06:46.240 --> 00:06:52.390
+Pero he incorporado esas dos pruebas, x igual a 2 y x igual a 3, a mi propio código
+
+00:06:52.390 --> 00:06:55.910
+aquí, así que ahora puedo ejecutar esas pruebas automáticamente, por así decirlo.
+
+00:06:55.910 --> 00:06:59.890
+Ahora bien, no basta con definir una función llamada test square.
+
+00:06:59.890 --> 00:07:02.830
+Si quiero ejecutar esta función, tengo que llamarla de algún modo.
+
+00:07:02.830 --> 00:07:06.250
+Y nuestra convención para hacerlo es la de siempre.
+
+00:07:06.250 --> 00:07:08.530
+En este archivo también, voy a definir main.
+
+00:07:08.530 --> 00:07:12.670
+Y la única razón de ser de main va a ser probar square.
+
+00:07:12.670 --> 00:07:15.310
+Y ahora, al final de este archivo, como antes,
+
+00:07:15.310 --> 00:07:23.860
+voy a adoptar mi convención de if__name__=="__main__",
+
+00:07:23.860 --> 00:07:26.170
+y entonces llamar a main.
+
+00:07:26.170 --> 00:07:27.890
+Así que gran parte de esto es código repetitivo.
+
+00:07:27.890 --> 00:07:29.890
+Lo hemos visto antes: definir una función main
+
+00:07:29.890 --> 00:07:32.073
+y llamar a una función para poner en marcha un proceso,
+
+00:07:32.073 --> 00:07:34.240
+y ahora añadir la condición al final del archivo
+
+00:07:34.240 --> 00:07:37.900
+para asegurarme de que solo llamo a main de forma condicional, por si importo
+
+00:07:37.900 --> 00:07:40.220
+algo de este archivo en otro lugar.
+
+00:07:40.220 --> 00:07:41.050
+Veamos.
+
+00:07:41.050 --> 00:07:43.030
+Vamos a probar mi código ahora.
+
+00:07:43.030 --> 00:07:47.800
+Voy a ejecutar Python de test_calculator y pulsar Intro,
+
+00:07:47.800 --> 00:07:49.780
+y no se muestra nada.
+
+00:07:49.780 --> 00:07:50.920
+No se muestra nada.
+
+00:07:50.920 --> 00:07:53.110
+Pero creo que está bien.
+
+00:07:53.110 --> 00:07:56.800
+Creo que no mostrar nada es buena señal, porque mirad mi función test square.
+
+00:07:56.800 --> 00:08:00.430
+No imprime nada si todo parece ir bien.
+
+00:08:00.430 --> 00:08:03.197
+Así que demostrémoslo volviendo a mi calculadora,
+
+00:08:03.197 --> 00:08:04.030
+y voy a romperla.
+
+00:08:04.030 --> 00:08:05.180
+Voy a introducir un error.
+
+00:08:05.180 --> 00:08:07.180
+Quizá ni siquiera lo hice bien a la primera.
+
+00:08:07.180 --> 00:08:09.010
+Quizá mi código originalmente era así.
+
+00:08:09.010 --> 00:08:10.000
+No estaba pensando.
+
+00:08:10.000 --> 00:08:11.200
+Olvidé lo de los cuadrados.
+
+00:08:11.200 --> 00:08:15.160
+Y así pensé que el cuadrado de un número es n más n,
+
+00:08:15.160 --> 00:08:18.130
+en lugar de n por n, un error razonable de cometer,
+
+00:08:18.130 --> 00:08:19.390
+quizá desde el punto de vista aritmético.
+
+00:08:19.390 --> 00:08:21.340
+Voy a volver ahora a mi test calculator,
+
+00:08:21.340 --> 00:08:24.010
+que no voy a cambiar, pero sí voy a volver a ejecutar,
+
+00:08:24.010 --> 00:08:26.410
+python de test_calculator.py.
+
+00:08:26.410 --> 00:08:29.170
+Voy a cruzar los dedos, pero en vano, voy
+
+00:08:29.170 --> 00:08:33.309
+a ver inmediatamente que 3 al cuadrado no era 9.
+
+00:08:33.309 --> 00:08:35.020
+Ahora, ¿qué es?
+
+00:08:35.020 --> 00:08:39.400
+Veamos, cuando tus pruebas fallan, ¿cómo podemos localizar qué va mal?
+
+00:08:39.400 --> 00:08:42.520
+Es un poco curioso que haya roto por completo mi función square
+
+00:08:42.520 --> 00:08:45.460
+y, sin embargo, solo una de estas pruebas esté fallando.
+
+00:08:45.460 --> 00:08:49.672
+Parece que esta prueba, las líneas 9 y 10, está bien,
+
+00:08:49.672 --> 00:08:51.130
+porque no veo esa salida.
+
+00:08:51.130 --> 00:08:54.310
+Pero, por supuesto, estas dos líneas, esta prueba,
+
+00:08:54.310 --> 00:08:57.640
+está fallando, porque 3 al cuadrado no es 9 cuando uso el más.
+
+00:08:57.640 --> 00:09:03.880
+Así que, para que quede claro, ¿por qué mi función solo está parcialmente rota,
+
+00:09:03.880 --> 00:09:04.930
+para que quede claro?
+
+00:09:04.930 --> 00:09:07.990
+¿Por qué veo solo un error en lugar de dos,
+
+00:09:07.990 --> 00:09:11.785
+aunque la función square esté ahora matemáticamente rota?
+
+00:09:11.785 --> 00:09:13.200
+SPEAKER 1: Porque 2 más 2 es 4.
+
+00:09:13.200 --> 00:09:14.950
+DAVID MALAN: Sí, es así de simple.
+
+00:09:14.950 --> 00:09:18.313
+Tuve suerte de que 2 más 2 sea lo mismo que 2 por 2.
+
+00:09:18.313 --> 00:09:20.230
+Así que este es uno de esos casos límite, y esta
+
+00:09:20.230 --> 00:09:22.480
+es la razón por la que es bueno tener el hábito de no probar solo una cosa,
+
+00:09:22.480 --> 00:09:25.610
+sino probar varias y asegurarte de que cubres todos los frentes, por así decirlo.
+
+00:09:25.610 --> 00:09:27.010
+Así que tuve suerte aquí.
+
+00:09:27.010 --> 00:09:29.470
+Y eso explica por qué veo solo un error,
+
+00:09:29.470 --> 00:09:32.800
+aunque la función en sí tenga un fallo, pero permitidme proponer que hay
+
+00:09:32.800 --> 00:09:35.050
+otra manera de hacer esto, porque, sinceramente,
+
+00:09:35.050 --> 00:09:39.280
+si extrapolo a partir de este ejemplo sencillo, ejecutando no solo dos pruebas
+
+00:09:39.280 --> 00:09:45.010
+sino 3, o 4, o 10, o 20 pruebas, os podéis imaginar que, madre mía,
+
+00:09:45.010 --> 00:09:48.460
+el código va a ser mucho más complicado que la propia función.
+
+00:09:48.460 --> 00:09:53.290
+Ya, mirad, en calculator.py la función en cuestión tiene dos líneas.
+
+00:09:53.290 --> 00:09:58.330
+Y, sin embargo, en test_calculator el código en cuestión tiene cinco líneas.
+
+00:09:58.330 --> 00:10:01.900
+He escrito más código para probar mi código que código original.
+
+00:10:01.900 --> 00:10:05.890
+Así que cuantas menos líneas de código podamos escribir al probar código,
+
+00:10:05.890 --> 00:10:08.118
+más probable creo que es que vosotros y yo lo hagamos,
+
+00:10:08.118 --> 00:10:09.910
+porque literalmente va a ser un poco
+
+00:10:09.910 --> 00:10:12.740
+menos trabajo y menos oportunidades de cometer errores.
+
+00:10:12.740 --> 00:10:15.400
+Entonces, ¿qué otro enfoque puedo adoptar aquí?
+
+00:10:15.400 --> 00:10:19.700
+Resulta que en Python hay otra palabra clave que todavía no hemos usado,
+
+00:10:19.700 --> 00:10:21.640
+que es esta, assert.
+
+00:10:21.640 --> 00:10:25.330
+Assert es una palabra clave en Python y en algunos otros lenguajes también
+
+00:10:25.330 --> 00:10:28.300
+que permite hacer exactamente eso, como en inglés, afirmar
+
+00:10:28.300 --> 00:10:31.910
+que algo es verdad, declarar con rotundidad que algo es cierto.
+
+00:10:31.910 --> 00:10:34.420
+Y si lo es, no va a pasar nada.
+
+00:10:34.420 --> 00:10:36.290
+No va a aparecer ningún error en pantalla.
+
+00:10:36.290 --> 00:10:40.240
+Pero si afirmas algo en Python y no es cierto, es decir,
+
+00:10:40.240 --> 00:10:44.230
+lo que estás afirmando, una expresión booleana, es falso,
+
+00:10:44.230 --> 00:10:47.930
+realmente vas a ver algún tipo de error en pantalla.
+
+00:10:47.930 --> 00:10:50.870
+Así que probemos esta nueva palabra clave de la siguiente manera.
+
+00:10:50.870 --> 00:10:52.550
+Voy a volver a mi código aquí.
+
+00:10:52.550 --> 00:10:54.880
+Y para simplificarlo un poco, voy
+
+00:10:54.880 --> 00:10:58.130
+a proponer que use esta nueva palabra clave así.
+
+00:10:58.130 --> 00:11:04.120
+Voy a afirmar simplemente que el cuadrado de 2 debería ser igual a 4.
+
+00:11:04.120 --> 00:11:05.440
+Así que he cambiado mi lógica.
+
+00:11:05.440 --> 00:11:07.480
+En lugar de comprobar si no es igual, ahora
+
+00:11:07.480 --> 00:11:11.260
+afirmo en voz muy alta que debería ser igual a 4.
+
+00:11:11.260 --> 00:11:13.810
+Y luego, en una línea adicional, voy a hacer la otra prueba:
+
+00:11:13.810 --> 00:11:17.590
+assert que el cuadrado de 3 es igual igual a 9.
+
+00:11:17.590 --> 00:11:21.040
+Y eso es todo, sin print con sangría.
+
+00:11:21.040 --> 00:11:24.010
+Simplemente voy a afirmar de forma más sencilla estas dos
+
+00:11:24.010 --> 00:11:26.080
+cosas que quiero que sean verdad.
+
+00:11:26.080 --> 00:11:29.740
+Voy a ejecutarlo ahora, con calculator.py todavía roto.
+
+00:11:29.740 --> 00:11:33.670
+Sigo usando el más por accidente, en lugar de la multiplicación.
+
+00:11:33.670 --> 00:11:37.900
+Voy a ejecutar ahora Python de test calculator.py,
+
+00:11:37.900 --> 00:11:41.320
+cruzando los dedos como siempre, pero esta vez no va a ir bien.
+
+00:11:41.320 --> 00:11:44.240
+Parece que aparecen muchísimos errores en pantalla.
+
+00:11:44.240 --> 00:11:46.600
+Y si subo aquí para ver este traceback,
+
+00:11:46.600 --> 00:11:53.020
+veremos que lo que falló fue esta línea de aquí, assert square(3) == 9.
+
+00:11:53.020 --> 00:11:55.450
+Ahora bien, por desgracia, cuando usas la palabra clave assert,
+
+00:11:55.450 --> 00:11:57.460
+no es nada amigable para el usuario.
+
+00:11:57.460 --> 00:11:59.982
+Te muestra los archivos y los números de línea implicados,
+
+00:11:59.982 --> 00:12:02.440
+pero sí te muestra la línea de código concreta que falló,
+
+00:12:02.440 --> 00:12:04.600
+la aserción que falló, por así decirlo.
+
+00:12:04.600 --> 00:12:08.560
+Ahora nos toca a ti y a mí deducir a partir de esto: un momento,
+
+00:12:08.560 --> 00:12:11.020
+¿por qué la raíz cuadrada de 3 no es igual a 9?
+
+00:12:11.020 --> 00:12:13.187
+Así que no es muy amigable, pero, sinceramente,
+
+00:12:13.187 --> 00:12:14.770
+me supuso escribir la mitad de código.
+
+00:12:14.770 --> 00:12:16.990
+Son solo dos líneas, en lugar de aquellas cuatro anteriores.
+
+00:12:16.990 --> 00:12:19.450
+Pero fijaos en este pequeño resto de aquí abajo.
+
+00:12:19.450 --> 00:12:21.070
+Esto era un error de aserción.
+
+00:12:21.070 --> 00:12:23.350
+Y hemos visto errores antes.
+
+00:12:23.350 --> 00:12:27.460
+Hemos visto errores antes cuando hemos cometido otros fallos en nuestro código.
+
+00:12:27.460 --> 00:12:34.010
+Y en el pasado, ¿cuál era nuestra solución para capturar esos errores?
+
+00:12:34.010 --> 00:12:37.610
+¿Cómo capturamos errores que se parecen a este,
+
+00:12:37.610 --> 00:12:39.977
+aunque no hayamos visto este en concreto antes?
+
+00:12:39.977 --> 00:12:41.060
+SPEAKER 2: Try y except.
+
+00:12:41.060 --> 00:12:44.060
+DAVID MALAN: Sí, en Python podemos usar las palabras clave try y except
+
+00:12:44.060 --> 00:12:48.180
+para intentar hacer algo, con optimismo, excepto si algo sale mal,
+
+00:12:48.180 --> 00:12:49.680
+y entonces hacer otra cosa en su lugar.
+
+00:12:49.680 --> 00:12:53.235
+Así que esto es un paso adelante, en que al menos puedo capturar este error.
+
+00:12:53.235 --> 00:12:55.610
+Pero quizá sea un paso atrás, en que
+
+00:12:55.610 --> 00:12:59.700
+voy a acabar escribiendo, lo admito de antemano, un poco más de código.
+
+00:12:59.700 --> 00:13:01.050
+Así que voy a probar esto.
+
+00:13:01.050 --> 00:13:02.850
+Voy a volver a mi código aquí.
+
+00:13:02.850 --> 00:13:05.960
+Y en lugar de limitarme a afirmar, a ciegas, voy
+
+00:13:05.960 --> 00:13:10.400
+a, como propuso Tola, intentar hacer esta primera aserción,
+
+00:13:10.400 --> 00:13:16.280
+excepto si hay un error de aserción, como el que vimos hace un momento, y entonces
+
+00:13:16.280 --> 00:13:18.320
+imprimir algo más amigable para el usuario
+
+00:13:18.320 --> 00:13:20.210
+que explique qué es lo que realmente falló.
+
+00:13:20.210 --> 00:13:23.420
+2 al cuadrado no era 4.
+
+00:13:23.420 --> 00:13:28.100
+Y voy a hacer lo mismo e intentar afirmar que el cuadrado de 3
+
+00:13:28.100 --> 00:13:33.000
+es igual a 9, excepto si hay un error de aserción ahí, en cuyo caso
+
+00:13:33.000 --> 00:13:37.370
+voy a imprimir, de forma más amigable, 3 al cuadrado no era 9.
+
+00:13:37.370 --> 00:13:39.920
+Así que he dado un paso adelante, pero también un paso atrás,
+
+00:13:39.920 --> 00:13:41.180
+porque ahora tengo más código.
+
+00:13:41.180 --> 00:13:44.288
+Pero al menos he introducido aserciones y excepciones
+
+00:13:44.288 --> 00:13:46.580
+de una manera coherente con lo que hemos visto en el pasado.
+
+00:13:46.580 --> 00:13:50.450
+Cuando algo sale mal, ves que realmente se lanza una excepción.
+
+00:13:50.450 --> 00:13:53.330
+Voy a ejecutar ahora esta versión del programa.
+
+00:13:53.330 --> 00:13:57.800
+Python de test calculator.py, cruzando los dedos,
+
+00:13:57.800 --> 00:14:00.170
+sigue fallando, porque veo salida.
+
+00:14:00.170 --> 00:14:02.850
+Pero al menos hemos vuelto a una salida amigable para el usuario.
+
+00:14:02.850 --> 00:14:05.690
+Así que eso es al menos algo de progreso.
+
+00:14:05.690 --> 00:14:09.088
+Pero es, de nuevo, más código del que sería ideal.
+
+00:14:09.088 --> 00:14:11.630
+Y de hecho, si seguimos adelante, ¿y si realmente
+
+00:14:11.630 --> 00:14:14.900
+queremos añadir más casos de prueba?
+
+00:14:14.900 --> 00:14:18.980
+Parece que podríamos acabar escribiendo mucho más código del ideal.
+
+00:14:18.980 --> 00:14:21.260
+Por ejemplo, ahora estoy probando 2 y 3.
+
+00:14:21.260 --> 00:14:24.000
+Probablemente debería probar también algunos números negativos.
+
+00:14:24.000 --> 00:14:26.870
+Así que voy a añadir, por ejemplo... voy
+
+00:14:26.870 --> 00:14:28.710
+a copiar y pegar esto.
+
+00:14:28.710 --> 00:14:32.780
+Voy a intentar afirmar que la raíz cuadrada de menos 2 es igual
+
+00:14:32.780 --> 00:14:34.978
+igual a 4, que debería ser lo que ocurra matemáticamente.
+
+00:14:34.978 --> 00:14:36.770
+Y si no, voy a cambiar esto
+
+00:14:36.770 --> 00:14:39.410
+para que diga menos 2 al cuadrado no era 4.
+
+00:14:39.410 --> 00:14:41.930
+Y voy a copiar y pegar esto otra vez,
+
+00:14:41.930 --> 00:14:44.280
+para probar otro número negativo, por si acaso.
+
+00:14:44.280 --> 00:14:47.900
+Probemos la raíz cuadrada de menos 3, que debería ser igual a 9.
+
+00:14:47.900 --> 00:14:53.330
+Pero si no, digamos que menos 3 al cuadrado no era 9.
+
+00:14:53.330 --> 00:14:56.900
+Y solo por pensar en voz alta, ¿cuál podría ser otro buen valor para probar?
+
+00:14:56.900 --> 00:14:57.890
+He probado 2.
+
+00:14:57.890 --> 00:14:58.550
+He probado 3.
+
+00:14:58.550 --> 00:14:59.330
+He probado menos 2.
+
+00:14:59.330 --> 00:15:00.247
+He probado menos 3.
+
+00:15:00.247 --> 00:15:01.820
+No puedo probar infinitos números.
+
+00:15:01.820 --> 00:15:03.320
+Pero hay al menos algo que es un poco
+
+00:15:03.320 --> 00:15:04.737
+distinto entre esos valores.
+
+00:15:04.737 --> 00:15:05.240
+Probemos el 0.
+
+00:15:05.240 --> 00:15:08.540
+El 0 también es un caso interesante, por si algo pudiera estar mal.
+
+00:15:08.540 --> 00:15:09.740
+¿Y por qué el 0?
+
+00:15:09.740 --> 00:15:11.720
+Simplemente me estoy guiando por el instinto.
+
+00:15:11.720 --> 00:15:14.928
+Lo normal es que los números positivos, en general, se comporten igual.
+
+00:15:14.928 --> 00:15:16.970
+Los números negativos quizá, en general, se comporten igual.
+
+00:15:16.970 --> 00:15:18.650
+El 0 podría ser un poco anómalo.
+
+00:15:18.650 --> 00:15:23.060
+No hay una ciencia exacta en esto, sino más bien plantearte tú mismo,
+
+00:15:23.060 --> 00:15:26.457
+según tu propia experiencia, cuáles son los posibles casos límite en
+
+00:15:26.457 --> 00:15:28.040
+la función que intentas probar.
+
+00:15:28.040 --> 00:15:29.790
+Estoy intentando probar algo matemático,
+
+00:15:29.790 --> 00:15:31.560
+así que quiero probar valores representativos.
+
+00:15:31.560 --> 00:15:34.520
+Así que voy a pegar un bloque try except más.
+
+00:15:34.520 --> 00:15:38.120
+Afirmemos que el cuadrado de 0 debería ser igual a 0.
+
+00:15:38.120 --> 00:15:43.460
+Y si no, diré algo explicativo, como 0 al cuadrado no era 0.
+
+00:15:43.460 --> 00:15:48.950
+Ahora, si lo ejecuto, Python de test_calculator.py, y pulso Intro,
+
+00:15:48.950 --> 00:15:50.780
+veo varios errores.
+
+00:15:50.780 --> 00:15:51.890
+Y esto es interesante.
+
+00:15:51.890 --> 00:15:55.580
+Es una pequeña pista, porque fijaos en que algunas de estas aserciones fallan,
+
+00:15:55.580 --> 00:15:57.320
+pero no todas.
+
+00:15:57.320 --> 00:16:02.210
+El de 2 al cuadrado aparentemente está bien, como señalamos antes.
+
+00:16:02.210 --> 00:16:05.450
+Recordad que 2 al cuadrado resulta ser 2 más 2.
+
+00:16:05.450 --> 00:16:07.707
+Así que ese error no desbarata realmente nuestra prueba,
+
+00:16:07.707 --> 00:16:09.290
+pero menos mal que probamos con 3.
+
+00:16:09.290 --> 00:16:11.450
+Menos mal que probamos con menos 2 y menos 3,
+
+00:16:11.450 --> 00:16:13.370
+porque todas esas pruebas detectaron este error.
+
+00:16:13.370 --> 00:16:18.740
+La prueba del 0 no se dio cuenta, porque 0 al cuadrado es, por supuesto, 0, pero 0 más 0
+
+00:16:18.740 --> 00:16:19.370
+es 0.
+
+00:16:19.370 --> 00:16:22.130
+Así que tenemos suerte o mala suerte ahí, según
+
+00:16:22.130 --> 00:16:25.280
+veas el vaso medio lleno o medio vacío.
+
+00:16:25.280 --> 00:16:30.500
+Al menos, gracias a tener varias pruebas, detectamos este error de alguna manera.
+
+00:16:30.500 --> 00:16:35.870
+Pero sería bonito no tener que escribir tanto código,
+
+00:16:35.870 --> 00:16:37.170
+porque fijaos en lo que he hecho.
+
+00:16:37.170 --> 00:16:39.710
+Tengo try, except, try, except.
+
+00:16:39.710 --> 00:16:41.150
+Tengo todas estas aserciones.
+
+00:16:41.150 --> 00:16:42.600
+Tengo una función main.
+
+00:16:42.600 --> 00:16:45.470
+Tengo este condicional if al final de mi archivo.
+
+00:16:45.470 --> 00:16:49.020
+Sinceramente, ¿quién va a querer escribir 31 líneas de código
+
+00:16:49.020 --> 00:16:51.830
+solo para probar una función de dos líneas?
+
+00:16:51.830 --> 00:16:53.780
+Nadie va a escribir código de pruebas así
+
+00:16:53.780 --> 00:16:57.620
+si tenemos que escribir mucho más código para hacer las pruebas.
+
+00:16:57.620 --> 00:16:59.970
+Así que la gente ha resuelto este problema.
+
+00:16:59.970 --> 00:17:02.720
+Si tienes el hábito de probar mucho tu código, o quieres hacerlo,
+
+00:17:02.720 --> 00:17:04.700
+si yo tengo el hábito de querer probar mucho mi código,
+
+00:17:04.700 --> 00:17:07.283
+si todos los demás en el mundo real tienen este hábito de querer
+
+00:17:07.283 --> 00:17:09.319
+probar su código, ¿por qué no creamos herramientas
+
+00:17:09.319 --> 00:17:11.690
+que lo hagan un poco más fácil?
+
+00:17:11.690 --> 00:17:14.000
+Y de hecho, existe un mecanismo para hacer
+
+00:17:14.000 --> 00:17:17.780
+esto, por el cual podemos usar una herramienta conocida popularmente como pytest.
+
+00:17:17.780 --> 00:17:21.920
+Así que pytest es un programa de terceros que puedes descargar e instalar
+
+00:17:21.920 --> 00:17:26.450
+y que automatizará las pruebas de tu código, siempre que tú escribas las pruebas.
+
+00:17:26.450 --> 00:17:29.150
+Pero lo bueno de esta biblioteca y de otras
+
+00:17:29.150 --> 00:17:31.580
+como ella es que adopta algunas convenciones para
+
+00:17:31.580 --> 00:17:35.320
+que no tengas que escribir tantas líneas de código a mano.
+
+00:17:35.320 --> 00:17:38.090
+Ellas hacen parte de eso automáticamente por ti.
+
+00:17:38.090 --> 00:17:39.520
+Ahora bien, esta es una biblioteca de terceros.
+
+00:17:39.520 --> 00:17:42.520
+Hay otras bibliotecas para pruebas unitarias, por así decirlo,
+
+00:17:42.520 --> 00:17:44.440
+es decir, para probar unidades de tu código.
+
+00:17:44.440 --> 00:17:46.240
+Algunas vienen con el propio Python.
+
+00:17:46.240 --> 00:17:48.813
+Proponemos que hoy veamos pytest
+
+00:17:48.813 --> 00:17:50.980
+porque en realidad es un poco más sencillo que los marcos de
+
+00:17:50.980 --> 00:17:53.170
+pruebas unitarias que vienen con el propio Python.
+
+00:17:53.170 --> 00:17:54.760
+¿Y a qué nos referimos con pruebas unitarias?
+
+00:17:54.760 --> 00:17:57.910
+Las pruebas unitarias son simplemente una manera formal de describir probar
+
+00:17:57.910 --> 00:18:00.297
+unidades individuales de tu programa.
+
+00:18:00.297 --> 00:18:01.630
+¿Cuáles son esas unidades individuales?
+
+00:18:01.630 --> 00:18:02.960
+Normalmente son funciones.
+
+00:18:02.960 --> 00:18:07.360
+Así que las pruebas unitarias suelen ser pruebas de las funciones que has escrito.
+
+00:18:07.360 --> 00:18:09.610
+Ahora, ¿qué significa esto en la práctica?
+
+00:18:09.610 --> 00:18:12.910
+Voy a volver a mi VS Code y voy
+
+00:18:12.910 --> 00:18:17.260
+a proponer que simplifiquemos mucho mi test calculator.
+
+00:18:17.260 --> 00:18:22.930
+Voy a borrar todas estas pruebas, que se iban acumulando
+
+00:18:22.930 --> 00:18:24.400
+hasta unas 31 líneas de código.
+
+00:18:24.400 --> 00:18:28.750
+Y veamos si podemos reducir las pruebas a lo esencial usando pytest.
+
+00:18:28.750 --> 00:18:32.350
+En mi mismo programa calculator, voy a seguir importando square.
+
+00:18:32.350 --> 00:18:34.270
+Así que sigo necesitando esa línea de código para poder
+
+00:18:34.270 --> 00:18:35.980
+probar esa función concreta.
+
+00:18:35.980 --> 00:18:39.010
+Ahora voy a definir una función, igual que hice antes,
+
+00:18:39.010 --> 00:18:39.800
+de la siguiente manera.
+
+00:18:39.800 --> 00:18:42.430
+Voy a definir una función llamada test square, de nuevo
+
+00:18:42.430 --> 00:18:46.360
+por convención, test, guion bajo y el nombre de la función que quieres probar,
+
+00:18:46.360 --> 00:18:47.957
+aunque no tiene por qué ser así.
+
+00:18:47.957 --> 00:18:50.290
+Y ahora voy a hacer unas cuantas aserciones.
+
+00:18:50.290 --> 00:18:53.350
+Voy a afirmar que el cuadrado de 2 debería ser igual a 4.
+
+00:18:53.350 --> 00:18:57.310
+Voy a afirmar que el cuadrado de 3 debería ser igual a 9.
+
+00:18:57.310 --> 00:19:01.750
+Voy a afirmar que el cuadrado de menos 2 debería ser igual a 4.
+
+00:19:01.750 --> 00:19:06.250
+Y voy a afirmar que el cuadrado de menos 3 debería ser igual a 9.
+
+00:19:06.250 --> 00:19:10.990
+Y por último, por ahora, voy a afirmar que el cuadrado de 0 debería ser igual a 0.
+
+00:19:10.990 --> 00:19:14.860
+Así que sigo usando la palabra clave assert, como presenté antes.
+
+00:19:14.860 --> 00:19:17.290
+Y aunque fue un poco tedioso escribirlas,
+
+00:19:17.290 --> 00:19:18.910
+ahora son solo ocho líneas de código.
+
+00:19:18.910 --> 00:19:20.440
+Y son muy fáciles de escribir.
+
+00:19:20.440 --> 00:19:22.750
+No hay try ni except ni todo eso.
+
+00:19:22.750 --> 00:19:26.410
+¿No sería estupendo que otra cosa, otra persona,
+
+00:19:26.410 --> 00:19:31.930
+se encargara del try, del except, de la impresión, de toda la estandarización
+
+00:19:31.930 --> 00:19:33.400
+de la ejecución de estas pruebas?
+
+00:19:33.400 --> 00:19:36.370
+Y ahí es, precisamente, donde entra en juego pytest.
+
+00:19:36.370 --> 00:19:40.180
+Según la documentación de pytest, que a su vez se puede instalar con pip
+
+00:19:40.180 --> 00:19:44.170
+install pytest, que hemos usado para instalar otras bibliotecas en el pasado,
+
+00:19:44.170 --> 00:19:47.980
+puedes consultar aquí la documentación para ver todo su uso formal.
+
+00:19:47.980 --> 00:19:51.760
+Pero por suerte pytest es bastante fácil de usar, para ser un marco de pruebas,
+
+00:19:51.760 --> 00:19:55.660
+y de hecho nos permite lanzarnos directamente, simplemente ejecutando pytest sobre el código
+
+00:19:55.660 --> 00:19:56.510
+que hemos escrito.
+
+00:19:56.510 --> 00:20:00.310
+Así que si vuelvo a VS Code y miro mi test_calculator.py, que,
+
+00:20:00.310 --> 00:20:04.210
+fijaos, ya no tiene función main... no tiene condicional.
+
+00:20:04.210 --> 00:20:05.440
+No tiene try.
+
+00:20:05.440 --> 00:20:06.460
+No tiene except.
+
+00:20:06.460 --> 00:20:07.450
+No tiene print.
+
+00:20:07.450 --> 00:20:11.320
+Solo tiene mis pocas aserciones... pytest y otras bibliotecas
+
+00:20:11.320 --> 00:20:14.890
+como él van a automatizar el proceso de ejecutar estas pruebas por mí
+
+00:20:14.890 --> 00:20:20.320
+y de informarme en pantalla de si alguna de esas pruebas ha fallado o no.
+
+00:20:20.320 --> 00:20:21.692
+Así que voy a hacer esto.
+
+00:20:21.692 --> 00:20:24.400
+Voy a aumentar el tamaño de mi ventana de terminal
+
+00:20:24.400 --> 00:20:26.567
+un momento, para que podamos ver más cosas en pantalla.
+
+00:20:26.567 --> 00:20:29.170
+Y voy a ejecutar no python, como he estado haciendo.
+
+00:20:29.170 --> 00:20:32.620
+Voy a ejecutar pytest, que, de nuevo, es esta herramienta
+
+00:20:32.620 --> 00:20:35.110
+de terceros para ejecutar pruebas en tu código.
+
+00:20:35.110 --> 00:20:39.880
+Voy a ejecutar pytest de test_calculator, es decir, ese mismo archivo.
+
+00:20:39.880 --> 00:20:42.490
+Voy a cruzar los dedos como siempre y pulsar Intro,
+
+00:20:42.490 --> 00:20:46.040
+y veremos que algo ha fallado.
+
+00:20:46.040 --> 00:20:48.340
+Ahora bien, aunque creo que
+
+00:20:48.340 --> 00:20:51.290
+encontraréis que pytest es relativamente sencillo de usar,
+
+00:20:51.290 --> 00:20:55.490
+su salida, al menos a primera vista, no es necesariamente nada amigable.
+
+00:20:55.490 --> 00:20:56.950
+Entonces, ¿qué estamos viendo aquí?
+
+00:20:56.950 --> 00:21:01.660
+Fijaos en que en la parte superior de mi ventana está el comando que ejecuté tras mi prompt.
+
+00:21:01.660 --> 00:21:05.470
+Justo debajo hay una sola F en rojo, que significa fallo,
+
+00:21:05.470 --> 00:21:07.180
+así que no es muy alentador.
+
+00:21:07.180 --> 00:21:10.600
+Me esforcé mucho aquí, pero suspenso es mi nota en este programa.
+
+00:21:10.600 --> 00:21:12.460
+Pero veamos exactamente qué ha pasado.
+
+00:21:12.460 --> 00:21:15.530
+Si miro este extracto de aquí, bajo failures,
+
+00:21:15.530 --> 00:21:18.400
+veréis que test square es la función que ha fallado.
+
+00:21:18.400 --> 00:21:20.650
+Tiene sentido, porque es la única que escribí.
+
+00:21:20.650 --> 00:21:25.390
+Y veréis aquí una salida algo enrevesada que describe cuál fue el error.
+
+00:21:25.390 --> 00:21:28.930
+Lo que estáis viendo aquí es que la primera línea de salida, igual igual a 4,
+
+00:21:28.930 --> 00:21:29.530
+está bien.
+
+00:21:29.530 --> 00:21:32.230
+No hay ningún mensaje de error en rojo debajo, así que esa está bien.
+
+00:21:32.230 --> 00:21:36.640
+Pero esta línea de código de aquí, assert que square de 3 es igual igual a 9,
+
+00:21:36.640 --> 00:21:40.880
+a pytest no le gustó esa aserción, porque al final no resultó ser cierta.
+
+00:21:40.880 --> 00:21:44.480
+De hecho, según la E roja al principio de esta línea,
+
+00:21:44.480 --> 00:21:50.350
+veréis que en la práctica estoy intentando afirmar que 6 es igual igual a 9.
+
+00:21:50.350 --> 00:21:52.280
+Ahora, ¿de dónde salió el 6?
+
+00:21:52.280 --> 00:21:56.920
+Un momento, si mi prueba implica esto, fijaos en que donde 6 es igual a square de 3,
+
+00:21:56.920 --> 00:22:01.360
+esto está diciendo que, como he llamado a square pasándole un valor de 3,
+
+00:22:01.360 --> 00:22:03.790
+resulta que su valor de retorno es 6.
+
+00:22:03.790 --> 00:22:07.690
+Y, por supuesto, matemáticamente 6 no es igual igual a 9.
+
+00:22:07.690 --> 00:22:09.760
+Por eso está fallando.
+
+00:22:09.760 --> 00:22:13.240
+Ahora bien, pytest no es tan amigable como para decirte
+
+00:22:13.240 --> 00:22:16.750
+exactamente por qué está el error ni cómo arreglarlo.
+
+00:22:16.750 --> 00:22:19.840
+Esto es solo una pista de lo que debe de estar mal.
+
+00:22:19.840 --> 00:22:23.020
+Lo que estáis viendo aquí es una pista de que la primera prueba pasó,
+
+00:22:23.020 --> 00:22:26.860
+porque no hay ningún error en rojo debajo de esa línea de código, pero esta prueba falló.
+
+00:22:26.860 --> 00:22:32.290
+De un modo u otro, tu función square devuelve 6
+
+00:22:32.290 --> 00:22:34.840
+cuando se le pasa 3, en lugar de 9.
+
+00:22:34.840 --> 00:22:37.180
+Así que en este punto te pones el sombrero de detective,
+
+00:22:37.180 --> 00:22:39.490
+vuelves a tu código real y piensas
+
+00:22:39.490 --> 00:22:42.340
+en calculator.py: ¿cómo es posible que
+
+00:22:42.340 --> 00:22:47.380
+la línea 7 de mi función square devuelva 6 en lugar de 9?
+
+00:22:47.380 --> 00:22:49.380
+Y en este punto, lo normal es que se te encienda
+
+00:22:49.380 --> 00:22:51.130
+la bombilla, como se suele decir,
+
+00:22:51.130 --> 00:22:55.390
+y veas: estoy usando la suma en lugar de la multiplicación.
+
+00:22:55.390 --> 00:22:57.640
+Pero lo que pytest ha hecho por nosotros es automatizar
+
+00:22:57.640 --> 00:23:00.610
+el proceso de, al menos, señalarnos ese error.
+
+00:23:00.610 --> 00:23:03.147
+Y si ahora entro y lo arreglo... voy a hacerlo,
+
+00:23:03.147 --> 00:23:04.480
+y se me ha encendido la bombilla.
+
+00:23:04.480 --> 00:23:08.320
+Cambio el más por un por.
+
+00:23:08.320 --> 00:23:10.660
+Ahora voy a limpiar mi pantalla
+
+00:23:10.660 --> 00:23:15.130
+y ejecutar no Python, sino pytest de test_calculator.py,
+
+00:23:15.130 --> 00:23:16.390
+cruzando los dedos otra vez.
+
+00:23:16.390 --> 00:23:17.800
+Y ahora está en verde.
+
+00:23:17.800 --> 00:23:21.760
+Y veo solo un punto, que indica que mi única prueba ha pasado.
+
+00:23:21.760 --> 00:23:27.080
+Estoy bien, éxito del 100 % con mi prueba ahora que he arreglado ese error.
+
+00:23:27.080 --> 00:23:30.550
+Voy a hacer una pausa aquí a ver si hay alguna pregunta.
+
+00:23:30.550 --> 00:23:33.520
+SPEAKER 3: Mi pregunta es: ¿y si un usuario,
+
+00:23:33.520 --> 00:23:36.160
+en lugar de, porque estamos tomando la entrada del usuario,
+
+00:23:36.160 --> 00:23:41.590
+y si el usuario es algo malicioso y escribe una cadena en lugar
+
+00:23:41.590 --> 00:23:46.420
+de un entero, o quizá escribe un float u otro tipo de dato?
+
+00:23:46.420 --> 00:23:48.730
+DAVID MALAN: Sí, ¿y si el usuario, como hemos
+
+00:23:48.730 --> 00:23:51.655
+visto en ejemplos anteriores, escribe cat en lugar de un número, cuando
+
+00:23:51.655 --> 00:23:52.780
+esperamos un entero?
+
+00:23:52.780 --> 00:23:54.940
+¿Cómo probamos algo así?
+
+00:23:54.940 --> 00:23:57.970
+Ahora mismo, lo admito, no estoy probando la entrada del usuario.
+
+00:23:57.970 --> 00:24:02.750
+Si vuelvo a mi código, fijaos en que mi calculadora, por supuesto,
+
+00:24:02.750 --> 00:24:05.290
+tiene la función square que seguimos probando una y otra vez.
+
+00:24:05.290 --> 00:24:08.470
+Pero fijaos en que toda la entrada del usuario está ahora mismo
+
+00:24:08.470 --> 00:24:10.300
+relegada a mi función main.
+
+00:24:10.300 --> 00:24:14.120
+Y, lo admito, a día de hoy no estoy probando mi función main.
+
+00:24:14.120 --> 00:24:15.760
+Así que podría haber uno de esos errores.
+
+00:24:15.760 --> 00:24:19.600
+Y de hecho lo habría, porque si el usuario escribe una cadena, como cat,
+
+00:24:19.600 --> 00:24:24.850
+en lugar de un entero, como 2 o 3, entonces la línea dos, recordad, lanzaría
+
+00:24:24.850 --> 00:24:26.990
+una excepción ValueError.
+
+00:24:26.990 --> 00:24:28.160
+Eso ya lo hemos visto antes.
+
+00:24:28.160 --> 00:24:30.280
+Así que, a la hora de probar tu código, esta
+
+00:24:30.280 --> 00:24:35.080
+es en realidad una buena razón para tener varias funciones en tu programa.
+
+00:24:35.080 --> 00:24:37.900
+En lugar de poner toda tu lógica solo en el propio archivo,
+
+00:24:37.900 --> 00:24:40.240
+en lugar de poner toda la lógica solo en main,
+
+00:24:40.240 --> 00:24:43.030
+es una práctica muy buena y muy útil
+
+00:24:43.030 --> 00:24:46.750
+dividir tus ideas en funciones más pequeñas, de tamaño manejable,
+
+00:24:46.750 --> 00:24:48.370
+que a su vez se puedan probar.
+
+00:24:48.370 --> 00:24:49.630
+¿Y qué quiero decir con esto?
+
+00:24:49.630 --> 00:24:52.270
+Square es perfectamente comprobable.
+
+00:24:52.270 --> 00:24:52.810
+¿Por qué?
+
+00:24:52.810 --> 00:24:56.020
+Porque recibe como entrada un parámetro llamado n
+
+00:24:56.020 --> 00:24:59.680
+y devuelve como salida un entero, que va
+
+00:24:59.680 --> 00:25:01.390
+a ser su cuadrado, con suerte.
+
+00:25:01.390 --> 00:25:04.120
+Tiene una entrada bien definida y una salida bien definida.
+
+00:25:04.120 --> 00:25:08.080
+Por tanto, está completamente bajo tu control, en tu programa de pruebas,
+
+00:25:08.080 --> 00:25:09.730
+pasarle esos valores.
+
+00:25:09.730 --> 00:25:15.730
+Ahora bien, diré que si quieres probar si square se comporta correctamente
+
+00:25:15.730 --> 00:25:18.280
+cuando se le pasa algo como una cadena, como, entre comillas,
+
+00:25:18.280 --> 00:25:20.920
+"cat", podríamos hacer sin problema algo así:
+
+00:25:20.920 --> 00:25:24.520
+afirmar que el cuadrado de, entre comillas, "cat",
+
+00:25:24.520 --> 00:25:26.050
+no va a ser igual a algo.
+
+00:25:26.050 --> 00:25:28.210
+En realidad puedes, usando una sintaxis diferente,
+
+00:25:28.210 --> 00:25:31.000
+afirmar que se lanzará una excepción concreta.
+
+00:25:31.000 --> 00:25:34.060
+Así que si volviéramos a nuestra función square,
+
+00:25:34.060 --> 00:25:37.880
+la mejoráramos y lanzáramos deliberadamente una excepción, también podríamos probar eso.
+
+00:25:37.880 --> 00:25:41.200
+Pero por ahora estoy probando deliberadamente solo la función square.
+
+00:25:41.200 --> 00:25:43.990
+No estoy probando entradas concretas del usuario.
+
+00:25:43.990 --> 00:25:45.670
+Pero ese es otro problema por resolver.
+
+00:25:45.670 --> 00:25:49.890
+¿Hay más preguntas ahora sobre pruebas unitarias?
+
+00:25:49.890 --> 00:25:56.670
+SPEAKER 4: ¿Se usan las pruebas unitarias para probar el código en el CS50 check?
+
+00:25:56.670 --> 00:25:58.830
+DAVID MALAN: Check 50 es similar en espíritu.
+
+00:25:58.830 --> 00:26:03.000
+Check 50 es una herramienta que escribimos nosotros, CS50, que esencialmente hace algo
+
+00:26:03.000 --> 00:26:06.750
+parecido a pytest para la evaluación del código de los estudiantes.
+
+00:26:06.750 --> 00:26:10.080
+Es similar en espíritu, pero pensad en Check 50
+
+00:26:10.080 --> 00:26:12.697
+como una alternativa a pytest, por así decirlo.
+
+00:26:12.697 --> 00:26:14.280
+Pero funciona de forma un poco distinta.
+
+00:26:14.280 --> 00:26:17.370
+Pero la idea es la misma: pytest y las pruebas unitarias en
+
+00:26:17.370 --> 00:26:19.890
+general son una técnica independiente de CS50
+
+00:26:19.890 --> 00:26:23.430
+y es algo que puedes y debes hacer con tu propio código, tanto dentro
+
+00:26:23.430 --> 00:26:25.240
+como fuera de esta clase.
+
+00:26:25.240 --> 00:26:31.322
+¿Qué tal una pregunta más sobre nuestras pruebas unitarias?
+
+00:26:31.322 --> 00:26:33.030
+SPEAKER 5: Mi pregunta es: en lugar
+
+00:26:33.030 --> 00:26:37.140
+de escribir cuatro veces, como un cuadrado de, 2 al cuadrado 4,
+
+00:26:37.140 --> 00:26:43.450
+en lugar de eso, ¿podemos escribir igual a entre corchetes los números que queremos,
+
+00:26:43.450 --> 00:26:44.980
+en lugar de escribir cuatro líneas?
+
+00:26:44.980 --> 00:26:46.980
+DAVID MALAN: Una muy buena pregunta, sin duda.
+
+00:26:46.980 --> 00:26:49.620
+Ahora mismo, si vuelvo a test_calculator.py,
+
+00:26:49.620 --> 00:26:51.420
+es, en efecto, bastante manual.
+
+00:26:51.420 --> 00:26:54.570
+Me llevó un rato decir y escribir esas varias líneas,
+
+00:26:54.570 --> 00:26:58.710
+y os podéis imaginar escribir algún tipo de bucle para afirmar en un bucle
+
+00:26:58.710 --> 00:27:02.220
+que esto es igual a aquello, que esto es igual a aquello, y así sucesivamente, usando una lista
+
+00:27:02.220 --> 00:27:05.530
+o quizá una lista o un diccionario o alguna estructura parecida.
+
+00:27:05.530 --> 00:27:08.008
+Así que sí, se pueden automatizar sin duda algunas de estas pruebas
+
+00:27:08.008 --> 00:27:10.050
+en lugar de hacer lo mismo una y otra vez.
+
+00:27:10.050 --> 00:27:12.660
+Puedes seguir usando toda la sintaxis de Python para hacer bucles.
+
+00:27:12.660 --> 00:27:16.200
+Pero, en general, tus pruebas deberían ser bastante simples.
+
+00:27:16.200 --> 00:27:21.510
+Y de hecho, voy a proponer que mejoremos aún más este diseño,
+
+00:27:21.510 --> 00:27:28.320
+porque ahora mismo lo que no es realmente ideal, cuando ejecuto todas estas pruebas
+
+00:27:28.320 --> 00:27:32.010
+con mi función con errores, es fijarnos en la salida que obtuve.
+
+00:27:32.010 --> 00:27:35.550
+Voy a reintroducir ese mismo error cambiando mi multiplicación de nuevo
+
+00:27:35.550 --> 00:27:36.520
+a suma.
+
+00:27:36.520 --> 00:27:39.150
+Voy a aumentar otra vez el tamaño de mi ventana de terminal.
+
+00:27:39.150 --> 00:27:42.600
+Y voy a ejecutar pytest otra vez de test_calculator.py.
+
+00:27:42.600 --> 00:27:46.260
+Esta es, pues, la versión de mi código que vuelve a tener el error.
+
+00:27:46.260 --> 00:27:49.290
+Así que voy a ver ese fallo enorme donde
+
+00:27:49.290 --> 00:27:52.530
+se me ha mostrado este fallo.
+
+00:27:52.530 --> 00:27:55.260
+Pero esto no es tan útil como podría ser,
+
+00:27:55.260 --> 00:27:58.180
+porque tengo todas esas otras pruebas en mi código.
+
+00:27:58.180 --> 00:28:01.350
+Recordad que tenía, ¿cuántas?, una, dos, tres, cuatro, cinco pruebas separadas,
+
+00:28:01.350 --> 00:28:03.270
+y solo veo la salida de la primera.
+
+00:28:03.270 --> 00:28:04.410
+Ahora bien, ¿por qué?
+
+00:28:04.410 --> 00:28:06.690
+Si volvemos a mi código, veréis
+
+00:28:06.690 --> 00:28:11.370
+que la primera aserción que falla, esta de aquí, ese assert
+
+00:28:11.370 --> 00:28:15.750
+de square de 3 igual igual a 9, las demás pruebas ni siquiera se ejecutan.
+
+00:28:15.750 --> 00:28:19.830
+Y eso no es un gran problema en el sentido de que mi código tiene errores, así que una o más
+
+00:28:19.830 --> 00:28:21.630
+de ellas probablemente van a fallar de todos modos,
+
+00:28:21.630 --> 00:28:24.870
+pero ¿no sería bonito saber cuáles de ellas van a fallar?
+
+00:28:24.870 --> 00:28:27.900
+Y de hecho, lo ideal es ejecutar cuantas más pruebas a la vez, mejor,
+
+00:28:27.900 --> 00:28:31.020
+para daros tantas pistas como sea posible para encontrar vuestro error.
+
+00:28:31.020 --> 00:28:35.010
+Así que voy a proponer que mejoremos ahora el diseño de mi código de pruebas,
+
+00:28:35.010 --> 00:28:38.040
+todavía usando pytest, de la siguiente manera.
+
+00:28:38.040 --> 00:28:41.280
+En lugar de tener una función grande llamada test_square
+
+00:28:41.280 --> 00:28:45.090
+que prueba la función entera con tantas entradas distintas,
+
+00:28:45.090 --> 00:28:48.270
+vamos a dividir mis pruebas en distintas categorías.
+
+00:28:48.270 --> 00:28:51.100
+Y aquí también, no hay una única manera correcta de hacerlo.
+
+00:28:51.100 --> 00:28:53.430
+Pero mi cabeza piensa que quizá debería
+
+00:28:53.430 --> 00:28:57.840
+probar los números positivos por separado, los números negativos por separado y el 0
+
+00:28:57.840 --> 00:28:58.470
+por separado.
+
+00:28:58.470 --> 00:28:59.637
+Se me podrían ocurrir otras maneras.
+
+00:28:59.637 --> 00:29:00.810
+Podría probar los números pares.
+
+00:29:00.810 --> 00:29:03.930
+Podría probar los impares o quizá algún otro patrón distinto,
+
+00:29:03.930 --> 00:29:07.140
+pero separar esta gran prueba en varias pruebas
+
+00:29:07.140 --> 00:29:10.150
+probablemente me dará más pistas cuando algo vaya mal.
+
+00:29:10.150 --> 00:29:11.620
+Así que voy a hacer esto.
+
+00:29:11.620 --> 00:29:15.570
+Voy a renombrar esta función como test positive para empezar,
+
+00:29:15.570 --> 00:29:19.170
+y voy a incluir en esa función solo esas dos primeras pruebas.
+
+00:29:19.170 --> 00:29:23.560
+Luego voy a crear otra función aquí llamada test negative.
+
+00:29:23.560 --> 00:29:27.780
+Y en esta función voy a probar solo menos 2 y menos 3.
+
+00:29:27.780 --> 00:29:31.500
+Luego, aquí abajo, voy a hacer un def más de test_zero,
+
+00:29:31.500 --> 00:29:33.660
+y ejecutaré solo una prueba ahí dentro.
+
+00:29:33.660 --> 00:29:36.690
+Así que tengo las mismas aserciones, las mismas cinco,
+
+00:29:36.690 --> 00:29:39.960
+pero ahora las he repartido entre tres funciones distintas.
+
+00:29:39.960 --> 00:29:43.470
+Lo bueno de pytest y de otros marcos de pruebas unitarias
+
+00:29:43.470 --> 00:29:47.340
+es que estas tres funciones de prueba se ejecutarán automáticamente.
+
+00:29:47.340 --> 00:29:50.400
+Aunque una de ellas falle, se intentará ejecutar las demás.
+
+00:29:50.400 --> 00:29:53.790
+Eso significa que, si fallan una, dos o tres de ellas,
+
+00:29:53.790 --> 00:29:58.235
+tendré una, dos o tres pistas que me ayuden a encontrar ese error.
+
+00:29:58.235 --> 00:30:01.110
+Así que voy a aumentar de nuevo el tamaño de mi ventana de terminal,
+
+00:30:01.110 --> 00:30:02.693
+para que podamos ver más cosas en pantalla.
+
+00:30:02.693 --> 00:30:07.350
+Mi calculadora sigue teniendo el error, usa la suma en lugar de la multiplicación.
+
+00:30:07.350 --> 00:30:12.060
+Voy a ejecutar no Python, sino de nuevo pytest de test_calculator.py,
+
+00:30:12.060 --> 00:30:14.550
+cruzando los dedos como siempre, y ahora, madre mía,
+
+00:30:14.550 --> 00:30:16.500
+hay todavía más errores en pantalla.
+
+00:30:16.500 --> 00:30:19.038
+Pero esto en sí mismo es más útil.
+
+00:30:19.038 --> 00:30:20.830
+Repasémoslos de arriba abajo.
+
+00:30:20.830 --> 00:30:22.677
+Así que bajo FAILURES, aquí, en mayúsculas, que
+
+00:30:22.677 --> 00:30:25.260
+sé que no es muy alentador ver fallos cuando solo estás
+
+00:30:25.260 --> 00:30:28.260
+intentando resolver un problema, pero eso es lo que hacen estos marcos,
+
+00:30:28.260 --> 00:30:31.530
+bajo FAILURES, la primera función que falló es test_positive.
+
+00:30:31.530 --> 00:30:34.230
+Pero aquí también vemos la misma pista que antes.
+
+00:30:34.230 --> 00:30:38.230
+La primera, la de 2, el cuadrado de 2 igual igual a 4, esa está bien.
+
+00:30:38.230 --> 00:30:40.210
+No da ningún error en rojo.
+
+00:30:40.210 --> 00:30:41.650
+Pero la siguiente falla.
+
+00:30:41.650 --> 00:30:45.150
+Así que sé que square está roto cuando le paso 3.
+
+00:30:45.150 --> 00:30:46.122
+¿Y aquí abajo?
+
+00:30:46.122 --> 00:30:49.080
+Parece que, por desgracia, mi función test negative también falla.
+
+00:30:49.080 --> 00:30:49.950
+¿Por qué?
+
+00:30:49.950 --> 00:30:53.880
+Cuando paso... oh, esto es interesante... aquí ahora, menos 2
+
+00:30:53.880 --> 00:30:55.270
+ni siquiera funciona.
+
+00:30:55.270 --> 00:30:56.640
+Así que tuve suerte con el 2 positivo.
+
+00:30:56.640 --> 00:30:58.050
+Pero el menos 2 no funciona.
+
+00:30:58.050 --> 00:30:59.400
+Eso es una pequeña pista.
+
+00:30:59.400 --> 00:31:02.850
+Pero en total solo fallaron dos pruebas.
+
+00:31:02.850 --> 00:31:07.500
+Fijaos en que, al final del todo, este resumen dice dos fallos y una superada.
+
+00:31:07.500 --> 00:31:08.400
+¿Cuál es la otra?
+
+00:31:08.400 --> 00:31:09.358
+¿Cuál era la tercera?
+
+00:31:09.358 --> 00:31:10.020
+Test zero.
+
+00:31:10.020 --> 00:31:11.970
+Así que test zero pasa.
+
+00:31:11.970 --> 00:31:13.590
+Estas dos fallan.
+
+00:31:13.590 --> 00:31:17.170
+Y eso me lleva lógicamente, matemáticamente, si queréis,
+
+00:31:17.170 --> 00:31:18.282
+al origen del error.
+
+00:31:18.282 --> 00:31:20.490
+Y para que quede claro también, si tienes muchas pruebas,
+
+00:31:20.490 --> 00:31:23.910
+esta pequeña salida de una línea es útil, aunque también un poco desalentadora:
+
+00:31:23.910 --> 00:31:27.180
+F, F, y un punto significa que pasa.
+
+00:31:27.180 --> 00:31:28.930
+Así que ahí están las tres pruebas, representadas
+
+00:31:28.930 --> 00:31:31.480
+gráficamente de un modo algo distinto.
+
+00:31:31.480 --> 00:31:35.590
+Voy a retroceder ahora y volver a calculator.py.
+
+00:31:35.590 --> 00:31:38.050
+Arreglemos ese error, porque supongamos
+
+00:31:38.050 --> 00:31:40.150
+que he deducido que estoy usando la suma.
+
+00:31:40.150 --> 00:31:42.460
+Debería haber estado usando la multiplicación todo este tiempo.
+
+00:31:42.460 --> 00:31:44.710
+Ahora, después de arreglar el error una vez más,
+
+00:31:44.710 --> 00:31:46.550
+voy a volver a mi terminal grande.
+
+00:31:46.550 --> 00:31:51.160
+Voy a ejecutar pytest de test_calculator.py, pulsando Intro, cruzando los dedos ahora,
+
+00:31:51.160 --> 00:31:53.620
+y punto punto punto significa que todo va bien.
+
+00:31:53.620 --> 00:31:56.360
+El 100 % de mis pruebas ha pasado, las tres.
+
+00:31:56.360 --> 00:31:57.620
+Así que ahora estoy bien.
+
+00:31:57.620 --> 00:32:02.110
+No significa necesariamente que mi código sea 100 % correcto.
+
+00:32:02.110 --> 00:32:05.950
+Pero sí significa que ha superado el 100 % de mis pruebas actuales.
+
+00:32:05.950 --> 00:32:10.150
+Y por tanto probablemente nos convendría pensar un poco más
+
+00:32:10.150 --> 00:32:11.710
+si deberíamos probar números más grandes.
+
+00:32:11.710 --> 00:32:13.600
+Quizá deberíamos probar números aún más pequeños.
+
+00:32:13.600 --> 00:32:15.610
+Quizá deberíamos probar cadenas u otra cosa.
+
+00:32:15.610 --> 00:32:19.090
+En última instancia, te corresponde a ti decidir qué vas a probar.
+
+00:32:19.090 --> 00:32:22.360
+Pero en el mundo real, vas a estar muy descontento contigo mismo
+
+00:32:22.360 --> 00:32:25.900
+o alguien más lo estará, quizá tu jefe estará muy descontento contigo,
+
+00:32:25.900 --> 00:32:29.320
+si no detectaste un error en tu código, que podrías haber detectado
+
+00:32:29.320 --> 00:32:33.070
+si simplemente hubieras escrito una prueba para ese tipo de entrada.
+
+00:32:33.070 --> 00:32:35.500
+Voy a hacer otra pausa a ver si hay alguna pregunta ahora
+
+00:32:35.500 --> 00:32:38.740
+sobre pruebas unitarias con pytest.
+
+00:32:38.740 --> 00:32:41.950
+SPEAKER 6: Entonces, si quisieras probar, como sugirió alguien antes,
+
+00:32:41.950 --> 00:32:45.430
+la entrada del usuario además de probar tu función,
+
+00:32:45.430 --> 00:32:47.500
+¿lo haces dentro del mismo archivo?
+
+00:32:47.500 --> 00:32:50.260
+¿O haces archivos separados para distintos tipos de pruebas?
+
+00:32:50.260 --> 00:32:51.677
+DAVID MALAN: Muy buena pregunta.
+
+00:32:51.677 --> 00:32:55.120
+Podrías perfectamente hacer archivos separados para probar distintos tipos de cosas.
+
+00:32:55.120 --> 00:32:58.300
+O, si no tienes tantas, puedes mantenerlas todas en el mismo archivo.
+
+00:32:58.300 --> 00:33:01.827
+Por ahora, he guardado todas mis pruebas en un solo archivo por comodidad,
+
+00:33:01.827 --> 00:33:03.410
+y no hay demasiadas.
+
+00:33:03.410 --> 00:33:05.380
+Pero dentro de un rato veremos un ejemplo
+
+00:33:05.380 --> 00:33:08.470
+que me permite ponerlas en una carpeta e incluso ejecutar pytest
+
+00:33:08.470 --> 00:33:11.090
+sobre toda la carpeta de pruebas.
+
+00:33:11.090 --> 00:33:12.010
+Así que eso es posible.
+
+00:33:12.010 --> 00:33:14.120
+¿Otras preguntas sobre pruebas unitarias?
+
+00:33:14.120 --> 00:33:16.810
+SPEAKER 7: Tengo dos preguntas.
+
+00:33:16.810 --> 00:33:22.960
+Hace un rato usaste una excepción llamada...
+
+00:33:22.960 --> 00:33:26.110
+no estoy seguro de cuál era... ah, sí, assertion error.
+
+00:33:26.110 --> 00:33:30.160
+¿Qué es exactamente lo que captura ese error en particular?
+
+00:33:30.160 --> 00:33:36.500
+Y mi segunda pregunta es: ¿la palabra clave assert
+
+00:33:36.500 --> 00:33:39.320
+destaca para el compilador, le dice exactamente
+
+00:33:39.320 --> 00:33:42.987
+que inserte esta línea de código en concreto?
+
+00:33:42.987 --> 00:33:43.820
+DAVID MALAN: Efectivamente.
+
+00:33:43.820 --> 00:33:48.320
+La palabra clave assert que estamos viendo y el error de aserción que vimos antes
+
+00:33:48.320 --> 00:33:49.530
+están entrelazados.
+
+00:33:49.530 --> 00:33:52.460
+Así que cuando usas assert y la aserción falla,
+
+00:33:52.460 --> 00:33:56.570
+porque la expresión booleana que estés usando no es verdadera, es falsa,
+
+00:33:56.570 --> 00:34:00.170
+por definición de Python, se lanzará un error de aserción.
+
+00:34:00.170 --> 00:34:02.180
+Así que esas dos cosas funcionan en conjunto.
+
+00:34:02.180 --> 00:34:06.920
+Esos errores, esos errores de aserción, siguen siendo lanzados por mi código
+
+00:34:06.920 --> 00:34:09.320
+aquí cuando falla cualquiera de estas líneas de código.
+
+00:34:09.320 --> 00:34:12.139
+Sin embargo, pytest, esta biblioteca de terceros,
+
+00:34:12.139 --> 00:34:16.639
+se encarga de capturar esas excepciones automáticamente por mí,
+
+00:34:16.639 --> 00:34:18.810
+para darme esta salida estándar.
+
+00:34:18.810 --> 00:34:22.488
+Así que empezamos la historia de hoy implementando yo mismo las pruebas unitarias.
+
+00:34:22.488 --> 00:34:23.780
+Escribí todo el código yo mismo.
+
+00:34:23.780 --> 00:34:24.440
+Escribí main.
+
+00:34:24.440 --> 00:34:25.400
+Hice mi condicional.
+
+00:34:25.400 --> 00:34:26.540
+Hice try y except.
+
+00:34:26.540 --> 00:34:29.277
+Sinceramente, a largo plazo va a ser increíblemente doloroso escribir pruebas
+
+00:34:29.277 --> 00:34:32.360
+si tú y yo tenemos que escribir tanto código cada vez, sobre todo
+
+00:34:32.360 --> 00:34:34.010
+cuando nuestra función es tan pequeña.
+
+00:34:34.010 --> 00:34:38.239
+Así que pytest y los marcos de pruebas unitarias como él automatizan muchísimo de todo eso.
+
+00:34:38.239 --> 00:34:43.460
+Básicamente, pytest añade por ti el try, el except, el if, los print,
+
+00:34:43.460 --> 00:34:46.580
+para que puedas centrarte en la esencia de la prueba, que
+
+00:34:46.580 --> 00:34:49.130
+en realidad son estas entradas y salidas.
+
+00:34:49.130 --> 00:34:52.980
+¿Qué tal si hay tiempo para otra pregunta más sobre pruebas unitarias?
+
+00:34:52.980 --> 00:35:00.320
+SPEAKER 8: Cuando introducimos menos x o menos 5 al cuadrado,
+
+00:35:00.320 --> 00:35:03.270
+sale la raíz cuadrada de ese número.
+
+00:35:03.270 --> 00:35:07.460
+Pero cuando ponemos 6,6 o 5,6, algo así como ese entero,
+
+00:35:07.460 --> 00:35:11.370
+la línea muestra un error.
+
+00:35:11.370 --> 00:35:13.590
+¿Qué pasa ahí?
+
+00:35:13.590 --> 00:35:16.850
+DAVID MALAN: Ahora mismo estoy probando deliberadamente enteros,
+
+00:35:16.850 --> 00:35:19.953
+en gran parte porque solo quiero que pow opere con enteros.
+
+00:35:19.953 --> 00:35:23.120
+Y eso podría indicarse en la documentación de Python o en mi propia documentación
+
+00:35:23.120 --> 00:35:24.050
+de esa función.
+
+00:35:24.050 --> 00:35:26.850
+Si le pasaras otra cosa, como un float,
+
+00:35:26.850 --> 00:35:30.920
+resulta que los valores de coma flotante en Python y en otros lenguajes
+
+00:35:30.920 --> 00:35:33.150
+son en realidad muy difíciles, si no imposibles,
+
+00:35:33.150 --> 00:35:35.420
+de representar con una precisión del 100 %.
+
+00:35:35.420 --> 00:35:39.020
+Y por eso, si intentas compararlos con algún otro valor,
+
+00:35:39.020 --> 00:35:41.900
+puede haber pequeños errores de redondeo como consecuencia.
+
+00:35:41.900 --> 00:35:43.940
+Solo estoy deduciendo a partir de lo que has descrito,
+
+00:35:43.940 --> 00:35:47.480
+pero ahora estoy probando muy deliberadamente esta función solo con las entradas
+
+00:35:47.480 --> 00:35:48.680
+que esperaría.
+
+00:35:48.680 --> 00:35:53.300
+Efectivamente, podría lanzar otros errores si se le pasan otras entradas.
+
+00:35:53.300 --> 00:35:56.240
+Permitidme proponer que consideremos qué debería ocurrir si a square
+
+00:35:56.240 --> 00:35:58.100
+no se le pasa realmente un número.
+
+00:35:58.100 --> 00:36:01.100
+Por ejemplo, si vuelvo a calculator.py,
+
+00:36:01.100 --> 00:36:04.730
+y supongamos que yo, o quizá otra persona que use mi función square,
+
+00:36:04.730 --> 00:36:09.020
+simplemente olvida convertir el valor de retorno de input de str a int,
+
+00:36:09.020 --> 00:36:11.270
+por ejemplo modificando la línea 2 aquí.
+
+00:36:11.270 --> 00:36:14.870
+Ahora, algo definitivamente va a ir mal si escribo un str
+
+00:36:14.870 --> 00:36:16.910
+en lugar de lo que parece ser un int.
+
+00:36:16.910 --> 00:36:18.980
+Por ejemplo, si limpio mi terminal aquí,
+
+00:36:18.980 --> 00:36:22.250
+ejecuto Python de calculator.py y pulso Intro...
+
+00:36:22.250 --> 00:36:26.220
+escribamos cat como valor de x... y por supuesto,
+
+00:36:26.220 --> 00:36:27.570
+esto lanza ahora un error de tipo.
+
+00:36:27.570 --> 00:36:28.070
+¿Por qué?
+
+00:36:28.070 --> 00:36:30.620
+No se puede multiplicar una secuencia por un no entero de tipo 'str'.
+
+00:36:30.620 --> 00:36:31.700
+¿Qué significa eso?
+
+00:36:31.700 --> 00:36:35.000
+No puedes hacer cat por cat, porque, efectivamente, square
+
+00:36:35.000 --> 00:36:36.860
+espera que n sea algún número.
+
+00:36:36.860 --> 00:36:39.650
+Pero eso no significa necesariamente que square en sí tenga un error.
+
+00:36:39.650 --> 00:36:43.070
+Pero sí significa que, si esperamos que se lance un error de tipo,
+
+00:36:43.070 --> 00:36:47.790
+probemos eso también, para saber que el comportamiento funciona como se espera.
+
+00:36:47.790 --> 00:36:53.070
+Así que voy a volver a test_calculator.py y voy a añadir una cuarta prueba aquí
+
+00:36:53.070 --> 00:36:53.570
+abajo.
+
+00:36:53.570 --> 00:36:56.240
+¿Qué tal si defino test guion bajo, y voy a
+
+00:36:56.240 --> 00:36:59.510
+llamarla test_str, porque voy a pasarle específica y deliberadamente
+
+00:36:59.510 --> 00:37:01.080
+un str para la prueba.
+
+00:37:01.080 --> 00:37:06.290
+Y quiero, en espíritu, afirmar que pasarle algo como cat a square
+
+00:37:06.290 --> 00:37:08.030
+lanzará un error de tipo.
+
+00:37:08.030 --> 00:37:10.550
+Pero para eso no usamos la palabra clave assert.
+
+00:37:10.550 --> 00:37:11.630
+Más bien, necesitamos esto.
+
+00:37:11.630 --> 00:37:14.570
+Voy a ir a la parte superior de este archivo y voy a importar además
+
+00:37:14.570 --> 00:37:18.020
+la propia biblioteca pytest, porque resulta que
+
+00:37:18.020 --> 00:37:20.180
+hay una función en esa biblioteca llamada
+
+00:37:20.180 --> 00:37:25.280
+raises que me permite expresar que espero que se lance una excepción.
+
+00:37:25.280 --> 00:37:29.330
+Y puedo expresarlo así con pytest.raises,
+
+00:37:29.330 --> 00:37:33.180
+y luego, entre paréntesis, puedo pasar el tipo de excepción que espero,
+
+00:37:33.180 --> 00:37:35.720
+que en este caso va a ser un error de tipo.
+
+00:37:35.720 --> 00:37:38.720
+Y ahora, ¿cuándo espero que se lance ese error de tipo?
+
+00:37:38.720 --> 00:37:42.320
+Siempre que haga algo como llamar a square pasándole no un número,
+
+00:37:42.320 --> 00:37:44.150
+sino algo como cat.
+
+00:37:44.150 --> 00:37:46.380
+Así que si vuelvo a mi ventana de terminal
+
+00:37:46.380 --> 00:37:51.050
+y ejecuto pytest de test calculator.py, esta vez con cuatro pruebas,
+
+00:37:51.050 --> 00:37:55.880
+debería ver que las cuatro tienen éxito.
+
+00:37:55.880 --> 00:37:59.870
+Consideremos ahora cómo podríamos probar código que no espera solo números
+
+00:37:59.870 --> 00:38:02.000
+como entrada, sino cadenas.
+
+00:38:02.000 --> 00:38:04.640
+Y voy a retroceder en el tiempo aquí, en VS Code,
+
+00:38:04.640 --> 00:38:09.380
+hasta aquel primerísimo programa que escribimos en varias versiones en hello.py
+
+00:38:09.380 --> 00:38:11.610
+y que al final se parecía a esto.
+
+00:38:11.610 --> 00:38:14.480
+Tenía una función main que le pedía al usuario
+
+00:38:14.480 --> 00:38:18.020
+el valor de una variable preguntándole: "¿cómo te llamas?",
+
+00:38:18.020 --> 00:38:19.050
+signo de interrogación.
+
+00:38:19.050 --> 00:38:21.650
+Y luego hacíamos algo como hello,
+
+00:38:21.650 --> 00:38:26.570
+abrir paréntesis, name, pasando el nombre de ese usuario a una función llamada hello.
+
+00:38:26.570 --> 00:38:30.210
+Ahora, esa función hello, recordad, acababa así.
+
+00:38:30.210 --> 00:38:33.530
+Definíamos hello con un parámetro llamado to,
+
+00:38:33.530 --> 00:38:37.850
+cuyo valor por defecto era world, y esa función simplemente
+
+00:38:37.850 --> 00:38:41.780
+imprimía hello, seguido de una coma y luego el
+
+00:38:41.780 --> 00:38:43.310
+nombre que se le hubiera pasado.
+
+00:38:43.310 --> 00:38:46.520
+Y luego, al final, llamábamos a main, pero de ahora en adelante
+
+00:38:46.520 --> 00:38:48.650
+voy a añadir siempre este condicional if,
+
+00:38:48.650 --> 00:38:53.360
+if name igual igual guion bajo guion bajo main, y entonces, y solo entonces,
+
+00:38:53.360 --> 00:38:54.380
+quiero llamar a main.
+
+00:38:54.380 --> 00:38:58.580
+Así que básicamente así era este programa en su última encarnación.
+
+00:38:58.580 --> 00:39:00.560
+¿Cómo lo probamos?
+
+00:39:00.560 --> 00:39:03.800
+Aquí también, no voy a probar la entrada del usuario en sí en main.
+
+00:39:03.800 --> 00:39:07.580
+Me voy a centrar realmente en el módulo de código
+
+00:39:07.580 --> 00:39:10.220
+que nos interesa, que es la propia función hello.
+
+00:39:10.220 --> 00:39:14.420
+¿Cómo puedo probar la función hello?
+
+00:39:14.420 --> 00:39:19.550
+Por desgracia, incluso si empiezo haciendo algo como code de test hello.py...
+
+00:39:19.550 --> 00:39:22.340
+voy a empezar a escribir un programa de pruebas...
+
+00:39:22.340 --> 00:39:26.210
+podría importar de mi programa hello una función llamada hello.
+
+00:39:26.210 --> 00:39:28.700
+Así que resulta un poco extraño ver from hello import
+
+00:39:28.700 --> 00:39:32.900
+hello, pero fijaos en que en esta línea estoy importando del módulo...
+
+00:39:32.900 --> 00:39:36.680
+es decir, del archivo llamado hello.py... la función llamada hello.
+
+00:39:36.680 --> 00:39:40.400
+¿Y cómo la pruebo?
+
+00:39:40.400 --> 00:39:46.610
+Si tengo una función como define test_argument así...
+
+00:39:46.610 --> 00:39:48.090
+voy a hacer esto.
+
+00:39:48.090 --> 00:39:53.510
+Si definiera una función como define test_hello, ¿qué podría hacer?
+
+00:39:53.510 --> 00:39:59.840
+Podría llamar a hello con, entre comillas, por ejemplo, "David",
+
+00:39:59.840 --> 00:40:04.760
+y luego comprobar si es igual a, ¿qué?, "hello, David".
+
+00:40:04.760 --> 00:40:07.400
+¿Funcionaría este planteamiento?
+
+00:40:07.400 --> 00:40:10.730
+Si he escrito una prueba, llamada test_hello, que
+
+00:40:10.730 --> 00:40:14.240
+llama a hello con un argumento David y luego prueba su valor de retorno,
+
+00:40:14.240 --> 00:40:19.820
+igual que hicimos con nuestra calculadora, ¿funcionaría tal como está escrita?
+
+00:40:19.820 --> 00:40:22.370
+Y voy a volver en un momento a la versión
+
+00:40:22.370 --> 00:40:23.730
+de hello que estamos probando.
+
+00:40:23.730 --> 00:40:25.550
+Para que veáis esa función hello.
+
+00:40:25.550 --> 00:40:27.380
+Aquí está la prueba.
+
+00:40:27.380 --> 00:40:29.900
+Aquí está el código real.
+
+00:40:29.900 --> 00:40:32.900
+¿Funcionaría ahora esta prueba?
+
+00:40:32.900 --> 00:40:34.010
+¿Alguna idea?
+
+00:40:34.010 --> 00:40:38.060
+SPEAKER 9: Creo que el problema es que en la primera versión de hello.py
+
+00:40:38.060 --> 00:40:42.860
+estás usando el argumento to que declaraste primero, cuando declaraste
+
+00:40:42.860 --> 00:40:47.070
+la función, en lugar de usar name.
+
+00:40:47.070 --> 00:40:50.580
+DAVID MALAN: Eso en realidad no es un error aquí.
+
+00:40:50.580 --> 00:40:53.730
+Así que voy a dar por supuesto que en hello.py este código
+
+00:40:53.730 --> 00:40:54.863
+funciona como se pretende.
+
+00:40:54.863 --> 00:40:57.780
+Y voy a probarlo manualmente, solo para demostrarlo.
+
+00:40:57.780 --> 00:41:03.610
+Voy a ejecutar Python de hello.py, escribiendo, como mi nombre, D-A-V-I-D, y veo,
+
+00:41:03.610 --> 00:41:05.280
+de hecho, que dice "hello, David".
+
+00:41:05.280 --> 00:41:07.560
+Si, en cambio, cambiara este programa
+
+00:41:07.560 --> 00:41:11.460
+y eliminara el argumento name, eliminara la variable name
+
+00:41:11.460 --> 00:41:14.790
+y llamara simplemente a hello, de nuevo ejecutando Python de hello.py,
+
+00:41:14.790 --> 00:41:17.700
+esta vez ni siquiera me lo pide, porque he eliminado mi llamada a input,
+
+00:41:17.700 --> 00:41:19.740
+pero se comporta como espero.
+
+00:41:19.740 --> 00:41:21.660
+Dice "hello, world".
+
+00:41:21.660 --> 00:41:26.820
+Así que doy por supuesto que este código, en su forma actual, es correcto,
+
+00:41:26.820 --> 00:41:30.310
+pero mi prueba no va a funcionar como esperaba.
+
+00:41:30.310 --> 00:41:38.310
+Y hay una diferencia sutil entre mi función hello
+
+00:41:38.310 --> 00:41:41.490
+y mi función square que lo explica.
+
+00:41:41.490 --> 00:41:45.420
+¿Por qué podría no funcionar esta prueba como se pretende?
+
+00:41:45.420 --> 00:41:47.445
+SPEAKER 10: Porque no devuelve un valor.
+
+00:41:47.445 --> 00:41:48.570
+DAVID MALAN: Sí, exacto.
+
+00:41:48.570 --> 00:41:50.850
+Recordad nuestra conversación al principio sobre las funciones.
+
+00:41:50.850 --> 00:41:54.420
+Las funciones pueden devolver un valor, como mi función square, que os
+
+00:41:54.420 --> 00:41:56.580
+devuelve el cuadrado de algún valor, o pueden
+
+00:41:56.580 --> 00:41:59.425
+tener efectos secundarios, una especie de artefactos visuales
+
+00:41:59.425 --> 00:42:02.550
+que pueden ocurrir en pantalla, como imprimir algo en la pantalla.
+
+00:42:02.550 --> 00:42:05.290
+Y por definición, así es como funciona print.
+
+00:42:05.290 --> 00:42:08.550
+Fijaos en que hello es corta, pero se implementa en última instancia
+
+00:42:08.550 --> 00:42:12.240
+con la función print, que no devuelve un valor tal como la estoy usando aquí.
+
+00:42:12.240 --> 00:42:15.510
+En cambio, tiene este efecto secundario de imprimir algo en la pantalla.
+
+00:42:15.510 --> 00:42:19.110
+Así que no es correcto en mi función de prueba comprobar
+
+00:42:19.110 --> 00:42:23.820
+si el valor de retorno de hello es igual igual a hello David,
+
+00:42:23.820 --> 00:42:26.280
+porque, de nuevo, hello no devuelve nada.
+
+00:42:26.280 --> 00:42:28.050
+Imprime algo, ese efecto secundario,
+
+00:42:28.050 --> 00:42:31.350
+pero fijaos en que, literalmente, no tiene la palabra clave return,
+
+00:42:31.350 --> 00:42:34.290
+a diferencia de mi función square, que sí la tenía.
+
+00:42:34.290 --> 00:42:37.440
+Así que aquí hay una oportunidad de cambiar quizá
+
+00:42:37.440 --> 00:42:41.040
+cómo implemento mis funciones reales.
+
+00:42:41.040 --> 00:42:44.790
+Resulta que, a medida que tus programas se vuelven más y más sofisticados, más
+
+00:42:44.790 --> 00:42:47.730
+y más complicados, tiende a ser buena práctica no
+
+00:42:47.730 --> 00:42:50.250
+tener efectos secundarios si puedes evitarlos,
+
+00:42:50.250 --> 00:42:52.650
+sobre todo si quieres que tu código sea comprobable.
+
+00:42:52.650 --> 00:42:56.910
+Y de hecho, voy a proponer que cambiemos mi programa hello para que funcione
+
+00:42:56.910 --> 00:42:57.850
+de la siguiente manera.
+
+00:42:57.850 --> 00:43:03.180
+Voy a cambiar esta función para que no imprima hello y luego ese nombre.
+
+00:43:03.180 --> 00:43:05.760
+Voy a devolver, literalmente, quizá
+
+00:43:05.760 --> 00:43:09.210
+una cadena f, que lo limpiará un poco, hello coma
+
+00:43:09.210 --> 00:43:11.970
+para cerrar comillas al final.
+
+00:43:11.970 --> 00:43:15.540
+Así que mi sintaxis aquí es simplemente la conocida cadena f, o cadena de formato.
+
+00:43:15.540 --> 00:43:19.800
+Va a devolver hello, world o hello, David o hello, el nombre de quien sea
+
+00:43:19.800 --> 00:43:23.010
+que se pase como ese argumento, pero ahora lo devuelvo.
+
+00:43:23.010 --> 00:43:24.810
+No lo imprimo.
+
+00:43:24.810 --> 00:43:27.480
+Entonces, ¿qué hay que cambiar aquí arriba?
+
+00:43:27.480 --> 00:43:29.560
+Podría hacer algo así.
+
+00:43:29.560 --> 00:43:33.000
+Podría decir algo como output igual a hello
+
+00:43:33.000 --> 00:43:35.940
+y luego print output en mi función main.
+
+00:43:35.940 --> 00:43:38.880
+O puedo simplificarlo, porque en realidad no necesito esa variable.
+
+00:43:38.880 --> 00:43:40.560
+En su lugar, podría hacer simplemente esto.
+
+00:43:40.560 --> 00:43:44.700
+Podría seguir llamando a hello, pero imprimir inmediatamente el resultado.
+
+00:43:44.700 --> 00:43:49.500
+Y esta versión de mi programa hello es ahora más comprobable.
+
+00:43:49.500 --> 00:43:50.040
+¿Por qué?
+
+00:43:50.040 --> 00:43:52.440
+Porque estas sentencias assert que estamos usando,
+
+00:43:52.440 --> 00:43:54.930
+y que hemos visto hasta ahora para nuestras pruebas, están realmente
+
+00:43:54.930 --> 00:44:00.150
+diseñadas para probar los argumentos de entrada de las funciones y los valores de retorno
+
+00:44:00.150 --> 00:44:02.450
+que devuelven, no para probar efectos secundarios.
+
+00:44:02.450 --> 00:44:05.700
+Así que si haces igual igual, estás buscando un valor de retorno, algo
+
+00:44:05.700 --> 00:44:07.390
+que la función devuelve.
+
+00:44:07.390 --> 00:44:08.340
+Así que eso está bien.
+
+00:44:08.340 --> 00:44:11.970
+Si modifico ahora el diseño de mi programa para que no se limite a imprimir hello,
+
+00:44:11.970 --> 00:44:17.400
+sino que devuelva la cadena, la frase, la expresión que quiero construir,
+
+00:44:17.400 --> 00:44:19.290
+puedo dejar en manos de quien llama...
+
+00:44:19.290 --> 00:44:22.170
+es decir, la función que usa esta función hello...
+
+00:44:22.170 --> 00:44:24.090
+la tarea de encargarse de la impresión real.
+
+00:44:24.090 --> 00:44:25.830
+Ahora, ¿qué significa esto en mi código?
+
+00:44:25.830 --> 00:44:28.800
+Significa que ahora, si mi hello.py tiene este aspecto,
+
+00:44:28.800 --> 00:44:33.000
+y hello efectivamente devuelve un valor, en mi función test_hello
+
+00:44:33.000 --> 00:44:35.320
+puedo probarlo exactamente así.
+
+00:44:35.320 --> 00:44:38.970
+Así que voy a ejecutar pytest de test_hello.py,
+
+00:44:38.970 --> 00:44:42.300
+cruzando los dedos como siempre, y voilà, una superada.
+
+00:44:42.300 --> 00:44:45.240
+Así que he superado esta prueba, porque al parecer el valor de retorno de hello
+
+00:44:45.240 --> 00:44:48.300
+es efectivamente "hello, David".
+
+00:44:48.300 --> 00:44:49.920
+Probemos el otro escenario.
+
+00:44:49.920 --> 00:44:53.190
+¿Y si llamo a hello sin ningún argumento?
+
+00:44:53.190 --> 00:44:56.730
+Afirmemos que llamar a hello sin nada entre esos paréntesis
+
+00:44:56.730 --> 00:45:00.690
+es igual de forma similar a hello coma, pero world, el valor por defecto.
+
+00:45:00.690 --> 00:45:04.560
+Voy a ejecutar ahora pytest de test_hello.py.
+
+00:45:04.560 --> 00:45:07.020
+Y esa también pasa por completo.
+
+00:45:07.020 --> 00:45:09.780
+Pero ahí también, supongamos que hubiera cometido algunos errores.
+
+00:45:09.780 --> 00:45:12.030
+Supongamos que hubiera un error en mi código.
+
+00:45:12.030 --> 00:45:15.610
+Puede que no sea buena práctica combinar varias pruebas en esta única función,
+
+00:45:15.610 --> 00:45:18.330
+así que hagamos más claro qué puede pasar o fallar.
+
+00:45:18.330 --> 00:45:22.350
+Llamemos a la primera función test default a esta función.
+
+00:45:22.350 --> 00:45:24.660
+Y que incluya solo esta primera línea de código.
+
+00:45:24.660 --> 00:45:28.140
+Y luego definamos otra función, como test_argument,
+
+00:45:28.140 --> 00:45:30.730
+para probar esta otra línea de código de aquí.
+
+00:45:30.730 --> 00:45:32.820
+Así que ahora tengo dos pruebas distintas, cada una de las cuales
+
+00:45:32.820 --> 00:45:35.620
+prueba algo fundamentalmente un poco distinto.
+
+00:45:35.620 --> 00:45:38.430
+Así que ahora, cuando ejecuto mi código, sigue sin estar roto.
+
+00:45:38.430 --> 00:45:43.740
+Si ejecuto pytest de test_hello.py, Intro, he superado ahora dos pruebas.
+
+00:45:43.740 --> 00:45:45.800
+Y eso es igual de bueno que antes.
+
+00:45:45.800 --> 00:45:49.220
+Pero si hubiera un error, tener dos pruebas en lugar de una
+
+00:45:49.220 --> 00:45:54.000
+me daría, quizá, un poco más de pista sobre qué falla.
+
+00:45:54.000 --> 00:45:57.570
+¿Preguntas ahora sobre esta prueba de valores de retorno,
+
+00:45:57.570 --> 00:46:00.720
+cuando estos valores de retorno son ahora cadenas en lugar de enteros,
+
+00:46:00.720 --> 00:46:02.310
+y sobre por qué hemos hecho esto?
+
+00:46:02.310 --> 00:46:07.050
+SPEAKER 11: Mi pregunta es sobre una función dentro de otra función.
+
+00:46:07.050 --> 00:46:14.020
+¿Podemos probar eso también, o la recursión, que no hemos visto?
+
+00:46:14.020 --> 00:46:17.200
+DAVID MALAN: Si tienes una función recursiva, que no hemos
+
+00:46:17.200 --> 00:46:19.330
+tratado en esta clase, sí, perfectamente puedes
+
+00:46:19.330 --> 00:46:23.530
+probarlas también simplemente llamándolas exactamente de esta manera.
+
+00:46:23.530 --> 00:46:25.603
+La recursión no afecta a este proceso.
+
+00:46:25.603 --> 00:46:27.520
+¿Qué tal una pregunta más sobre pruebas unitarias
+
+00:46:27.520 --> 00:46:29.890
+antes de ver un último ejemplo?
+
+00:46:29.890 --> 00:46:34.780
+SPEAKER 12: Al probar nuestros argumentos, ¿podemos
+
+00:46:34.780 --> 00:46:41.220
+usar algo como bucles dentro de los assert o para los valores?
+
+00:46:41.220 --> 00:46:42.220
+DAVID MALAN: Por supuesto.
+
+00:46:42.220 --> 00:46:45.100
+Puedes usar perfectamente un bucle para probar varios valores.
+
+00:46:45.100 --> 00:46:48.200
+En este caso, por ejemplo, podría hacer algo así.
+
+00:46:48.200 --> 00:46:57.730
+Podría decir for name in la siguiente lista de, digamos, Hermione, Harry y Ron,
+
+00:46:57.730 --> 00:47:02.830
+y luego, dentro de este bucle, afirmar que hello de ese nombre dado es igual
+
+00:47:02.830 --> 00:47:08.680
+igual a, por ejemplo, la cadena de formato hello, coma, name,
+
+00:47:08.680 --> 00:47:13.390
+y luego ejecutarlas todas a la vez ejecutando, de nuevo,
+
+00:47:13.390 --> 00:47:15.160
+pytest de test_hello.py.
+
+00:47:15.160 --> 00:47:17.865
+Seguirá siendo solo una prueba dentro de esa función,
+
+00:47:17.865 --> 00:47:20.740
+pero si hay algo interesante en esas varias cadenas que
+
+00:47:20.740 --> 00:47:23.440
+haga convincente probarlas todas, puedes perfectamente
+
+00:47:23.440 --> 00:47:24.860
+automatizar la prueba de esa manera.
+
+00:47:24.860 --> 00:47:27.520
+Dicho esto, cada una de tus pruebas debería, idealmente,
+
+00:47:27.520 --> 00:47:30.040
+ser bastante simple y bastante pequeña.
+
+00:47:30.040 --> 00:47:30.580
+¿Por qué?
+
+00:47:30.580 --> 00:47:32.630
+Porque no quieres escribir tanto código,
+
+00:47:32.630 --> 00:47:35.860
+tanto código complicado, que tus pruebas puedan tener fallos.
+
+00:47:35.860 --> 00:47:38.890
+Lo que no queremos es tener que escribir pruebas para nuestras pruebas y pruebas
+
+00:47:38.890 --> 00:47:41.240
+para las pruebas de nuestras pruebas, porque nunca acabaría.
+
+00:47:41.240 --> 00:47:44.023
+Así que mantener las pruebas claras y simples es realmente el objetivo,
+
+00:47:44.023 --> 00:47:45.940
+para que una persona razonable, tú incluido,
+
+00:47:45.940 --> 00:47:49.630
+pueda echarles un vistazo y afirmar: sí, eso es correcto.
+
+00:47:49.630 --> 00:47:51.973
+No necesitamos pruebas para nuestras pruebas.
+
+00:47:51.973 --> 00:47:53.140
+¿Qué tal otra característica?
+
+00:47:53.140 --> 00:47:56.560
+Supongamos que no tenemos solo una prueba, sino muchas pruebas distintas,
+
+00:47:56.560 --> 00:47:59.920
+y queremos empezar a organizar esas pruebas en varios archivos e incluso
+
+00:47:59.920 --> 00:48:00.580
+en una carpeta.
+
+00:48:00.580 --> 00:48:03.740
+Pytest y otros marcos también admiten ese paradigma.
+
+00:48:03.740 --> 00:48:08.127
+De hecho, voy a probar hello.py usando una carpeta de pruebas,
+
+00:48:08.127 --> 00:48:09.960
+con técnicamente una sola prueba, pero sería
+
+00:48:09.960 --> 00:48:12.520
+representativo de tener incluso más en esa carpeta.
+
+00:48:12.520 --> 00:48:15.700
+Voy a crear una carpeta nueva llamada test
+
+00:48:15.700 --> 00:48:18.040
+usando mkdir en mi línea de comandos.
+
+00:48:20.315 --> 00:48:23.440
+Y luego, dentro de esa carpeta, voy a crear un archivo llamado
+
+00:48:23.440 --> 00:48:25.510
+test_hello.py.
+
+00:48:25.510 --> 00:48:28.490
+Dentro de este archivo, mientras tanto, voy a probar lo mismo.
+
+00:48:28.490 --> 00:48:31.970
+Así que voy a hacer, from hello, import hello.
+
+00:48:31.970 --> 00:48:36.260
+Y voy a definir una función como test default que
+
+00:48:36.260 --> 00:48:39.710
+simplemente prueba el escenario en el que hello sin argumentos
+
+00:48:39.710 --> 00:48:41.600
+devuelve hello, coma world.
+
+00:48:41.600 --> 00:48:43.610
+Y voy a tener esa otra función en la que
+
+00:48:43.610 --> 00:48:45.802
+pruebo que se pasa un argumento.
+
+00:48:45.802 --> 00:48:47.510
+Y en este caso, elegiré un argumento
+
+00:48:47.510 --> 00:48:50.360
+como afirmar que hello, entre comillas, David,
+
+00:48:50.360 --> 00:48:54.740
+es igual, efectivamente, a hello, coma, no world, sino David.
+
+00:48:54.740 --> 00:48:57.440
+Así que en este caso, acabo de recrear la misma prueba que antes,
+
+00:48:57.440 --> 00:49:01.220
+pero ahora están en un archivo dentro de una carpeta llamada test.
+
+00:49:01.220 --> 00:49:03.260
+Pytest me permite ejecutarlas también aquí.
+
+00:49:03.260 --> 00:49:06.500
+Pero para ello, en realidad necesito crear otro archivo más.
+
+00:49:06.500 --> 00:49:14.780
+Dentro de mi directorio test, necesito crear un archivo llamado __init__.py,
+
+00:49:14.780 --> 00:49:18.200
+que tiene el efecto, aunque este archivo esté vacío,
+
+00:49:18.200 --> 00:49:24.230
+de decirle a Python que trate esa carpeta no solo como un módulo, sino como un paquete,
+
+00:49:24.230 --> 00:49:25.190
+por así decirlo.
+
+00:49:25.190 --> 00:49:28.340
+Un paquete es un módulo de Python o varios módulos
+
+00:49:28.340 --> 00:49:30.560
+organizados dentro de una carpeta.
+
+00:49:30.560 --> 00:49:36.860
+Y este archivo, __init__.py, es solo un indicador visual para Python de que,
+
+00:49:36.860 --> 00:49:39.170
+efectivamente, debe tratar esa carpeta como un paquete.
+
+00:49:39.170 --> 00:49:41.960
+Si tuviera más código en esta carpeta, podría hacer aún más cosas
+
+00:49:41.960 --> 00:49:42.683
+con este archivo.
+
+00:49:42.683 --> 00:49:44.600
+Pero por ahora es solo una pista de que, efectivamente,
+
+00:49:44.600 --> 00:49:48.530
+está pensada para ser un paquete y no solo un módulo o un archivo suelto.
+
+00:49:48.530 --> 00:49:53.360
+Lo que ahora puedo hacer, para terminar, es ejecutar pytest, ni siquiera sobre ese archivo concreto,
+
+00:49:53.360 --> 00:49:55.460
+sino sobre toda una carpeta de pruebas.
+
+00:49:55.460 --> 00:50:00.920
+Así que si ejecuto pytest de test, donde test es el nombre de esa carpeta,
+
+00:50:00.920 --> 00:50:03.530
+pytest buscará automáticamente en esa carpeta
+
+00:50:03.530 --> 00:50:07.650
+todas las pruebas posibles; es cierto que solo hay esas dos en este archivo,
+
+00:50:07.650 --> 00:50:11.480
+pero cuando lo ejecuto ahora con Intro, seguiré superando esas pruebas.
+
+00:50:11.480 --> 00:50:12.960
+Seguiré obteniendo el 100 %.
+
+00:50:12.960 --> 00:50:16.280
+Y ahora tengo un mecanismo, en definitiva, para probar mi propio código.
+
+00:50:16.280 --> 00:50:19.580
+Así que tanto si escribes funciones que devuelven enteros como otra cosa,
+
+00:50:19.580 --> 00:50:22.490
+funciones con efectos secundarios que podrían reescribirse como funciones
+
+00:50:22.490 --> 00:50:24.350
+que devuelven valores, ahora tienes un mecanismo
+
+00:50:24.350 --> 00:50:27.740
+para no limitarte a esperar a que, primero, alguien como nosotros pruebe tu código
+
+00:50:27.740 --> 00:50:30.380
+y a no probar tu código manualmente una y otra vez, lo cual
+
+00:50:30.380 --> 00:50:32.360
+podría volverse tedioso, y podrías cometer errores
+
+00:50:32.360 --> 00:50:34.670
+al no incluir algunas posibles entradas; ahora tenemos
+
+00:50:34.670 --> 00:50:37.970
+un mecanismo automatizado para probar el propio código que
+
+00:50:37.970 --> 00:50:41.100
+será aún más potente cuando empieces a colaborar con otras personas,
+
+00:50:41.100 --> 00:50:44.030
+de modo que puedas escribir pruebas que garanticen que, si ellas
+
+00:50:44.030 --> 00:50:47.870
+hacen un cambio en el mismo código, no han roto el código que tú
+
+00:50:47.870 --> 00:50:48.990
+has escrito.
+
+00:50:48.990 --> 00:50:50.040
+Eso es todo por esta semana.
+
+00:50:50.040 --> 00:50:52.240
+Nos vemos la próxima vez.

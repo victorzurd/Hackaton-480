@@ -4,7 +4,7 @@
   "private": true,
   "description": "API de autenticación y cursos para 480 Academy",
   "scripts": {
-    "dev": "npm run build:web && tsx watch src/server.ts",
+    "dev": "npm run build:web && node scripts/dev.mjs",
     "build": "tsc -p tsconfig.json && tsc -p tsconfig.web.json",
     "build:web": "tsc -p tsconfig.web.json",
     "start": "node dist/server.js",

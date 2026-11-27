@@ -76,4 +76,6 @@ npm run dev
 
 En este modo la aplicación está en `http://localhost:3000`, sin HTTPS.
 
-`npm run dev` compila el TypeScript de la interfaz antes de iniciar la API. Consulta los endpoints y ejemplos en [docs/auth-api.md](docs/auth-api.md). La edad se declara durante el registro y no se verifica documentalmente. Solo se guarda la preferencia de bolsa de trabajo para cuentas de 18 años o más; la decisión del usuario es opcional y empieza desactivada.
+`npm run dev` compila el TypeScript de la interfaz e inicia la API con `NODE_ENV=development`. Para probar la pantalla de lección sin iniciar sesión, abre `http://localhost:3000/leccion.html?preview=1`. El preview solo se sirve en ese modo; `npm start` sin `NODE_ENV=development` y Docker (`NODE_ENV=production`) lo mantienen deshabilitado.
+
+Consulta los endpoints y ejemplos en [docs/auth-api.md](docs/auth-api.md). Para el flujo, el preview y la validación del reproductor, consulta [docs/reproductor-lecciones.md](docs/reproductor-lecciones.md). La edad se declara durante el registro y no se verifica documentalmente. Solo se guarda la preferencia de bolsa de trabajo para cuentas de 18 años o más; la decisión del usuario es opcional y empieza desactivada.

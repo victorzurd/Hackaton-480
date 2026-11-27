@@ -889,7 +889,7 @@ async function closeAssessment(): Promise<void> {
   void loadCourses();
 }
 
-function renderItinerary(modules: ItineraryModule[]): void {
+function renderItinerary(modules: ItineraryModule[], courseId: string): void {
   itineraryTree.replaceChildren();
   let total = 0;
   let completed = 0;
@@ -971,10 +971,17 @@ function renderItinerary(modules: ItineraryModule[]): void {
             if (parsed.protocol === "https:" || parsed.protocol === "http:") safeUrl = parsed.href;
           } catch { /* Una URL no válida se muestra como título sin enlace. */ }
         }
-        const name = document.createElement(safeUrl ? "a" : "span");
+        const isVideoLesson = item.tipo === "video";
+        const name = document.createElement(isVideoLesson || safeUrl ? "a" : "span");
         name.className = "itinerary-lesson__title";
         name.textContent = item.titulo;
-        if (safeUrl) {
+        if (isVideoLesson && name instanceof HTMLAnchorElement) {
+          const lessonUrl = new URL("/leccion.html", window.location.origin);
+          lessonUrl.searchParams.set("curso", courseId);
+          lessonUrl.searchParams.set("contenido", item.id);
+          name.href = `${lessonUrl.pathname}${lessonUrl.search}`;
+          name.setAttribute("aria-label", `Ver la lección ${item.titulo}`);
+        } else if (safeUrl && name instanceof HTMLAnchorElement) {
           (name as HTMLAnchorElement).href = safeUrl;
           (name as HTMLAnchorElement).target = "_blank";
           (name as HTMLAnchorElement).rel = "noopener noreferrer";
@@ -1045,7 +1052,7 @@ async function openItinerary(course: Course): Promise<void> {
     const result = (await response.json().catch(() => ({}))) as ItineraryResponse;
     if (response.status === 401) { expireSession(); return; }
     if (!response.ok) throw new Error(result.error ?? "No se pudo cargar tu itinerario.");
-    renderItinerary(result.modulos);
+    renderItinerary(result.modulos, course.id);
     itineraryStatus.textContent = result.modulos.length
       ? "Avanza por los módulos y consulta qué tienes completado y qué te queda por hacer."
       : "Este curso todavía no tiene módulos disponibles.";

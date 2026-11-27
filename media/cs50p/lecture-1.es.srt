@@ -1,0 +1,4671 @@
+1
+00:00:00,000 --> 00:00:02,946
+[MÚSICA SONANDO]
+
+2
+00:00:25,020 --> 00:00:28,560
+DAVID MALAN: Esto es CS50 Introducción a la programación con Python.
+
+3
+00:00:28,560 --> 00:00:32,100
+Me llamo David Malan, y esta semana nos centramos en los condicionales.
+
+4
+00:00:32,100 --> 00:00:36,120
+Los condicionales, o sentencias condicionales, en Python y en otros lenguajes,
+
+5
+00:00:36,120 --> 00:00:40,620
+son esa capacidad de hacer preguntas y responderlas, para
+
+6
+00:00:40,620 --> 00:00:43,260
+decidir si quieres ejecutar esta línea de código.
+
+7
+00:00:43,260 --> 00:00:44,220
+¿O esta otra línea de código?
+
+8
+00:00:44,220 --> 00:00:46,020
+¿O quizá esta otra línea de código?
+
+9
+00:00:46,020 --> 00:00:48,780
+Te permiten tomar esas proverbiales bifurcaciones del camino,
+
+10
+00:00:48,780 --> 00:00:50,730
+dentro de tu propio código, de forma lógica.
+
+11
+00:00:50,730 --> 00:00:54,210
+Entonces, ¿cómo podemos tomar algunas de estas decisiones?
+
+12
+00:00:54,210 --> 00:00:57,592
+Pues resulta que Python incluye mucha sintaxis integrada.
+
+13
+00:00:57,592 --> 00:00:59,550
+Por ejemplo, aquí tienes solo algunos de los símbolos
+
+14
+00:00:59,550 --> 00:01:01,770
+que puedes usar en Python para hacer preguntas.
+
+15
+00:01:01,770 --> 00:01:04,860
+Preguntas matemáticas, eso sí, pero empezaremos por ahí, aunque solo sea
+
+16
+00:01:04,860 --> 00:01:07,470
+para mantener sencillos los ejemplos al principio.
+
+17
+00:01:07,470 --> 00:01:11,160
+Este primer símbolo, como quizá sepas de matemáticas, representa mayor que.
+
+18
+00:01:11,160 --> 00:01:14,640
+El segundo símbolo quizá no te resulte tan familiar, porque normalmente lo escribimos
+
+19
+00:01:14,640 --> 00:01:16,800
+todo como una sola cosa en un papel.
+
+20
+00:01:16,800 --> 00:01:19,830
+Pero en un teclado, si quieres decir mayor o igual que,
+
+21
+00:01:19,830 --> 00:01:21,300
+usarás este símbolo.
+
+22
+00:01:21,300 --> 00:01:22,920
+Este, por supuesto, significa menor que.
+
+23
+00:01:22,920 --> 00:01:25,590
+Este significa menor o igual que.
+
+24
+00:01:25,590 --> 00:01:27,720
+Y este es un poco curioso.
+
+25
+00:01:27,720 --> 00:01:30,240
+Hemos visto, al estudiar las funciones y las variables,
+
+26
+00:01:30,240 --> 00:01:35,650
+cómo podíamos asignar valores a variables con un único signo igual.
+
+27
+00:01:35,650 --> 00:01:38,010
+Pero ese signo igual no representaba igualdad.
+
+28
+00:01:38,010 --> 00:01:40,230
+Representaba asignación, de derecha a izquierda.
+
+29
+00:01:40,230 --> 00:01:42,390
+Eso está muy bien, porque resolvió ese problema.
+
+30
+00:01:42,390 --> 00:01:45,030
+Pero nos dejó en un aprieto, porque ¿cómo
+
+31
+00:01:45,030 --> 00:01:47,190
+comparamos ahora dos cosas, la de la izquierda y la de la derecha?
+
+32
+00:01:47,190 --> 00:01:51,390
+Pues en Python, y en muchos lenguajes, se usan dos signos igual.
+
+33
+00:01:51,390 --> 00:01:55,200
+Así que dos signos igual representan igualdad, comparando lo que hay
+
+34
+00:01:55,200 --> 00:01:56,310
+a la izquierda y a la derecha.
+
+35
+00:01:56,310 --> 00:01:59,250
+Un signo igual, como siempre, representa asignación,
+
+36
+00:01:59,250 --> 00:02:01,650
+copiando lo de la derecha a la izquierda.
+
+37
+00:02:01,650 --> 00:02:04,650
+Por último, este último símbolo representa distinto de.
+
+38
+00:02:04,650 --> 00:02:08,699
+Así, el signo de exclamación, o bang, seguido de un signo igual,
+
+39
+00:02:08,699 --> 00:02:12,180
+significa distinto de algún valor que está a su lado.
+
+40
+00:02:12,180 --> 00:02:15,900
+Bien, para hacer preguntas con estos símbolos, o con cualquier otro,
+
+41
+00:02:15,900 --> 00:02:18,240
+vamos a necesitar otra palabra clave en Python.
+
+42
+00:02:18,240 --> 00:02:21,120
+Y esa palabra clave, sencillamente, como en inglés, es if.
+
+43
+00:02:21,120 --> 00:02:24,420
+Puedes hacer preguntas en código Python del tipo:
+
+44
+00:02:24,420 --> 00:02:28,890
+si la respuesta a esta pregunta es verdadera, entonces ejecuta
+
+45
+00:02:28,890 --> 00:02:30,760
+este código por mí.
+
+46
+00:02:30,760 --> 00:02:33,240
+Así que vamos a escribir algunos de estos ejemplos.
+
+47
+00:02:33,240 --> 00:02:35,073
+Voy a ir a VS Code.
+
+48
+00:02:35,073 --> 00:02:36,990
+Y vamos a crear primero un programa,
+
+49
+00:02:36,990 --> 00:02:39,900
+llamado compare.py, cuyo objetivo es simplemente
+
+50
+00:02:39,900 --> 00:02:44,980
+escribir código que compare valores y tome decisiones basadas en esos valores.
+
+51
+00:02:44,980 --> 00:02:47,400
+Escribamos code compare.py,
+
+52
+00:02:47,400 --> 00:02:49,980
+para crear un archivo nuevo llamado compare,
+
+53
+00:02:49,980 --> 00:02:52,415
+en el que empezaremos a expresar parte de esta lógica.
+
+54
+00:02:52,415 --> 00:02:53,790
+Bien, ¿qué queremos comparar?
+
+55
+00:02:53,790 --> 00:02:56,130
+Supongamos que queremos comparar, a modo de ejemplo,
+
+56
+00:02:56,130 --> 00:02:57,540
+un par de números enteros.
+
+57
+00:02:57,540 --> 00:03:00,210
+Pero queremos que esos enteros los proporcione el usuario,
+
+58
+00:03:00,210 --> 00:03:03,810
+para poder tomar decisiones basadas en números
+
+59
+00:03:03,810 --> 00:03:05,915
+cuyos valores no conocemos de antemano.
+
+60
+00:03:05,915 --> 00:03:07,290
+Pues hagámoslo.
+
+61
+00:03:07,290 --> 00:03:10,350
+Como hemos hecho antes, declaremos una variable, como x.
+
+62
+00:03:10,350 --> 00:03:15,330
+Asignémosle el valor devuelto por la función int,
+
+63
+00:03:15,330 --> 00:03:19,320
+y pasemos a la función int el valor devuelto por la función input,
+
+64
+00:03:19,320 --> 00:03:22,680
+preguntando al usuario algo como: ¿cuál es x?, signo
+
+65
+00:03:22,680 --> 00:03:24,210
+de interrogación, como hemos hecho antes.
+
+66
+00:03:24,210 --> 00:03:29,490
+Hagamos lo mismo una vez más con y, pidiendo al usuario el valor de y.
+
+67
+00:03:29,490 --> 00:03:33,790
+Y, de nuevo, convirtiéndolo, en última instancia, también a int.
+
+68
+00:03:33,790 --> 00:03:37,200
+Con esto, tenemos dos variables, x e y,
+
+69
+00:03:37,200 --> 00:03:38,622
+cada una con su valor.
+
+70
+00:03:38,622 --> 00:03:41,080
+E idealmente ya deberíamos poder comparar estos valores.
+
+71
+00:03:41,080 --> 00:03:45,510
+Supongamos que quiero tomar una decisión basada en los valores de estas variables.
+
+72
+00:03:45,510 --> 00:03:46,848
+Voy a usar la palabra clave if.
+
+73
+00:03:46,848 --> 00:03:49,140
+Y voy a usar algunos de esos símbolos matemáticos
+
+74
+00:03:49,140 --> 00:03:51,100
+para formular la pregunta en sí.
+
+75
+00:03:51,100 --> 00:03:55,860
+¿Qué tal esto? Si x es menor que y, entonces vamos a
+
+76
+00:03:55,860 --> 00:03:56,940
+imprimirlo sin más.
+
+77
+00:03:56,940 --> 00:03:59,700
+Entre comillas, x es menor que y.
+
+78
+00:03:59,700 --> 00:04:02,250
+Todavía no es un programa muy interesante.
+
+79
+00:04:02,250 --> 00:04:05,580
+Literalmente me limito a decir lo obvio, según las matemáticas.
+
+80
+00:04:05,580 --> 00:04:08,160
+Pero me permite introducir sintaxis nueva.
+
+81
+00:04:08,160 --> 00:04:10,020
+¿Y cuál es exactamente esa sintaxis?
+
+82
+00:04:10,020 --> 00:04:12,990
+Pues esta: no solo la palabra clave if,
+
+83
+00:04:12,990 --> 00:04:15,180
+que he añadido aquí al principio de la línea cuatro,
+
+84
+00:04:15,180 --> 00:04:18,450
+sino luego mi pregunta, x menor que y.
+
+85
+00:04:18,450 --> 00:04:21,450
+x es una variable a la izquierda, y es una variable a la derecha.
+
+86
+00:04:21,450 --> 00:04:24,570
+Y, por supuesto, el signo menor que expresa la pregunta matemática
+
+87
+00:04:24,570 --> 00:04:25,200
+que tengo.
+
+88
+00:04:25,200 --> 00:04:26,970
+Lo que he resaltado aquí se llama, técnicamente,
+
+89
+00:04:26,970 --> 00:04:29,400
+una expresión booleana.
+
+90
+00:04:29,400 --> 00:04:32,550
+Una expresión booleana, llamada así por un matemático llamado Boole,
+
+91
+00:04:32,550 --> 00:04:36,870
+es simplemente una pregunta que tiene una respuesta de sí o no, o, técnicamente,
+
+92
+00:04:36,870 --> 00:04:38,760
+una respuesta de verdadero o falso.
+
+93
+00:04:38,760 --> 00:04:41,670
+Y eso es útil porque, si solo hay dos respuestas posibles,
+
+94
+00:04:41,670 --> 00:04:44,760
+es muy fácil para mí, y a su vez para el ordenador, tomar una decisión:
+
+95
+00:04:44,760 --> 00:04:47,100
+hacer esto, o no hacer esto otro.
+
+96
+00:04:47,100 --> 00:04:49,800
+Fíjate ahora: si vienes de otros lenguajes,
+
+97
+00:04:49,800 --> 00:04:53,100
+quizá notes que no he escrito ningún paréntesis.
+
+98
+00:04:53,100 --> 00:04:56,190
+De hecho, no son necesarios, al menos en este caso, en Python,
+
+99
+00:04:56,190 --> 00:04:58,980
+pero sí he escrito dos puntos al final de la línea.
+
+100
+00:04:58,980 --> 00:05:01,920
+Y, más importante aún, en la línea siguiente
+
+101
+00:05:01,920 --> 00:05:04,350
+he empezado la línea con algo de sangría,
+
+102
+00:05:04,350 --> 00:05:07,380
+pulsando la barra espaciadora cuatro veces, o simplemente pulsando Tab una vez,
+
+103
+00:05:07,380 --> 00:05:09,660
+que se convertirá automáticamente en lo mismo.
+
+104
+00:05:09,660 --> 00:05:13,980
+Esa sangría es lo que le dice a Python que la línea cinco solo debe
+
+105
+00:05:13,980 --> 00:05:20,260
+ejecutarse si la respuesta a la pregunta de la línea cuatro es, efectivamente, verdadera.
+
+106
+00:05:20,260 --> 00:05:24,022
+Así que, si x es menor que y, esa frase se imprimirá a continuación.
+
+107
+00:05:24,022 --> 00:05:25,730
+Bien, añadamos unas cuantas líneas más de código.
+
+108
+00:05:25,730 --> 00:05:26,855
+¿Qué tal otra pregunta?
+
+109
+00:05:26,855 --> 00:05:30,550
+Si x es mayor que y, entonces vamos a imprimirlo.
+
+110
+00:05:30,550 --> 00:05:33,010
+x es mayor que y.
+
+111
+00:05:33,010 --> 00:05:38,560
+Y hagamos una última pregunta: si x es igual a y, entonces... un momento.
+
+112
+00:05:38,560 --> 00:05:41,360
+¿Qué he hecho mal aquí?
+
+113
+00:05:41,360 --> 00:05:42,250
+Buen ojo.
+
+114
+00:05:42,250 --> 00:05:44,080
+No quiero asignar y a x.
+
+115
+00:05:44,080 --> 00:05:48,430
+Si x igual igual y es como expreso la igualdad, vamos
+
+116
+00:05:48,430 --> 00:05:52,420
+a imprimir x es igual a y.
+
+117
+00:05:52,420 --> 00:05:56,470
+Así que ahora tengo tres condiciones, si quieres verlo así,
+
+118
+00:05:56,470 --> 00:05:59,935
+una pregunta que plantea x menor que y, otra x mayor que y,
+
+119
+00:05:59,935 --> 00:06:02,860
+y otra x igual igual y.
+
+120
+00:06:02,860 --> 00:06:03,912
+Ejecutemos el código.
+
+121
+00:06:03,912 --> 00:06:05,620
+Aquí abajo, en mi ventana de terminal,
+
+122
+00:06:05,620 --> 00:06:08,320
+voy a ejecutar python compare.py y pulsar Intro.
+
+123
+00:06:08,320 --> 00:06:09,190
+¿Cuál es x?
+
+124
+00:06:09,190 --> 00:06:10,390
+Pongamos uno.
+
+125
+00:06:10,390 --> 00:06:11,140
+¿Cuál es y?
+
+126
+00:06:11,140 --> 00:06:12,370
+Pongamos dos.
+
+127
+00:06:12,370 --> 00:06:15,940
+Esto debería, por supuesto, ejecutar esa primera línea de código
+
+128
+00:06:15,940 --> 00:06:18,970
+y decirme, efectivamente, que x es menor que y.
+
+129
+00:06:18,970 --> 00:06:21,670
+Exactamente como esperaba.
+
+130
+00:06:21,670 --> 00:06:24,400
+Pero ¿qué acaba de ocurrir en el código?
+
+131
+00:06:24,400 --> 00:06:28,090
+Veamos, quizá, este mismo código de forma visual,
+
+132
+00:06:28,090 --> 00:06:31,210
+sobre todo si eres más de aprendizaje visual; esto, me atrevería a decir,
+
+133
+00:06:31,210 --> 00:06:32,500
+es lo que acaba de pasar.
+
+134
+00:06:32,500 --> 00:06:34,840
+Lo que estamos viendo aquí es un diagrama de flujo.
+
+135
+00:06:34,840 --> 00:06:37,900
+Es un diagrama de la lógica de este programa.
+
+136
+00:06:37,900 --> 00:06:41,470
+Y, más técnicamente, muestra el flujo de control del programa.
+
+137
+00:06:41,470 --> 00:06:43,510
+Es decir, la capacidad que tienes, en el código, de controlar
+
+138
+00:06:43,510 --> 00:06:46,210
+el flujo de un programa, generalmente de arriba abajo.
+
+139
+00:06:46,210 --> 00:06:49,300
+De hecho, voy a hacer zoom en la parte superior de este diagrama de flujo.
+
+140
+00:06:49,300 --> 00:06:52,510
+Y verás un óvalo en lo más alto que dice, literalmente, inicio.
+
+141
+00:06:52,510 --> 00:06:55,450
+Es decir, independientemente de la forma o la disposición
+
+142
+00:06:55,450 --> 00:06:58,180
+del diagrama, ahí es donde debería empezar tu pensamiento y tu lógica
+
+143
+00:06:58,180 --> 00:07:01,460
+al intentar entender este programa.
+
+144
+00:07:01,460 --> 00:07:04,480
+Fíjate en que hay una flecha desde el inicio hasta esta forma de rombo.
+
+145
+00:07:04,480 --> 00:07:07,450
+Y dentro de ese rombo hay una pregunta, una expresión booleana,
+
+146
+00:07:07,450 --> 00:07:08,800
+x menor que y.
+
+147
+00:07:08,800 --> 00:07:12,190
+Y esta forma significa, simplemente, que según la respuesta a esa pregunta,
+
+148
+00:07:12,190 --> 00:07:14,140
+vas a la izquierda o a la derecha.
+
+149
+00:07:14,140 --> 00:07:16,690
+En concreto, vas a la izquierda si la respuesta es verdadera,
+
+150
+00:07:16,690 --> 00:07:19,240
+o a la derecha si la respuesta es falsa.
+
+151
+00:07:19,240 --> 00:07:24,460
+Bien, las entradas que escribí fueron uno y dos, respectivamente, para x e y.
+
+152
+00:07:24,460 --> 00:07:26,980
+Así que, por supuesto, uno es menor que dos.
+
+153
+00:07:26,980 --> 00:07:32,530
+Por eso mi programa imprimió, entre comillas, x es menor que y.
+
+154
+00:07:32,530 --> 00:07:34,120
+Pero recuerda el código.
+
+155
+00:07:34,120 --> 00:07:37,270
+El código seguía planteando dos preguntas más.
+
+156
+00:07:37,270 --> 00:07:38,800
+¿Es x mayor que y?
+
+157
+00:07:38,800 --> 00:07:40,570
+¿Es x igual igual a y?
+
+158
+00:07:40,570 --> 00:07:43,570
+Pues el diagrama de flujo también refleja esas preguntas.
+
+159
+00:07:43,570 --> 00:07:46,090
+Fíjate en que, tanto si la pregunta
+
+160
+00:07:46,090 --> 00:07:50,530
+tenía como respuesta verdadero o falso, las flechas confluyen de nuevo
+
+161
+00:07:50,530 --> 00:07:52,990
+en este segundo rombo de aquí.
+
+162
+00:07:52,990 --> 00:07:57,070
+Y ese segundo rombo plantea la segunda pregunta, x mayor que y.
+
+163
+00:07:57,070 --> 00:07:58,840
+Esa también tiene una respuesta verdadera o falsa.
+
+164
+00:07:58,840 --> 00:08:00,560
+Así que vamos por un camino o por el otro.
+
+165
+00:08:00,560 --> 00:08:04,600
+Pero si x es uno e y es dos, entonces no, la respuesta es falsa.
+
+166
+00:08:04,600 --> 00:08:06,190
+Uno no es mayor que y.
+
+167
+00:08:06,190 --> 00:08:09,430
+Así que, lógicamente, en el diagrama de flujo esta vez sigues la flecha de falso.
+
+168
+00:08:09,430 --> 00:08:13,750
+Y fíjate en que, a lo largo de esa flecha de falso, esta vez no se imprime nada.
+
+169
+00:08:13,750 --> 00:08:16,067
+Por eso solo vimos una salida en pantalla.
+
+170
+00:08:16,067 --> 00:08:17,650
+Ahora bien, todavía quedaba una tercera pregunta.
+
+171
+00:08:17,650 --> 00:08:19,442
+Y este diagrama de flujo también la recoge.
+
+172
+00:08:19,442 --> 00:08:22,480
+El tercer rombo pregunta x igual igual y.
+
+173
+00:08:22,480 --> 00:08:25,720
+Pues esa también tiene una respuesta falsa en este caso, porque uno, por supuesto,
+
+174
+00:08:25,720 --> 00:08:27,250
+no es igual igual a y.
+
+175
+00:08:27,250 --> 00:08:30,830
+Así que de nuevo seguimos la tercera rama de falso.
+
+176
+00:08:30,830 --> 00:08:32,890
+Y eso nos lleva, por supuesto, al final.
+
+177
+00:08:32,890 --> 00:08:35,659
+Y el final simplemente indica que el programa termina ahí.
+
+178
+00:08:35,659 --> 00:08:38,020
+Así que creo que es correcto.
+
+179
+00:08:38,020 --> 00:08:40,780
+Y ese diagrama de flujo en particular representa
+
+180
+00:08:40,780 --> 00:08:44,140
+el código real que escribí.
+
+181
+00:08:44,140 --> 00:08:45,220
+Así que es correcto.
+
+182
+00:08:45,220 --> 00:08:46,690
+Hace lo que se supone que debe hacer.
+
+183
+00:08:46,690 --> 00:08:50,290
+Respondió correctamente a la pregunta imprimiendo en pantalla x menor que y.
+
+184
+00:08:50,290 --> 00:08:53,803
+Pero ¿qué tiene, quizá, de mal diseñado?
+
+185
+00:08:53,803 --> 00:08:55,220
+Hagamos primero esta distinción.
+
+186
+00:08:55,220 --> 00:08:56,770
+No basta, necesariamente, con que el código
+
+187
+00:08:56,770 --> 00:08:58,937
+que escribes sea correcto y haga lo que pretendes.
+
+188
+00:08:58,937 --> 00:09:02,270
+A más largo plazo, sobre todo a medida que nuestros programas se hagan más largos y sofisticados,
+
+189
+00:09:02,270 --> 00:09:06,910
+más complicados, querremos que además estén bien diseñados.
+
+190
+00:09:06,910 --> 00:09:12,610
+¿Alguna idea sobre en qué sentido este programa, aun siendo correcto,
+
+191
+00:09:12,610 --> 00:09:15,230
+podría decirse que no está bien diseñado?
+
+192
+00:09:15,230 --> 00:09:16,300
+A ver.
+
+193
+00:09:16,300 --> 00:09:18,880
+Khalid, si lo estoy diciendo bien, ¿qué opinas?
+
+194
+00:09:18,880 --> 00:09:21,730
+KHALID: Demasiados if, creo; se vuelve repetitivo.
+
+195
+00:09:21,730 --> 00:09:23,930
+Quizá podríamos hacer el código más conciso.
+
+196
+00:09:23,930 --> 00:09:25,930
+DAVID MALAN: Sí, parece un poco repetitivo.
+
+197
+00:09:25,930 --> 00:09:28,692
+Estoy preguntando si esto, si esto, si esto.
+
+198
+00:09:28,692 --> 00:09:31,900
+Y, sin embargo, lógicamente, debería conocer la respuesta a algunas de esas últimas preguntas
+
+199
+00:09:31,900 --> 00:09:33,040
+una vez que averigüe una.
+
+200
+00:09:33,040 --> 00:09:35,350
+Y, en resumen, si miras este diagrama de aquí,
+
+201
+00:09:35,350 --> 00:09:38,650
+fíjate en que tanto si voy a la izquierda como a la derecha,
+
+202
+00:09:38,650 --> 00:09:41,110
+siempre estoy haciendo tres preguntas.
+
+203
+00:09:41,110 --> 00:09:45,230
+Pase lo que pase, todas esas flechas llevan al primer, al segundo
+
+204
+00:09:45,230 --> 00:09:46,480
+y al tercer rombo.
+
+205
+00:09:46,480 --> 00:09:49,810
+Así que estoy haciendo tres preguntas, sea cual sea el resultado, verdadero o falso,
+
+206
+00:09:49,810 --> 00:09:50,862
+de cualquiera de ellas.
+
+207
+00:09:50,862 --> 00:09:52,570
+Bien, ¿cómo podría mejorar esto?
+
+208
+00:09:52,570 --> 00:09:55,240
+Pues propongo que introduzcamos otra palabra clave
+
+209
+00:09:55,240 --> 00:09:57,760
+en nuestro vocabulario de Python: elif.
+
+210
+00:09:57,760 --> 00:09:59,830
+Y esta también es bastante concisa.
+
+211
+00:09:59,830 --> 00:10:02,770
+Es una contracción de else if, en inglés,
+
+212
+00:10:02,770 --> 00:10:07,960
+que nos permite hacer una pregunta que tiene en cuenta si una
+
+213
+00:10:07,960 --> 00:10:10,840
+pregunta anterior tuvo una respuesta verdadera o falsa.
+
+214
+00:10:10,840 --> 00:10:12,110
+Pero ¿qué quiero decir con eso?
+
+215
+00:10:12,110 --> 00:10:13,810
+Bien, vuelvo a mi código.
+
+216
+00:10:13,810 --> 00:10:17,830
+Y propongo que ahora lo mejoremos,
+
+217
+00:10:17,830 --> 00:10:22,360
+preguntándonos, en última instancia, cómo podemos hacer menos preguntas.
+
+218
+00:10:22,360 --> 00:10:24,460
+Y propongo aquí que,
+
+219
+00:10:24,460 --> 00:10:30,700
+en lugar de preguntar if, if, if, hagamos estas condiciones potencialmente mutuamente
+
+220
+00:10:30,700 --> 00:10:31,700
+excluyentes.
+
+221
+00:10:31,700 --> 00:10:35,920
+Es decir, que no sigamos respondiendo preguntas una vez que obtengamos
+
+222
+00:10:35,920 --> 00:10:37,220
+una respuesta verdadera.
+
+223
+00:10:37,220 --> 00:10:39,440
+Así que voy a cambiar mi código aquí de la siguiente manera.
+
+224
+00:10:39,440 --> 00:10:45,160
+En lugar de preguntar if, if, if, voy a poner: if x menor que y, elif x
+
+225
+00:10:45,160 --> 00:10:50,140
+mayor que y, elif x igual igual y.
+
+226
+00:10:50,140 --> 00:10:52,780
+Así estoy teniendo en cuenta implícitamente, igual que en inglés,
+
+227
+00:10:52,780 --> 00:10:57,520
+que solo voy a seguir haciéndome estas preguntas
+
+228
+00:10:57,520 --> 00:11:00,340
+si todavía no he obtenido una respuesta verdadera.
+
+229
+00:11:00,340 --> 00:11:02,080
+Piensa en la lógica de aquí, en el inglés.
+
+230
+00:11:02,080 --> 00:11:07,660
+Si x es menor que y, en la línea cuatro, imprime x es menor que y.
+
+231
+00:11:07,660 --> 00:11:10,300
+Pues si ese es el caso, has terminado, lógicamente.
+
+232
+00:11:10,300 --> 00:11:15,670
+Porque si el inglés dice si x menor que y, si no, si x mayor que y,
+
+233
+00:11:15,670 --> 00:11:19,030
+esas condiciones serán mutuamente excluyentes si la respuesta a la primera pregunta
+
+234
+00:11:19,030 --> 00:11:19,625
+es verdadera.
+
+235
+00:11:19,625 --> 00:11:22,750
+No hace falta seguir haciendo preguntas cuya respuesta ya conoces
+
+236
+00:11:22,750 --> 00:11:23,570
+lógicamente.
+
+237
+00:11:23,570 --> 00:11:25,418
+Así que ejecutemos ahora este programa.
+
+238
+00:11:25,418 --> 00:11:27,460
+Y creo que el comportamiento va a ser el mismo.
+
+239
+00:11:27,460 --> 00:11:29,710
+python compare.py, ¿cuál es x?
+
+240
+00:11:29,710 --> 00:11:30,550
+Pongamos uno.
+
+241
+00:11:30,550 --> 00:11:31,210
+¿Cuál es y?
+
+242
+00:11:31,210 --> 00:11:32,400
+Pongamos dos.
+
+243
+00:11:32,400 --> 00:11:33,910
+x es menor que y.
+
+244
+00:11:33,910 --> 00:11:37,330
+Ahora bien, sinceramente, no noté ninguna diferencia al ejecutar el programa.
+
+245
+00:11:37,330 --> 00:11:41,020
+Y, la verdad, mi Mac, mi PC, mi teléfono hoy en día
+
+246
+00:11:41,020 --> 00:11:44,020
+son tan rápidos que este tipo de mejoras
+
+247
+00:11:44,020 --> 00:11:47,110
+no se van a notar más rápidas necesariamente hasta que
+
+248
+00:11:47,110 --> 00:11:49,300
+escribamos programas más grandes y exigentes.
+
+249
+00:11:49,300 --> 00:11:52,640
+Pero estamos sentando las bases para escribir mejor código a largo plazo.
+
+250
+00:11:52,640 --> 00:11:54,640
+¿Cuál es la mejora que acabo de hacer?
+
+251
+00:11:54,640 --> 00:11:57,650
+Pues bien, si antes mi diagrama era así,
+
+252
+00:11:57,650 --> 00:12:02,740
+lo cual era problemático porque hacía tres preguntas pasara lo que pasara,
+
+253
+00:12:02,740 --> 00:12:06,280
+incluso si ya había averiguado lo que quería imprimir en pantalla.
+
+254
+00:12:06,280 --> 00:12:10,720
+Esta nueva versión del programa, que dice if, elif, elif, podría verse
+
+255
+00:12:10,720 --> 00:12:12,460
+más o menos así.
+
+256
+00:12:12,460 --> 00:12:13,630
+Ahora se ha hecho un poco más ancho.
+
+257
+00:12:13,630 --> 00:12:16,390
+Eso es solo porque hemos dibujado las flechas algo más abiertas aquí.
+
+258
+00:12:16,390 --> 00:12:19,030
+Pero centrémonos en cuántas preguntas se están haciendo.
+
+259
+00:12:19,030 --> 00:12:20,950
+Voy a hacer zoom en la parte superior, como antes.
+
+260
+00:12:20,950 --> 00:12:25,030
+Y propongo que observemos que el óvalo de inicio está en lo más alto,
+
+261
+00:12:25,030 --> 00:12:27,400
+y nos pide que hagamos una pregunta primero.
+
+262
+00:12:27,400 --> 00:12:29,980
+x menor que y, ¿es uno menor que dos?
+
+263
+00:12:29,980 --> 00:12:33,400
+Pero fíjate aquí, voy a alejar el zoom, si uno es, efectivamente, menor
+
+264
+00:12:33,400 --> 00:12:39,550
+que dos, seguimos esta flecha más larga hacia abajo, marcada como verdadero.
+
+265
+00:12:39,550 --> 00:12:42,580
+Imprimimos, entre comillas, x es menor que y.
+
+266
+00:12:42,580 --> 00:12:48,160
+Pero inmediatamente seguimos la siguiente flecha hacia abajo hasta el icono que dice final.
+
+267
+00:12:48,160 --> 00:12:51,670
+Eso es lo que implica usar if, elif, elif.
+
+268
+00:12:51,670 --> 00:12:55,210
+Si obtenemos una respuesta verdadera enseguida en ese primer if,
+
+269
+00:12:55,210 --> 00:12:57,700
+imprimiremos x es menor que y y terminaremos.
+
+270
+00:12:57,700 --> 00:12:59,870
+Estamos, lógicamente, al final del programa.
+
+271
+00:12:59,870 --> 00:13:03,190
+Así que esta imagen solo representa, gráficamente,
+
+272
+00:13:03,190 --> 00:13:05,650
+lo que el código está haciendo realmente.
+
+273
+00:13:05,650 --> 00:13:07,330
+Pero supongamos que escribiera otra cosa.
+
+274
+00:13:07,330 --> 00:13:13,450
+Supongamos que mi código se ejecutara y escribiera dos para x y uno para y.
+
+275
+00:13:13,450 --> 00:13:16,430
+Es decir, la respuesta a la primera pregunta ahora es falsa.
+
+276
+00:13:16,430 --> 00:13:19,000
+Pero la respuesta a la segunda pregunta ahora es verdadera.
+
+277
+00:13:19,000 --> 00:13:23,340
+Porque, por supuesto, dos es mayor que uno.
+
+278
+00:13:23,340 --> 00:13:25,240
+Bien, volvamos al diagrama.
+
+279
+00:13:25,240 --> 00:13:28,570
+Igual que antes, empezamos arriba del todo, donde dice inicio.
+
+280
+00:13:28,570 --> 00:13:33,520
+La primera pregunta de aquí arriba, ahora, x menor que y, tiene respuesta falsa,
+
+281
+00:13:33,520 --> 00:13:35,950
+porque no, dos no es menor que uno.
+
+282
+00:13:35,950 --> 00:13:39,190
+Así que seguimos esta flecha hasta la siguiente pregunta, este rombo.
+
+283
+00:13:39,190 --> 00:13:40,840
+¿Es x mayor que y?
+
+284
+00:13:40,840 --> 00:13:43,660
+Pues sí, dos es mayor que uno.
+
+285
+00:13:43,660 --> 00:13:47,510
+Así que ahora seguimos esta flecha de la izquierda, que es la de verdadero.
+
+286
+00:13:47,510 --> 00:13:52,250
+Imprimimos, entre comillas, x es mayor que y, y terminamos.
+
+287
+00:13:52,250 --> 00:13:53,530
+Entonces, ¿cuál es la mejora?
+
+288
+00:13:53,530 --> 00:13:55,810
+Pues en el primer caso tuvimos suerte y solo
+
+289
+00:13:55,810 --> 00:13:58,090
+tuvimos que hacer una pregunta y listo, hemos terminado.
+
+290
+00:13:58,090 --> 00:14:01,420
+Esta vez tuvimos que hacer dos preguntas, pero luego listo, hemos terminado.
+
+291
+00:14:01,420 --> 00:14:07,390
+Solo si x resulta ser igual a y llegamos, lógicamente,
+
+292
+00:14:07,390 --> 00:14:11,620
+hasta el último elif de mi código.
+
+293
+00:14:11,620 --> 00:14:14,830
+Y, gráficamente, solo si x es igual a y
+
+294
+00:14:14,830 --> 00:14:17,980
+llegamos hasta el tercer rombo,
+
+295
+00:14:17,980 --> 00:14:23,020
+la tercera pregunta, que plantea si es igual a y o no.
+
+296
+00:14:23,020 --> 00:14:25,850
+Ahora bien, esperemos que, llegados a ese punto, la respuesta no sea falsa.
+
+297
+00:14:25,850 --> 00:14:28,953
+Hemos incluido una flecha de falso solo para que el programa
+
+298
+00:14:28,953 --> 00:14:29,620
+esté bien definido.
+
+299
+00:14:29,620 --> 00:14:33,520
+Pero, lógicamente, en realidad no deberíamos llegar nunca ahí,
+
+300
+00:14:33,520 --> 00:14:37,242
+porque en este caso tiene que ser menor que, o mayor que, o igual.
+
+301
+00:14:37,242 --> 00:14:38,950
+Bien, hagamos una pausa aquí para ver si hay
+
+302
+00:14:38,950 --> 00:14:42,340
+alguna pregunta, ahora, sobre la versión en código de esto,
+
+303
+00:14:42,340 --> 00:14:47,090
+o sobre este diagrama de esa misma lógica.
+
+304
+00:14:47,090 --> 00:14:52,130
+¿Preguntas sobre este flujo de control?
+
+305
+00:14:52,130 --> 00:14:55,872
+INTERLOCUTOR 1: ¿No se supone que hay que poner un else al final?
+
+306
+00:14:55,872 --> 00:14:57,080
+DAVID MALAN: Muy buena pregunta.
+
+307
+00:14:57,080 --> 00:15:00,103
+Y sí, esa va a ser mi tercera y última versión.
+
+308
+00:15:00,103 --> 00:15:02,270
+Y si no os importa, pasemos a ella directamente.
+
+309
+00:15:02,270 --> 00:15:04,820
+Vamos a ver una tercera palabra clave, que efectivamente existe
+
+310
+00:15:04,820 --> 00:15:09,020
+en Python, y que nos permite expresar aún mejor esta lógica
+
+311
+00:15:09,020 --> 00:15:10,950
+para diseñar este programa todavía mejor.
+
+312
+00:15:10,950 --> 00:15:13,560
+Y eso va a resolver un problema concreto.
+
+313
+00:15:13,560 --> 00:15:16,820
+Si volvemos a nuestro código, fijaos
+
+314
+00:15:16,820 --> 00:15:20,750
+en lo que resaltamos antes: elif x igual igual y.
+
+315
+00:15:20,750 --> 00:15:23,180
+No es incorrecto hacer esa pregunta.
+
+316
+00:15:23,180 --> 00:15:25,730
+De hecho, si queremos ser especialmente exhaustivos,
+
+317
+00:15:25,730 --> 00:15:29,660
+tiene todo el sentido comprobar si x es menor que y, mayor que y,
+
+318
+00:15:29,660 --> 00:15:31,010
+o igual a y.
+
+319
+00:15:31,010 --> 00:15:37,280
+Pero ¿por qué no necesito hacer esta tercera y última pregunta?
+
+320
+00:15:37,280 --> 00:15:42,080
+INTERLOCUTOR 2: Ya no hace falta preguntar si x es igual a y porque, lógicamente,
+
+321
+00:15:42,080 --> 00:15:45,320
+si las dos condiciones se evalúan como falsas,
+
+322
+00:15:45,320 --> 00:15:50,250
+solo queda una condición que pueda evaluarse como verdadera.
+
+323
+00:15:50,250 --> 00:15:51,885
+Y es que x es igual a y.
+
+324
+00:15:51,885 --> 00:15:52,760
+DAVID MALAN: Exacto.
+
+325
+00:15:52,760 --> 00:15:55,250
+Si estamos todos cómodos con las matemáticas y las comparaciones
+
+326
+00:15:55,250 --> 00:15:58,820
+de aquí, por supuesto x va a ser menor que y, mayor que y,
+
+327
+00:15:58,820 --> 00:15:59,750
+o igual a y.
+
+328
+00:15:59,750 --> 00:16:02,150
+Pero una vez que descartas los dos primeros escenarios,
+
+329
+00:16:02,150 --> 00:16:05,270
+lógicamente, tiene que ser el caso de que x sea igual a y.
+
+330
+00:16:05,270 --> 00:16:08,060
+Si no lo fuera, entonces es menor que o mayor que.
+
+331
+00:16:08,060 --> 00:16:11,220
+Así que Hope propuso que usemos esta otra palabra clave, else.
+
+332
+00:16:11,220 --> 00:16:12,210
+¿Y cómo la usamos?
+
+333
+00:16:12,210 --> 00:16:13,752
+Pues exactamente igual que en inglés.
+
+334
+00:16:13,752 --> 00:16:15,110
+Vuelvo a mi código.
+
+335
+00:16:15,110 --> 00:16:18,830
+Y en lugar de molestarnos en hacer la tercera y última pregunta,
+
+336
+00:16:18,830 --> 00:16:20,330
+no hagamos ninguna pregunta.
+
+337
+00:16:20,330 --> 00:16:24,630
+Pongamos simplemente este comodín, por así decirlo, una última línea de código que diga:
+
+338
+00:16:24,630 --> 00:16:27,830
+else, asume simplemente que x es igual a y.
+
+339
+00:16:27,830 --> 00:16:29,682
+Y, por tanto, imprímelo también.
+
+340
+00:16:29,682 --> 00:16:30,890
+Entonces, ¿cuál es la ventaja de esto?
+
+341
+00:16:30,890 --> 00:16:33,570
+Mi código va a seguir funcionando exactamente igual.
+
+342
+00:16:33,570 --> 00:16:35,690
+Y, de nuevo, mi ordenador es tan rápido que ni
+
+343
+00:16:35,690 --> 00:16:39,480
+siquiera noto que funciona aún más rápido que antes.
+
+344
+00:16:39,480 --> 00:16:41,210
+Pero notaríamos este tipo de cosas
+
+345
+00:16:41,210 --> 00:16:44,210
+si hiciéramos mucho más trabajo, con programas mucho más grandes.
+
+346
+00:16:44,210 --> 00:16:46,400
+Pero ejecutemos python compare.py.
+
+347
+00:16:46,400 --> 00:16:49,670
+Probemos, por ejemplo, uno y dos.
+
+348
+00:16:49,670 --> 00:16:50,720
+Sigue funcionando.
+
+349
+00:16:50,720 --> 00:16:52,460
+Probemos dos y uno.
+
+350
+00:16:52,460 --> 00:16:53,630
+Sigue funcionando.
+
+351
+00:16:53,630 --> 00:16:55,340
+Probemos uno y uno.
+
+352
+00:16:55,340 --> 00:16:57,540
+Y, efectivamente, ahora también funciona.
+
+353
+00:16:57,540 --> 00:17:01,370
+Pero en estos casos, consideremos el camino que acabamos de seguir.
+
+354
+00:17:01,370 --> 00:17:05,900
+Antes, nuestro diagrama, cuando teníamos if, elif, elif,
+
+355
+00:17:05,900 --> 00:17:07,920
+era más o menos así.
+
+356
+00:17:07,920 --> 00:17:11,990
+Y fijaos en que, según el caso, podíamos haber hecho una pregunta, o dos,
+
+357
+00:17:11,990 --> 00:17:13,910
+o, en el peor de los casos, tres preguntas enteras.
+
+358
+00:17:13,910 --> 00:17:17,329
+Pero podemos hacerlo mejor que eso: usando else, como propuso Hope,
+
+359
+00:17:17,329 --> 00:17:19,582
+podemos reducir este diagrama a esto.
+
+360
+00:17:19,582 --> 00:17:22,040
+Y aunque parezca que el diagrama se hace más grande,
+
+361
+00:17:22,040 --> 00:17:25,730
+fijaos en que tiene menos bloques en su interior.
+
+362
+00:17:25,730 --> 00:17:29,240
+Hay menos flechas y hay menos nodos en esta imagen.
+
+363
+00:17:29,240 --> 00:17:30,620
+Empecemos por arriba.
+
+364
+00:17:30,620 --> 00:17:34,160
+El inicio nos lleva a la primera pregunta, como antes: ¿x menor que y?
+
+365
+00:17:34,160 --> 00:17:35,600
+Si la respuesta es verdadera, perfecto.
+
+366
+00:17:35,600 --> 00:17:38,420
+Podemos decirlo, x es menor que y, y podemos terminar.
+
+367
+00:17:38,420 --> 00:17:41,450
+Si no es verdadera, si es falsa, podemos hacer la siguiente pregunta.
+
+368
+00:17:41,450 --> 00:17:43,820
+¿x es mayor que y, verdadero o falso?
+
+369
+00:17:43,820 --> 00:17:44,840
+Si lo es, perfecto.
+
+370
+00:17:44,840 --> 00:17:47,270
+Podemos imprimir x es mayor que y, y terminar.
+
+371
+00:17:47,270 --> 00:17:51,510
+Else, si no es el caso de que x sea mayor que y, la respuesta es falsa.
+
+372
+00:17:51,510 --> 00:17:56,060
+Podemos decir directamente, lógicamente, que x es igual a y.
+
+373
+00:17:56,060 --> 00:17:58,610
+No hace falta añadir la tercera pregunta en absoluto.
+
+374
+00:17:58,610 --> 00:18:00,740
+Podemos concluirlo ahí mismo.
+
+375
+00:18:00,740 --> 00:18:02,150
+Entonces, ¿qué implica esto?
+
+376
+00:18:02,150 --> 00:18:05,180
+En estas imágenes se ve una reducción relativa
+
+377
+00:18:05,180 --> 00:18:07,140
+de la complejidad de un programa.
+
+378
+00:18:07,140 --> 00:18:10,670
+El primero era muy largo y enrevesado, con muchísimas preguntas,
+
+379
+00:18:10,670 --> 00:18:12,283
+innecesarias, en última instancia.
+
+380
+00:18:12,283 --> 00:18:13,700
+El siguiente era un poco más corto.
+
+381
+00:18:13,700 --> 00:18:15,560
+Y este es todavía más corto.
+
+382
+00:18:15,560 --> 00:18:19,280
+Y, de nuevo, cuantas menos líneas de código tengas, menos probable
+
+383
+00:18:19,280 --> 00:18:21,400
+es, podría decirse, que cometas errores.
+
+384
+00:18:21,400 --> 00:18:23,150
+Y más fácil es para otras personas leerlo.
+
+385
+00:18:23,150 --> 00:18:26,930
+Así que, en general, esta legibilidad, esta simplificación,
+
+386
+00:18:26,930 --> 00:18:28,760
+es, efectivamente, algo bueno.
+
+387
+00:18:28,760 --> 00:18:33,200
+Bien, añadamos otra capacidad más a Python,
+
+388
+00:18:33,200 --> 00:18:34,400
+y es esta de aquí.
+
+389
+00:18:34,400 --> 00:18:37,730
+Igual que en inglés puedes preguntar esto o esto otro,
+
+390
+00:18:37,730 --> 00:18:41,540
+puedes decir lo mismo en Python usando literalmente la palabra or.
+
+391
+00:18:41,540 --> 00:18:44,540
+Así que vuelvo a mi código Python.
+
+392
+00:18:44,540 --> 00:18:47,150
+Y veamos cómo podríamos hacer un par de preguntas
+
+393
+00:18:47,150 --> 00:18:51,860
+a la vez esta vez, quizá considerando cómo podríamos preguntar no
+
+394
+00:18:51,860 --> 00:18:54,050
+si es mayor o igual que,
+
+395
+00:18:54,050 --> 00:18:56,070
+ni importarnos la respuesta exacta.
+
+396
+00:18:56,070 --> 00:18:58,190
+Adoptemos un enfoque más general.
+
+397
+00:18:58,190 --> 00:19:04,730
+Y tratemos simplemente de determinar si x es igual a y o no.
+
+398
+00:19:04,730 --> 00:19:06,980
+Pues voy a borrar parte de este código
+
+399
+00:19:06,980 --> 00:19:08,540
+y cambiar la pregunta que estamos haciendo.
+
+400
+00:19:08,540 --> 00:19:12,290
+Hagamos esto: si me importa si es igual o no,
+
+401
+00:19:12,290 --> 00:19:14,060
+comprobemos los escenarios posibles.
+
+402
+00:19:14,060 --> 00:19:19,850
+Si x es menor que y o x es mayor que y, vamos
+
+403
+00:19:19,850 --> 00:19:23,840
+a imprimir x no es igual a y.
+
+404
+00:19:23,840 --> 00:19:26,240
+¿Por qué es así, sin ánimo de hacer un juego de palabras?
+
+405
+00:19:26,240 --> 00:19:29,240
+Si x es menor que y, pues obviamente no es igual.
+
+406
+00:19:29,240 --> 00:19:31,730
+Si x es mayor que y, obviamente no es igual.
+
+407
+00:19:31,730 --> 00:19:35,840
+Así que podemos concluir que x no es igual a y.
+
+408
+00:19:35,840 --> 00:19:41,180
+Así que si, en cambio, queremos asegurarnos de que es igual,
+
+409
+00:19:41,180 --> 00:19:47,940
+podemos usar el else de Hope, con print, entre comillas, x es igual a y.
+
+410
+00:19:47,940 --> 00:19:49,410
+Y, de nuevo, ¿por qué?
+
+411
+00:19:49,410 --> 00:19:52,470
+Pues si x es menor que y, o x es mayor que y,
+
+412
+00:19:52,470 --> 00:19:53,820
+obviamente no son iguales.
+
+413
+00:19:53,820 --> 00:19:56,580
+En caso contrario, lógicamente, tienen que ser iguales, de hecho.
+
+414
+00:19:56,580 --> 00:19:57,390
+Así que ejecutémoslo.
+
+415
+00:19:57,390 --> 00:19:59,565
+Ejecutemos python compare.py.
+
+416
+00:19:59,565 --> 00:20:00,240
+¿Cuál es x?
+
+417
+00:20:00,240 --> 00:20:00,930
+Uno.
+
+418
+00:20:00,930 --> 00:20:01,560
+¿Cuál es y?
+
+419
+00:20:01,560 --> 00:20:02,250
+Dos.
+
+420
+00:20:02,250 --> 00:20:03,960
+Bien, x no es igual a y.
+
+421
+00:20:03,960 --> 00:20:08,550
+Hagámoslo otra vez, pongamos dos para x, uno para y. x no es igual a y.
+
+422
+00:20:08,550 --> 00:20:12,450
+Y una tercera vez: x es uno e y es uno.
+
+423
+00:20:12,450 --> 00:20:14,760
+x ahora es igual a y.
+
+424
+00:20:14,760 --> 00:20:17,610
+Ahora, si queremos compararlo también visualmente,
+
+425
+00:20:17,610 --> 00:20:20,980
+propongo que la imagen sea más o menos así.
+
+426
+00:20:20,980 --> 00:20:23,340
+Y, de nuevo, es exactamente lo mismo lógicamente,
+
+427
+00:20:23,340 --> 00:20:25,197
+pero es una representación gráfica de ello.
+
+428
+00:20:25,197 --> 00:20:26,280
+¿Cuál es la primera pregunta?
+
+429
+00:20:26,280 --> 00:20:30,900
+Pues si x es menor que y, entonces seguimos la flecha de verdadero.
+
+430
+00:20:30,900 --> 00:20:33,840
+Y decimos, entre comillas, x no es igual a y.
+
+431
+00:20:33,840 --> 00:20:35,280
+Y entonces terminamos.
+
+432
+00:20:35,280 --> 00:20:37,623
+Pero ¿y si x no es menor que y?
+
+433
+00:20:37,623 --> 00:20:38,790
+¿Y si es mayor que y?
+
+434
+00:20:38,790 --> 00:20:40,800
+¿Y si son dos y uno, respectivamente?
+
+435
+00:20:40,800 --> 00:20:44,590
+Entonces la respuesta a x menor que y, la primera pregunta, es falsa.
+
+436
+00:20:44,590 --> 00:20:45,480
+Así que vamos por aquí.
+
+437
+00:20:45,480 --> 00:20:48,720
+Hacemos la segunda pregunta, por el or,
+
+438
+00:20:48,720 --> 00:20:51,060
+y esta pregunta es: ¿x es mayor que y?
+
+439
+00:20:51,060 --> 00:20:55,830
+Si es así, fijaos, podemos reutilizar algunas de las mismas partes de esta imagen,
+
+440
+00:20:55,830 --> 00:20:58,260
+y decir simplemente x no es igual a y.
+
+441
+00:20:58,260 --> 00:21:01,020
+No necesitamos añadir flechas ni cajas innecesariamente.
+
+442
+00:21:01,020 --> 00:21:06,480
+Podemos reutilizar líneas de código, partes de la imagen, igual que reutilizamos líneas de código.
+
+443
+00:21:06,480 --> 00:21:07,620
+Y entonces terminamos.
+
+444
+00:21:07,620 --> 00:21:09,780
+Por último, tenemos lo siguiente.
+
+445
+00:21:09,780 --> 00:21:12,300
+Si sabemos que x no es menor que y, y sabemos
+
+446
+00:21:12,300 --> 00:21:16,080
+que x no es mayor que y, tiene que ser el caso de que x es igual a y.
+
+447
+00:21:16,080 --> 00:21:18,900
+No necesitamos hacer una tercera pregunta, otro rombo.
+
+448
+00:21:18,900 --> 00:21:24,000
+Podemos imprimirlo directamente y luego terminar también.
+
+449
+00:21:24,000 --> 00:21:25,710
+Bien, ¿qué podría hacer aquí?
+
+450
+00:21:25,710 --> 00:21:28,560
+Seguro que podría mejorar un poco este código.
+
+451
+00:21:28,560 --> 00:21:31,440
+Y si queremos ser realmente quisquillosos, yo
+
+452
+00:21:31,440 --> 00:21:34,800
+diría que esto ya es solo un pequeño refinamiento,
+
+453
+00:21:34,800 --> 00:21:37,410
+pero es un buen hábito pensar en ello.
+
+454
+00:21:37,410 --> 00:21:38,760
+¿Podría mi código ser mejor?
+
+455
+00:21:38,760 --> 00:21:41,100
+¿Podría mi código ser más simple?
+
+456
+00:21:41,100 --> 00:21:43,740
+¿Podría mejorar aún más este código?
+
+457
+00:21:43,740 --> 00:21:47,160
+Es sutil, pero ¿podría mejorar el diseño?
+
+458
+00:21:47,160 --> 00:21:48,960
+¿Podría hacer menos preguntas?
+
+459
+00:21:48,960 --> 00:21:52,460
+¿Podría ajustarlo más, por así decirlo?
+
+460
+00:21:52,460 --> 00:21:54,280
+¿Qué opináis?
+
+461
+00:21:54,280 --> 00:21:58,060
+INTERLOCUTOR 3: Se podría preguntar simplemente si x es igual a y.
+
+462
+00:21:58,060 --> 00:22:03,625
+Luego, si imprimes x es igual a y, else x no es igual a y.
+
+463
+00:22:03,625 --> 00:22:04,500
+DAVID MALAN: Perfecto.
+
+464
+00:22:04,500 --> 00:22:07,560
+Recordad uno de los otros símbolos que vimos antes en la lista.
+
+465
+00:22:07,560 --> 00:22:10,680
+Podemos comprobar no solo menor que, mayor que o igual a.
+
+466
+00:22:10,680 --> 00:22:13,410
+Podemos preguntar literalmente si es distinto de.
+
+467
+00:22:13,410 --> 00:22:17,400
+¿Por qué estamos perdiendo el tiempo preguntando si es menor que o si es mayor que?
+
+468
+00:22:17,400 --> 00:22:21,100
+Pues si lo único que nos importa es si es distinto, creo que podemos hacer exactamente eso.
+
+469
+00:22:21,100 --> 00:22:24,610
+Hagamos solo la pregunta sencilla que de verdad nos importa.
+
+470
+00:22:24,610 --> 00:22:25,950
+Así que vuelvo aquí arriba.
+
+471
+00:22:25,950 --> 00:22:29,580
+Y digamos que, en lugar de las dos preguntas, quitemos el or.
+
+472
+00:22:29,580 --> 00:22:33,840
+Digamos simplemente: si x es distinto de y, entonces
+
+473
+00:22:33,840 --> 00:22:36,510
+imprime x no es igual a y.
+
+474
+00:22:36,510 --> 00:22:39,190
+Y eso, creo, también va a funcionar exactamente igual.
+
+475
+00:22:39,190 --> 00:22:41,980
+Pero la imagen ahora se ve un poco diferente.
+
+476
+00:22:41,980 --> 00:22:44,190
+Fijaos en que este era nuestro diagrama de flujo de antes,
+
+477
+00:22:44,190 --> 00:22:45,947
+que representaba esa misma lógica.
+
+478
+00:22:45,947 --> 00:22:47,280
+Y tiene algo de complejidad.
+
+479
+00:22:47,280 --> 00:22:48,690
+Tienes que ir a la izquierda, tienes que ir a la derecha,
+
+480
+00:22:48,690 --> 00:22:50,732
+según la respuesta a este par de preguntas.
+
+481
+00:22:50,732 --> 00:22:53,820
+Si ahora tenemos en cuenta cómo es esta versión del programa,
+
+482
+00:22:53,820 --> 00:22:56,820
+es aún más simple, quizá la más simple que hemos visto hasta ahora.
+
+483
+00:22:56,820 --> 00:23:00,330
+Cuando empieza el programa, hacemos una sola pregunta, y solo una:
+
+484
+00:23:00,330 --> 00:23:02,040
+¿x es distinto de y?
+
+485
+00:23:02,040 --> 00:23:06,930
+Y si es así, verdadero, imprimimos x no es igual a y.
+
+486
+00:23:06,930 --> 00:23:10,350
+Si la respuesta es falsa, entonces, por supuesto, tiene que ser igual a y,
+
+487
+00:23:10,350 --> 00:23:12,040
+así que decimos eso en su lugar.
+
+488
+00:23:12,040 --> 00:23:14,070
+Y si queremos, podríamos invertirlo.
+
+489
+00:23:14,070 --> 00:23:17,080
+Si vuelvo aquí a mi código, y si, por la razón que sea,
+
+490
+00:23:17,080 --> 00:23:20,730
+prefieres pensar en términos de igual o distinto,
+
+491
+00:23:20,730 --> 00:23:25,270
+en lugar de distinto o igual, depende totalmente de ti.
+
+492
+00:23:25,270 --> 00:23:27,900
+Podríamos cambiar esto a igual igual.
+
+493
+00:23:27,900 --> 00:23:32,020
+Pero tendré que cambiar mis sentencias print para que estén en el orden opuesto.
+
+494
+00:23:32,020 --> 00:23:34,890
+Así que voy a intercambiar estas dos de aquí,
+
+495
+00:23:34,890 --> 00:23:38,950
+y mover la segunda al primer lugar y la primera al segundo.
+
+496
+00:23:38,950 --> 00:23:42,240
+Ahora, cuando ejecuto este código, sigo haciendo una sola pregunta.
+
+497
+00:23:42,240 --> 00:23:44,550
+Así que sigue siendo igual de bueno, igual de conciso.
+
+498
+00:23:44,550 --> 00:23:47,070
+Pero ahora el diagrama, en lugar de verse así,
+
+499
+00:23:47,070 --> 00:23:50,310
+va a cambiar el distinto de por el igual igual.
+
+500
+00:23:50,310 --> 00:23:54,400
+Y solo tenemos que asegurarnos de imprimir lo correcto en cada caso.
+
+501
+00:23:54,400 --> 00:23:57,990
+Y, de nuevo, igual que el código se va haciendo un poco más compacto, un poco
+
+502
+00:23:57,990 --> 00:24:00,330
+más compacto, con cada vez menos caracteres,
+
+503
+00:24:00,330 --> 00:24:05,460
+también estos diagramas, estos diagramas de flujo, reflejan la simplificación relativa
+
+504
+00:24:05,460 --> 00:24:08,040
+de cada uno de esos programas.
+
+505
+00:24:08,040 --> 00:24:11,610
+Voy a hacer una pausa aquí para ver si hay alguna pregunta, ahora, sobre alguna
+
+506
+00:24:11,610 --> 00:24:13,140
+de estas versiones del código.
+
+507
+00:24:16,530 --> 00:24:19,150
+INTERLOCUTOR 4: Sí, tengo un par de preguntas.
+
+508
+00:24:19,150 --> 00:24:22,380
+¿Qué pasa si no se usa la sangría?
+
+509
+00:24:22,380 --> 00:24:25,600
+DAVID MALAN: Si no se usa la sangría, tu programa no funcionará.
+
+510
+00:24:25,600 --> 00:24:28,080
+Python es un poco distinto de muchos
+
+511
+00:24:28,080 --> 00:24:32,100
+lenguajes en que exige la sangría.
+
+512
+00:24:32,100 --> 00:24:34,080
+Algunos de vosotros, que lleváis años programando,
+
+513
+00:24:34,080 --> 00:24:37,800
+quizá no tengáis necesariamente el mejor hábito de sangrar bien el código.
+
+514
+00:24:37,800 --> 00:24:40,170
+Y una de las características, podría decirse, de Python
+
+515
+00:24:40,170 --> 00:24:44,850
+es que te obliga a sangrar tu código, o simplemente no funcionará.
+
+516
+00:24:44,850 --> 00:24:47,460
+Y creo que tenías otra pregunta, ¿no?
+
+517
+00:24:47,460 --> 00:24:50,820
+INTERLOCUTOR 4: Sí, ¿son necesarios los dos puntos?
+
+518
+00:24:50,820 --> 00:24:52,530
+DAVID MALAN: ¿Son necesarios los dos puntos?
+
+519
+00:24:52,530 --> 00:24:55,150
+Sí, los dos puntos también son necesarios.
+
+520
+00:24:55,150 --> 00:24:57,960
+Así que, con Python, lo que ves es lo que hay.
+
+521
+00:24:57,960 --> 00:25:01,020
+Y, efectivamente, tiene que estar sangrado y los dos puntos son necesarios.
+
+522
+00:25:01,020 --> 00:25:05,670
+Python no usa, como sí hacen por convención C, C++ y Java,
+
+523
+00:25:05,670 --> 00:25:07,410
+llaves para delimitar bloques.
+
+524
+00:25:07,410 --> 00:25:10,680
+En cambio, se basa, efectivamente, en esta sangría.
+
+525
+00:25:10,680 --> 00:25:14,490
+Bien, propongo que introduzcamos otra palabra clave aquí en Python,
+
+526
+00:25:14,490 --> 00:25:17,310
+para ver exactamente cómo podríamos combinar ideas adicionales.
+
+527
+00:25:17,310 --> 00:25:20,490
+Y será literalmente la palabra and, una conjunción de una,
+
+528
+00:25:20,490 --> 00:25:24,690
+dos o más preguntas que quizá queramos hacer a la vez.
+
+529
+00:25:24,690 --> 00:25:28,650
+Y propongo que exploremos este tipo de lógica
+
+530
+00:25:28,650 --> 00:25:32,400
+con otro programa distinto, en VS Code, para lo cual voy a
+
+531
+00:25:32,400 --> 00:25:35,760
+crear un programa nuevo llamado, por ejemplo, grade.py.
+
+532
+00:25:35,760 --> 00:25:38,160
+Consideremos exactamente qué nota debería sacar un estudiante,
+
+533
+00:25:38,160 --> 00:25:40,950
+según su puntuación en un examen, una prueba, un cuestionario
+
+534
+00:25:40,950 --> 00:25:42,900
+u otra tarea similar.
+
+535
+00:25:42,900 --> 00:25:46,513
+Voy a ejecutar code grade.py, para tener un archivo nuevo.
+
+536
+00:25:46,513 --> 00:25:49,680
+Y voy a empezar simplemente obteniendo la puntuación del usuario, de nuevo,
+
+537
+00:25:49,680 --> 00:25:51,700
+en alguna tarea, prueba o similar.
+
+538
+00:25:51,700 --> 00:25:55,200
+Y la voy a guardar en una variable llamada score, igual al valor
+
+539
+00:25:55,200 --> 00:25:58,320
+devuelto por la función int, que va a convertir lo que el usuario
+
+540
+00:25:58,320 --> 00:26:00,610
+introduzca cuando se le pida esta puntuación.
+
+541
+00:26:00,610 --> 00:26:04,650
+Así que, de nuevo, el usuario debería limitarse a darme un número como cero, uno
+
+542
+00:26:04,650 --> 00:26:09,090
+o dos, o, con suerte, mucho más alto que eso, como 97, 98, 99, 100,
+
+543
+00:26:09,090 --> 00:26:13,330
+suponiendo que la prueba o evaluación es sobre 100 puntos porcentuales.
+
+544
+00:26:13,330 --> 00:26:17,220
+Ahora, ¿cómo podría asignar una nota a la puntuación del estudiante?
+
+545
+00:26:17,220 --> 00:26:19,710
+Pues en Estados Unidos es muy habitual que,
+
+546
+00:26:19,710 --> 00:26:22,500
+si sacas entre un 90 y un 100, eso es una A.
+
+547
+00:26:22,500 --> 00:26:29,160
+Y si está entre un 80 y un 89, es una B. Si es entre 70 y 79, es una C,
+
+548
+00:26:29,160 --> 00:26:32,558
+y así sucesivamente hasta la F, que debería ser la E,
+
+549
+00:26:32,558 --> 00:26:34,350
+pero veremos que hay un pequeño salto.
+
+550
+00:26:34,350 --> 00:26:35,572
+Entonces, ¿cómo podría expresar esto?
+
+551
+00:26:35,572 --> 00:26:36,780
+Pues puedo usar condicionales.
+
+552
+00:26:36,780 --> 00:26:39,750
+Y puedo hacer unas cuantas preguntas y luego imprimir la nota del estudiante
+
+553
+00:26:39,750 --> 00:26:40,600
+en consecuencia.
+
+554
+00:26:40,600 --> 00:26:44,040
+Así que voy a expresarlo así: si la puntuación del estudiante es
+
+555
+00:26:44,040 --> 00:26:47,820
+mayor o igual que 90, y la puntuación del estudiante es
+
+556
+00:26:47,820 --> 00:26:51,750
+menor o igual que 100, es decir, está en ese rango, vamos
+
+557
+00:26:51,750 --> 00:26:55,980
+a imprimir que su nota será una A. Porque está en los 90,
+
+558
+00:26:55,980 --> 00:26:58,080
+por encima del rango de notas.
+
+559
+00:26:58,080 --> 00:27:02,580
+elif la puntuación es mayor o igual que 80,
+
+560
+00:27:02,580 --> 00:27:07,980
+y la puntuación es menor o igual que, digamos, 89, pero aquí tengo algunas opciones.
+
+561
+00:27:07,980 --> 00:27:11,050
+Lógicamente, puedo expresarme de muchas maneras distintas.
+
+562
+00:27:11,050 --> 00:27:12,800
+Y quizá, solo para que quede un poco más limpio,
+
+563
+00:27:12,800 --> 00:27:15,060
+voy a decir que la puntuación es menor que 90.
+
+564
+00:27:15,060 --> 00:27:18,300
+Así que uso menor que en lugar de menor o igual que.
+
+565
+00:27:18,300 --> 00:27:21,690
+De este modo me aseguro de que los límites entre estas notas son correctos.
+
+566
+00:27:21,690 --> 00:27:26,460
+Luego voy a darle al estudiante una B si está en los 80.
+
+567
+00:27:26,460 --> 00:27:31,770
+elif la puntuación es mayor o igual que 70, y la puntuación es menor que 80,
+
+568
+00:27:31,770 --> 00:27:34,851
+voy a darle una C.
+
+569
+00:27:34,851 --> 00:27:40,380
+elif la puntuación es mayor o igual que 60, y la puntuación es menor que 70,
+
+570
+00:27:40,380 --> 00:27:43,080
+voy a darle una D. Y aquí es
+
+571
+00:27:43,080 --> 00:27:46,380
+donde es un poco anómalo, al menos en algunos colegios de aquí: else
+
+572
+00:27:46,380 --> 00:27:51,060
+voy a darle una F. Así que nos saltamos la E por completo,
+
+573
+00:27:51,060 --> 00:27:53,760
+y vamos a dar una F, en su lugar, como nota.
+
+574
+00:27:53,760 --> 00:27:55,080
+Ese es el comodín.
+
+575
+00:27:55,080 --> 00:27:58,020
+Y creo que, lógicamente, lo he hecho bien,
+
+576
+00:27:58,020 --> 00:28:00,360
+al menos según el colegio al que fui de pequeño,
+
+577
+00:28:00,360 --> 00:28:03,950
+de modo que dará una A, una B, una C o una D,
+
+578
+00:28:03,950 --> 00:28:06,512
+y si no, asumirá que has sacado una F.
+
+579
+00:28:06,512 --> 00:28:08,220
+Bien, probemos unos cuantos casos.
+
+580
+00:28:08,220 --> 00:28:10,260
+Ejecutemos python grade.py.
+
+581
+00:28:10,260 --> 00:28:13,650
+Mi puntuación es, empecemos fuerte, 100.
+
+582
+00:28:13,650 --> 00:28:17,040
+He sacado una A. La siguiente vez no me fue tan bien, quizá un 95;
+
+583
+00:28:17,040 --> 00:28:21,270
+sigue siendo una A. Empiezo a bajar más, así que saqué un 89 la siguiente vez.
+
+584
+00:28:21,270 --> 00:28:25,320
+Eso ya es, digamos, una B. Y digamos que tuve una semana realmente mala
+
+585
+00:28:25,320 --> 00:28:27,030
+y ahora es un 71.
+
+586
+00:28:27,030 --> 00:28:31,830
+Eso ya es una C. O ni siquiera lo entregué, eso es una F, sin más.
+
+587
+00:28:31,830 --> 00:28:32,940
+Parece que funciona.
+
+588
+00:28:32,940 --> 00:28:35,070
+No es una prueba exhaustiva, pero al menos,
+
+589
+00:28:35,070 --> 00:28:38,810
+según esta muestra, mi código parece funcionar como espero.
+
+590
+00:28:38,810 --> 00:28:40,560
+Pero veamos si podemos ajustarlo más.
+
+591
+00:28:40,560 --> 00:28:41,220
+No está mal.
+
+592
+00:28:41,220 --> 00:28:42,070
+Es correcto.
+
+593
+00:28:42,070 --> 00:28:44,070
+Y, efectivamente, según mis propias especificaciones,
+
+594
+00:28:44,070 --> 00:28:45,510
+me atrevo a decir que este código es correcto.
+
+595
+00:28:45,510 --> 00:28:46,710
+Pero ¿podemos ajustarlo más?
+
+596
+00:28:46,710 --> 00:28:50,500
+¿Podemos reducir la probabilidad de errores, ahora o en el futuro?
+
+597
+00:28:50,500 --> 00:28:52,230
+¿Podemos aumentar su legibilidad?
+
+598
+00:28:52,230 --> 00:28:54,030
+¿Y podemos aumentar su eficiencia?
+
+599
+00:28:54,030 --> 00:28:57,690
+¿Podemos conseguir que el ordenador tenga que responder menos preguntas
+
+600
+00:28:57,690 --> 00:28:59,375
+y aun así obtenga el mismo resultado?
+
+601
+00:28:59,375 --> 00:29:00,750
+Bien, veamos qué podemos hacer.
+
+602
+00:29:00,750 --> 00:29:03,690
+Voy a cambiar un poco las cosas, aunque solo sea para demostrar que podemos
+
+603
+00:29:03,690 --> 00:29:05,760
+usar estos símbolos de distintas maneras.
+
+604
+00:29:05,760 --> 00:29:10,200
+Podría decir, como he hecho, if score es mayor o igual que 90.
+
+605
+00:29:10,200 --> 00:29:12,570
+Pero en realidad puedo hacer esto: puedo darle la vuelta.
+
+606
+00:29:12,570 --> 00:29:14,800
+En lugar de decir mayor o igual que,
+
+607
+00:29:14,800 --> 00:29:19,060
+digamos que 90 es menor o igual que score.
+
+608
+00:29:19,060 --> 00:29:23,980
+Y aquí, digamos if 80 es menor o igual que score.
+
+609
+00:29:23,980 --> 00:29:28,180
+Y aquí, 70 es menor o igual que score.
+
+610
+00:29:28,180 --> 00:29:31,390
+Y, por último, 60 es menor o igual que score.
+
+611
+00:29:31,390 --> 00:29:33,370
+Es lo mismo, lógicamente.
+
+612
+00:29:33,370 --> 00:29:36,460
+Solo estoy cambiando el orden, igual que podrías hacer en papel y lápiz
+
+613
+00:29:36,460 --> 00:29:37,670
+si realmente quisieras.
+
+614
+00:29:37,670 --> 00:29:39,200
+Pero ahora fijaos en este truco.
+
+615
+00:29:39,200 --> 00:29:42,460
+Y esto no es posible, para los que hayáis programado en C, o C++,
+
+616
+00:29:42,460 --> 00:29:44,320
+o Java, u otros lenguajes.
+
+617
+00:29:44,320 --> 00:29:48,760
+Fijaos en que lo que puedo hacer aquí es combinar estos rangos.
+
+618
+00:29:48,760 --> 00:29:52,000
+Fijaos en que estoy haciendo dos preguntas, dos expresiones booleanas.
+
+619
+00:29:52,000 --> 00:29:57,250
+¿90 es menor o igual que score, y score es menor o igual que 100?
+
+620
+00:29:57,250 --> 00:30:01,150
+Pues Python te permite anidar estas cosas así
+
+621
+00:30:01,150 --> 00:30:02,680
+y encadenarlas.
+
+622
+00:30:02,680 --> 00:30:06,070
+Y igual que harías en papel y lápiz en el mundo real,
+
+623
+00:30:06,070 --> 00:30:09,732
+puedes codificarlo en Python así, que es un poco más limpio.
+
+624
+00:30:09,732 --> 00:30:11,440
+Ajusta un poco más el código.
+
+625
+00:30:11,440 --> 00:30:12,550
+Son menos pulsaciones de teclas.
+
+626
+00:30:12,550 --> 00:30:13,660
+Es más rápido de escribir.
+
+627
+00:30:13,660 --> 00:30:15,530
+Es más fácil de leer en el futuro.
+
+628
+00:30:15,530 --> 00:30:18,140
+Así que podría decirse que también es mejor.
+
+629
+00:30:18,140 --> 00:30:19,450
+Esa es una mejora.
+
+630
+00:30:19,450 --> 00:30:21,422
+Es en gran parte estética, en este caso.
+
+631
+00:30:21,422 --> 00:30:23,380
+Sigue haciendo el mismo número de preguntas,
+
+632
+00:30:23,380 --> 00:30:26,950
+pero lo hace de forma todavía algo más concisa.
+
+633
+00:30:26,950 --> 00:30:29,500
+Bien, ¿qué más podría hacer ahora?
+
+634
+00:30:29,500 --> 00:30:30,730
+Pues, ¿sabéis qué?
+
+635
+00:30:30,730 --> 00:30:32,920
+Cada vez que decido estas notas, no
+
+636
+00:30:32,920 --> 00:30:34,940
+creo que tenga que hacer dos preguntas.
+
+637
+00:30:34,940 --> 00:30:38,290
+No tengo que preguntar si es mayor que 90 y menor que 100.
+
+638
+00:30:38,290 --> 00:30:40,840
+¿Es mayor que 80 y menor que 90?
+
+639
+00:30:40,840 --> 00:30:45,070
+Si replanteo mi lógica, quizá pueda hacerlo aún mejor.
+
+640
+00:30:45,070 --> 00:30:48,920
+Propongo que lo simplifiquemos todavía más, y hagamos esto.
+
+641
+00:30:48,920 --> 00:30:53,260
+Si sabemos que la entrada, de momento, va a estar entre 0 y 100,
+
+642
+00:30:53,260 --> 00:30:54,730
+podemos hacer algunas suposiciones.
+
+643
+00:30:54,730 --> 00:30:58,870
+Podríamos decir algo como: si la puntuación es mayor o igual que 90,
+
+644
+00:30:58,870 --> 00:31:04,150
+el estudiante saca una A. elif la puntuación es mayor o igual que 80,
+
+645
+00:31:04,150 --> 00:31:08,110
+el estudiante saca una B. elif la puntuación es mayor o igual que 70,
+
+646
+00:31:08,110 --> 00:31:13,930
+saca una C. elif la puntuación es mayor o igual que 60,
+
+647
+00:31:13,930 --> 00:31:19,940
+saca una D, else saca una F. Entonces, ¿qué he hecho aquí?
+
+648
+00:31:19,940 --> 00:31:23,200
+Pues, en lugar de hacer dos preguntas cada vez,
+
+649
+00:31:23,200 --> 00:31:26,320
+comprobando el límite inferior y el superior de ese rango,
+
+650
+00:31:26,320 --> 00:31:31,030
+estoy siendo un poco más astuto: si la puntuación es mayor que 90,
+
+651
+00:31:31,030 --> 00:31:33,430
+obviamente ha sacado una A o más.
+
+652
+00:31:33,430 --> 00:31:36,070
+Si tu puntuación es mayor que 80, pues o
+
+653
+00:31:36,070 --> 00:31:40,750
+mereces una A si es muy alta, o una B si está justo por encima de 80.
+
+654
+00:31:40,750 --> 00:31:44,680
+Pero, gracias a la lógica del elif, ya hemos comprobado
+
+655
+00:31:44,680 --> 00:31:46,450
+si la puntuación del estudiante es mayor que 90.
+
+656
+00:31:46,450 --> 00:31:50,020
+Y si no lo es, entonces hacemos la pregunta: ¿es mayor que 80?
+
+657
+00:31:50,020 --> 00:31:54,220
+Así que sabes implícitamente que está en algún punto entre 80 y 89,
+
+658
+00:31:54,220 --> 00:31:58,780
+si no, sabes que está entre 70 y 79, y si no, está en el siguiente rango
+
+659
+00:31:58,780 --> 00:31:59,350
+hacia abajo.
+
+660
+00:31:59,350 --> 00:32:02,950
+Es una pequeña optimización que nos permite hacer menos preguntas.
+
+661
+00:32:02,950 --> 00:32:05,980
+Pero, de nuevo, hace que el código sea, podría decirse, algo más legible,
+
+662
+00:32:05,980 --> 00:32:09,580
+desde luego más conciso y, con suerte, más fácil de mantener
+
+663
+00:32:09,580 --> 00:32:10,600
+a largo plazo.
+
+664
+00:32:10,600 --> 00:32:15,890
+¿Alguna pregunta, entonces, sobre este tipo de cambios
+
+665
+00:32:15,890 --> 00:32:20,200
+y este tipo de lógica en nuestro código?
+
+666
+00:32:20,200 --> 00:32:22,120
+INTERLOCUTOR 4: ¿Y si no usamos elif en absoluto?
+
+667
+00:32:22,120 --> 00:32:25,345
+¿Y si escribimos el código con if?
+
+668
+00:32:25,345 --> 00:32:27,220
+DAVID MALAN: Sí, es una buena pregunta,
+
+669
+00:32:27,220 --> 00:32:31,360
+porque en realidad tendría un efecto no deseado aquí.
+
+670
+00:32:31,360 --> 00:32:33,340
+Voy a quitar la F temporalmente y centrarme
+
+671
+00:32:33,340 --> 00:32:36,460
+solo en de la A a la D. Si volvemos a donde
+
+672
+00:32:36,460 --> 00:32:39,190
+empezamos la historia de hoy, con los condicionales, diciendo if,
+
+673
+00:32:39,190 --> 00:32:45,070
+if, if, if, ahora nuestra astucia de usar trazos más amplios
+
+674
+00:32:45,070 --> 00:32:47,680
+y no usar rangos con límite superior e inferior
+
+675
+00:32:47,680 --> 00:32:51,010
+se convertirá en un inconveniente.
+
+676
+00:32:51,010 --> 00:32:53,320
+Voy a ejecutar python grade.py.
+
+677
+00:32:53,320 --> 00:32:56,560
+Y supongamos que mi puntuación es 95.
+
+678
+00:32:56,560 --> 00:32:58,120
+Estoy muy emocionado.
+
+679
+00:32:58,120 --> 00:33:00,520
+Quiero mi A, pero no.
+
+680
+00:33:00,520 --> 00:33:06,040
+Acabo de sacar una A, una B, una C y una D. Así que, lógicamente, eso lo ha roto todo.
+
+681
+00:33:06,040 --> 00:33:09,220
+Porque si no haces estas condiciones mutuamente excluyentes,
+
+682
+00:33:09,220 --> 00:33:13,540
+cada una de esas preguntas se va a hacer y, por tanto, a responder.
+
+683
+00:33:13,540 --> 00:33:16,720
+E incluso si tu nota es superior a 90,
+
+684
+00:33:16,720 --> 00:33:20,140
+también es, lógicamente, superior a 80, a 70, a 60,
+
+685
+00:33:20,140 --> 00:33:23,580
+y si lo hubiera dejado ahí, habría suspendido también, con una F.
+
+686
+00:33:23,580 --> 00:33:24,920
+Muy buena pregunta.
+
+687
+00:33:24,920 --> 00:33:28,690
+¿Otras preguntas sobre esta forma de lógica?
+
+688
+00:33:28,690 --> 00:33:30,940
+INTERLOCUTOR 5: ¿Habría alguna forma mejor de limpiar
+
+689
+00:33:30,940 --> 00:33:33,130
+incluso esta sentencia tan simple, como la que teníamos antes,
+
+690
+00:33:33,130 --> 00:33:36,280
+la anterior que tenías con el elif?
+
+691
+00:33:36,280 --> 00:33:40,270
+DAVID MALAN: Me gusta tu entusiasmo por simplificar aún más las cosas.
+
+692
+00:33:40,270 --> 00:33:45,010
+Me voy a mojar y decir que esto es prácticamente lo mejor que se puede hacer,
+
+693
+00:33:45,010 --> 00:33:48,070
+al menos usando solo sentencias condicionales.
+
+694
+00:33:48,070 --> 00:33:52,390
+Puedo, si dejo volar la imaginación, pensar en una forma algo más astuta
+
+695
+00:33:52,390 --> 00:33:54,490
+de hacerlo, quizá con algo llamado bucle,
+
+696
+00:33:54,490 --> 00:33:55,902
+u otra construcción de programación.
+
+697
+00:33:55,902 --> 00:33:57,610
+Todavía no tenemos eso en nuestro vocabulario.
+
+698
+00:33:57,610 --> 00:33:59,610
+Pero sí, hay absolutamente otras formas de hacerlo.
+
+699
+00:33:59,610 --> 00:34:01,780
+Pero creo que todavía no, si queremos limitarnos
+
+700
+00:34:01,780 --> 00:34:07,120
+solo a palabras como if, and, or, else, elif y similares.
+
+701
+00:34:07,120 --> 00:34:10,810
+Bien, propongo que pasemos ahora a otro enfoque
+
+702
+00:34:10,810 --> 00:34:12,800
+que usa un símbolo más que, hasta ahora,
+
+703
+00:34:12,800 --> 00:34:14,409
+no habíamos tenido ocasión de usar.
+
+704
+00:34:14,409 --> 00:34:18,580
+Propongo que implementemos un programa que llamaremos parity.
+
+705
+00:34:18,580 --> 00:34:22,460
+En matemáticas, la paridad puede referirse a si un número es par o impar.
+
+706
+00:34:22,460 --> 00:34:24,530
+Y es una pregunta bastante interesante.
+
+707
+00:34:24,530 --> 00:34:26,863
+Y resulta que puede ser útil en otras aplicaciones
+
+708
+00:34:26,863 --> 00:34:29,770
+también: simplemente preguntar si un número dado es par o impar,
+
+709
+00:34:29,770 --> 00:34:31,300
+quizá uno que haya escrito el usuario.
+
+710
+00:34:31,300 --> 00:34:33,670
+Voy a escribir un programa nuevo
+
+711
+00:34:33,670 --> 00:34:38,800
+llamado parity.py, con code parity.py en mi terminal.
+
+712
+00:34:38,800 --> 00:34:41,560
+Y propongo que lo aprovechemos como oportunidad
+
+713
+00:34:41,560 --> 00:34:45,190
+para introducir el último de esos símbolos aritméticos,
+
+714
+00:34:45,190 --> 00:34:48,800
+al menos de los que conocemos casi todos: suma, resta,
+
+715
+00:34:48,800 --> 00:34:49,900
+multiplicación, división.
+
+716
+00:34:49,900 --> 00:34:53,317
+Pero en esta lista había antes un último símbolo, un signo de porcentaje.
+
+717
+00:34:53,317 --> 00:34:55,150
+Y no significa porcentaje en este caso,
+
+718
+00:34:55,150 --> 00:34:57,850
+cuando se usa como operador en programación en Python.
+
+719
+00:34:57,850 --> 00:35:01,000
+Representa, más bien, el llamado operador módulo,
+
+720
+00:35:01,000 --> 00:35:02,260
+de la aritmética modular.
+
+721
+00:35:02,260 --> 00:35:05,710
+O, al menos en nuestro caso, lo vamos a usar para calcular el resto al
+
+722
+00:35:05,710 --> 00:35:07,930
+dividir un número entre otro.
+
+723
+00:35:07,930 --> 00:35:09,140
+Entonces, ¿qué quiero decir con eso?
+
+724
+00:35:09,140 --> 00:35:12,070
+Pues si tomas un número como uno dividido entre tres,
+
+725
+00:35:12,070 --> 00:35:14,840
+el tres no cabe en el uno de forma exacta.
+
+726
+00:35:14,840 --> 00:35:16,690
+Así que tienes un resto de uno.
+
+727
+00:35:16,690 --> 00:35:20,140
+Dos entre tres tiene un resto de dos.
+
+728
+00:35:20,140 --> 00:35:24,550
+Tres entre tres tiene un resto de cero, porque se divide exactamente.
+
+729
+00:35:24,550 --> 00:35:30,088
+Cuatro entre tres tiene un resto de uno, porque cabe una vez,
+
+730
+00:35:30,088 --> 00:35:32,380
+pero sobra uno, así que tiene un resto de uno.
+
+731
+00:35:32,380 --> 00:35:35,692
+Y por último, algo como cinco entre tres
+
+732
+00:35:35,692 --> 00:35:37,150
+tiene un resto, por supuesto, de dos.
+
+733
+00:35:37,150 --> 00:35:39,700
+Eso es todo lo que queremos decir con resto: cuánto sobra
+
+734
+00:35:39,700 --> 00:35:41,830
+después de dividir un número entre otro.
+
+735
+00:35:41,830 --> 00:35:46,180
+Bien, si vuelvo ahora a mi código y pienso en cómo implementar
+
+736
+00:35:46,180 --> 00:35:49,150
+la pregunta de si este número es par o impar,
+
+737
+00:35:49,150 --> 00:35:51,520
+veamos cómo podríamos implementarlo,
+
+738
+00:35:51,520 --> 00:35:53,885
+ya que quizá no es necesariamente obvio cómo
+
+739
+00:35:53,885 --> 00:35:55,510
+podemos usar este bloque de construcción adicional.
+
+740
+00:35:55,510 --> 00:35:58,460
+Pero resulta que va a ser muy útil a largo plazo.
+
+741
+00:35:58,460 --> 00:36:01,630
+Bien, primero obtengamos un número del usuario en una variable llamada x.
+
+742
+00:36:01,630 --> 00:36:04,570
+Y voy a asignarle la conversión a int
+
+743
+00:36:04,570 --> 00:36:08,890
+de lo que introduzca el usuario, tras preguntarle ¿cuál es x?, signo de interrogación.
+
+744
+00:36:08,890 --> 00:36:10,840
+Y eso ya lo hemos hecho antes, muchas veces.
+
+745
+00:36:10,840 --> 00:36:14,750
+¿Cómo determino ahora si x es par o impar?
+
+746
+00:36:14,750 --> 00:36:19,270
+Pues resulta que, si tengo acceso a un operador que me dé
+
+747
+00:36:19,270 --> 00:36:21,742
+el resto, creo que puedo hacerlo.
+
+748
+00:36:21,742 --> 00:36:23,200
+De hecho, voy a preguntar al grupo.
+
+749
+00:36:23,200 --> 00:36:25,480
+Y esto es solo matemáticas de primaria, quizá:
+
+750
+00:36:25,480 --> 00:36:28,750
+¿qué significa que un número sea par?
+
+751
+00:36:28,750 --> 00:36:36,235
+Para que quede claro, un número como 0, 2, 4, 6, 8, 10, 12, 14, 16,
+
+752
+00:36:36,235 --> 00:36:37,360
+todos esos son números pares.
+
+753
+00:36:37,360 --> 00:36:38,652
+Pero ¿qué significa eso realmente?
+
+754
+00:36:38,652 --> 00:36:40,960
+Elena, ¿lo digo bien?
+
+755
+00:36:40,960 --> 00:36:43,990
+ELENA: Los números pares son los que se pueden dividir exactamente entre dos.
+
+756
+00:36:43,990 --> 00:36:48,275
+Por ejemplo, 2, 4, 6, 8 y 10, y...
+
+757
+00:36:48,275 --> 00:36:49,150
+DAVID MALAN: Perfecto.
+
+758
+00:36:49,150 --> 00:36:51,040
+Y podríamos seguir todo el día, literalmente,
+
+759
+00:36:51,040 --> 00:36:53,332
+porque hay un número infinito de números pares.
+
+760
+00:36:53,332 --> 00:36:56,260
+Pero está bien que lo hayas formulado en términos de una pregunta
+
+761
+00:36:56,260 --> 00:36:58,240
+que podemos hacer con total claridad.
+
+762
+00:36:58,240 --> 00:37:01,360
+¿Este número se divide exactamente entre dos?
+
+763
+00:37:01,360 --> 00:37:05,460
+Es decir, ¿podemos dividirlo entre dos sin resto, con un resto de cero?
+
+764
+00:37:05,460 --> 00:37:09,430
+Pues eso es perfecto, porque si tenemos este operador, este signo de porcentaje, que
+
+765
+00:37:09,430 --> 00:37:13,300
+nos permite responder justo a eso, cuál es el resto, podemos comprobar presumiblemente
+
+766
+00:37:13,300 --> 00:37:15,790
+si el resto es cero, o si es uno.
+
+767
+00:37:15,790 --> 00:37:19,120
+¿No sobra nada, o sobra uno?
+
+768
+00:37:19,120 --> 00:37:20,080
+Pues preguntémoslo.
+
+769
+00:37:20,080 --> 00:37:28,568
+Si x dividido entre dos tiene un resto de cero, como propone Elena, vamos
+
+770
+00:37:28,568 --> 00:37:30,610
+a imprimir algo como, entre comillas, even.
+
+771
+00:37:30,610 --> 00:37:32,410
+Y decírselo así al usuario.
+
+772
+00:37:32,410 --> 00:37:35,380
+else, creo que podemos asumir que si un número no es par,
+
+773
+00:37:35,380 --> 00:37:38,660
+será impar, si es, efectivamente, un entero.
+
+774
+00:37:38,660 --> 00:37:41,590
+Así que voy a imprimir, entre comillas, odd en su lugar.
+
+775
+00:37:41,590 --> 00:37:45,100
+Y ahora ejecutemos python parity.py en mi terminal.
+
+776
+00:37:45,100 --> 00:37:45,760
+¿Cuál es x?
+
+777
+00:37:45,760 --> 00:37:46,840
+Empecemos con dos.
+
+778
+00:37:46,840 --> 00:37:48,220
+Dos es, efectivamente, par.
+
+779
+00:37:48,220 --> 00:37:49,390
+Probemos con cuatro.
+
+780
+00:37:49,390 --> 00:37:50,560
+Cuatro es, efectivamente, par.
+
+781
+00:37:50,560 --> 00:37:53,750
+Pongámonos interesantes con tres.
+
+782
+00:37:53,750 --> 00:37:54,838
+Tres es ahora impar.
+
+783
+00:37:54,838 --> 00:37:57,880
+Y creo que podríamos hacerlo todo el día y, con suerte, obtener
+
+784
+00:37:57,880 --> 00:37:59,770
+exactamente esa respuesta.
+
+785
+00:37:59,770 --> 00:38:02,180
+Pero ¿qué más podríamos hacer aquí?
+
+786
+00:38:02,180 --> 00:38:03,910
+¿Cómo podríamos mejorarlo?
+
+787
+00:38:03,910 --> 00:38:08,050
+Recordad que tenemos la capacidad de inventar nuestras propias funciones.
+
+788
+00:38:08,050 --> 00:38:10,270
+Y propongo, a modo de debate,
+
+789
+00:38:10,270 --> 00:38:12,145
+que acabaremos viendo que
+
+790
+00:38:12,145 --> 00:38:14,600
+es útil poder determinar si un número es par o impar.
+
+791
+00:38:14,600 --> 00:38:17,080
+Y por eso nos gustaría tener esa funcionalidad ya integrada.
+
+792
+00:38:17,080 --> 00:38:20,230
+Y no creo que Python tenga una función que me diga justo eso.
+
+793
+00:38:20,230 --> 00:38:23,240
+Pero puedo inventarla con código como este.
+
+794
+00:38:23,240 --> 00:38:26,770
+Así que voy a mi versión anterior.
+
+795
+00:38:26,770 --> 00:38:29,810
+Y propongo que hagamos esto.
+
+796
+00:38:29,810 --> 00:38:32,680
+Voy a escribir una función main.
+
+797
+00:38:32,680 --> 00:38:36,130
+Voy a retomar ese hábito de definir una función main para representar
+
+798
+00:38:36,130 --> 00:38:37,457
+la parte principal de mi programa.
+
+799
+00:38:37,457 --> 00:38:39,040
+Y voy a hacer lo que hice antes.
+
+800
+00:38:39,040 --> 00:38:41,710
+Voy a obtener un entero de la entrada del usuario,
+
+801
+00:38:41,710 --> 00:38:44,680
+preguntándole ¿cuál es x?, signo de interrogación.
+
+802
+00:38:44,680 --> 00:38:46,420
+Y luego voy a hacer esta pregunta.
+
+803
+00:38:46,420 --> 00:38:48,667
+De momento, voy a asumir ingenuamente
+
+804
+00:38:48,667 --> 00:38:50,500
+que la función ya existe, pero eso es
+
+805
+00:38:50,500 --> 00:38:52,390
+una técnica útil para resolver problemas.
+
+806
+00:38:52,390 --> 00:38:55,270
+Aunque todavía no tenga ni idea de hacia dónde voy con esto,
+
+807
+00:38:55,270 --> 00:38:58,750
+de cómo voy a inventar una función que determine si un número es par,
+
+808
+00:38:58,750 --> 00:39:01,780
+voy a asumir que existe una función llamada "is_even"
+
+809
+00:39:01,780 --> 00:39:04,240
+y voy a llamarla, a ciegas, así.
+
+810
+00:39:04,240 --> 00:39:11,470
+If is_even, pasándole x, entonces imprime, entre comillas, even.
+
+811
+00:39:11,470 --> 00:39:17,650
+Así que si esta función mágica llamada "is_even" devuelve true, como valor de retorno,
+
+812
+00:39:17,650 --> 00:39:19,960
+voy a imprimir que es par.
+
+813
+00:39:19,960 --> 00:39:23,710
+Else, en caso contrario, voy a asumir que es, por supuesto, impar.
+
+814
+00:39:23,710 --> 00:39:27,625
+Ahora, el único problema de este programa, aunque llame a main aquí,
+
+815
+00:39:27,625 --> 00:39:30,010
+es que is_even no existe.
+
+816
+00:39:30,010 --> 00:39:32,620
+Y este programa fallaría si lo ejecutara ahora mismo.
+
+817
+00:39:32,620 --> 00:39:33,530
+Pero no pasa nada.
+
+818
+00:39:33,530 --> 00:39:35,990
+Tengo la capacidad, recordad, de inventar mi propia función.
+
+819
+00:39:35,990 --> 00:39:39,970
+Así que voy a definir, con def, una función llamada "is_even".
+
+820
+00:39:39,970 --> 00:39:42,760
+Quiero que esta función reciba un argumento.
+
+821
+00:39:42,760 --> 00:39:45,550
+Y lo voy a llamar n, simplemente un número, de forma genérica.
+
+822
+00:39:45,550 --> 00:39:46,690
+Podría llamarlo x.
+
+823
+00:39:46,690 --> 00:39:49,640
+Pero, de nuevo, no quiero confundirme sobre qué x es cuál.
+
+824
+00:39:49,640 --> 00:39:52,100
+Así que le voy a dar un nombre distinto, y no pasa nada.
+
+825
+00:39:52,100 --> 00:39:54,700
+Voy a llamarlo, de forma más genérica, n de número.
+
+826
+00:39:54,700 --> 00:39:56,590
+Y luego voy a hacer esto.
+
+827
+00:39:56,590 --> 00:40:03,490
+Voy a decir if n % 2 igual igual cero, igual que antes, entonces,
+
+828
+00:40:03,490 --> 00:40:06,520
+y aquí está la magia, tú, el programador,
+
+829
+00:40:06,520 --> 00:40:10,660
+puedes devolver lo que se llaman valores booleanos.
+
+830
+00:40:10,660 --> 00:40:16,430
+Hemos visto que en Python hay str o cadenas, int o enteros,
+
+831
+00:40:16,430 --> 00:40:19,000
+float o valores de coma flotante, todos los cuales
+
+832
+00:40:19,000 --> 00:40:21,520
+son distintos tipos de datos en Python.
+
+833
+00:40:21,520 --> 00:40:26,210
+Python también tiene un cuarto tipo de dato llamado bool, para un valor booleano.
+
+834
+00:40:26,210 --> 00:40:29,470
+Y aunque esto solo amplía nuestra lista, lo bueno de los bool
+
+835
+00:40:29,470 --> 00:40:32,890
+es que solo pueden ser verdadero o falso.
+
+836
+00:40:32,890 --> 00:40:36,280
+Un int puede ser cualquiera de una infinidad de valores posibles.
+
+837
+00:40:36,280 --> 00:40:39,040
+Un bool solo puede ser verdadero o falso.
+
+838
+00:40:39,040 --> 00:40:43,460
+Y tiene que ser con T mayúscula y F mayúscula si lo escribes tú.
+
+839
+00:40:43,460 --> 00:40:46,030
+Así que si vuelvo ahora a mi código y pienso en
+
+840
+00:40:46,030 --> 00:40:49,480
+qué quiero devolver exactamente aquí.
+
+841
+00:40:49,480 --> 00:40:53,560
+Pues si n % 2 igual igual cero, es decir,
+
+842
+00:40:53,560 --> 00:40:58,270
+si n dividido entre dos tiene un resto de cero, creo que es par,
+
+843
+00:40:58,270 --> 00:40:59,750
+según tu definición, Elena.
+
+844
+00:40:59,750 --> 00:41:05,380
+Así que devolvamos True, con T mayúscula. else, si no tiene un resto de cero,
+
+845
+00:41:05,380 --> 00:41:08,440
+estoy bastante seguro, matemáticamente, de que tiene que tener un resto de uno.
+
+846
+00:41:08,440 --> 00:41:09,400
+Pero no importa.
+
+847
+00:41:09,400 --> 00:41:13,210
+Sé que no es par, así que voy a devolver False.
+
+848
+00:41:13,210 --> 00:41:18,610
+Y devolvemos False, esta vez con F mayúscula. Y ahora que hemos definido tanto main
+
+849
+00:41:18,610 --> 00:41:23,350
+como is_even, y estoy llamando a main al final, creo que lo tengo bien.
+
+850
+00:41:23,350 --> 00:41:25,960
+python parity.py, Intro.
+
+851
+00:41:25,960 --> 00:41:26,650
+¿Cuál es x?
+
+852
+00:41:26,650 --> 00:41:28,780
+Probemos algo sencillo, como dos.
+
+853
+00:41:28,780 --> 00:41:29,890
+Y es par.
+
+854
+00:41:29,890 --> 00:41:30,850
+Hagámoslo otra vez.
+
+855
+00:41:30,850 --> 00:41:31,420
+¿Cuál es x?
+
+856
+00:41:31,420 --> 00:41:32,560
+¿Qué tal cuatro?
+
+857
+00:41:32,560 --> 00:41:33,100
+Par.
+
+858
+00:41:33,100 --> 00:41:34,480
+Una vez más, ¿cuál es x?
+
+859
+00:41:34,480 --> 00:41:35,740
+¿Qué tal tres?
+
+860
+00:41:35,740 --> 00:41:36,910
+Y es impar.
+
+861
+00:41:36,910 --> 00:41:38,140
+Bien, ¿qué he hecho aquí?
+
+862
+00:41:38,140 --> 00:41:42,700
+Acabo de demostrar que, si quiero crear mi propia función llamada "is_even"
+
+863
+00:41:42,700 --> 00:41:44,410
+que me responda a esta pregunta,
+
+864
+00:41:44,410 --> 00:41:47,350
+que ahora puedo usar en este programa y, quién sabe, quizá en futuros programas
+
+865
+00:41:47,350 --> 00:41:51,190
+que escriba, ahora tengo una función que nadie me dio,
+
+866
+00:41:51,190 --> 00:41:53,290
+que me di yo mismo, y que puedo usar y reutilizar.
+
+867
+00:41:53,290 --> 00:41:55,580
+E incluso puedo, quizá, compartirla con otros.
+
+868
+00:41:55,580 --> 00:41:59,560
+Estoy usando esa función ahora en la línea tres, solo para tomar una decisión.
+
+869
+00:41:59,560 --> 00:42:01,360
+Estoy usando un condicional ahí arriba.
+
+870
+00:42:01,360 --> 00:42:05,140
+Y mi expresión booleana, algo que es verdadero o falso,
+
+871
+00:42:05,140 --> 00:42:08,800
+no va a ser algo explícito, como x menor que y,
+
+872
+00:42:08,800 --> 00:42:11,020
+o y mayor que x, o similar.
+
+873
+00:42:11,020 --> 00:42:13,180
+Va a ser una llamada a una función.
+
+874
+00:42:13,180 --> 00:42:15,790
+Estoy usando una función como mi expresión booleana.
+
+875
+00:42:15,790 --> 00:42:18,160
+Pero no pasa nada, porque sé, porque la escribí yo,
+
+876
+00:42:18,160 --> 00:42:23,580
+que esa función "is_even" devuelve verdadero o devuelve falso.
+
+877
+00:42:23,580 --> 00:42:26,750
+Y eso es todo lo que necesito en un condicional para tomar una decisión
+
+878
+00:42:26,750 --> 00:42:29,810
+entre imprimir even o imprimir odd.
+
+879
+00:42:29,810 --> 00:42:33,110
+Así que hago una pausa aquí para ver si hay alguna pregunta sobre cómo he
+
+880
+00:42:33,110 --> 00:42:36,875
+implementado "is_even", usando este bool.
+
+881
+00:42:36,875 --> 00:42:38,000
+INTERLOCUTOR 6: Hola, hola, David.
+
+882
+00:42:38,000 --> 00:42:41,120
+Antes de nada, gracias por esta estupenda clase de anteayer
+
+883
+00:42:41,120 --> 00:42:43,340
+y de hoy, señor.
+
+884
+00:42:43,340 --> 00:42:47,720
+Solo tengo una duda, desde mi experiencia con Java.
+
+885
+00:42:47,720 --> 00:42:50,810
+Allí, cuando pasábamos el argumento,
+
+886
+00:42:50,810 --> 00:42:53,940
+también podíamos pasar la dirección de las variables.
+
+887
+00:42:53,940 --> 00:42:57,120
+¿Existe algo parecido a ese concepto en Python?
+
+888
+00:42:57,120 --> 00:42:58,370
+DAVID MALAN: Respuesta corta, no.
+
+889
+00:42:58,370 --> 00:43:02,300
+Para quienes no estén familiarizados con Java u otros lenguajes, o con C o C++,
+
+890
+00:43:02,300 --> 00:43:06,230
+generalmente hay formas de pasar valores con distintos mecanismos que te permiten,
+
+891
+00:43:06,230 --> 00:43:07,700
+o no te permiten, cambiarlos.
+
+892
+00:43:07,700 --> 00:43:08,897
+En Python, no.
+
+893
+00:43:08,897 --> 00:43:11,480
+Todo lo que vamos a ver es, de hecho, un objeto.
+
+894
+00:43:11,480 --> 00:43:13,890
+Pero de eso hablaremos más adelante.
+
+895
+00:43:13,890 --> 00:43:17,960
+¿Tenemos tiempo para una pregunta más sobre estos bool y estos
+
+896
+00:43:17,960 --> 00:43:19,700
+"is_even"?
+
+897
+00:43:19,700 --> 00:43:23,720
+INTERLOCUTOR 7: En realidad tenía una pregunta sobre cómo definir una función,
+
+898
+00:43:23,720 --> 00:43:24,680
+si no hay problema.
+
+899
+00:43:24,680 --> 00:43:25,430
+DAVID MALAN: Claro.
+
+900
+00:43:25,430 --> 00:43:29,030
+INTERLOCUTOR 7: Si defines una dentro de tu código, como si te la inventaras,
+
+901
+00:43:29,030 --> 00:43:33,230
+¿se puede usar el operador punto como hicimos con name punto strip,
+
+902
+00:43:33,230 --> 00:43:34,295
+y usarlo así?
+
+903
+00:43:34,295 --> 00:43:35,420
+DAVID MALAN: Buena pregunta.
+
+904
+00:43:35,420 --> 00:43:37,880
+Si has creado tu propia función, ¿puedes
+
+905
+00:43:37,880 --> 00:43:42,350
+usar otras funciones, como punto strip, o punto title, o punto capitalize,
+
+906
+00:43:42,350 --> 00:43:44,210
+que hemos visto antes?
+
+907
+00:43:44,210 --> 00:43:46,580
+Puedes usarlas con cadenas.
+
+908
+00:43:46,580 --> 00:43:49,110
+Esas funciones vienen con las cadenas.
+
+909
+00:43:49,110 --> 00:43:51,980
+No necesariamente puedes usarlas con tus propias funciones,
+
+910
+00:43:51,980 --> 00:43:56,030
+a menos que tu función devuelva una cadena, para los ejemplos que has dado.
+
+911
+00:43:56,030 --> 00:43:57,350
+Yo estoy devolviendo un bool.
+
+912
+00:43:57,350 --> 00:44:00,140
+Los bool no tienen noción de espacios en blanco a la izquierda ni a la derecha.
+
+913
+00:44:00,140 --> 00:44:02,207
+No puedes llamar a strip, no puedes llamar a capitalize.
+
+914
+00:44:02,207 --> 00:44:04,040
+Pero si estuvieras escribiendo otra función distinta
+
+915
+00:44:04,040 --> 00:44:06,020
+que devuelva una cadena, por supuesto que sí.
+
+916
+00:44:06,020 --> 00:44:08,015
+Podrías usar también esas funciones.
+
+917
+00:44:08,015 --> 00:44:10,640
+Bien, si me lo permitís, volvamos la atención a este ejemplo
+
+918
+00:44:10,640 --> 00:44:13,220
+y consideremos, como hacemos ahora con frecuencia,
+
+919
+00:44:13,220 --> 00:44:15,920
+si podemos mejorar el diseño de este código.
+
+920
+00:44:15,920 --> 00:44:18,290
+¿Puedo hacer mejor este programa en concreto?
+
+921
+00:44:18,290 --> 00:44:19,340
+Y puedo.
+
+922
+00:44:19,340 --> 00:44:20,630
+Hay un par de maneras.
+
+923
+00:44:20,630 --> 00:44:24,320
+Y os voy a enseñar algo que se conoce generalmente como Pythonic.
+
+924
+00:44:24,320 --> 00:44:26,840
+En realidad es un término técnico, en el mundo de Python,
+
+925
+00:44:26,840 --> 00:44:31,468
+según el cual algo es Pythonic si es la forma habitual de hacer las cosas en Python.
+
+926
+00:44:31,468 --> 00:44:33,260
+Es decir, ya hemos visto que hay
+
+927
+00:44:33,260 --> 00:44:35,480
+muchas formas distintas de resolver ciertos problemas.
+
+928
+00:44:35,480 --> 00:44:38,000
+Y en la comunidad de programadores de Python,
+
+929
+00:44:38,000 --> 00:44:41,990
+hay formas que tienden a verse con mejores ojos que otras.
+
+930
+00:44:41,990 --> 00:44:45,560
+Y suelen estar relacionadas con características que quizá solo tiene Python
+
+931
+00:44:45,560 --> 00:44:46,785
+y no otros lenguajes.
+
+932
+00:44:46,785 --> 00:44:49,910
+Y aquí hay una sintaxis que quizá no hayáis visto en lenguajes como Java,
+
+933
+00:44:49,910 --> 00:44:52,470
+C o C++ si habéis programado antes.
+
+934
+00:44:52,470 --> 00:44:55,700
+Y si nunca habéis programado, esto también os resultará nuevo.
+
+935
+00:44:55,700 --> 00:45:02,420
+En lugar de hacer una pregunta así, un if else en cuatro líneas, en Python
+
+936
+00:45:02,420 --> 00:45:07,520
+puedes condensarlo en una sola línea más elegante, por así decirlo.
+
+937
+00:45:07,520 --> 00:45:12,320
+En lugar de preguntar si n dividido entre dos tiene un resto de cero,
+
+938
+00:45:12,320 --> 00:45:15,390
+devuelve true, else devuelve false.
+
+939
+00:45:15,390 --> 00:45:23,150
+Voy a borrar todo eso y a decir esto: devuelve true si n dividido entre dos
+
+940
+00:45:23,150 --> 00:45:27,660
+tiene un resto de cero, else devuelve false.
+
+941
+00:45:27,660 --> 00:45:30,140
+Los que ya tenéis experiencia previa en programación
+
+942
+00:45:30,140 --> 00:45:31,940
+quizá penséis que esto es bastante genial.
+
+943
+00:45:31,940 --> 00:45:35,960
+Puedes condensar ese mismo pensamiento de cuatro líneas a una sola.
+
+944
+00:45:35,960 --> 00:45:39,260
+Y una de las razones por las que Python es popular es que
+
+945
+00:45:39,260 --> 00:45:41,270
+suele leerse bastante parecido al inglés.
+
+946
+00:45:41,270 --> 00:45:44,660
+No es tan amigable como la mayoría de los idiomas humanos.
+
+947
+00:45:44,660 --> 00:45:48,470
+Pero fijaos en que ahora la línea dice bastante bien lo que quieres decir.
+
+948
+00:45:48,470 --> 00:45:55,190
+Devuelve true si n dividido entre dos tiene un resto de cero, else false.
+
+949
+00:45:55,190 --> 00:45:58,820
+Eso se parece muchísimo a lo que dirías, lógicamente, en inglés,
+
+950
+00:45:58,820 --> 00:46:02,060
+ya sea sobre pares e impares o sobre cualquier otra cosa.
+
+951
+00:46:02,060 --> 00:46:04,280
+Así que este programa va a funcionar exactamente igual.
+
+952
+00:46:04,280 --> 00:46:06,650
+python parity.py, voy a escribir dos.
+
+953
+00:46:06,650 --> 00:46:07,520
+Sigue siendo par.
+
+954
+00:46:07,520 --> 00:46:08,600
+Voy a escribir tres.
+
+955
+00:46:08,600 --> 00:46:09,830
+Sigue siendo impar.
+
+956
+00:46:09,830 --> 00:46:12,180
+Pero puedo refinarlo todavía más.
+
+957
+00:46:12,180 --> 00:46:15,260
+Y, de nuevo, en coherencia con esta idea de no solo escribir código correcto,
+
+958
+00:46:15,260 --> 00:46:19,820
+sino de escribir código cada vez mejor, pero manteniéndolo legible,
+
+959
+00:46:19,820 --> 00:46:22,730
+puedo hacerlo aún mejor que esto.
+
+960
+00:46:22,730 --> 00:46:25,760
+Fijaos en que este valor de aquí es mi expresión booleana.
+
+961
+00:46:25,760 --> 00:46:28,640
+Y se va a evaluar como verdadero o falso.
+
+962
+00:46:28,640 --> 00:46:33,800
+¿n dividido entre dos tiene un resto de cero o no?
+
+963
+00:46:33,800 --> 00:46:35,940
+Eso es, por definición, una expresión booleana.
+
+964
+00:46:35,940 --> 00:46:39,600
+Tiene una respuesta de sí o no, de verdadero o falso.
+
+965
+00:46:39,600 --> 00:46:45,290
+Pues si tu expresión booleana ya tiene una respuesta verdadera o falsa,
+
+966
+00:46:45,290 --> 00:46:48,740
+¿por qué hacer una pregunta en primer lugar?
+
+967
+00:46:48,740 --> 00:46:50,270
+¿Por qué preguntar if?
+
+968
+00:46:50,270 --> 00:46:51,770
+¿Por qué decir else?
+
+969
+00:46:51,770 --> 00:46:57,140
+Devuelve directamente el valor de tu propia expresión booleana.
+
+970
+00:46:57,140 --> 00:47:01,670
+Y quizá la versión más ajustada, la más concisa y aún legible
+
+971
+00:47:01,670 --> 00:47:05,450
+de este código sería borrar toda esta línea, por muy Pythonic
+
+972
+00:47:05,450 --> 00:47:12,530
+que sea, y simplemente devolver n módulo dos igual igual cero.
+
+973
+00:47:12,530 --> 00:47:15,530
+Si ayuda, voy a añadir paréntesis temporalmente,
+
+974
+00:47:15,530 --> 00:47:18,910
+porque lo que está entre paréntesis ocurre primero.
+
+975
+00:47:18,910 --> 00:47:24,160
+n dividido entre dos tiene o no tiene un resto de cero.
+
+976
+00:47:24,160 --> 00:47:25,990
+Si lo tiene, la respuesta es verdadera.
+
+977
+00:47:25,990 --> 00:47:28,130
+Si no lo tiene, la respuesta es falsa.
+
+978
+00:47:28,130 --> 00:47:31,310
+Así que devuelve la pregunta, por así decirlo.
+
+979
+00:47:31,310 --> 00:47:35,020
+No necesitas envolverla, explícitamente, con un if y un else.
+
+980
+00:47:35,020 --> 00:47:37,780
+Y de hecho, por el orden de las operaciones,
+
+981
+00:47:37,780 --> 00:47:39,620
+ni siquiera necesitas los paréntesis.
+
+982
+00:47:39,620 --> 00:47:45,370
+Así que esta es quizá la forma más elegante de implementar esta misma idea.
+
+983
+00:47:45,370 --> 00:47:46,540
+Ahora bien, ¿cuál es mejor?
+
+984
+00:47:46,540 --> 00:47:47,870
+Esta es muy buena.
+
+985
+00:47:47,870 --> 00:47:51,010
+Y es difícil ponerle pegas porque es muy concisa.
+
+986
+00:47:51,010 --> 00:47:54,250
+Pero es perfectamente válido, y igual de correcto,
+
+987
+00:47:54,250 --> 00:47:56,500
+tener un if y luego un else.
+
+988
+00:47:56,500 --> 00:47:59,260
+Aunque sean cuatro líneas en total, si eso te ayuda
+
+989
+00:47:59,260 --> 00:48:01,480
+a pensar con más claridad sobre tu código, y ayuda
+
+990
+00:48:01,480 --> 00:48:04,100
+también a otras personas a razonar sobre él.
+
+991
+00:48:04,100 --> 00:48:06,490
+Resulta que hay otra sintaxis que puedes
+
+992
+00:48:06,490 --> 00:48:08,920
+usar para implementar la misma idea de un condicional,
+
+993
+00:48:08,920 --> 00:48:12,910
+en la que haces algo de forma opcional, según la respuesta a alguna expresión
+
+994
+00:48:12,910 --> 00:48:13,720
+booleana.
+
+995
+00:48:13,720 --> 00:48:17,020
+Y la palabra clave que puedes usar ahora, en versiones recientes de Python,
+
+996
+00:48:17,020 --> 00:48:18,610
+es esta: match.
+
+997
+00:48:18,610 --> 00:48:21,850
+Match es un mecanismo que, si habéis programado antes, es similar en espíritu
+
+998
+00:48:21,850 --> 00:48:24,340
+a lo que se llama switch en otros lenguajes.
+
+999
+00:48:24,340 --> 00:48:28,450
+Por ejemplo, voy a cerrar parity.py y voy
+
+1000
+00:48:28,450 --> 00:48:31,750
+a crear un archivo nuevo llamado house.py.
+
+1001
+00:48:31,750 --> 00:48:33,700
+Y en house.py, creo que vamos
+
+1002
+00:48:33,700 --> 00:48:37,243
+a intentar implementar un programa que le pida al usuario su nombre
+
+1003
+00:48:37,243 --> 00:48:39,160
+y luego muestre en qué casa se sabe que está
+
+1004
+00:48:39,160 --> 00:48:41,110
+en el mundo de Harry Potter.
+
+1005
+00:48:41,110 --> 00:48:43,040
+Así que, por ejemplo, hagamos lo siguiente.
+
+1006
+00:48:43,040 --> 00:48:46,450
+Voy a crear una variable llamada name, igual al valor devuelto
+
+1007
+00:48:46,450 --> 00:48:47,860
+por la función input.
+
+1008
+00:48:47,860 --> 00:48:50,890
+Y diré algo como: ¿cómo te llamas?, signo de interrogación.
+
+1009
+00:48:50,890 --> 00:48:52,750
+Y después voy a usar
+
+1010
+00:48:52,750 --> 00:48:58,210
+una construcción tradicional if, elif, else para decidir en qué casa está esta persona.
+
+1011
+00:48:58,210 --> 00:49:03,100
+Así que digo: if name igual igual, por ejemplo, Harry, como Harry Potter, pues
+
+1012
+00:49:03,100 --> 00:49:06,280
+imprimamos la casa de Harry, que es Gryffindor
+
+1013
+00:49:06,280 --> 00:49:08,060
+en el mundo de Harry Potter.
+
+1014
+00:49:08,060 --> 00:49:11,890
+elif el nombre es, en cambio, Hermione, entonces
+
+1015
+00:49:11,890 --> 00:49:15,280
+imprime también, entre comillas, Gryffindor,
+
+1016
+00:49:15,280 --> 00:49:16,750
+ya que ella también está en la misma casa.
+
+1017
+00:49:16,750 --> 00:49:19,900
+elif name igual igual Ron, imprimamos
+
+1018
+00:49:19,900 --> 00:49:23,487
+igualmente, entre comillas, Gryffindor.
+
+1019
+00:49:23,487 --> 00:49:25,570
+Y hagamos esto un poco más interesante.
+
+1020
+00:49:25,570 --> 00:49:29,230
+elif name igual, entre comillas, ¿qué tal Draco?
+
+1021
+00:49:29,230 --> 00:49:32,110
+Draco Malfoy, en los libros: imprimamos, entre comillas,
+
+1022
+00:49:32,110 --> 00:49:33,760
+Slytherin.
+
+1023
+00:49:33,760 --> 00:49:36,640
+Y por si se introduce el nombre de otra persona,
+
+1024
+00:49:36,640 --> 00:49:39,550
+por ahora supongamos que no la reconocemos,
+
+1025
+00:49:39,550 --> 00:49:41,890
+y digamos, por defecto, else imprime, entre comillas,
+
+1026
+00:49:41,890 --> 00:49:44,530
+who, signo de interrogación, solo para indicar
+
+1027
+00:49:44,530 --> 00:49:48,130
+que no tenemos una respuesta predefinida para ese nombre en concreto.
+
+1028
+00:49:48,130 --> 00:49:52,635
+Voy a ejecutarlo ahora con python house.py, Intro.
+
+1029
+00:49:52,635 --> 00:49:54,760
+Y voy a escribir algo como Harry.
+
+1030
+00:49:54,760 --> 00:49:57,250
+Y voilà, vemos que Harry está, efectivamente, en Gryffindor.
+
+1031
+00:49:57,250 --> 00:50:00,040
+Ejecutémoslo una vez más, python house.py.
+
+1032
+00:50:00,040 --> 00:50:01,690
+Escribamos Draco esta vez.
+
+1033
+00:50:01,690 --> 00:50:02,500
+Slytherin.
+
+1034
+00:50:02,500 --> 00:50:05,140
+Y ahora escribamos un nombre no reconocido.
+
+1035
+00:50:05,140 --> 00:50:07,540
+Volvamos a ejecutar python house.py.
+
+1036
+00:50:07,540 --> 00:50:10,000
+Y escribamos Padma, Intro.
+
+1037
+00:50:10,000 --> 00:50:10,570
+¿Y quién?
+
+1038
+00:50:10,570 --> 00:50:14,800
+Porque en este caso no hemos definido explícitamente con una condición elif
+
+1039
+00:50:14,800 --> 00:50:17,290
+en qué casa debería estar Padma.
+
+1040
+00:50:17,290 --> 00:50:19,750
+Pues resulta que hay otras formas de implementar esto.
+
+1041
+00:50:19,750 --> 00:50:22,030
+De hecho, aquí hay cierta redundancia, ya que
+
+1042
+00:50:22,030 --> 00:50:25,837
+comprobamos si Harry, Hermione o Ron están todos en Gryffindor.
+
+1043
+00:50:25,837 --> 00:50:28,420
+Creo que al menos podemos ajustar un poco más este código
+
+1044
+00:50:28,420 --> 00:50:30,260
+con técnicas que ya hemos visto.
+
+1045
+00:50:30,260 --> 00:50:31,640
+Así que hagamos lo siguiente.
+
+1046
+00:50:31,640 --> 00:50:34,370
+Voy a subir aquí y, en su lugar, hacer algo como esto.
+
+1047
+00:50:34,370 --> 00:50:37,120
+Quitemos estos dos bloques de elif,
+
+1048
+00:50:37,120 --> 00:50:38,890
+dejando solo el de Harry por un momento.
+
+1049
+00:50:38,890 --> 00:50:41,980
+Y usemos otra vez la palabra clave or, y digamos or name
+
+1050
+00:50:41,980 --> 00:50:47,080
+igual igual, entre comillas, Hermione, or name igual, entre comillas, Ron,
+
+1051
+00:50:47,080 --> 00:50:51,370
+consolidando así los tres casos, por así decirlo, en una sola
+
+1052
+00:50:51,370 --> 00:50:52,360
+sentencia if.
+
+1053
+00:50:52,360 --> 00:50:55,270
+Luego seguimos teniendo un elif aparte para Draco porque él no está,
+
+1054
+00:50:55,270 --> 00:50:56,230
+de hecho, en Gryffindor.
+
+1055
+00:50:56,230 --> 00:50:59,260
+Y luego el else final para cubrir a cualquier otra persona.
+
+1056
+00:50:59,260 --> 00:51:03,280
+Voy a ejecutar ahora esta versión del programa, python house.py.
+
+1057
+00:51:03,280 --> 00:51:05,470
+Escribiré Hermione esta vez.
+
+1058
+00:51:05,470 --> 00:51:07,030
+Ella también sigue en Gryffindor.
+
+1059
+00:51:07,030 --> 00:51:08,170
+Probemos con Ron.
+
+1060
+00:51:08,170 --> 00:51:10,582
+Y eso también parece seguir siendo correcto.
+
+1061
+00:51:10,582 --> 00:51:13,540
+Pues resulta que hay otro enfoque totalmente distinto que quizá
+
+1062
+00:51:13,540 --> 00:51:16,000
+haga tu código un poco menos extenso.
+
+1063
+00:51:16,000 --> 00:51:18,790
+Podéis imaginar lo complicado que podría
+
+1064
+00:51:18,790 --> 00:51:21,940
+llegar a ser este código si tuviéramos no solo a Harry, Hermione y Ron, sino un montón
+
+1065
+00:51:21,940 --> 00:51:25,030
+de otros nombres también, para Gryffindor, para Slytherin y para todas
+
+1066
+00:51:25,030 --> 00:51:26,650
+las demás casas de Hogwarts.
+
+1067
+00:51:26,650 --> 00:51:29,737
+Podéis imaginar que ese código se volvería bastante inmanejable bastante rápido.
+
+1068
+00:51:29,737 --> 00:51:31,570
+Pues resulta que otra técnica que puedes
+
+1069
+00:51:31,570 --> 00:51:34,940
+usar es, efectivamente, esta palabra clave llamada match, que es muy similar en espíritu,
+
+1070
+00:51:34,940 --> 00:51:36,130
+pero con una sintaxis distinta.
+
+1071
+00:51:36,130 --> 00:51:39,580
+Y te permite expresar las mismas ideas de forma algo más compacta.
+
+1072
+00:51:39,580 --> 00:51:41,620
+Así que vuelvo a house.py.
+
+1073
+00:51:41,620 --> 00:51:45,700
+Y propongo que me deshaga de mi planteamiento actual con if, elif, else,
+
+1074
+00:51:45,700 --> 00:51:47,080
+y en su lugar haga esto.
+
+1075
+00:51:47,080 --> 00:51:51,070
+Usar literalmente la palabra clave match, y escribir el nombre de la variable,
+
+1076
+00:51:51,070 --> 00:51:53,055
+o valor, con el que queremos hacer la comparación.
+
+1077
+00:51:53,055 --> 00:51:55,180
+Y luego voy a incluir dos puntos.
+
+1078
+00:51:55,180 --> 00:51:58,240
+Y debajo, voy a incluir, literalmente,
+
+1079
+00:51:58,240 --> 00:51:59,740
+una palabra clave llamada case.
+
+1080
+00:51:59,740 --> 00:52:02,290
+Y el primer caso que quiero considerar será Harry.
+
+1081
+00:52:02,290 --> 00:52:05,690
+Y voy a poner Harry entre comillas, porque es una cadena o str.
+
+1082
+00:52:05,690 --> 00:52:08,350
+Y voy a poner otros dos puntos al final de esta línea.
+
+1083
+00:52:08,350 --> 00:52:11,020
+Y con sangría debajo de esa, voy a imprimir, por ahora,
+
+1084
+00:52:11,020 --> 00:52:13,990
+Gryffindor, que, por supuesto, es la casa de Harry.
+
+1085
+00:52:13,990 --> 00:52:17,590
+A continuación, voy a tener otro case para, entre comillas, Hermione.
+
+1086
+00:52:17,590 --> 00:52:20,350
+E igualmente, debajo de ese, con sangría, voy a poner
+
+1087
+00:52:20,350 --> 00:52:23,560
+print, entre comillas, Gryffindor, cierra comillas.
+
+1088
+00:52:23,560 --> 00:52:27,740
+Ahora voy a tener otro case para Ron, también entre comillas, con dos puntos.
+
+1089
+00:52:27,740 --> 00:52:29,950
+Ahora print, entre comillas, Gryffindor.
+
+1090
+00:52:29,950 --> 00:52:33,122
+Y ahora voy a tener otro case para, digamos, Draco.
+
+1091
+00:52:33,122 --> 00:52:35,830
+Este es un poco más interesante porque Draco, por supuesto,
+
+1092
+00:52:35,830 --> 00:52:37,750
+está en Slytherin.
+
+1093
+00:52:37,750 --> 00:52:40,830
+Y voy a dejarlo así por ahora.
+
+1094
+00:52:40,830 --> 00:52:44,080
+Así que guardo este archivo y vuelvo a mi ventana de terminal,
+
+1095
+00:52:44,080 --> 00:52:46,930
+ejecutando python house.py, Intro.
+
+1096
+00:52:46,930 --> 00:52:48,485
+Y probemos con Harry.
+
+1097
+00:52:48,485 --> 00:52:50,110
+Y parece que sigue estando en Gryffindor.
+
+1098
+00:52:50,110 --> 00:52:52,810
+Ejecutémoslo otra vez con Hermione, Intro.
+
+1099
+00:52:52,810 --> 00:52:53,560
+Gryffindor.
+
+1100
+00:52:53,560 --> 00:52:56,653
+Saltemos a Draco, y escribamos el nombre de Draco.
+
+1101
+00:52:56,653 --> 00:52:57,820
+Está, efectivamente, en Slytherin.
+
+1102
+00:52:57,820 --> 00:53:00,790
+Ahora probemos otro nombre para el que no hemos gestionado
+
+1103
+00:53:00,790 --> 00:53:03,310
+un caso, como Padma otra vez, Intro.
+
+1104
+00:53:03,310 --> 00:53:04,540
+Y simplemente se ignora.
+
+1105
+00:53:04,540 --> 00:53:07,660
+No hay ninguna salida porque no había un case para Padma.
+
+1106
+00:53:07,660 --> 00:53:11,440
+Por supuesto, podríamos volver y añadir explícitamente uno para Padma.
+
+1107
+00:53:11,440 --> 00:53:14,440
+Pero ¿y si, de forma similar a la construcción else,
+
+1108
+00:53:14,440 --> 00:53:18,700
+queremos un comodín que gestione a cualquiera cuyo nombre no esté especificado explícitamente?
+
+1109
+00:53:18,700 --> 00:53:22,150
+Pues resulta que la sintaxis para eso, con esta nueva sentencia match,
+
+1110
+00:53:22,150 --> 00:53:24,730
+es seguir teniendo otro case, pero usando
+
+1111
+00:53:24,730 --> 00:53:28,480
+este carácter de guion bajo, que se usa en otros contextos en Python.
+
+1112
+00:53:28,480 --> 00:53:32,440
+Pero aquí significa: en cualquier caso que aún no se haya gestionado,
+
+1113
+00:53:32,440 --> 00:53:35,410
+imprime, como hicimos antes, por ejemplo,
+
+1114
+00:53:35,410 --> 00:53:38,900
+entre comillas, who, con un signo de interrogación al final.
+
+1115
+00:53:38,900 --> 00:53:42,310
+Ahora volvamos a ejecutar python house.py.
+
+1116
+00:53:42,310 --> 00:53:43,668
+Escribiré otra vez el nombre de Padma.
+
+1117
+00:53:43,668 --> 00:53:45,460
+Y esta vez creo que al menos vamos
+
+1118
+00:53:45,460 --> 00:53:48,250
+a obtener una respuesta explícita que indique quién,
+
+1119
+00:53:48,250 --> 00:53:50,920
+mientras que antes no teníamos el equivalente de eso.
+
+1120
+00:53:50,920 --> 00:53:53,440
+Ahora bien, creo que hemos retrocedido un poco.
+
+1121
+00:53:53,440 --> 00:53:56,590
+Habíamos ajustado el código poniendo a Harry, Hermione
+
+1122
+00:53:56,590 --> 00:53:59,650
+y Ron en la misma línea, en la misma sentencia if.
+
+1123
+00:53:59,650 --> 00:54:02,780
+Pero aquí tenemos ahora tres sentencias case, otra vez, para los tres
+
+1124
+00:54:02,780 --> 00:54:03,280
+de ellos.
+
+1125
+00:54:03,280 --> 00:54:05,950
+Pues también podemos ajustar este código.
+
+1126
+00:54:05,950 --> 00:54:08,240
+Pero la sintaxis va a ser un poco distinta.
+
+1127
+00:54:08,240 --> 00:54:12,160
+Voy a borrar estos dos case intermedios, el de Hermione y el de Ron.
+
+1128
+00:54:12,160 --> 00:54:15,320
+Y luego, aquí arriba, junto al nombre de Harry, antes de los dos puntos,
+
+1129
+00:54:15,320 --> 00:54:18,070
+voy a usar una única barra vertical, y luego
+
+1130
+00:54:18,070 --> 00:54:19,810
+Hermione entre comillas.
+
+1131
+00:54:19,810 --> 00:54:23,110
+Luego otra barra vertical y Ron entre comillas.
+
+1132
+00:54:23,110 --> 00:54:26,140
+Y así es como, con esta sentencia match relativamente nueva,
+
+1133
+00:54:26,140 --> 00:54:30,220
+puedes decir el equivalente de Harry, o Hermione, o Ron,
+
+1134
+00:54:30,220 --> 00:54:33,640
+pero de forma más concisa que con una sentencia if
+
+1135
+00:54:33,640 --> 00:54:35,870
+sola, como la implementamos antes.
+
+1136
+00:54:35,870 --> 00:54:40,210
+Así que, ahora, una última ejecución del programa con python house.py.
+
+1137
+00:54:40,210 --> 00:54:42,490
+Comprobemos que Harry sigue en Gryffindor.
+
+1138
+00:54:42,490 --> 00:54:44,920
+Comprobemos que Hermione sigue en Gryffindor.
+
+1139
+00:54:44,920 --> 00:54:46,990
+Comprobemos que Ron sigue en Gryffindor.
+
+1140
+00:54:46,990 --> 00:54:48,880
+Y, efectivamente, los tres lo están.
+
+1141
+00:54:48,880 --> 00:54:51,553
+Ahora bien, como siempre con Python y con la programación en general,
+
+1142
+00:54:51,553 --> 00:54:54,220
+hay distintas formas de resolver estos problemas.
+
+1143
+00:54:54,220 --> 00:54:56,290
+Esta es simplemente otra herramienta en tu caja de herramientas.
+
+1144
+00:54:56,290 --> 00:54:58,240
+Podría decirse que ha ajustado el código.
+
+1145
+00:54:58,240 --> 00:55:00,190
+Podría decirse que es quizá un poco más legible
+
+1146
+00:55:00,190 --> 00:55:02,500
+porque hay un poco menos de sintaxis,
+
+1147
+00:55:02,500 --> 00:55:05,710
+un poco menos de duplicación de signos igual y de elif,
+
+1148
+00:55:05,710 --> 00:55:07,390
+y elif, y elif por todas partes.
+
+1149
+00:55:07,390 --> 00:55:11,740
+Pero, en última instancia, este sería un enfoque igual de correcto para el mismo problema.
+
+1150
+00:55:11,740 --> 00:55:13,600
+Pero resulta que con una sentencia match se pueden
+
+1151
+00:55:13,600 --> 00:55:16,360
+hacer formas de coincidencia aún más potentes.
+
+1152
+00:55:16,360 --> 00:55:20,500
+Aquí la hemos usado simplemente para implementar la misma idea que esa construcción if, elif,
+
+1153
+00:55:20,500 --> 00:55:21,460
+else.
+
+1154
+00:55:21,460 --> 00:55:24,700
+Y vale la pena señalar, si habéis programado en algún otro lenguaje,
+
+1155
+00:55:24,700 --> 00:55:26,200
+que la sintaxis de aquí es, efectivamente, correcta.
+
+1156
+00:55:26,200 --> 00:55:28,600
+No necesitas, por ejemplo, una sentencia break,
+
+1157
+00:55:28,600 --> 00:55:29,950
+como las que se ven por todas partes en otros lenguajes.
+
+1158
+00:55:29,950 --> 00:55:32,665
+Y no necesitas algo como default, ni nada explícito.
+
+1159
+00:55:32,665 --> 00:55:37,700
+Simplemente usas este guion bajo como tu comodín al final del match.
+
+1160
+00:55:37,700 --> 00:55:40,900
+Así que, con solo añadir algunas de estas nuevas palabras clave
+
+1161
+00:55:40,900 --> 00:55:45,340
+como if, elif y else, ahora tenemos la capacidad
+
+1162
+00:55:45,340 --> 00:55:47,320
+de hacer preguntas sobre valores.
+
+1163
+00:55:47,320 --> 00:55:50,140
+Tenemos la capacidad de analizar la entrada de los usuarios
+
+1164
+00:55:50,140 --> 00:55:52,090
+y, en última instancia, tomar decisiones a partir de ella.
+
+1165
+00:55:52,090 --> 00:55:54,730
+Y esos, entonces, eran nuestros condicionales.
+
+1166
+00:55:54,730 --> 00:55:58,180
+Lo que nos espera es la capacidad de no solo usar funciones
+
+1167
+00:55:58,180 --> 00:56:00,380
+y variables, y también estos condicionales,
+
+1168
+00:56:00,380 --> 00:56:06,330
+sino también, a continuación, bucles: la capacidad de hacer algo una y otra vez.

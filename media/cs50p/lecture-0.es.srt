@@ -1,0 +1,8887 @@
+1
+00:00:00,000 --> 00:00:03,444
+[MÚSICA ORQUESTAL SUAVE]
+
+2
+00:00:24,110 --> 00:00:26,840
+DAVID MALAN: Muy bien, esto es la Introducción
+
+3
+00:00:26,840 --> 00:00:28,190
+a la programación con Python de CS50.
+
+4
+00:00:28,190 --> 00:00:32,009
+Me llamo David Malan y esta es nuestra semana sobre funciones y variables.
+
+5
+00:00:32,009 --> 00:00:35,690
+Pero lo más probable es que muchos de vosotros, la mayoría, nunca hayáis programado.
+
+6
+00:00:35,690 --> 00:00:37,790
+Así que empecemos haciendo precisamente eso.
+
+7
+00:00:37,790 --> 00:00:40,250
+Voy a abrir mi ordenador
+
+8
+00:00:40,250 --> 00:00:43,220
+y, en él, un programa llamado Visual Studio Code o VS
+
+9
+00:00:43,220 --> 00:00:45,650
+Code, que hoy en día es un programa muy popular
+
+10
+00:00:45,650 --> 00:00:47,220
+para escribir código.
+
+11
+00:00:47,220 --> 00:00:49,840
+Ahora bien, no tenéis por qué escribir código con esta herramienta en concreto.
+
+12
+00:00:49,840 --> 00:00:51,590
+De hecho, lo único que necesitamos al final
+
+13
+00:00:51,590 --> 00:00:54,742
+es lo que se llama un editor de texto, un programa para escribir texto.
+
+14
+00:00:54,742 --> 00:00:57,200
+Y, qué demonios, si de verdad queréis, podríais usar incluso algo
+
+15
+00:00:57,200 --> 00:00:59,180
+como Google Docs o Microsoft Word.
+
+16
+00:00:59,180 --> 00:01:00,952
+Tendríais que guardarlo en el formato adecuado,
+
+17
+00:01:00,952 --> 00:01:04,160
+pero, en realidad, al final lo único que necesitáis es un programa para escribir texto,
+
+18
+00:01:04,160 --> 00:01:06,170
+porque eso es el código: texto.
+
+19
+00:01:06,170 --> 00:01:08,090
+Dentro de este programa, voy
+
+20
+00:01:08,090 --> 00:01:10,550
+a poder crear uno o más archivos
+
+21
+00:01:10,550 --> 00:01:12,500
+en esta parte superior de la pantalla.
+
+22
+00:01:12,500 --> 00:01:14,810
+Y lo voy a hacer lanzándome directamente
+
+23
+00:01:14,810 --> 00:01:17,030
+y haciendo esto en la parte inferior de la pantalla.
+
+24
+00:01:17,030 --> 00:01:20,060
+En la parte inferior de la pantalla hay lo que se llama una ventana de terminal,
+
+25
+00:01:20,060 --> 00:01:25,310
+que es una interfaz de línea de comandos, o CLI, del
+
+26
+00:01:25,310 --> 00:01:29,340
+ordenador subyacente, ya sea tu Mac, tu PC o incluso algún servidor en la nube.
+
+27
+00:01:29,340 --> 00:01:32,240
+Y lo que voy a hacer aquí es escribir literalmente "code" y luego
+
+28
+00:01:32,240 --> 00:01:36,530
+el nombre del archivo que quiero programar, por ejemplo, Hello.py.
+
+29
+00:01:36,530 --> 00:01:40,310
+Como veremos pronto, cualquier programa que escribáis en Python suele tener un nombre
+
+30
+00:01:40,310 --> 00:01:44,210
+de archivo que termina en .py para indicar al ordenador que es, en efecto, un programa
+
+31
+00:01:44,210 --> 00:01:45,320
+escrito en Python.
+
+32
+00:01:45,320 --> 00:01:48,440
+Ahora veréis aquí, en la parte superior de la pantalla, un cursor parpadeando,
+
+33
+00:01:48,440 --> 00:01:51,800
+una línea 1 —que es donde irá la primerísima línea de mi código—
+
+34
+00:01:51,800 --> 00:01:55,730
+y una pestaña que me recuerda el nombre de este archivo, Hello.py.
+
+35
+00:01:55,730 --> 00:01:58,370
+Y sin saber apenas Python, voy
+
+36
+00:01:58,370 --> 00:02:00,770
+a escribir aquí mi primer programa de la siguiente manera:
+
+37
+00:02:00,770 --> 00:02:02,120
+print("hello,world").
+
+38
+00:02:08,396 --> 00:02:10,729
+Y veréis que, con el teclado, algunos de mis pensamientos
+
+39
+00:02:10,729 --> 00:02:11,604
+se completaron solos.
+
+40
+00:02:11,604 --> 00:02:14,870
+Solo tuve que escribir un paréntesis y el otro apareció automáticamente,
+
+41
+00:02:14,870 --> 00:02:18,590
+y esa es una característica que veremos en herramientas como esta.
+
+42
+00:02:18,590 --> 00:02:21,080
+Aunque no hayáis programado nunca,
+
+43
+00:02:21,080 --> 00:02:25,610
+lo más probable es que podáis adivinar, deducir, qué va a hacer este sencillo programa.
+
+44
+00:02:25,610 --> 00:02:28,250
+Y es solo una línea. print("hello,world").
+
+45
+00:02:32,030 --> 00:02:33,830
+De hecho, cuando por fin ejecute este programa,
+
+46
+00:02:33,830 --> 00:02:35,948
+simplemente va a decir hola al mundo.
+
+47
+00:02:35,948 --> 00:02:37,490
+Y, de hecho, este es un programa muy famoso
+
+48
+00:02:37,490 --> 00:02:39,440
+—quizá el más canónico— que se
+
+49
+00:02:39,440 --> 00:02:42,530
+puede escribir como primer programa en Python o en cualquier otro lenguaje,
+
+50
+00:02:42,530 --> 00:02:44,280
+y eso es lo que he hecho aquí.
+
+51
+00:02:44,280 --> 00:02:48,230
+Pero en mi Mac, en mi PC, incluso en el móvil, suelo tener la costumbre,
+
+52
+00:02:48,230 --> 00:02:51,170
+como vosotros, de ejecutar programas haciendo doble clic en un icono
+
+53
+00:02:51,170 --> 00:02:52,760
+o simplemente tocando la pantalla.
+
+54
+00:02:52,760 --> 00:02:54,920
+Pero aquí no veo ningún icono de ese tipo.
+
+55
+00:02:54,920 --> 00:02:58,730
+Y, de hecho, es porque mi interfaz, al menos con mi Mac actual
+
+56
+00:02:58,730 --> 00:03:02,180
+o mi PC o algún servidor en la nube, es otra vez solo una CLI
+
+57
+00:03:02,180 --> 00:03:04,340
+—interfaz de línea de comandos—, que aunque
+
+58
+00:03:04,340 --> 00:03:07,820
+pueda parecer un paso atrás respecto a los menús, botones e iconos
+
+59
+00:03:07,820 --> 00:03:10,730
+que damos por sentados cada día, descubriréis, creemos,
+
+60
+00:03:10,730 --> 00:03:13,670
+que al final es una interfaz mucho más potente y muy
+
+61
+00:03:13,670 --> 00:03:16,920
+popular entre los programadores en el mundo real.
+
+62
+00:03:16,920 --> 00:03:20,245
+Así que, para ejecutar este programa, voy a tener que usar un comando
+
+63
+00:03:20,245 --> 00:03:23,120
+y voy a bajar el cursor a la parte inferior de la pantalla,
+
+64
+00:03:23,120 --> 00:03:25,790
+aquí, donde antes ya ejecuté un comando:
+
+65
+00:03:25,790 --> 00:03:30,410
+el comando code, que abre VS Code en mi ordenador,
+
+66
+00:03:30,410 --> 00:03:33,560
+y luego le pasé el nombre del archivo que quería programar.
+
+67
+00:03:33,560 --> 00:03:36,000
+Ahora puedo escribir un segundo comando,
+
+68
+00:03:36,000 --> 00:03:38,090
+y veréis que aparece un segundo signo de dólar.
+
+69
+00:03:38,090 --> 00:03:41,360
+El signo de dólar aquí no indica ningún tipo de moneda ni dinero,
+
+70
+00:03:41,360 --> 00:03:43,340
+es simplemente el símbolo que se suele usar
+
+71
+00:03:43,340 --> 00:03:46,610
+para indicar el prompt, donde la interfaz de línea de comandos quiere
+
+72
+00:03:46,610 --> 00:03:47,990
+que escribáis los comandos.
+
+73
+00:03:47,990 --> 00:03:51,530
+El comando que puedo ejecutar aquí va a ser este:
+
+74
+00:03:51,530 --> 00:03:55,310
+voy a ejecutar python Hello.py.
+
+75
+00:03:55,310 --> 00:03:56,490
+¿Y por qué?
+
+76
+00:03:56,490 --> 00:04:00,380
+Pues resulta que cuando escribo código en un lenguaje como Python,
+
+77
+00:04:00,380 --> 00:04:02,120
+por supuesto se guarda en ese archivo,
+
+78
+00:04:02,120 --> 00:04:07,063
+Hello.py, pero necesito interpretar el código de arriba abajo,
+
+79
+00:04:07,063 --> 00:04:09,230
+de izquierda a derecha, para que el ordenador sepa qué hacer.
+
+80
+00:04:09,230 --> 00:04:10,940
+De hecho, al final, aunque no sepáis
+
+81
+00:04:10,940 --> 00:04:12,920
+mucho de ordenadores, probablemente
+
+82
+00:04:12,920 --> 00:04:16,790
+habréis oído que los ordenadores solo entienden ceros y unos, el llamado sistema
+
+83
+00:04:16,790 --> 00:04:17,390
+binario.
+
+84
+00:04:17,390 --> 00:04:21,769
+Pues si es así, algo que dice "print", paréntesis
+
+85
+00:04:21,769 --> 00:04:25,430
+y, entre comillas, hello world, seguro que no son ceros y unos.
+
+86
+00:04:25,430 --> 00:04:27,750
+Tenemos que traducirlo de alguna manera a los ceros y unos
+
+87
+00:04:27,750 --> 00:04:29,000
+que entiende el ordenador.
+
+88
+00:04:29,000 --> 00:04:33,360
+Por suerte, siempre que hayáis instalado previamente ese programa,
+
+89
+00:04:33,360 --> 00:04:36,380
+existe un programa, además de un lenguaje, llamado Python.
+
+90
+00:04:36,380 --> 00:04:39,390
+Así que Python no es solo un lenguaje en el que vamos a escribir código,
+
+91
+00:04:39,390 --> 00:04:42,590
+también es un programa, también conocido como intérprete,
+
+92
+00:04:42,590 --> 00:04:46,490
+que instaláis gratis en vuestro Mac o PC o en algún servidor en la nube,
+
+93
+00:04:46,490 --> 00:04:50,990
+y luego podéis ejecutar ese programa, ese intérprete, pasándole como entrada
+
+94
+00:04:50,990 --> 00:04:53,870
+el nombre de vuestro archivo, como el mío aquí, Hello.py.
+
+95
+00:04:53,870 --> 00:04:56,000
+Y luego ese programa, ese intérprete, se
+
+96
+00:04:56,000 --> 00:04:59,210
+encargará de leerlo de arriba abajo, de izquierda a derecha,
+
+97
+00:04:59,210 --> 00:05:02,210
+y de traducirlo, en la práctica, a esos ceros y unos
+
+98
+00:05:02,210 --> 00:05:04,170
+que el ordenador puede entender.
+
+99
+00:05:04,170 --> 00:05:05,360
+Así que hagamos precisamente eso.
+
+100
+00:05:05,360 --> 00:05:07,190
+Vuelvo a VS Code.
+
+101
+00:05:07,190 --> 00:05:11,030
+Ya había escrito python Hello.py, pero no había pulsado Enter.
+
+102
+00:05:11,030 --> 00:05:13,430
+Y eso es lo que va a lanzar este comando
+
+103
+00:05:13,430 --> 00:05:16,190
+y, con suerte, si no he metido la pata en nada,
+
+104
+00:05:16,190 --> 00:05:20,370
+debería ver en pantalla la salida de mi primer programa.
+
+105
+00:05:20,370 --> 00:05:23,480
+Y voilà: hello, world.
+
+106
+00:05:23,480 --> 00:05:25,970
+Así que, si vosotros también habéis escrito exactamente el mismo código
+
+107
+00:05:25,970 --> 00:05:28,400
+y habéis ejecutado exactamente el mismo comando,
+
+108
+00:05:28,400 --> 00:05:32,840
+habréis escrito vuestro primer programa, en este caso en Python.
+
+109
+00:05:32,840 --> 00:05:34,790
+Bueno, demos un paso atrás y pensemos
+
+110
+00:05:34,790 --> 00:05:37,190
+qué es lo que acabamos de hacer y qué
+
+111
+00:05:37,190 --> 00:05:38,930
+es lo que estamos viendo aquí en la pantalla.
+
+112
+00:05:38,930 --> 00:05:41,450
+En primer lugar, en casi cualquier lenguaje de programación,
+
+113
+00:05:41,450 --> 00:05:43,950
+solemos tener acceso a lo que se llaman funciones.
+
+114
+00:05:43,950 --> 00:05:46,460
+Una función es como una acción o un verbo que
+
+115
+00:05:46,460 --> 00:05:48,800
+te permite hacer algo en el programa.
+
+116
+00:05:48,800 --> 00:05:52,730
+Y, en general, cualquier lenguaje viene con un conjunto predeterminado
+
+117
+00:05:52,730 --> 00:05:57,097
+de funciones: acciones o verbos muy básicos que el ordenador ya
+
+118
+00:05:57,097 --> 00:05:59,180
+sabrá hacer por ti, que el lenguaje, en realidad,
+
+119
+00:05:59,180 --> 00:06:00,530
+sabrá hacer por ti.
+
+120
+00:06:00,530 --> 00:06:04,640
+Y tú, el programador, el humano, puedes usar esas funciones a voluntad
+
+121
+00:06:04,640 --> 00:06:07,020
+para que el ordenador haga esas cosas.
+
+122
+00:06:07,020 --> 00:06:11,835
+El programa en cuestión, Hello.py, usa una función.
+
+123
+00:06:11,835 --> 00:06:13,460
+Y quizá podáis adivinar cuál es.
+
+124
+00:06:13,460 --> 00:06:16,760
+Esa función es, por supuesto, la función print
+
+125
+00:06:16,760 --> 00:06:19,430
+y esa función print, por supuesto, no
+
+126
+00:06:19,430 --> 00:06:22,340
+imprime una cadena de texto predeterminada.
+
+127
+00:06:22,340 --> 00:06:26,240
+Es decir, imprime lo que tú quieras que imprima.
+
+128
+00:06:26,240 --> 00:06:29,600
+Y aquí también tenemos otro término del mundo
+
+129
+00:06:29,600 --> 00:06:31,430
+de la programación: los argumentos.
+
+130
+00:06:31,430 --> 00:06:36,830
+Un argumento es una entrada de una función que de alguna manera influye en su comportamiento.
+
+131
+00:06:36,830 --> 00:06:38,660
+Los creadores de Python, por supuesto,
+
+132
+00:06:38,660 --> 00:06:40,790
+no sabían necesariamente qué íbamos a querer
+
+133
+00:06:40,790 --> 00:06:43,850
+imprimir en la pantalla tú y yo, así que diseñaron esta función
+
+134
+00:06:43,850 --> 00:06:46,580
+print con estos paréntesis, con la capacidad
+
+135
+00:06:46,580 --> 00:06:49,340
+de recibir como entrada una cadena de texto, ya sea
+
+136
+00:06:49,340 --> 00:06:52,250
+en inglés o en cualquier otro idioma humano, que es
+
+137
+00:06:52,250 --> 00:06:56,540
+lo que quieres que esta función acabe imprimiendo en la pantalla.
+
+138
+00:06:56,540 --> 00:06:59,640
+¿Y qué es lo que el programa hace al final en la pantalla?
+
+139
+00:06:59,640 --> 00:07:01,070
+Pues imprimir, por supuesto.
+
+140
+00:07:01,070 --> 00:07:03,230
+Nos muestra hello, world en la pantalla.
+
+141
+00:07:03,230 --> 00:07:05,743
+Y eso, en programación, se conoce generalmente como efecto secundario.
+
+142
+00:07:05,743 --> 00:07:07,160
+Puede ser visual, puede ser sonoro.
+
+143
+00:07:07,160 --> 00:07:09,470
+En este caso, es algo que aparece en la pantalla
+
+144
+00:07:09,470 --> 00:07:12,690
+y, por tanto, las funciones pueden tener estos efectos secundarios.
+
+145
+00:07:12,690 --> 00:07:15,650
+Una de las cosas que pueden hacer, como verbo o acción, es
+
+146
+00:07:15,650 --> 00:07:19,100
+mostrar en la pantalla, como efecto secundario, algo como esas palabras
+
+147
+00:07:19,100 --> 00:07:20,240
+que queríamos:
+
+148
+00:07:20,240 --> 00:07:21,870
+hello, world.
+
+149
+00:07:21,870 --> 00:07:25,080
+Así que ese es mi primer programa y, la verdad, me siento bastante bien.
+
+150
+00:07:25,080 --> 00:07:26,570
+Todo ha funcionado según lo previsto.
+
+151
+00:07:26,570 --> 00:07:28,490
+No he cometido ningún error, pero, sinceramente,
+
+152
+00:07:28,490 --> 00:07:30,560
+cuando estás aprendiendo a programar, e incluso
+
+153
+00:07:30,560 --> 00:07:34,250
+años después de haber aprendido, vas a cometer errores.
+
+154
+00:07:34,250 --> 00:07:36,615
+Y a esos errores, por supuesto, se les conoce
+
+155
+00:07:36,615 --> 00:07:38,990
+con un término que quizá ya sepáis: bug, o fallo.
+
+156
+00:07:38,990 --> 00:07:42,230
+Un bug es un error en un programa, y pueden adoptar muchísimas formas.
+
+157
+00:07:42,230 --> 00:07:46,460
+Y quizá os consuele saber que en las próximas semanas
+
+158
+00:07:46,460 --> 00:07:48,450
+vais a cometer muchísimos errores.
+
+159
+00:07:48,450 --> 00:07:51,320
+Vais a tener muchísimos bugs en vuestro código, igual que yo
+
+160
+00:07:51,320 --> 00:07:53,490
+y como sigo teniendo.
+
+161
+00:07:53,490 --> 00:07:55,610
+Y esos bugs no son más que errores
+
+162
+00:07:55,610 --> 00:07:57,230
+que son problemas que tenéis que resolver.
+
+163
+00:07:57,230 --> 00:07:59,540
+Y en las próximas semanas os vamos a dar
+
+164
+00:07:59,540 --> 00:08:03,760
+muchas herramientas, tanto mentales como técnicas, con las que podréis resolver esos problemas.
+
+165
+00:08:03,760 --> 00:08:07,010
+Pero no os desaniméis si, al escribir vuestro programa por primera vez,
+
+166
+00:08:07,010 --> 00:08:11,630
+no funciona a la primera; funcionará con el tiempo, con práctica
+
+167
+00:08:11,630 --> 00:08:12,810
+y con experiencia.
+
+168
+00:08:12,810 --> 00:08:15,200
+Así que ahora voy a cometer un error a propósito,
+
+169
+00:08:15,200 --> 00:08:18,710
+uno que perfectamente podría haber cometido ya sin querer,
+
+170
+00:08:18,710 --> 00:08:19,760
+pero tuve suerte.
+
+171
+00:08:19,760 --> 00:08:22,280
+Supongamos que se me olvidó
+
+172
+00:08:22,280 --> 00:08:24,950
+poner algo como el paréntesis de cierre
+
+173
+00:08:24,950 --> 00:08:26,570
+al final de esta línea de código.
+
+174
+00:08:26,570 --> 00:08:30,451
+El código está casi bien, al 99 %,
+
+175
+00:08:30,451 --> 00:08:32,659
+pero ahora que lo he señalado, es bastante obvio
+
+176
+00:08:32,659 --> 00:08:34,820
+que le falta ese paréntesis de cierre.
+
+177
+00:08:34,820 --> 00:08:39,530
+Pero incluso detalles pequeños, aparentemente sin importancia como ese, que a ti y a mí como humanos
+
+178
+00:08:39,530 --> 00:08:40,740
+no nos importarían mucho.
+
+179
+00:08:40,740 --> 00:08:44,300
+Y si estás enviando un correo o un mensaje de texto, lo que sea, es solo una errata.
+
+180
+00:08:44,300 --> 00:08:45,605
+No es para tanto.
+
+181
+00:08:45,605 --> 00:08:47,480
+Para el ordenador sí va a ser importante.
+
+182
+00:08:47,480 --> 00:08:49,230
+Un ordenador te va a tomar al pie de la letra,
+
+183
+00:08:49,230 --> 00:08:53,210
+y si no terminas tu idea de la forma que espera el lenguaje,
+
+184
+00:08:53,210 --> 00:08:55,380
+puede que ni siquiera se ejecute.
+
+185
+00:08:55,380 --> 00:08:56,112
+Así que hagamos esto.
+
+186
+00:08:56,112 --> 00:08:58,820
+Voy a limpiar la pantalla aquí abajo
+
+187
+00:08:58,820 --> 00:09:01,340
+para empezar de cero, y voy a ejecutar
+
+188
+00:09:01,340 --> 00:09:05,420
+esta versión del programa después de haber hecho ese cambio, borrando
+
+189
+00:09:05,420 --> 00:09:06,410
+el paréntesis.
+
+190
+00:09:06,410 --> 00:09:10,490
+Voy a escribir otra vez python Hello.py y esta vez,
+
+191
+00:09:10,490 --> 00:09:13,040
+cuando pulse Enter, espero ver hello, world,
+
+192
+00:09:13,040 --> 00:09:16,850
+pero aquí tenemos un error en la pantalla, un error de
+
+193
+00:09:16,850 --> 00:09:21,140
+sintaxis, que se refiere a que me he equivocado al teclear.
+
+194
+00:09:21,140 --> 00:09:24,030
+Y este, por suerte, es bastante sencillo.
+
+195
+00:09:24,030 --> 00:09:28,410
+Dice, en efecto, que este paréntesis abierto nunca se cerró.
+
+196
+00:09:28,410 --> 00:09:30,945
+Así que probablemente sea bastante intuitivo.
+
+197
+00:09:30,945 --> 00:09:33,320
+Lo que tengo que hacer, claro, es cerrarlo.
+
+198
+00:09:33,320 --> 00:09:36,530
+Por desgracia, a veces los mensajes de error que veremos en las próximas semanas
+
+199
+00:09:36,530 --> 00:09:38,840
+no van a ser ni de lejos tan fáciles de entender.
+
+200
+00:09:38,840 --> 00:09:41,720
+Pero ahí también, con experiencia y con práctica,
+
+201
+00:09:41,720 --> 00:09:44,360
+mejoraréis depurando esos programas.
+
+202
+00:09:44,360 --> 00:09:46,650
+Ahora voy a asegurarme de que lo he arreglado bien.
+
+203
+00:09:46,650 --> 00:09:50,420
+Ejecuto ahora Hello.py, pulso Enter y, voilà,
+
+204
+00:09:50,420 --> 00:09:51,890
+volvemos a estar en marcha.
+
+205
+00:09:51,890 --> 00:09:55,430
+Bueno, voy a hacer una pausa aquí para ver si tenéis alguna pregunta
+
+206
+00:09:55,430 --> 00:10:02,480
+sobre Python en sí, sobre cómo escribir o ejecutar incluso el más sencillo de estos programas.
+
+207
+00:10:02,480 --> 00:10:06,890
+PÚBLICO: ¿Podría escribir código dentro de Word o, por ejemplo, de Microsoft Excel?
+
+208
+00:10:06,890 --> 00:10:09,473
+¿Y qué impide hacerlo?
+
+209
+00:10:09,473 --> 00:10:11,390
+DAVID MALAN: Muy buena pregunta, y permitidme
+
+210
+00:10:11,390 --> 00:10:14,630
+decirle muy claramente a todo internet
+
+211
+00:10:14,630 --> 00:10:17,810
+que no deberíais escribir código con Microsoft Word.
+
+212
+00:10:17,810 --> 00:10:20,480
+Lo mencioné solo porque es una herramienta con la que
+
+213
+00:10:20,480 --> 00:10:23,283
+se puede escribir texto, y el código, al final, no es más que texto.
+
+214
+00:10:23,283 --> 00:10:24,950
+Pero no es la herramienta adecuada para el trabajo.
+
+215
+00:10:24,950 --> 00:10:27,890
+No necesitamos negritas, subrayados, párrafos y cosas así.
+
+216
+00:10:27,890 --> 00:10:31,580
+Normalmente queremos algo mucho más sencillo que Microsoft Word o Google Docs.
+
+217
+00:10:31,580 --> 00:10:36,110
+Y VS Code es un ejemplo de editor de texto más genérico.
+
+218
+00:10:36,110 --> 00:10:39,110
+Su razón de ser es permitirte a ti, el humano, editar texto.
+
+219
+00:10:39,110 --> 00:10:42,050
+Hoy en día estos editores de texto incluyen muchas más funciones.
+
+220
+00:10:42,050 --> 00:10:44,600
+De hecho, veréis que incluso en mi código,
+
+221
+00:10:44,600 --> 00:10:47,570
+aunque sea solo una línea, hay un poco de color.
+
+222
+00:10:47,570 --> 00:10:49,910
+La palabra "print", en mi caso, aparece en azul.
+
+223
+00:10:49,910 --> 00:10:51,050
+Los paréntesis son negros.
+
+224
+00:10:51,050 --> 00:10:54,290
+Y veremos que, a medida que escribamos más líneas de código, más y más líneas
+
+225
+00:10:54,290 --> 00:10:56,630
+cobrarán vida en distintos colores.
+
+226
+00:10:56,630 --> 00:10:58,993
+Esa es solo una característica de un editor de texto.
+
+227
+00:10:58,993 --> 00:11:01,910
+Veremos también que tiene características como esta ventana de terminal integrada.
+
+228
+00:11:01,910 --> 00:11:05,120
+Va a tener una herramienta integrada para depurar o encontrar problemas
+
+229
+00:11:05,120 --> 00:11:05,780
+en el código.
+
+230
+00:11:05,780 --> 00:11:07,760
+Y es una herramienta muy popular hoy en día,
+
+231
+00:11:07,760 --> 00:11:09,560
+pero hay muchísimas otras.
+
+232
+00:11:09,560 --> 00:11:11,900
+Podéis usarlas en este curso y fuera de él.
+
+233
+00:11:11,900 --> 00:11:14,120
+Nosotros usamos esta en gran parte
+
+234
+00:11:14,120 --> 00:11:18,980
+también porque hoy en día VS Code se puede usar gratis en la nube.
+
+235
+00:11:18,980 --> 00:11:22,190
+¿Qué tal otra pregunta sobre programar en Python
+
+236
+00:11:22,190 --> 00:11:24,950
+o sobre hello, world o la sintaxis en general?
+
+237
+00:11:24,950 --> 00:11:28,850
+PÚBLICO: Sí, quería preguntar si no es
+
+238
+00:11:28,850 --> 00:11:31,923
+posible usar el ordenador con la ventana de terminal.
+
+239
+00:11:31,923 --> 00:11:33,590
+DAVID MALAN: Creo que he oído si no es...
+
+240
+00:11:33,590 --> 00:11:37,530
+si es posible ejecutar el programa sin la ventana de terminal.
+
+241
+00:11:37,530 --> 00:11:38,030
+¿Te refieres...?
+
+242
+00:11:38,030 --> 00:11:38,540
+PÚBLICO: Sí, señor.
+
+243
+00:11:38,540 --> 00:11:39,870
+DAVID MALAN: Vale, se te ha vuelto a congelar la imagen.
+
+244
+00:11:39,870 --> 00:11:41,730
+Pero déjame deducir cuál es la pregunta.
+
+245
+00:11:41,730 --> 00:11:44,660
+En este entorno, tal como he configurado mi ordenador,
+
+246
+00:11:44,660 --> 00:11:48,320
+solo puedo ejecutar estos programas de Python desde la ventana de terminal.
+
+247
+00:11:48,320 --> 00:11:51,140
+Eso está bien para mí, el programador, o para quien
+
+248
+00:11:51,140 --> 00:11:53,390
+intenta aprender a programar, pero no es muy práctico
+
+249
+00:11:53,390 --> 00:11:57,050
+si quieres distribuir este software y que otras personas usen tu código.
+
+250
+00:11:57,050 --> 00:12:01,550
+Por supuesto, se pueden escribir programas y dejar que otras personas usen,
+
+251
+00:12:01,550 --> 00:12:05,300
+no una interfaz de línea de comandos, sino una interfaz gráfica de usuario o GUI,
+
+252
+00:12:05,300 --> 00:12:08,390
+G-U-I. Este es solo un mecanismo y quizá, creo yo,
+
+253
+00:12:08,390 --> 00:12:10,700
+el mejor para empezar a escribir código,
+
+254
+00:12:10,700 --> 00:12:14,045
+porque con el tiempo nos va a dar mucho más control.
+
+255
+00:12:14,045 --> 00:12:15,920
+Permitidme seguir adelante, pero no dudéis
+
+256
+00:12:15,920 --> 00:12:19,820
+en seguir haciendo preguntas por el camino, aunque sea por el chat.
+
+257
+00:12:19,820 --> 00:12:23,690
+Veamos ahora cómo podríamos mejorar este programa.
+
+258
+00:12:23,690 --> 00:12:27,530
+Vamos a mejorar este programa para que sea un poco más interactivo
+
+259
+00:12:27,530 --> 00:12:30,740
+y no dar por hecho que todo el mundo va a querer que se le salude
+
+260
+00:12:30,740 --> 00:12:32,120
+de forma genérica con hello, world.
+
+261
+00:12:32,120 --> 00:12:35,120
+A ver si consigo que este programa diga algo como Hello, David,
+
+262
+00:12:35,120 --> 00:12:40,280
+o Hello, Jeremiah, o Hello, Horatio, o como se llame el usuario de verdad.
+
+263
+00:12:40,280 --> 00:12:43,670
+Para ello, voy a volver a Hello.py
+
+264
+00:12:43,670 --> 00:12:46,950
+y voy a añadir otra línea de código arriba del todo que simplemente diga,
+
+265
+00:12:46,950 --> 00:12:52,490
+por ejemplo, "What's your name?", entre comillas, con un espacio extra al final.
+
+266
+00:12:52,490 --> 00:12:55,530
+Así que le imprimo al usuario una pregunta para pedirle una entrada,
+
+267
+00:12:55,530 --> 00:12:58,940
+pero ahora necesito otra función para obtener de verdad la entrada del usuario.
+
+268
+00:12:58,940 --> 00:13:02,550
+Y, muy oportunamente, Python incluye una función llamada input.
+
+269
+00:13:02,550 --> 00:13:06,470
+Así que aquí voy a llamar a una función input, abro paréntesis,
+
+270
+00:13:06,470 --> 00:13:07,400
+cierro paréntesis.
+
+271
+00:13:07,400 --> 00:13:11,000
+Y eso le mostrará al usuario solo un cursor parpadeando, esperando
+
+272
+00:13:11,000 --> 00:13:12,440
+a que escriba algo.
+
+273
+00:13:12,440 --> 00:13:15,860
+Resulta que, si leo la documentación de la función input,
+
+274
+00:13:15,860 --> 00:13:18,210
+en realidad ella misma recibe un argumento.
+
+275
+00:13:18,210 --> 00:13:21,740
+No necesito usar "print" por separado y luego pedirle la entrada al usuario.
+
+276
+00:13:21,740 --> 00:13:25,100
+Así que puedo simplificar este código antes incluso de usarlo.
+
+277
+00:13:25,100 --> 00:13:28,430
+Voy a coger esa misma cadena de print,
+
+278
+00:13:28,430 --> 00:13:30,800
+ponerla como argumento de la función input
+
+279
+00:13:30,800 --> 00:13:32,383
+y quitar el "print" por completo.
+
+280
+00:13:32,383 --> 00:13:34,967
+De hecho, ese "print" habría añadido un salto de línea de todos modos.
+
+281
+00:13:34,967 --> 00:13:37,340
+Así que ahora solo tengo un prompt en el que el cursor del usuario
+
+282
+00:13:37,340 --> 00:13:41,030
+va a quedar parpadeando al final de la línea preguntándole: What's your name?
+
+283
+00:13:41,030 --> 00:13:46,580
+En la ventana de terminal voy a ejecutar python Hello.py, Enter.
+
+284
+00:13:46,580 --> 00:13:47,150
+Vale.
+
+285
+00:13:47,150 --> 00:13:48,150
+Vamos avanzando.
+
+286
+00:13:48,150 --> 00:13:51,280
+Parece que esta nueva función input, en efecto, me está pidiendo a mí, el humano,
+
+287
+00:13:51,280 --> 00:13:51,780
+una entrada.
+
+288
+00:13:51,780 --> 00:13:53,155
+Así que voy a escribir mi nombre,
+
+289
+00:13:53,155 --> 00:13:54,290
+David, y pulsar Enter.
+
+290
+00:13:54,290 --> 00:13:57,440
+Por desgracia, no hace nada con mi nombre;
+
+291
+00:13:57,440 --> 00:13:59,240
+simplemente muestra la salida inmediatamente.
+
+292
+00:13:59,240 --> 00:14:01,160
+Bueno, podría arreglar esto, ¿no?
+
+293
+00:14:01,160 --> 00:14:05,480
+Podría ir a la línea 2 y cambiar "world" por "David",
+
+294
+00:14:05,480 --> 00:14:10,310
+y luego, de vuelta en la ventana de terminal, hacer python Hello.py, Enter.
+
+295
+00:14:10,310 --> 00:14:11,150
+What's your name?
+
+296
+00:14:11,150 --> 00:14:12,410
+David, Enter.
+
+297
+00:14:12,410 --> 00:14:13,105
+Y ahí lo tenemos.
+
+298
+00:14:13,105 --> 00:14:14,480
+Muy bien, ya funciona.
+
+299
+00:14:14,480 --> 00:14:17,520
+Ahora mi programa funciona como queremos.
+
+300
+00:14:17,520 --> 00:14:21,410
+Por supuesto, esto en realidad no funciona como queremos.
+
+301
+00:14:21,410 --> 00:14:25,070
+Voy a hacerme pasar por mi compañero Carter, que está aquí.
+
+302
+00:14:25,070 --> 00:14:26,760
+Pues el nombre de Carter es este.
+
+303
+00:14:26,760 --> 00:14:29,927
+Voy a pulsar Enter y veré, por supuesto, Hello, Carter...
+
+304
+00:14:29,927 --> 00:14:32,520
+bueno, obviamente no, porque lo he dejado fijo en el código, por así decirlo:
+
+305
+00:14:32,520 --> 00:14:35,010
+he escrito literalmente mi nombre dentro de la cadena.
+
+306
+00:14:35,010 --> 00:14:40,040
+Así que necesitamos alguna forma de recuperar de verdad lo que ha introducido el usuario
+
+307
+00:14:40,040 --> 00:14:41,780
+y, al final, hacer algo con ello.
+
+308
+00:14:41,780 --> 00:14:44,930
+Y para eso vamos a aprovechar otra característica de la programación,
+
+309
+00:14:44,930 --> 00:14:47,510
+en concreto una característica de algunas funciones: que
+
+310
+00:14:47,510 --> 00:14:49,850
+también pueden tener valores de retorno.
+
+311
+00:14:49,850 --> 00:14:52,700
+Si pensáis en input, otra vez, como esta acción,
+
+312
+00:14:52,700 --> 00:14:55,880
+este verbo, en realidad podéis personificarlo, como si fuera una persona,
+
+313
+00:14:55,880 --> 00:14:58,130
+por ejemplo un amigo vuestro al que le habéis pedido algo,
+
+314
+00:14:58,130 --> 00:15:00,797
+al que le habéis pedido que vaya a obtener la respuesta de otra persona:
+
+315
+00:15:00,797 --> 00:15:02,210
+que vaya y le pregunte a esa persona cómo se llama.
+
+316
+00:15:02,210 --> 00:15:05,630
+Y si vuestro amigo vuelve sabiendo cómo se llama esa persona, pues
+
+317
+00:15:05,630 --> 00:15:08,357
+¿no estaría bien que os pasara ese nombre?
+
+318
+00:15:08,357 --> 00:15:10,940
+Eso es, metafóricamente, lo que necesitamos que haga la función:
+
+319
+00:15:10,940 --> 00:15:15,200
+obtener la entrada del usuario y luego devolvérmela para que yo, el programador,
+
+320
+00:15:15,200 --> 00:15:16,610
+pueda hacer algo con ella.
+
+321
+00:15:16,610 --> 00:15:19,280
+Pero si me la van a devolver,
+
+322
+00:15:19,280 --> 00:15:23,060
+quiero guardarla en algún sitio para luego poder imprimirla
+
+323
+00:15:23,060 --> 00:15:23,720
+en la pantalla.
+
+324
+00:15:23,720 --> 00:15:26,970
+Necesito hacer el equivalente a sacar una hoja de papel o un pósit
+
+325
+00:15:26,970 --> 00:15:31,040
+y apuntar en ese papel lo que ha dicho el humano,
+
+326
+00:15:31,040 --> 00:15:34,650
+para luego pasárselo como entrada a la función print.
+
+327
+00:15:34,650 --> 00:15:38,120
+Y para eso vamos a necesitar otra característica más de la programación:
+
+328
+00:15:38,120 --> 00:15:38,960
+las variables.
+
+329
+00:15:38,960 --> 00:15:42,410
+Y lo más probable es que casi todos conozcáis las variables de clase de matemáticas,
+
+330
+00:15:42,410 --> 00:15:45,380
+de hace tiempo: x, y, z y demás.
+
+331
+00:15:45,380 --> 00:15:48,110
+Pues la programación tiene esa misma capacidad, la posibilidad
+
+332
+00:15:48,110 --> 00:15:51,560
+de crear una variable, en este caso en la memoria del ordenador,
+
+333
+00:15:51,560 --> 00:15:53,100
+no solo en una hoja de papel.
+
+334
+00:15:53,100 --> 00:15:55,620
+Y esa variable puede guardar un valor:
+
+335
+00:15:55,620 --> 00:15:58,910
+un número, un texto, incluso una imagen, un vídeo o más cosas.
+
+336
+00:15:58,910 --> 00:16:06,740
+Una variable no es más que un contenedor para algún valor dentro de un ordenador
+
+337
+00:16:06,740 --> 00:16:08,300
+o dentro de vuestro propio programa.
+
+338
+00:16:08,300 --> 00:16:11,303
+Entonces, ¿cómo lo expreso de esta forma?
+
+339
+00:16:11,303 --> 00:16:13,220
+Bueno, creo que lo que voy a hacer es introducir
+
+340
+00:16:13,220 --> 00:16:16,730
+una variable con un nombre un poco más interesante que x o y.
+
+341
+00:16:16,730 --> 00:16:19,970
+Podría decir simplemente esto: x = input.
+
+342
+00:16:19,970 --> 00:16:23,780
+Pero aquí voy a usar un nombre mejor que el de una variable matemática típica
+
+343
+00:16:23,780 --> 00:16:26,240
+y voy a llamar literalmente a mi variable "name". ¿Por qué?
+
+344
+00:16:26,240 --> 00:16:29,073
+Pues porque en programación, como tengo un teclado entero delante,
+
+345
+00:16:29,073 --> 00:16:32,150
+puedo usar términos más descriptivos para describir lo que estoy escribiendo.
+
+346
+00:16:32,150 --> 00:16:36,590
+Y ahora, eso sí, tenemos ocasión de fijarnos en un elemento concreto de sintaxis.
+
+347
+00:16:36,590 --> 00:16:39,470
+Hemos visto paréntesis, hemos visto comillas, todo lo cual
+
+348
+00:16:39,470 --> 00:16:42,020
+es necesario al pasar entradas a una función,
+
+349
+00:16:42,020 --> 00:16:47,810
+pero este signo igual que está entre input, a la derecha, y name,
+
+350
+00:16:47,810 --> 00:16:49,820
+a la izquierda, es realmente importante.
+
+351
+00:16:49,820 --> 00:16:52,490
+Y, técnicamente, no es un signo igual como tal.
+
+352
+00:16:52,490 --> 00:16:56,060
+No significa tanto igualdad como asignación.
+
+353
+00:16:56,060 --> 00:16:59,000
+Así que en Python y en muchos lenguajes de programación,
+
+354
+00:16:59,000 --> 00:17:01,610
+un solo signo igual es el operador de asignación,
+
+355
+00:17:01,610 --> 00:17:03,860
+y lo que significa en concreto es que
+
+356
+00:17:03,860 --> 00:17:08,839
+quieres asignar de derecha a izquierda lo que haya introducido el usuario.
+
+357
+00:17:08,839 --> 00:17:14,540
+Así que el signo igual copia de derecha a izquierda el valor de retorno
+
+358
+00:17:14,540 --> 00:17:17,420
+que tenga la función de la derecha.
+
+359
+00:17:17,420 --> 00:17:20,670
+Así que, de nuevo, la función input obviamente obtiene una entrada del usuario.
+
+360
+00:17:20,670 --> 00:17:24,140
+Por eso pude escribir mi nombre o el de Carter, pero además
+
+361
+00:17:24,140 --> 00:17:29,390
+me devuelve, digamos que entre bastidores, ese valor, ese valor de retorno, a mí,
+
+362
+00:17:29,390 --> 00:17:30,230
+el programador.
+
+363
+00:17:30,230 --> 00:17:33,680
+Y si uso un signo igual y una variable, la llame como la llame,
+
+364
+00:17:33,680 --> 00:17:38,460
+puedo guardar esa entrada en esa variable para reutilizarla más tarde.
+
+365
+00:17:38,460 --> 00:17:40,670
+Así que ahora, en algún lugar de la memoria del ordenador,
+
+366
+00:17:40,670 --> 00:17:44,870
+hay un contenedor que contiene "David", entre comillas, o "Carter",
+
+367
+00:17:44,870 --> 00:17:47,490
+entre comillas, o lo que haya escrito el humano.
+
+368
+00:17:47,490 --> 00:17:49,280
+Pero aquí es fácil equivocarse.
+
+369
+00:17:49,280 --> 00:17:53,850
+Supongamos que decido intentar imprimir ese nombre y entonces,
+
+370
+00:17:53,850 --> 00:17:57,800
+por intuición, escribo esto: hello, name.
+
+371
+00:17:57,800 --> 00:18:00,440
+Simplemente meto ahí el nombre de la variable.
+
+372
+00:18:00,440 --> 00:18:05,300
+Voy a ejecutar python Hello.py y pulsar Enter.
+
+373
+00:18:05,300 --> 00:18:07,040
+Eso me va a pedir mi nombre.
+
+374
+00:18:07,040 --> 00:18:08,207
+Y voy a escribir mi nombre:
+
+375
+00:18:08,207 --> 00:18:10,440
+D-A-V-I-D. Pero todavía no he pulsado Enter.
+
+376
+00:18:10,440 --> 00:18:15,350
+Y quizá por el chat: ¿qué va a pasar aquí cuando pulse Enter?
+
+377
+00:18:15,350 --> 00:18:17,840
+Espero que diga Hello, David.
+
+378
+00:18:17,840 --> 00:18:22,580
+Me valdría que dijera Hello, world, pero no quiero que diga lo que en realidad
+
+379
+00:18:22,580 --> 00:18:25,370
+va a decir y, sí, lo que estamos viendo en el chat es que,
+
+380
+00:18:25,370 --> 00:18:28,640
+bueno, probablemente va a decir literalmente Hello, name.
+
+381
+00:18:28,640 --> 00:18:30,030
+Así que eso no está del todo bien.
+
+382
+00:18:30,030 --> 00:18:34,250
+Así que necesitamos otra forma de imprimir el valor que hay dentro de esa variable
+
+383
+00:18:34,250 --> 00:18:36,785
+en lugar de solo esta palabra, "name".
+
+384
+00:18:36,785 --> 00:18:38,910
+Bueno, voy a probarlo de un par de formas distintas.
+
+385
+00:18:38,910 --> 00:18:40,890
+Voy a probarlo de la siguiente manera:
+
+386
+00:18:40,890 --> 00:18:44,390
+voy a deshacer esto, porque ya se me da bastante bien
+
+387
+00:18:44,390 --> 00:18:45,550
+decir Hello.
+
+388
+00:18:45,550 --> 00:18:48,050
+Así que pongamos un punto de partida y digamos: muy bien,
+
+389
+00:18:48,050 --> 00:18:50,360
+saquemos por lo menos el Hello con la coma.
+
+390
+00:18:50,360 --> 00:18:53,790
+Ahora imprimamos el nombre y, por intuición, voy a probar esto.
+
+391
+00:18:53,790 --> 00:18:55,115
+Voy a usar print otra vez,
+
+392
+00:18:55,115 --> 00:18:57,740
+porque podéis usar estas funciones tantas veces como necesitéis,
+
+393
+00:18:57,740 --> 00:19:02,660
+y le voy a pasar a la función print la variable llamada name.
+
+394
+00:19:02,660 --> 00:19:04,730
+Pero fijaos en que ahora estoy siendo un poco listo.
+
+395
+00:19:04,730 --> 00:19:07,970
+No la pongo entre comillas dobles, porque ya hemos visto que las comillas
+
+396
+00:19:07,970 --> 00:19:10,610
+dobles significan imprimir literalmente N-A-M-E.
+
+397
+00:19:10,610 --> 00:19:13,700
+Esta vez quito las comillas con la esperanza de que,
+
+398
+00:19:13,700 --> 00:19:19,440
+ahora que le paso la variable llamada name a la función llamada print, esta
+
+399
+00:19:19,440 --> 00:19:23,480
+se ponga, en efecto, a imprimir el contenido de esa variable, es decir,
+
+400
+00:19:23,480 --> 00:19:24,808
+su llamado valor.
+
+401
+00:19:24,808 --> 00:19:26,600
+Muy bien, vamos a hacerlo.
+
+402
+00:19:26,600 --> 00:19:29,030
+python Hello.py, Enter.
+
+403
+00:19:29,030 --> 00:19:30,020
+What's your name?
+
+404
+00:19:30,020 --> 00:19:30,590
+David.
+
+405
+00:19:30,590 --> 00:19:35,520
+Y ahora, todavía cruzando los dedos, veo Hello, coma, David.
+
+406
+00:19:35,520 --> 00:19:36,020
+Muy bien.
+
+407
+00:19:36,020 --> 00:19:38,090
+No es el mejor programa.
+
+408
+00:19:38,090 --> 00:19:40,670
+Estoy tomando algún atajo, por así decirlo.
+
+409
+00:19:40,670 --> 00:19:44,128
+Estoy diciendo Hello, David en dos líneas separadas.
+
+410
+00:19:44,128 --> 00:19:45,920
+Así que no es tan elegante, no es tan bonito,
+
+411
+00:19:45,920 --> 00:19:48,950
+ni tan correcto gramaticalmente en inglés como decirlo
+
+412
+00:19:48,950 --> 00:19:52,820
+todo de corrido en una sola línea, pero al menos he resuelto el problema, aunque todavía no
+
+413
+00:19:52,820 --> 00:19:54,020
+muy bien.
+
+414
+00:19:54,020 --> 00:19:56,390
+Pero ahora voy a dar un paso atrás y quizá presentar
+
+415
+00:19:56,390 --> 00:19:59,070
+un par de conceptos más que deberíamos conocer,
+
+416
+00:19:59,070 --> 00:20:03,260
+porque, a medida que nuestros programas se alarguen y ya no tengan solo una o dos líneas,
+
+417
+00:20:03,260 --> 00:20:07,370
+o incluso tres, acabarán teniendo decenas de líneas,
+
+418
+00:20:07,370 --> 00:20:09,020
+quizá incluso cientos.
+
+419
+00:20:09,020 --> 00:20:11,990
+Preparemos el terreno para que todo vaya bien de aquí en adelante.
+
+420
+00:20:11,990 --> 00:20:14,840
+Resulta que Python y muchos lenguajes de programación
+
+421
+00:20:14,840 --> 00:20:17,120
+también admiten algo llamado comentarios.
+
+422
+00:20:17,120 --> 00:20:21,200
+Los comentarios son notas para vosotros mismos dentro del código
+
+423
+00:20:21,200 --> 00:20:24,260
+y se incluyen mediante un símbolo especial; en Python
+
+424
+00:20:24,260 --> 00:20:26,150
+será normalmente la almohadilla,
+
+425
+00:20:26,150 --> 00:20:27,980
+y eso os permite escribir el equivalente
+
+426
+00:20:27,980 --> 00:20:30,950
+a una nota para vosotros, pero de forma que no rompa el código.
+
+427
+00:20:30,950 --> 00:20:33,380
+El ordenador, de hecho, ignora vuestro comentario.
+
+428
+00:20:33,380 --> 00:20:36,030
+Solo está ahí para vosotros, para vuestro profesor,
+
+429
+00:20:36,030 --> 00:20:38,030
+para vuestro compañero con el que
+
+430
+00:20:38,030 --> 00:20:40,020
+al final compartís ese código.
+
+431
+00:20:40,020 --> 00:20:42,320
+Así que, si vuelvo aquí a VS Code y
+
+432
+00:20:42,320 --> 00:20:46,040
+quiero añadir algunos comentarios a este programa para explicarle a mi profesor,
+
+433
+00:20:46,040 --> 00:20:49,325
+a mí mismo, a mis compañeros qué hace este programa,
+
+434
+00:20:49,325 --> 00:20:50,700
+pues vamos a hacerlo.
+
+435
+00:20:50,700 --> 00:20:54,020
+Voy a ir arriba del todo de mi programa y, en la línea 1,
+
+436
+00:20:54,020 --> 00:20:56,990
+ahora que bajo un poco esa línea de código original,
+
+437
+00:20:56,990 --> 00:21:00,530
+voy a añadir una almohadilla y voy a poner algo como esto:
+
+438
+00:21:00,530 --> 00:21:03,210
+"Ask user for their name".
+
+439
+00:21:03,210 --> 00:21:05,040
+No tengo por qué usar ese lenguaje.
+
+440
+00:21:05,040 --> 00:21:06,950
+No tengo por qué usar ese texto.
+
+441
+00:21:06,950 --> 00:21:08,910
+Podría usar cualquier idioma humano.
+
+442
+00:21:08,910 --> 00:21:10,250
+No tiene por qué ser inglés.
+
+443
+00:21:10,250 --> 00:21:14,120
+Pero ahora, debajo de eso, voy a poner algo como esto:
+
+444
+00:21:14,120 --> 00:21:16,012
+"Say hello to user".
+
+445
+00:21:16,012 --> 00:21:17,720
+Y veréis que VS Code, por defecto,
+
+446
+00:21:17,720 --> 00:21:19,302
+pone mis comentarios en gris.
+
+447
+00:21:19,302 --> 00:21:22,010
+Ya no están en azul, no hay rojo, no tienen color.
+
+448
+00:21:22,010 --> 00:21:24,240
+Y eso es simplemente porque son notas para mí
+
+449
+00:21:24,240 --> 00:21:26,730
+y el ordenador, al final, los va a ignorar.
+
+450
+00:21:26,730 --> 00:21:29,350
+Pero lo que tenemos ahora son dos comentarios: "Ask user
+
+451
+00:21:29,350 --> 00:21:32,380
+for their name" y luego un segundo comentario, "Say hello to user".
+
+452
+00:21:32,380 --> 00:21:35,590
+Y lo que he hecho es comentar cada bloque de código,
+
+453
+00:21:35,590 --> 00:21:40,180
+cada línea o líneas, en plural, de código que hacen algo digno de mención.
+
+454
+00:21:40,180 --> 00:21:40,750
+¿Por qué?
+
+455
+00:21:40,750 --> 00:21:43,120
+Pues mañana por la mañana, cuando me despierte después de
+
+456
+00:21:43,120 --> 00:21:47,740
+haber dormido un buen rato y haya olvidado lo que hice el día anterior,
+
+457
+00:21:47,740 --> 00:21:49,840
+con los comentarios es cómodo ver
+
+458
+00:21:49,840 --> 00:21:52,510
+en inglés o en vuestro propio idioma qué
+
+459
+00:21:52,510 --> 00:21:55,810
+es lo que hace este programa, para no tener que leer el código en sí
+
+460
+00:21:55,810 --> 00:21:59,200
+y, mejor aún, si más adelante hay algún error,
+
+461
+00:21:59,200 --> 00:22:02,740
+podéis leer cuál era vuestra intención y luego mirar el código
+
+462
+00:22:02,740 --> 00:22:06,050
+y averiguar si el código está haciendo lo que pretendíais.
+
+463
+00:22:06,050 --> 00:22:08,920
+En un programa tan pequeño esto no es realmente necesario.
+
+464
+00:22:08,920 --> 00:22:11,287
+Con solo una, dos o tres líneas es bastante obvio
+
+465
+00:22:11,287 --> 00:22:12,370
+lo que hace el programa.
+
+466
+00:22:12,370 --> 00:22:14,668
+Se tarda lo mismo en leer el código que los comentarios,
+
+467
+00:22:14,668 --> 00:22:16,960
+pero acostumbrarse a esto es, en general, algo bueno:
+
+468
+00:22:16,960 --> 00:22:21,220
+comentar el código cada línea o cada pocas líneas para recordaros
+
+469
+00:22:21,220 --> 00:22:24,250
+a vosotros y a los demás cuál es vuestra intención y qué hace el código.
+
+470
+00:22:24,250 --> 00:22:26,590
+Otra cosa buena de los comentarios es esta:
+
+471
+00:22:26,590 --> 00:22:30,940
+los comentarios también pueden servir como una especie de lista de tareas para vosotros.
+
+472
+00:22:30,940 --> 00:22:33,850
+En programación existe el concepto de pseudocódigo.
+
+473
+00:22:33,850 --> 00:22:35,350
+El pseudocódigo no es algo formal.
+
+474
+00:22:35,350 --> 00:22:37,300
+No es un lenguaje concreto.
+
+475
+00:22:37,300 --> 00:22:40,090
+Es simplemente usar el inglés o vuestro propio idioma
+
+476
+00:22:40,090 --> 00:22:44,590
+para expresar vuestras ideas de forma concisa, metódica, algorítmica,
+
+477
+00:22:44,590 --> 00:22:45,460
+por así decirlo.
+
+478
+00:22:45,460 --> 00:22:48,070
+Pero el pseudocódigo, por tanto, como no es Python
+
+479
+00:22:48,070 --> 00:22:51,130
+y no es necesariamente inglés, os permite
+
+480
+00:22:51,130 --> 00:22:53,520
+esbozar vuestro programa incluso de antemano.
+
+481
+00:22:53,520 --> 00:22:56,532
+Así que, por ejemplo, si hoy no tuviera claro cómo
+
+482
+00:22:56,532 --> 00:22:58,240
+quería escribir este programa,
+
+483
+00:22:58,240 --> 00:23:01,720
+pero no supiera qué quería hacer, podría haber empezado hoy
+
+484
+00:23:01,720 --> 00:23:04,570
+escribiendo simplemente esto en Hello.py.
+
+485
+00:23:04,570 --> 00:23:07,870
+Nada de código: podría haber escrito solo un par de comentarios para mí:
+
+486
+00:23:07,870 --> 00:23:09,460
+"Step 1, ask user for their name".
+
+487
+00:23:09,460 --> 00:23:11,440
+"Step 2, say hello to user".
+
+488
+00:23:11,440 --> 00:23:15,520
+Luego, una vez esbozado mi programa en pseudocódigo, puedo meterme ahí
+
+489
+00:23:15,520 --> 00:23:18,190
+y decir: muy bien, ¿cómo le pregunto al usuario su nombre?
+
+490
+00:23:18,190 --> 00:23:21,910
+Pues puedo hacer input con la pregunta "What's your name?".
+
+491
+00:23:21,910 --> 00:23:26,080
+Y luego, aquí a la izquierda, puedo poner una variable y asignarle eso.
+
+492
+00:23:26,080 --> 00:23:27,730
+Vale, ¿cómo saludo al usuario?
+
+493
+00:23:27,730 --> 00:23:30,280
+Pues sé que puedo usar print para decir cosas en la pantalla.
+
+494
+00:23:30,280 --> 00:23:32,920
+Voy a decir hello, y voy a...
+
+495
+00:23:32,920 --> 00:23:35,210
+vale, ahora voy a imprimir el nombre de la persona.
+
+496
+00:23:35,210 --> 00:23:38,960
+Así que, de nuevo, el pseudocódigo es una buena forma de estructurar vuestra lista de tareas,
+
+497
+00:23:38,960 --> 00:23:41,680
+sobre todo si no tenéis ni idea de cómo escribir el código,
+
+498
+00:23:41,680 --> 00:23:45,993
+porque divide un programa más grande en tareas pequeñas y manejables.
+
+499
+00:23:45,993 --> 00:23:48,160
+Muy bien, voy a hacer una pausa aquí para ver si ahora hay
+
+500
+00:23:48,160 --> 00:23:56,390
+alguna pregunta sobre comentarios, pseudocódigo, valores de retorno o variables.
+
+501
+00:23:56,390 --> 00:23:59,170
+¿Alguna pregunta que podamos aclarar?
+
+502
+00:23:59,170 --> 00:24:02,500
+PÚBLICO: Sí, mi pregunta es si la función input
+
+503
+00:24:02,500 --> 00:24:06,843
+sirve para cualquier tipo de información o solo para palabras.
+
+504
+00:24:06,843 --> 00:24:08,510
+DAVID MALAN: Sí, muy buena pregunta.
+
+505
+00:24:08,510 --> 00:24:12,070
+Según su documentación, y pronto veremos más a fondo la documentación formal,
+
+506
+00:24:12,070 --> 00:24:14,290
+input espera lo que se llama
+
+507
+00:24:14,290 --> 00:24:16,900
+una cadena, es decir, una secuencia de texto, ya sea
+
+508
+00:24:16,900 --> 00:24:19,030
+en inglés o en cualquier otro idioma humano.
+
+509
+00:24:19,030 --> 00:24:23,660
+Pero, en efecto, espera un texto con el que preguntar al usuario.
+
+510
+00:24:23,660 --> 00:24:24,340
+Buena pregunta.
+
+511
+00:24:24,340 --> 00:24:26,632
+¿Qué tal otra pregunta del grupo, si puede ser?
+
+512
+00:24:26,632 --> 00:24:30,520
+PÚBLICO: Quería preguntar cómo haría un comentario de varias líneas.
+
+513
+00:24:30,520 --> 00:24:32,770
+DAVID MALAN: Ah, cómo se hacen varias líneas de comentarios,
+
+514
+00:24:32,770 --> 00:24:34,000
+si te he entendido bien.
+
+515
+00:24:34,000 --> 00:24:34,330
+PÚBLICO: Sí.
+
+516
+00:24:34,330 --> 00:24:35,290
+DAVID MALAN: Claro.
+
+517
+00:24:35,290 --> 00:24:38,380
+Simplemente seguirías poniéndolos así.
+
+518
+00:24:38,380 --> 00:24:43,300
+Basta con poner una almohadilla delante de cada línea, como hago aquí.
+
+519
+00:24:43,300 --> 00:24:46,990
+Hay otra técnica para hacer comentarios de varias líneas en Python que,
+
+520
+00:24:46,990 --> 00:24:48,670
+en realidad, suelen tener un significado especial.
+
+521
+00:24:48,670 --> 00:24:53,650
+Podéis poner tres comillas dobles así y entonces todo lo que haya entre medias
+
+522
+00:24:53,650 --> 00:24:54,910
+es un comentario.
+
+523
+00:24:54,910 --> 00:24:55,960
+Esa es otra técnica.
+
+524
+00:24:55,960 --> 00:24:57,502
+O también podéis usar comillas simples.
+
+525
+00:24:57,502 --> 00:25:00,257
+Pero de eso, creo, hablaremos en otro momento.
+
+526
+00:25:00,257 --> 00:25:02,590
+Muy bien, si no os importa, voy a seguir adelante
+
+527
+00:25:02,590 --> 00:25:05,290
+y ver cómo podríamos mejorar más este programa
+
+528
+00:25:05,290 --> 00:25:07,570
+y presentar también algunas otras características que quizá
+
+529
+00:25:07,570 --> 00:25:10,100
+queramos tener en cuenta con el tiempo.
+
+530
+00:25:10,100 --> 00:25:13,270
+Resulta que, desde luego, podemos mejorar este programa,
+
+531
+00:25:13,270 --> 00:25:17,020
+porque es un poco decepcionante que tome este atajo
+
+532
+00:25:17,020 --> 00:25:20,680
+y diga Hello con la coma y luego, en una línea nueva, imprima el nombre.
+
+533
+00:25:20,680 --> 00:25:21,700
+Podemos hacerlo mejor.
+
+534
+00:25:21,700 --> 00:25:24,760
+Y la mayoría de los programas que usáis en el móvil o en el portátil, desde luego,
+
+535
+00:25:24,760 --> 00:25:26,810
+mantienen el texto junto cuando la gente quiere.
+
+536
+00:25:26,810 --> 00:25:28,243
+Entonces, ¿cómo podemos hacerlo?
+
+537
+00:25:28,243 --> 00:25:29,660
+Pues hay varias formas.
+
+538
+00:25:29,660 --> 00:25:32,890
+Y, de hecho, el objetivo aquí no es tanto resolver este problema concreto,
+
+539
+00:25:32,890 --> 00:25:35,290
+sino demostrar y subrayar que en programación
+
+540
+00:25:35,290 --> 00:25:38,080
+—en Python y en otros lenguajes— a veces hay muchísimas formas
+
+541
+00:25:38,080 --> 00:25:40,690
+de resolver el mismo problema.
+
+542
+00:25:40,690 --> 00:25:42,830
+Y aquí tenéis una forma de resolver este problema.
+
+543
+00:25:42,830 --> 00:25:48,100
+Voy a entrar aquí y ahora voy a decir hello,
+
+544
+00:25:48,100 --> 00:25:52,450
+y voy a añadir al final de eso el nombre del usuario.
+
+545
+00:25:52,450 --> 00:25:54,980
+Así que estoy usando + de una forma un tanto curiosa.
+
+546
+00:25:54,980 --> 00:25:56,560
+Esto no es una suma como tal.
+
+547
+00:25:56,560 --> 00:25:59,290
+Obviamente no estoy sumando números, pero sí
+
+548
+00:25:59,290 --> 00:26:04,840
+quiero, por así decirlo, añadir el nombre de la persona a la cadena de texto Hello con la coma.
+
+549
+00:26:04,840 --> 00:26:08,830
+Ahora voy a bajar a la ventana de terminal y ejecutar python Hello.py
+
+550
+00:26:08,830 --> 00:26:10,000
+otra vez, Enter.
+
+551
+00:26:10,000 --> 00:26:10,750
+What's your name?
+
+552
+00:26:10,750 --> 00:26:11,920
+Voy a escribir David.
+
+553
+00:26:11,920 --> 00:26:12,940
+Enter.
+
+554
+00:26:12,940 --> 00:26:14,260
+Vale, está mejor.
+
+555
+00:26:14,260 --> 00:26:18,160
+Está mejor, pero hay un pequeño bug, aunque sea estético.
+
+556
+00:26:18,160 --> 00:26:20,830
+Falta un espacio, pero usemos un poco la intuición.
+
+557
+00:26:20,830 --> 00:26:22,900
+Bueno, si me falta el espacio después de la coma,
+
+558
+00:26:22,900 --> 00:26:25,780
+¿por qué no lo añado aquí a mano?
+
+559
+00:26:25,780 --> 00:26:30,670
+Vuelvo a ejecutar el programa, python Hello.py, Enter, David, Enter.
+
+560
+00:26:30,670 --> 00:26:31,540
+Y ahí lo tenemos.
+
+561
+00:26:31,540 --> 00:26:33,400
+Ahora tenemos algo que queda un poco más bonito
+
+562
+00:26:33,400 --> 00:26:34,570
+en cuanto a gramática inglesa.
+
+563
+00:26:34,570 --> 00:26:36,640
+Hello, coma, espacio, David.
+
+564
+00:26:36,640 --> 00:26:40,060
+Y ahora, si echamos la vista atrás, quizá os hayáis fijado antes
+
+565
+00:26:40,060 --> 00:26:45,100
+o os hayáis preguntado por qué tenía este espacio aparentemente de más después del signo de interrogación,
+
+566
+00:26:45,100 --> 00:26:45,940
+precisamente aquí.
+
+567
+00:26:45,940 --> 00:26:48,790
+Hay un espacio después del signo de interrogación, pero antes de las comillas dobles,
+
+568
+00:26:48,790 --> 00:26:50,332
+y eso también era por estética.
+
+569
+00:26:50,332 --> 00:26:53,315
+Quería mover el cursor del usuario un espacio a la derecha
+
+570
+00:26:53,315 --> 00:26:55,690
+para que, cuando yo escribiera su nombre o lo escribiera él,
+
+571
+00:26:55,690 --> 00:26:59,650
+no quedara pegado a ese signo de interrogación.
+
+572
+00:26:59,650 --> 00:27:01,790
+Pero hay otras formas de hacerlo.
+
+573
+00:27:01,790 --> 00:27:05,080
+Resulta que algunas funciones, entre ellas print,
+
+574
+00:27:05,080 --> 00:27:07,570
+en realidad reciben varios argumentos.
+
+575
+00:27:07,570 --> 00:27:11,200
+Y resulta que si separáis las entradas
+
+576
+00:27:11,200 --> 00:27:14,620
+de una función —los llamados argumentos de una función— con una coma,
+
+577
+00:27:14,620 --> 00:27:19,250
+podéis pasarle no solo uno, sino dos, tres, cuatro, cinco y más.
+
+578
+00:27:19,250 --> 00:27:24,970
+Así que voy a pasarle no solo hello, coma, espacio, sino eso seguido
+
+579
+00:27:24,970 --> 00:27:25,660
+de name.
+
+580
+00:27:25,660 --> 00:27:27,880
+Y esto puede resultar un poco confuso a primera vista,
+
+581
+00:27:27,880 --> 00:27:30,297
+porque ahora tengo dos comas, pero es importante fijarse
+
+582
+00:27:30,297 --> 00:27:35,800
+en que la primera coma está dentro de las comillas, lo cual es simplemente
+
+583
+00:27:35,800 --> 00:27:37,490
+una cuestión gramatical del inglés.
+
+584
+00:27:37,490 --> 00:27:40,270
+La segunda coma, aquí, está fuera de las comillas,
+
+585
+00:27:40,270 --> 00:27:44,170
+pero entre lo que ahora son dos argumentos separados de print.
+
+586
+00:27:44,170 --> 00:27:46,270
+El primer argumento es hello, coma, espacio.
+
+587
+00:27:46,270 --> 00:27:49,490
+El segundo argumento es la propia variable name.
+
+588
+00:27:49,490 --> 00:27:51,640
+Así que veamos qué tal queda.
+
+589
+00:27:51,640 --> 00:27:53,620
+python Hello.py, Enter.
+
+590
+00:27:53,620 --> 00:27:54,460
+What's your name?
+
+591
+00:27:54,460 --> 00:27:55,060
+David.
+
+592
+00:27:55,060 --> 00:27:56,050
+Enter.
+
+593
+00:27:56,050 --> 00:27:57,910
+Vale, me he pasado corrigiendo.
+
+594
+00:27:57,910 --> 00:28:00,040
+Ahora tengo dos espacios por algún motivo.
+
+595
+00:28:00,040 --> 00:28:02,080
+Pues resulta, y esto es sutil, que cuando
+
+596
+00:28:02,080 --> 00:28:07,960
+le pasáis varios argumentos a print, inserta automáticamente un espacio por vosotros.
+
+597
+00:28:07,960 --> 00:28:10,270
+Esto antes no importaba porque
+
+598
+00:28:10,270 --> 00:28:16,510
+le estaba pasando a print un único argumento grande de una vez usando ese operador +.
+
+599
+00:28:16,510 --> 00:28:19,070
+Esta vez le paso dos, por la coma.
+
+600
+00:28:19,070 --> 00:28:23,210
+Así que, si no quiero ese espacio de más, no necesito poner yo uno,
+
+601
+00:28:23,210 --> 00:28:26,530
+Puedo hacer simplemente esto y fijaos: si vuelvo a ejecutar este programa,
+
+602
+00:28:26,530 --> 00:28:29,560
+python Hello.py, y escribo mi nombre, David,
+
+603
+00:28:29,560 --> 00:28:32,620
+ahora queda gramaticalmente como querría.
+
+604
+00:28:32,620 --> 00:28:34,330
+Ahora bien, ¿cuál de estos enfoques es mejor?
+
+605
+00:28:34,330 --> 00:28:37,840
+Este enfoque usa la función print con dos argumentos:
+
+606
+00:28:37,840 --> 00:28:40,810
+Hello con la coma y la variable name.
+
+607
+00:28:40,810 --> 00:28:44,195
+La versión anterior, recordad, técnicamente usaba un solo argumento,
+
+608
+00:28:44,195 --> 00:28:45,820
+aunque pareciera un poco curioso.
+
+609
+00:28:45,820 --> 00:28:49,270
+Es un solo argumento en el sentido de que el ordenador, igual que los matemáticos,
+
+610
+00:28:49,270 --> 00:28:51,950
+va a hacer primero lo que hay dentro de los paréntesis.
+
+611
+00:28:51,950 --> 00:28:54,670
+Así que si dentro de los paréntesis tenéis esta cadena de texto
+
+612
+00:28:54,670 --> 00:28:58,350
+—hello, coma y un espacio, que tengo que volver a añadir—,
+
+613
+00:28:58,350 --> 00:29:01,050
+luego tenéis un +, que no significa suma como tal,
+
+614
+00:29:01,050 --> 00:29:05,400
+sino concatenación: unir lo que hay a la izquierda y lo que hay a la derecha.
+
+615
+00:29:05,400 --> 00:29:08,400
+Esto al final se convierte en la frase en inglés
+
+616
+00:29:08,400 --> 00:29:10,890
+Hello, coma, espacio, David.
+
+617
+00:29:10,890 --> 00:29:14,400
+Y lo que al final se le pasa a la función
+
+618
+00:29:14,400 --> 00:29:18,870
+es, técnicamente, algo así, pero lo hace todo de forma dinámica.
+
+619
+00:29:18,870 --> 00:29:23,860
+No soy yo escribiendo David, como hice explícitamente antes.
+
+620
+00:29:23,860 --> 00:29:27,930
+Averigua dinámicamente cuál es ese valor después de concatenar Hello
+
+621
+00:29:27,930 --> 00:29:30,900
+con el valor de name y luego se lo pasa finalmente
+
+622
+00:29:30,900 --> 00:29:33,750
+a print como único argumento.
+
+623
+00:29:33,750 --> 00:29:38,130
+Voy a hacer una pausa aquí para ver si hay preguntas sobre el número de argumentos
+
+624
+00:29:38,130 --> 00:29:41,250
+de las funciones.
+
+625
+00:29:41,250 --> 00:29:43,950
+PÚBLICO: ¿Podemos usar una función muchas veces
+
+626
+00:29:43,950 --> 00:29:48,765
+para resolver un problema concreto que nos podemos encontrar muchas veces en el código?
+
+627
+00:29:48,765 --> 00:29:49,640
+DAVID MALAN: Podéis.
+
+628
+00:29:49,640 --> 00:29:52,700
+Podéis usar una función muchas veces para resolver algún problema.
+
+629
+00:29:52,700 --> 00:29:55,040
+Lo que veremos pronto, eso sí, es que si os encontráis,
+
+630
+00:29:55,040 --> 00:29:58,620
+como programadores, resolviendo un problema de la misma forma una vez,
+
+631
+00:29:58,620 --> 00:30:00,560
+y otra, y otra, resulta que
+
+632
+00:30:00,560 --> 00:30:02,450
+podréis crear vuestra propia función para no
+
+633
+00:30:02,450 --> 00:30:07,130
+tener que seguir reutilizando las básicas que vienen con el lenguaje.
+
+634
+00:30:07,130 --> 00:30:10,890
+PÚBLICO: Tenía curiosidad por la coma y el signo +.
+
+635
+00:30:10,890 --> 00:30:15,320
+Después del signo + ¿podemos poner solo una variable, y después de la coma
+
+636
+00:30:15,320 --> 00:30:17,180
+podemos poner varias variables?
+
+637
+00:30:17,180 --> 00:30:18,470
+¿Cuál es la diferencia?
+
+638
+00:30:18,470 --> 00:30:19,678
+DAVID MALAN: Buena pregunta.
+
+639
+00:30:19,678 --> 00:30:21,320
+En el contexto de las cadenas
+
+640
+00:30:21,320 --> 00:30:22,640
+—y no paro de usar ese término—.
+
+641
+00:30:22,640 --> 00:30:25,130
+"Cadena" es un término técnico de los lenguajes de programación
+
+642
+00:30:25,130 --> 00:30:29,570
+y, otra vez, significa una secuencia de texto: un carácter, una palabra, incluso
+
+643
+00:30:29,570 --> 00:30:30,080
+un párrafo entero.
+
+644
+00:30:30,080 --> 00:30:33,650
+Así que el operador + no se usa solo, como
+
+645
+00:30:33,650 --> 00:30:37,790
+veremos, para sumar números en Python, como hacemos con papel y lápiz,
+
+646
+00:30:37,790 --> 00:30:41,760
+sino que también se usa para concatenar cadenas a la izquierda y a la derecha.
+
+647
+00:30:41,760 --> 00:30:44,180
+Si quisierais combinar no solo dos cadenas
+
+648
+00:30:44,180 --> 00:30:46,310
+—izquierda y derecha—, sino una tercera y una cuarta,
+
+649
+00:30:46,310 --> 00:30:51,380
+podéis perfectamente seguir usando +, +, +, + y encadenarlas
+
+650
+00:30:51,380 --> 00:30:52,460
+igual que en matemáticas.
+
+651
+00:30:52,460 --> 00:30:54,830
+Con el tiempo eso empezará a quedar un poco feo,
+
+652
+00:30:54,830 --> 00:30:57,080
+me atrevería a decir, sobre todo si la línea de código se alarga.
+
+653
+00:30:57,080 --> 00:31:00,200
+Así que hay formas mejores que veremos pronto.
+
+654
+00:31:00,200 --> 00:31:01,670
+Y también es una buena pregunta.
+
+655
+00:31:01,670 --> 00:31:04,190
+Bueno, volvamos al código en cuestión
+
+656
+00:31:04,190 --> 00:31:06,800
+y veamos si podemos enseñaros un par de formas más
+
+657
+00:31:06,800 --> 00:31:10,520
+de resolver el mismo problema, subrayando por el camino que de lo que técnicamente
+
+658
+00:31:10,520 --> 00:31:12,980
+estamos hablando aquí son, sí, cadenas, pero hay incluso
+
+659
+00:31:12,980 --> 00:31:15,170
+un término técnico para estas cadenas en Python:
+
+660
+00:31:15,170 --> 00:31:19,700
+es simplemente str, por así decirlo, S-T-R, abreviatura de string, «cadena».
+
+661
+00:31:19,700 --> 00:31:22,220
+Como quizá sepáis si habéis programado en otros lenguajes,
+
+662
+00:31:22,220 --> 00:31:26,270
+a quienes inventan lenguajes de programación les gusta ser muy concisos, ir al grano,
+
+663
+00:31:26,270 --> 00:31:29,780
+así que solemos usar expresiones bastante cortas para describir las cosas,
+
+664
+00:31:29,780 --> 00:31:31,370
+no necesariamente palabras completas.
+
+665
+00:31:31,370 --> 00:31:33,920
+Así que, aunque digáis "cadena", técnicamente
+
+666
+00:31:33,920 --> 00:31:37,070
+en Python lo que realmente son estas secuencias de texto
+
+667
+00:31:37,070 --> 00:31:38,300
+son str.
+
+668
+00:31:38,300 --> 00:31:41,450
+Este es un tipo de dato real en un programa.
+
+669
+00:31:41,450 --> 00:31:45,420
+Pero pronto veremos que en los programas también hay otros tipos de datos.
+
+670
+00:31:45,420 --> 00:31:48,980
+De hecho, veamos si podemos mejorar esto de otra forma más.
+
+671
+00:31:48,980 --> 00:31:52,550
+Me gusta lo que hemos avanzado manteniendo todo en la misma línea:
+
+672
+00:31:52,550 --> 00:31:55,490
+Hello, David, todo en la misma línea.
+
+673
+00:31:55,490 --> 00:31:59,070
+Pero ¿qué más podríamos hacer para resolver este problema?
+
+674
+00:31:59,070 --> 00:32:02,420
+Pues resulta que no teníamos por qué renunciar del todo
+
+675
+00:32:02,420 --> 00:32:03,800
+a usar print dos veces.
+
+676
+00:32:03,800 --> 00:32:07,460
+Voy a retroceder un poco y volver a aquella versión anterior
+
+677
+00:32:07,460 --> 00:32:11,660
+en la que no tenía muy claro cómo resolver este problema, así que usaba print una vez
+
+678
+00:32:11,660 --> 00:32:14,090
+para imprimir solo el Hello, el espacio y la coma.
+
+679
+00:32:14,090 --> 00:32:17,750
+Y luego usaba print otra vez para imprimir name.
+
+680
+00:32:17,750 --> 00:32:22,220
+Eso, estrictamente hablando, no estaba mal, pero tenía un efecto secundario visual
+
+681
+00:32:22,220 --> 00:32:23,270
+que no me gustaba.
+
+682
+00:32:23,270 --> 00:32:26,540
+Quedaba feo que esas dos líneas de texto estuvieran separadas
+
+683
+00:32:26,540 --> 00:32:27,600
+la una de la otra.
+
+684
+00:32:27,600 --> 00:32:29,480
+Pero hay otra forma de arreglarlo.
+
+685
+00:32:29,480 --> 00:32:34,130
+Está claro que la función print está
+
+686
+00:32:34,130 --> 00:32:36,110
+añadiendo automáticamente un salto de línea.
+
+687
+00:32:36,110 --> 00:32:39,380
+Me está moviendo automáticamente el cursor a la línea siguiente,
+
+688
+00:32:39,380 --> 00:32:42,620
+porque por eso veo Hello en una línea y David
+
+689
+00:32:42,620 --> 00:32:44,150
+en la siguiente, y luego el prompt
+
+690
+00:32:44,150 --> 00:32:46,530
+—el signo de dólar— en la línea de debajo.
+
+691
+00:32:46,530 --> 00:32:48,800
+Así que print parece dar por hecho automáticamente
+
+692
+00:32:48,800 --> 00:32:51,230
+que queréis que mueva el cursor a la línea siguiente
+
+693
+00:32:51,230 --> 00:32:53,040
+después de pasarle algún argumento.
+
+694
+00:32:53,040 --> 00:32:54,890
+Pero podéis cambiar ese comportamiento.
+
+695
+00:32:54,890 --> 00:32:58,400
+De nuevo, las funciones reciben argumentos que influyen en su comportamiento;
+
+696
+00:32:58,400 --> 00:33:00,740
+solo tenéis que saber cuáles son esos argumentos.
+
+697
+00:33:00,740 --> 00:33:06,560
+Y resulta que, si miramos la documentación de la función print
+
+698
+00:33:06,560 --> 00:33:09,980
+de Python, podemos consultarla en esta URL:
+
+699
+00:33:09,980 --> 00:33:14,150
+docs.python.org es donde está toda la documentación oficial de Python.
+
+700
+00:33:14,150 --> 00:33:17,870
+Si curioseo un poco, puedo llegar, más concretamente, a esta URL
+
+701
+00:33:17,870 --> 00:33:22,970
+de aquí, donde puedo encontrar todas las funciones disponibles en Python
+
+702
+00:33:22,970 --> 00:33:24,630
+y su documentación.
+
+703
+00:33:24,630 --> 00:33:26,900
+Y si afino un poco más, puedo incluso
+
+704
+00:33:26,900 --> 00:33:30,230
+encontrar la documentación específica de la propia función print.
+
+705
+00:33:30,230 --> 00:33:31,980
+Y en lugar de abrirla en un navegador,
+
+706
+00:33:31,980 --> 00:33:36,050
+voy a resaltar solo una línea de esa misma URL, que
+
+707
+00:33:36,050 --> 00:33:39,890
+es esta, y es sin duda lo más críptico que hemos visto hasta ahora,
+
+708
+00:33:39,890 --> 00:33:42,717
+pero esta es la documentación oficial de la función print.
+
+709
+00:33:42,717 --> 00:33:45,800
+Y una de las mejores cosas que podéis hacer al aprender un lenguaje de programación
+
+710
+00:33:45,800 --> 00:33:48,110
+es, sinceramente, aprender a leer la documentación,
+
+711
+00:33:48,110 --> 00:33:51,920
+porque, de verdad, todas las respuestas a vuestras preguntas van a estar
+
+712
+00:33:51,920 --> 00:33:55,430
+ahí de alguna forma, aunque, hay que reconocerlo, no siempre es evidente.
+
+713
+00:33:55,430 --> 00:33:57,290
+Y también diré que la documentación de Python
+
+714
+00:33:57,290 --> 00:34:01,460
+no es necesariamente lo más fácil, sobre todo para quien programa por primera vez
+
+715
+00:34:01,460 --> 00:34:02,072
+o es principiante.
+
+716
+00:34:02,072 --> 00:34:05,030
+También requiere práctica, así que intentad no agobiaros si no
+
+717
+00:34:05,030 --> 00:34:06,292
+tenéis claro lo que estáis viendo.
+
+718
+00:34:06,292 --> 00:34:08,000
+Pero dejadme que os explique este ejemplo.
+
+719
+00:34:08,000 --> 00:34:11,360
+Esto, de nuevo, es una línea de texto de la documentación oficial de Python
+
+720
+00:34:11,360 --> 00:34:12,690
+de la función print.
+
+721
+00:34:12,690 --> 00:34:14,659
+Lo que indica es lo siguiente:
+
+722
+00:34:14,659 --> 00:34:17,000
+el nombre de esta función es, por supuesto, print.
+
+723
+00:34:17,000 --> 00:34:20,570
+Luego hay un paréntesis aquí y otro paréntesis de cierre
+
+724
+00:34:20,570 --> 00:34:21,230
+allí al fondo.
+
+725
+00:34:21,230 --> 00:34:23,570
+Todo lo que hay dentro de esos paréntesis son
+
+726
+00:34:23,570 --> 00:34:27,270
+los argumentos, los posibles argumentos, de la función.
+
+727
+00:34:27,270 --> 00:34:30,830
+Sin embargo, cuando miramos estos argumentos
+
+728
+00:34:30,830 --> 00:34:34,400
+en la documentación así, técnicamente hay otro término
+
+729
+00:34:34,400 --> 00:34:35,150
+que usaríamos.
+
+730
+00:34:35,150 --> 00:34:37,920
+Técnicamente, estos son los parámetros de la función.
+
+731
+00:34:37,920 --> 00:34:41,900
+Así que, cuando habláis de lo que se le puede pasar a una función
+
+732
+00:34:41,900 --> 00:34:45,679
+y de cómo se llaman esas entradas, son parámetros.
+
+733
+00:34:45,679 --> 00:34:48,080
+Cuando realmente usáis la función y pasáis
+
+734
+00:34:48,080 --> 00:34:51,650
+valores dentro de esos paréntesis, esas entradas,
+
+735
+00:34:51,650 --> 00:34:53,580
+esos valores, son argumentos.
+
+736
+00:34:53,580 --> 00:34:56,719
+Así que hablamos exactamente de lo mismo: parámetros y argumentos son
+
+737
+00:34:56,719 --> 00:34:58,850
+en la práctica lo mismo, pero son los términos que
+
+738
+00:34:58,850 --> 00:35:01,520
+se usan al mirar el problema desde direcciones distintas.
+
+739
+00:35:01,520 --> 00:35:04,220
+Cuando miramos lo que la función puede recibir frente a lo que
+
+740
+00:35:04,220 --> 00:35:06,210
+realmente le pasáis a la función.
+
+741
+00:35:06,210 --> 00:35:07,500
+Entonces, ¿qué implica esto?
+
+742
+00:35:07,500 --> 00:35:10,610
+Bueno, esta sintaxis es bastante críptica, pero de momento
+
+743
+00:35:10,610 --> 00:35:14,360
+basta con saber que un asterisco, una estrella, y luego la palabra "objects"
+
+744
+00:35:14,360 --> 00:35:17,330
+significa que la función print puede recibir cualquier número de objetos.
+
+745
+00:35:17,330 --> 00:35:20,540
+Podéis pasarle 0 cadenas de texto, una cadena
+
+746
+00:35:20,540 --> 00:35:23,900
+como hice yo, dos cadenas como hice yo o, técnicamente, infinitas
+
+747
+00:35:23,900 --> 00:35:27,170
+si de verdad queréis, aunque ese código no va a quedar muy bien.
+
+748
+00:35:27,170 --> 00:35:31,130
+Después vemos una coma y luego vemos otro parámetro aquí
+
+749
+00:35:31,130 --> 00:35:34,400
+llamado sep, abreviatura de separator, «separador» en inglés.
+
+750
+00:35:34,400 --> 00:35:38,640
+Y fijaos en el signo igual y en comilla simple, espacio, comilla simple.
+
+751
+00:35:38,640 --> 00:35:42,350
+Así que ese 'espacio' todavía no sé qué es,
+
+752
+00:35:42,350 --> 00:35:44,570
+pero creo que hemos visto una pista.
+
+753
+00:35:44,570 --> 00:35:46,430
+Centrémonos un momento, eso sí, en esto:
+
+754
+00:35:46,430 --> 00:35:50,720
+la función print recibe otro parámetro llamado end, y el valor por defecto
+
+755
+00:35:50,720 --> 00:35:54,560
+de ese parámetro es, al parecer, según este signo igual y estas
+
+756
+00:35:54,560 --> 00:35:57,020
+comillas, \n.
+
+757
+00:35:57,020 --> 00:36:00,260
+¿Y qué es \n, si queréis participar en el chat?
+
+758
+00:36:00,260 --> 00:36:02,810
+Quien haya programado antes probablemente lo habrá visto,
+
+759
+00:36:02,810 --> 00:36:07,070
+aunque si no habéis programado nunca, puede parecer bastante críptico.
+
+760
+00:36:07,070 --> 00:36:12,530
+Barra invertida n significa salto de línea, y es una forma, en texto,
+
+761
+00:36:12,530 --> 00:36:15,710
+de indicar si queréis que el ordenador, en la práctica,
+
+762
+00:36:15,710 --> 00:36:19,490
+mueva el cursor a la línea siguiente, cree una nueva línea de texto, y cuándo.
+
+763
+00:36:19,490 --> 00:36:22,310
+Y así, técnicamente, si profundizamos en la documentación,
+
+764
+00:36:22,310 --> 00:36:23,960
+veremos más detalles sobre esto.
+
+765
+00:36:23,960 --> 00:36:28,550
+El hecho de que haya un parámetro llamado end en la documentación de la función
+
+766
+00:36:28,550 --> 00:36:32,840
+print solo significa que, por defecto, esta función print va a terminar
+
+767
+00:36:32,840 --> 00:36:35,240
+cada línea con \n.
+
+768
+00:36:35,240 --> 00:36:37,670
+No veis literalmente \n, veis un salto de línea.
+
+769
+00:36:37,670 --> 00:36:40,320
+Veis cómo el cursor pasa a la línea siguiente.
+
+770
+00:36:40,320 --> 00:36:42,500
+Siguiendo esa lógica, vayamos hacia atrás.
+
+771
+00:36:42,500 --> 00:36:46,790
+sep, de separator: el valor por defecto del separador
+
+772
+00:36:46,790 --> 00:36:49,460
+es, al parecer, un único espacio en blanco.
+
+773
+00:36:49,460 --> 00:36:51,020
+¿Y dónde hemos visto eso?
+
+774
+00:36:51,020 --> 00:36:55,190
+Pues recordad un ejemplo anterior en el que le pasé no uno, sino dos
+
+775
+00:36:55,190 --> 00:36:57,210
+argumentos a la función print.
+
+776
+00:36:57,210 --> 00:37:00,300
+Recordad que, como por arte de magia, había un espacio entre ellos.
+
+777
+00:37:00,300 --> 00:37:02,540
+De hecho, tenían ese espacio más mi propio espacio,
+
+778
+00:37:02,540 --> 00:37:05,720
+y por eso borré mi espacio, porque en ese momento sobraba.
+
+779
+00:37:05,720 --> 00:37:09,620
+Así que esto solo significa que, cuando le pasáis varios argumentos a print, por defecto
+
+780
+00:37:09,620 --> 00:37:11,750
+van a ir separados por un único espacio.
+
+781
+00:37:11,750 --> 00:37:14,570
+Por defecto, cuando le pasáis argumentos a print,
+
+782
+00:37:14,570 --> 00:37:17,880
+todo va a terminar con un salto de línea.
+
+783
+00:37:17,880 --> 00:37:19,850
+Ahora, solo con saber esto, y dejadme
+
+784
+00:37:19,850 --> 00:37:22,890
+pasar literalmente por alto el resto de la documentación para otro día
+
+785
+00:37:22,890 --> 00:37:24,890
+—print puede hacer más cosas, pero nos
+
+786
+00:37:24,890 --> 00:37:29,360
+vamos a centrar solo en sep y en end—, veamos si podemos aprovecharlo ahora
+
+787
+00:37:29,360 --> 00:37:31,010
+para resolver aquel problema original.
+
+788
+00:37:31,010 --> 00:37:34,250
+El problema original era este: no me gusta que Hello, David
+
+789
+00:37:34,250 --> 00:37:35,750
+esté en dos líneas distintas.
+
+790
+00:37:35,750 --> 00:37:38,420
+Pues eso pasa, otra vez, porque print está
+
+791
+00:37:38,420 --> 00:37:41,810
+imprimiendo automáticamente un salto de línea, así que digámosle que no lo haga.
+
+792
+00:37:41,810 --> 00:37:47,150
+Digámoselo pasándole un segundo argumento al primer uso de print
+
+793
+00:37:47,150 --> 00:37:51,110
+para poner end = comillas, comillas,
+
+794
+00:37:51,110 --> 00:37:54,840
+no \n, que es el valor por defecto automático.
+
+795
+00:37:54,840 --> 00:37:58,250
+Que sean comillas, comillas, sin nada más.
+
+796
+00:37:58,250 --> 00:38:01,850
+Cambiemos el valor por defecto para que no haya salto de línea.
+
+797
+00:38:01,850 --> 00:38:03,560
+No hay literalmente nada ahí.
+
+798
+00:38:03,560 --> 00:38:05,250
+Y veamos qué pasa.
+
+799
+00:38:05,250 --> 00:38:08,270
+Voy a bajar a mi ventana de terminal y a limpiarla.
+
+800
+00:38:08,270 --> 00:38:10,672
+Y voy a ejecutar python Hello.py, Enter.
+
+801
+00:38:10,672 --> 00:38:12,380
+Voy a escribir mi nombre, David, y
+
+802
+00:38:12,380 --> 00:38:16,280
+creo que ahora todo se va a quedar en la misma línea porque
+
+803
+00:38:16,280 --> 00:38:22,460
+—y así ha sido— esta línea de aquí, la 5, va a imprimir Hello, coma, espacio,
+
+804
+00:38:22,460 --> 00:38:24,710
+pero luego nada al final, porque lo
+
+805
+00:38:24,710 --> 00:38:26,450
+cambié para que fueran comillas, comillas.
+
+806
+00:38:26,450 --> 00:38:29,210
+La segunda línea va a imprimir el nombre, David,
+
+807
+00:38:29,210 --> 00:38:32,780
+o como se llame el humano, y moverá el cursor a la línea siguiente,
+
+808
+00:38:32,780 --> 00:38:36,230
+porque ahí no cambié el valor de end.
+
+809
+00:38:36,230 --> 00:38:39,710
+Solo para verlo de forma más explícita, si hacéis algo críptico como...
+
+810
+00:38:39,710 --> 00:38:41,420
+bueno, no tengo ni idea de lo que está pasando.
+
+811
+00:38:41,420 --> 00:38:44,120
+Voy a poner aquí temporalmente tres signos de interrogación.
+
+812
+00:38:44,120 --> 00:38:46,040
+También veremos el resultado de esto.
+
+813
+00:38:46,040 --> 00:38:49,202
+Vuelvo a mi ventana de terminal, ejecuto python Hello.py,
+
+814
+00:38:49,202 --> 00:38:49,910
+What's your name?
+
+815
+00:38:49,910 --> 00:38:50,420
+David.
+
+816
+00:38:50,420 --> 00:38:54,207
+Y ahora veis una salida literalmente muy fea,
+
+817
+00:38:54,207 --> 00:38:55,790
+pero veis literalmente lo que está pasando.
+
+818
+00:38:55,790 --> 00:39:01,010
+Hello, coma, espacio, luego tres signos de interrogación, el end de esa instrucción print,
+
+819
+00:39:01,010 --> 00:39:05,570
+y luego veis D-A-V-I-D. No es un buen resultado,
+
+820
+00:39:05,570 --> 00:39:09,080
+pero demuestra cuánto control tenemos también aquí.
+
+821
+00:39:09,080 --> 00:39:10,490
+Y voy a retroceder más.
+
+822
+00:39:10,490 --> 00:39:13,250
+Recordad que en nuestra otra versión de esto,
+
+823
+00:39:13,250 --> 00:39:18,710
+cuando pasé Hello con la coma y name, iban separados por un único espacio.
+
+824
+00:39:18,710 --> 00:39:22,340
+Así que python Hello.py, D-A-V-I-D, Enter.
+
+825
+00:39:22,340 --> 00:39:23,690
+Eso funcionó sin más.
+
+826
+00:39:23,690 --> 00:39:27,950
+¿Y si cambiamos el valor de sep, el separador?
+
+827
+00:39:27,950 --> 00:39:31,730
+En lugar de un espacio, podríamos poner algo
+
+828
+00:39:31,730 --> 00:39:35,030
+como signo de interrogación, signo de interrogación, signo de interrogación, solo para
+
+829
+00:39:35,030 --> 00:39:37,110
+entender bien lo que está pasando ahí.
+
+830
+00:39:37,110 --> 00:39:41,300
+Ahora hago python Hello.py, D-A-V-I-D, Enter.
+
+831
+00:39:41,300 --> 00:39:42,650
+Y veis las dos.
+
+832
+00:39:42,650 --> 00:39:43,850
+Estas dos entradas
+
+833
+00:39:43,850 --> 00:39:47,840
+—Hello con la coma y el nombre— ahora están separadas de forma fea
+
+834
+00:39:47,840 --> 00:39:52,580
+por tres signos de interrogación, porque he cambiado el comportamiento por defecto de sep.
+
+835
+00:39:52,580 --> 00:39:54,803
+Y aunque la documentación usa comillas simples,
+
+836
+00:39:54,803 --> 00:39:56,720
+yo tengo la costumbre de usar comillas dobles.
+
+837
+00:39:56,720 --> 00:39:58,580
+En Python podéis usar cualquiera de las dos.
+
+838
+00:39:58,580 --> 00:40:01,620
+Estrictamente hablando, da igual, pero deberíais ser coherentes,
+
+839
+00:40:01,620 --> 00:40:03,530
+y yo, en general, siempre uso comillas dobles.
+
+840
+00:40:03,530 --> 00:40:08,240
+La documentación de Python, en cambio, siempre usa comillas simples.
+
+841
+00:40:08,240 --> 00:40:12,320
+¿Preguntas ahora sobre estos tipos de parámetros?
+
+842
+00:40:12,320 --> 00:40:15,290
+Y permitidme proponer que les demos un nombre oficial.
+
+843
+00:40:15,290 --> 00:40:19,220
+Hasta ahora, cuando le pasábamos valores a print,
+
+844
+00:40:19,220 --> 00:40:22,160
+eso se llama parámetros posicionales: posicionales en el sentido
+
+845
+00:40:22,160 --> 00:40:24,620
+de que lo primero que le pasáis a print se imprime primero.
+
+846
+00:40:24,620 --> 00:40:27,830
+Lo segundo que le pasáis a print, después de una coma, se imprime en segundo lugar.
+
+847
+00:40:27,830 --> 00:40:28,710
+Y así sucesivamente.
+
+848
+00:40:28,710 --> 00:40:32,210
+Pero también están estas otras cosas que acabamos de ver, llamadas parámetros con nombre.
+
+849
+00:40:32,210 --> 00:40:37,550
+Con nombre: sep, el separador, o end, E-N-D, para el final de línea.
+
+850
+00:40:37,550 --> 00:40:40,910
+Son parámetros con nombre porque, por un lado, son opcionales
+
+851
+00:40:40,910 --> 00:40:44,450
+y podéis pasarlos al final de vuestra instrucción print,
+
+852
+00:40:44,450 --> 00:40:48,290
+pero además podéis usarlos por su nombre.
+
+853
+00:40:48,290 --> 00:40:51,050
+PÚBLICO: Puede que sea una pregunta rara, pero me preguntaba
+
+854
+00:40:51,050 --> 00:40:57,350
+qué pasa si alguien quiere poner comillas de verdad dentro de las
+
+855
+00:40:57,350 --> 00:40:57,920
+comillas.
+
+856
+00:40:57,920 --> 00:40:59,600
+DAVID MALAN: Sí, me gusta cómo piensas.
+
+857
+00:40:59,600 --> 00:41:01,880
+Esto es lo que llamaríamos un caso límite, ¿verdad?
+
+858
+00:41:01,880 --> 00:41:03,860
+Justo cuando hemos... claro, todo esto
+
+859
+00:41:03,860 --> 00:41:06,823
+suena genial, al menos en lo que a programación se refiere, pero, un momento,
+
+860
+00:41:06,823 --> 00:41:08,240
+¿y si queréis imprimir unas comillas?
+
+861
+00:41:08,240 --> 00:41:09,557
+Es una muy buena pregunta.
+
+862
+00:41:09,557 --> 00:41:11,390
+Bueno, veamos si podemos averiguarlo.
+
+863
+00:41:11,390 --> 00:41:15,590
+Supongamos que quiero imprimir no solo el nombre del usuario.
+
+864
+00:41:15,590 --> 00:41:16,940
+Voy a simplificarlo todavía más.
+
+865
+00:41:16,940 --> 00:41:18,980
+Voy a quitar buena parte de esto
+
+866
+00:41:18,980 --> 00:41:21,510
+y voy a poner simplemente algo como Hello...
+
+867
+00:41:24,170 --> 00:41:26,240
+quizá aquí me estoy poniendo un poco sarcástico.
+
+868
+00:41:26,240 --> 00:41:28,310
+Hello, (con sarcasmo) "friend".
+
+869
+00:41:28,310 --> 00:41:30,022
+Ya sabéis, en ese tono.
+
+870
+00:41:30,022 --> 00:41:31,730
+Pues esto, en realidad, no va a funcionar,
+
+871
+00:41:31,730 --> 00:41:36,260
+porque estáis intentando usar las comillas para poner "friend" entre comillas con los dedos,
+
+872
+00:41:36,260 --> 00:41:38,070
+pero también estáis intentando terminar la frase.
+
+873
+00:41:38,070 --> 00:41:39,778
+Y si intento ejecutarlo, hagámoslo.
+
+874
+00:41:39,778 --> 00:41:43,160
+python Hello.py, veréis que esto es simplemente sintaxis no válida.
+
+875
+00:41:43,160 --> 00:41:44,420
+Quizá se os ha olvidado una coma.
+
+876
+00:41:44,420 --> 00:41:45,920
+Y esto, la verdad, es un poco molesto.
+
+877
+00:41:45,920 --> 00:41:48,822
+A veces los mensajes de error que veis son engañosos.
+
+878
+00:41:48,822 --> 00:41:50,780
+Es como si el ordenador, el lenguaje, no
+
+879
+00:41:50,780 --> 00:41:52,488
+supiera muy bien qué está pasando, así que hace su mejor
+
+880
+00:41:52,488 --> 00:41:55,010
+suposición, pero no tiene por qué ser correcta.
+
+881
+00:41:55,010 --> 00:41:57,870
+Pero puedo resolver este problema de un par de formas.
+
+882
+00:41:57,870 --> 00:41:59,160
+Puedo hacer esto:
+
+883
+00:41:59,160 --> 00:42:01,912
+puedo cambiar las comillas exteriores por comillas simples.
+
+884
+00:42:01,912 --> 00:42:03,620
+Porque recordad que hace un momento dije que
+
+885
+00:42:03,620 --> 00:42:07,130
+se podían usar comillas dobles o simples siempre que fuerais coherentes.
+
+886
+00:42:07,130 --> 00:42:08,000
+Así que eso está bien.
+
+887
+00:42:08,000 --> 00:42:10,142
+Si usáis comillas simples por fuera,
+
+888
+00:42:10,142 --> 00:42:13,100
+podéis usar comillas dobles por dentro y las veréis literalmente.
+
+889
+00:42:13,100 --> 00:42:17,000
+Así que, por ejemplo, si ejecuto python Hello.py, ahí lo tenemos.
+
+890
+00:42:17,000 --> 00:42:18,590
+Hello, "friend".
+
+891
+00:42:18,590 --> 00:42:19,910
+Pero hay otra forma.
+
+892
+00:42:19,910 --> 00:42:23,450
+Si os empeñáis en usar comillas dobles, como quizá queráis,
+
+893
+00:42:23,450 --> 00:42:27,800
+solo por coherencia, también podéis volver a usar ese carácter de barra invertida.
+
+894
+00:42:27,800 --> 00:42:30,080
+Hace un momento vimos el \n.
+
+895
+00:42:30,080 --> 00:42:33,380
+Y eso significaba que no queremos una n literal en la salida,
+
+896
+00:42:33,380 --> 00:42:34,640
+queríamos un salto de línea.
+
+897
+00:42:34,640 --> 00:42:38,420
+Así que la barra invertida representa en realidad lo que se llama un carácter de escape.
+
+898
+00:42:38,420 --> 00:42:40,430
+Un carácter de escape es uno que no se puede
+
+899
+00:42:40,430 --> 00:42:43,130
+escribir necesariamente con una sola pulsación del teclado.
+
+900
+00:42:43,130 --> 00:42:45,270
+Hay que expresarlo con varios caracteres.
+
+901
+00:42:45,270 --> 00:42:50,920
+Así que puedo poner barras invertidas delante de estas comillas dobles interiores
+
+902
+00:42:50,920 --> 00:42:52,920
+para que el ordenador se dé cuenta: «Ah, un momento,
+
+903
+00:42:52,920 --> 00:42:57,560
+esas no son comillas que terminan o empiezan la idea, son comillas literales».
+
+904
+00:42:57,560 --> 00:43:02,420
+Así que ahora vuelvo a mi ventana de terminal, ejecuto python Hello.py, Enter.
+
+905
+00:43:02,420 --> 00:43:04,800
+Y ahora también funciona.
+
+906
+00:43:04,800 --> 00:43:08,390
+Así que el escape es una técnica general que también nos permite hacer eso.
+
+907
+00:43:08,390 --> 00:43:12,230
+Y, si me permitís, voy a retroceder ahora en estos ejemplos
+
+908
+00:43:12,230 --> 00:43:14,810
+y volver a donde lo dejamos con mi código;
+
+909
+00:43:14,810 --> 00:43:18,200
+simplemente estoy deshaciendo todo eso, porque quiero volver al punto
+
+910
+00:43:18,200 --> 00:43:23,820
+de mostrar, por fin, una última forma de resolver este problema.
+
+911
+00:43:23,820 --> 00:43:26,300
+Pues resulta que tenemos otra forma más
+
+912
+00:43:26,300 --> 00:43:30,680
+de resolver este problema, que quizá sea la más habitual
+
+913
+00:43:30,680 --> 00:43:35,030
+hoy en día o, al menos, la más elegante cuando se trata de prepararnos
+
+914
+00:43:35,030 --> 00:43:38,840
+para usos cada vez más largos de cadenas.
+
+915
+00:43:38,840 --> 00:43:43,620
+Podéis usar una característica relativamente nueva de Python que os permite hacer esto.
+
+916
+00:43:43,620 --> 00:43:47,397
+Podéis poner literalmente, no el nombre de la variable así dentro de la cadena,
+
+917
+00:43:47,397 --> 00:43:49,230
+porque ya vimos que eso está mal, ¿verdad?
+
+918
+00:43:49,230 --> 00:43:52,340
+Si hacéis esto, veréis literalmente Hello, coma, name.
+
+919
+00:43:52,340 --> 00:43:53,580
+Pero ¿y si hago esto?
+
+920
+00:43:53,580 --> 00:43:58,070
+¿Y si pongo llaves alrededor del nombre de la variable?
+
+921
+00:43:58,070 --> 00:44:00,830
+Fijaos en que VS Code, muy sutilmente, le está cambiando el color.
+
+922
+00:44:00,830 --> 00:44:03,590
+Así que VS Code sabe que aquí está pasando algo interesante.
+
+923
+00:44:03,590 --> 00:44:08,060
+Voy a ejecutar este programa, aunque todavía no he terminado: python Hello.py, Enter.
+
+924
+00:44:08,060 --> 00:44:09,650
+D-A-V-I-D, Enter.
+
+925
+00:44:09,650 --> 00:44:13,430
+Vale, obviamente no es lo que quiero, pero tengo que decirle a Python
+
+926
+00:44:13,430 --> 00:44:15,140
+que esta es una cadena especial.
+
+927
+00:44:15,140 --> 00:44:18,470
+Esto es lo que llamaremos una cadena de formato o f-string,
+
+928
+00:44:18,470 --> 00:44:21,660
+una característica relativamente nueva de Python de los últimos años
+
+929
+00:44:21,660 --> 00:44:26,750
+que le dice a Python que formatee el contenido de la cadena de una forma especial.
+
+930
+00:44:26,750 --> 00:44:29,480
+Y el símbolo con el que se hace es un poco raro,
+
+931
+00:44:29,480 --> 00:44:31,220
+pero es lo que eligió el mundo.
+
+932
+00:44:31,220 --> 00:44:35,390
+Si ponéis una f al principio de la cadena,
+
+933
+00:44:35,390 --> 00:44:40,160
+justo antes de la primera comilla, eso es una pista para Python de que, oh,
+
+934
+00:44:40,160 --> 00:44:41,210
+esta es una cadena especial.
+
+935
+00:44:41,210 --> 00:44:43,550
+«Deja que te la formatee de una forma especial».
+
+936
+00:44:43,550 --> 00:44:45,380
+Ahora vuelvo a ejecutar el programa.
+
+937
+00:44:45,380 --> 00:44:47,120
+python Hello.py, Enter.
+
+938
+00:44:47,120 --> 00:44:48,410
+D-A-V-I-D, Enter.
+
+939
+00:44:48,410 --> 00:44:51,170
+Y ahora vemos lo que buscábamos todo este tiempo:
+
+940
+00:44:51,170 --> 00:44:52,395
+Hello, David.
+
+941
+00:44:52,395 --> 00:44:55,520
+No empezamos de esta forma porque creo que, si lo hubiéramos hecho así de primeras,
+
+942
+00:44:55,520 --> 00:44:57,330
+diríais: «¿Por qué estamos haciendo esto?
+
+943
+00:44:57,330 --> 00:44:58,850
+¿Qué son todos estos símbolos mágicos?».
+
+944
+00:44:58,850 --> 00:45:02,370
+Pero esta es simplemente otra forma más de resolver el mismo problema.
+
+945
+00:45:02,370 --> 00:45:04,940
+Pero permitidme proponer que veamos ahora
+
+946
+00:45:04,940 --> 00:45:06,920
+otras cosas que podemos hacer con las cadenas.
+
+947
+00:45:06,920 --> 00:45:11,190
+Y resulta que, aunque hemos estado haciendo operaciones relativamente sencillas
+
+948
+00:45:11,190 --> 00:45:14,665
+aquí, en general hemos confiado en que el usuario va a colaborar,
+
+949
+00:45:14,665 --> 00:45:17,790
+es decir, que va a escribir de verdad lo que queremos
+
+950
+00:45:17,790 --> 00:45:18,450
+que escriba.
+
+951
+00:45:18,450 --> 00:45:20,850
+Pero que escriba una cadena no significa
+
+952
+00:45:20,850 --> 00:45:22,410
+que vaya a quedar como queremos.
+
+953
+00:45:22,410 --> 00:45:24,510
+Vosotros y yo, sinceramente, como humanos, tenemos
+
+954
+00:45:24,510 --> 00:45:27,840
+la costumbre —en webs y aplicaciones— de pulsar sin querer
+
+955
+00:45:27,840 --> 00:45:30,300
+la barra espaciadora un montón, ya sea al principio de lo que escribimos
+
+956
+00:45:30,300 --> 00:45:33,460
+o al final, quizá porque la barra espaciadora suele ser muy grande.
+
+957
+00:45:33,460 --> 00:45:35,790
+Es bastante habitual que aparezcan espacios sin querer
+
+958
+00:45:35,790 --> 00:45:37,950
+antes o después de lo que escriben algunos usuarios.
+
+959
+00:45:37,950 --> 00:45:41,675
+Vosotros y yo, desde luego, tenemos la costumbre de no poner necesariamente las mayúsculas
+
+960
+00:45:41,675 --> 00:45:42,300
+como deberíamos.
+
+961
+00:45:42,300 --> 00:45:45,122
+Si estamos enviando mensajes de texto, probablemente vamos un poco rápido
+
+962
+00:45:45,122 --> 00:45:46,830
+y lo enviamos todo en minúsculas,
+
+963
+00:45:46,830 --> 00:45:49,913
+por ejemplo, si ese es vuestro estilo, si el móvil no os lo corrige.
+
+964
+00:45:49,913 --> 00:45:52,530
+Quizá en una carta formal pondríais bien las mayúsculas.
+
+965
+00:45:52,530 --> 00:45:56,400
+Pero de vosotros y de mí, como humanos, no podemos fiarnos de que escribamos las cosas bien
+
+966
+00:45:56,400 --> 00:45:58,870
+necesariamente cuando usamos un programa,
+
+967
+00:45:58,870 --> 00:46:00,940
+ya sea una aplicación, una web o cualquier otra cosa.
+
+968
+00:46:00,940 --> 00:46:04,560
+Pero resulta que las propias cadenas vienen
+
+969
+00:46:04,560 --> 00:46:06,450
+con muchísima funcionalidad integrada.
+
+970
+00:46:06,450 --> 00:46:09,300
+Podéis verla toda aquí, en la propia documentación de Python.
+
+971
+00:46:09,300 --> 00:46:12,600
+El tipo de dato cadena del que hemos estado hablando
+
+972
+00:46:12,600 --> 00:46:14,970
+viene con mucha funcionalidad integrada, lo que
+
+973
+00:46:14,970 --> 00:46:18,360
+significa que podemos manipular lo que escribe el usuario para hacer algo más que
+
+974
+00:46:18,360 --> 00:46:22,290
+unirlo con otra cosa, como Hello; de hecho, podemos limpiarlo
+
+975
+00:46:22,290 --> 00:46:26,380
+o darle otro formato de manera que, con suerte, quede un poco mejor.
+
+976
+00:46:26,380 --> 00:46:29,070
+Así que voy a volver a mi código y simplemente
+
+977
+00:46:29,070 --> 00:46:32,100
+voy a mostrar qué podría pasar si un usuario no colabora.
+
+978
+00:46:32,100 --> 00:46:35,490
+Si ejecuto aquí python Hello.py, Enter.
+
+979
+00:46:35,490 --> 00:46:38,890
+Voy a pulsar descuidadamente la barra espaciadora unas cuantas veces de más.
+
+980
+00:46:38,890 --> 00:46:39,390
+¿Por qué?
+
+981
+00:46:39,390 --> 00:46:40,890
+Simplemente no estaba prestando atención.
+
+982
+00:46:40,890 --> 00:46:43,710
+Y ahora voy a escribir mi nombre, D-A-V-I-D, y, no sé,
+
+983
+00:46:43,710 --> 00:46:45,510
+pulso la barra espaciadora un par de veces más.
+
+984
+00:46:45,510 --> 00:46:46,620
+Vamos, que es un desastre.
+
+985
+00:46:46,620 --> 00:46:47,785
+Está todo en minúsculas.
+
+986
+00:46:47,785 --> 00:46:50,160
+Eso no va a quedar necesariamente bien gramaticalmente.
+
+987
+00:46:50,160 --> 00:46:51,900
+Tiene espacios aquí y aquí.
+
+988
+00:46:51,900 --> 00:46:54,030
+El programa va a imprimir exactamente eso
+
+989
+00:46:54,030 --> 00:46:55,890
+y queda fatal, al menos si
+
+990
+00:46:55,890 --> 00:46:57,900
+priorizamos la estética y la gramática.
+
+991
+00:46:57,900 --> 00:47:00,330
+O sea, ¿por qué hay tantos espacios después de la coma?
+
+992
+00:47:00,330 --> 00:47:03,420
+No es una forma muy bonita de saludar a vuestros usuarios.
+
+993
+00:47:03,420 --> 00:47:05,130
+Pero podemos limpiarlo.
+
+994
+00:47:05,130 --> 00:47:10,170
+Resulta que las cadenas, que, de nuevo, son este tipo de dato, por
+
+995
+00:47:10,170 --> 00:47:12,780
+así decirlo, este tipo de datos de Python,
+
+996
+00:47:12,780 --> 00:47:15,730
+traen integrada la capacidad de hacerle cosas a esa cadena.
+
+997
+00:47:15,730 --> 00:47:20,280
+Así que voy a hacer esto; de hecho, puedo hacer algo como esto:
+
+998
+00:47:20,280 --> 00:47:23,820
+name = name.strip.
+
+999
+00:47:23,820 --> 00:47:25,240
+¿Y qué hace esto?
+
+1000
+00:47:25,240 --> 00:47:30,460
+"Remove whitespace from string".
+
+1001
+00:47:30,460 --> 00:47:32,060
+¿Y qué quiero decir con esto?
+
+1002
+00:47:32,060 --> 00:47:33,910
+Pues, en el lado derecho, fijaos en que he
+
+1003
+00:47:33,910 --> 00:47:36,700
+escrito el nombre de la variable, name.
+
+1004
+00:47:36,700 --> 00:47:40,120
+Luego he usado un punto y luego
+
+1005
+00:47:40,120 --> 00:47:42,520
+parece que uso una función, ¿verdad?
+
+1006
+00:47:42,520 --> 00:47:46,300
+Siempre que hemos visto una función hasta ahora, vemos el nombre de la función —print
+
+1007
+00:47:46,300 --> 00:47:49,030
+o input—, luego vemos un paréntesis, luego otro paréntesis,
+
+1008
+00:47:49,030 --> 00:47:50,678
+y eso es exactamente lo que veo aquí.
+
+1009
+00:47:50,678 --> 00:47:52,720
+Pero estoy usando esta función de forma un poco distinta.
+
+1010
+00:47:52,720 --> 00:47:55,990
+Técnicamente, esta función, en este contexto, se llama método.
+
+1011
+00:47:55,990 --> 00:47:57,620
+¿Y qué quiero decir con eso?
+
+1012
+00:47:57,620 --> 00:48:00,250
+Pues, si name es una cadena, también conocida como
+
+1013
+00:48:00,250 --> 00:48:03,130
+str, resulta que, según la documentación,
+
+1014
+00:48:03,130 --> 00:48:07,630
+hay muchas funciones que vienen con las cadenas en Python.
+
+1015
+00:48:07,630 --> 00:48:10,150
+Y podéis acceder a esa funcionalidad usando
+
+1016
+00:48:10,150 --> 00:48:14,860
+el nombre de una cadena, como literalmente name aquí, luego un punto, luego el nombre
+
+1017
+00:48:14,860 --> 00:48:18,220
+de la función y luego un paréntesis de apertura y uno de cierre.
+
+1018
+00:48:18,220 --> 00:48:21,320
+Quizá con algunos argumentos dentro de esos paréntesis, pero en este caso
+
+1019
+00:48:21,320 --> 00:48:22,900
+no necesita ningún argumento.
+
+1020
+00:48:22,900 --> 00:48:26,320
+Solo quiero quitar el espacio de la izquierda y el espacio
+
+1021
+00:48:26,320 --> 00:48:28,000
+de la derecha de lo que ha escrito el usuario.
+
+1022
+00:48:28,000 --> 00:48:29,210
+Pero eso no basta.
+
+1023
+00:48:29,210 --> 00:48:31,120
+Quiero recordar que he quitado
+
+1024
+00:48:31,120 --> 00:48:32,920
+ese espacio en blanco de la izquierda y de la derecha,
+
+1025
+00:48:32,920 --> 00:48:35,470
+así que aquí voy a volver a usar el signo igual.
+
+1026
+00:48:35,470 --> 00:48:38,590
+Y fijaos en que, igual que antes, esto no significa igualdad,
+
+1027
+00:48:38,590 --> 00:48:40,940
+significa asignación de derecha a izquierda.
+
+1028
+00:48:40,940 --> 00:48:43,900
+Así que, cuando esta línea de código —name.strip—
+
+1029
+00:48:43,900 --> 00:48:46,600
+me devuelva algo, es decir,
+
+1030
+00:48:46,600 --> 00:48:49,123
+un valor de retorno, devolverá lo mismo
+
+1031
+00:48:49,123 --> 00:48:51,790
+que escribió el usuario, pero ya sin espacio en blanco a la izquierda
+
+1032
+00:48:51,790 --> 00:48:54,370
+ni al blan... [RISAS] a la derecha.
+
+1033
+00:48:54,370 --> 00:48:56,860
+Así que luego la asignación con el signo igual va
+
+1034
+00:48:56,860 --> 00:49:00,190
+a copiar ese valor de la derecha a la izquierda,
+
+1035
+00:49:00,190 --> 00:49:04,820
+actualizando así el valor que hay dentro de mi variable name.
+
+1036
+00:49:04,820 --> 00:49:07,240
+Así que no solo podéis asignar valores a variables,
+
+1037
+00:49:07,240 --> 00:49:10,300
+sino que podéis perfectamente cambiar el valor de las variables
+
+1038
+00:49:10,300 --> 00:49:12,817
+simplemente usando el operador de asignación, el signo igual, una vez,
+
+1039
+00:49:12,817 --> 00:49:15,400
+y otra, y otra, y simplemente seguirá copiando de derecha
+
+1040
+00:49:15,400 --> 00:49:17,810
+a izquierda el nuevo valor que deba tener.
+
+1041
+00:49:17,810 --> 00:49:23,740
+Así que, si vuelvo a ejecutar este programa, python Hello.py, Enter.
+
+1042
+00:49:23,740 --> 00:49:25,930
+Tengo D-A-V-I... uy, vamos a hacerlo otra vez.
+
+1043
+00:49:25,930 --> 00:49:29,170
+Espacio, espacio, espacio, espacio, espacio. d-a-v-i-d todo en minúsculas, espacio,
+
+1044
+00:49:29,170 --> 00:49:30,760
+espacio, Enter.
+
+1045
+00:49:30,760 --> 00:49:32,060
+Está mejor.
+
+1046
+00:49:32,060 --> 00:49:34,300
+No me ha arreglado las mayúsculas, así que sigo
+
+1047
+00:49:34,300 --> 00:49:38,050
+siendo un poco descuidado con la primera D, pero sí ha quitado
+
+1048
+00:49:38,050 --> 00:49:39,430
+todo ese espacio de más.
+
+1049
+00:49:39,430 --> 00:49:41,170
+Un detalle minúsculo, ¿verdad?
+
+1050
+00:49:41,170 --> 00:49:44,050
+No es que sea muy emocionante, pero simplemente
+
+1051
+00:49:44,050 --> 00:49:47,440
+demuestra lo potente que es lo que podéis hacer con una sola línea de código.
+
+1052
+00:49:47,440 --> 00:49:49,160
+¿Y qué más puedo hacer aquí?
+
+1053
+00:49:49,160 --> 00:49:51,610
+Pues podría poner en mayúscula lo que ha escrito el usuario.
+
+1054
+00:49:51,610 --> 00:49:53,390
+Voy a probarlo.
+
+1055
+00:49:53,390 --> 00:49:59,810
+Resulta que también podría hacer esto: name.capitalize.
+
+1056
+00:49:59,810 --> 00:50:03,420
+Así que voy a poner "Capitalize user's name".
+
+1057
+00:50:03,420 --> 00:50:05,170
+Y, otra vez, estoy escribiendo comentarios y no hay
+
+1058
+00:50:05,170 --> 00:50:06,820
+una única forma correcta de escribirlos.
+
+1059
+00:50:06,820 --> 00:50:08,770
+Simplemente uso aquí algunas frases cortas en inglés
+
+1060
+00:50:08,770 --> 00:50:10,510
+para recordarme lo que estoy haciendo.
+
+1061
+00:50:10,510 --> 00:50:12,190
+¿Qué está pasando ahora aquí?
+
+1062
+00:50:12,190 --> 00:50:15,310
+Voy a ejecutar python Hello.py, Enter.
+
+1063
+00:50:15,310 --> 00:50:19,240
+Espacio, espacio, espacio, espacio, espacio, d-a-v-i-d, espacio, espacio, Enter.
+
+1064
+00:50:19,240 --> 00:50:19,960
+Vale.
+
+1065
+00:50:19,960 --> 00:50:21,580
+Ahora queda más bonito, ¿verdad?
+
+1066
+00:50:21,580 --> 00:50:24,640
+Da igual cómo escriba el usuario su nombre, aunque sea un poco descuidadamente:
+
+1067
+00:50:24,640 --> 00:50:25,720
+ahora lo estoy arreglando.
+
+1068
+00:50:25,720 --> 00:50:27,313
+Pero probemos una cosa.
+
+1069
+00:50:27,313 --> 00:50:28,730
+Me está entrando un poco de curiosidad.
+
+1070
+00:50:28,730 --> 00:50:29,830
+¿Qué tal esto?
+
+1071
+00:50:29,830 --> 00:50:33,910
+Espacio, espacio, espacio, espacio, espacio, d-a-v-i-d espacio m-a-l-a-n
+
+1072
+00:50:33,910 --> 00:50:35,530
+—ahora voy a usar mi apellido—,
+
+1073
+00:50:35,530 --> 00:50:36,640
+Enter.
+
+1074
+00:50:36,640 --> 00:50:42,100
+Vale, así que, irónicamente, "capitalize" no pone en mayúscula todo lo que queremos.
+
+1075
+00:50:42,100 --> 00:50:43,870
+Está claro que pone en mayúscula ¿qué?
+
+1076
+00:50:43,870 --> 00:50:45,580
+Solo la primerísima letra.
+
+1077
+00:50:45,580 --> 00:50:48,940
+Así que resulta que, de nuevo, hay otras funciones en Python
+
+1078
+00:50:48,940 --> 00:50:49,960
+que vienen con las cadenas.
+
+1079
+00:50:49,960 --> 00:50:54,670
+Y si curioseamos en la documentación, recorriendo una URL como esa,
+
+1080
+00:50:54,670 --> 00:50:58,540
+apuesto a que encontraremos otra solución, y una de ellas es precisamente esta.
+
+1081
+00:50:58,540 --> 00:51:01,180
+Vamos a cambiar esto por title.
+
+1082
+00:51:01,180 --> 00:51:03,550
+Hay otra función más que viene con las cadenas
+
+1083
+00:51:03,550 --> 00:51:07,120
+llamada title, que pone las mayúsculas como en un título, igual
+
+1084
+00:51:07,120 --> 00:51:09,310
+que en un libro o en el nombre de una persona: pone en mayúscula
+
+1085
+00:51:09,310 --> 00:51:12,010
+la primera letra de cada palabra.
+
+1086
+00:51:12,010 --> 00:51:14,450
+Y esto nos va a hacer un poco más de trabajo.
+
+1087
+00:51:14,450 --> 00:51:15,880
+Así que vamos a ejecutarlo.
+
+1088
+00:51:15,880 --> 00:51:18,700
+Y, por cierto, a estas alturas ya estoy un poco cansado
+
+1089
+00:51:18,700 --> 00:51:22,130
+de escribir python, python, python todo el rato.
+
+1090
+00:51:22,130 --> 00:51:25,570
+Resulta que, al usar una interfaz de línea de comandos como esta,
+
+1091
+00:51:25,570 --> 00:51:28,000
+podéis recorrer todos vuestros comandos anteriores.
+
+1092
+00:51:28,000 --> 00:51:30,280
+Lo que acabo de hacer hace un momento es pulsar la flecha hacia arriba.
+
+1093
+00:51:30,280 --> 00:51:33,820
+Eso recorre al instante mi historial de todos los comandos
+
+1094
+00:51:33,820 --> 00:51:34,720
+que he escrito.
+
+1095
+00:51:34,720 --> 00:51:37,960
+Así que ahora es una forma más rápida de repetirme
+
+1096
+00:51:37,960 --> 00:51:39,700
+que escribirlo todo a mano.
+
+1097
+00:51:39,700 --> 00:51:42,850
+Voy a pulsar Enter, espacio, espacio, espacio, espacio, espacio,
+
+1098
+00:51:42,850 --> 00:51:47,110
+d-a-v-i-d m-a-l-a-n espacio, espacio, todo en minúsculas, Enter.
+
+1099
+00:51:47,110 --> 00:51:49,690
+Ahora queda mejor.
+
+1100
+00:51:49,690 --> 00:51:52,030
+Ahora he puesto las mayúsculas y lo he limpiado todo.
+
+1101
+00:51:52,030 --> 00:51:53,200
+Pero ¿y mi código?
+
+1102
+00:51:53,200 --> 00:51:55,930
+Ahora tengo como ocho líneas de código, cuatro de las cuales
+
+1103
+00:51:55,930 --> 00:51:58,030
+son comentarios y cuatro son código de verdad.
+
+1104
+00:51:58,030 --> 00:51:59,710
+¿De verdad necesito tanto?
+
+1105
+00:51:59,710 --> 00:52:00,910
+Pues no necesariamente.
+
+1106
+00:52:00,910 --> 00:52:03,520
+Mirad lo que también puedo hacer en Python.
+
+1107
+00:52:03,520 --> 00:52:07,100
+No me voy a molestar en poner en mayúscula el nombre del usuario por separado.
+
+1108
+00:52:07,100 --> 00:52:08,170
+Voy a poner esto:
+
+1109
+00:52:08,170 --> 00:52:12,970
+"and capitalize user's name".
+
+1110
+00:52:12,970 --> 00:52:15,370
+Puedo encadenar estas funciones.
+
+1111
+00:52:15,370 --> 00:52:18,130
+Puedo añadir title al final de esto.
+
+1112
+00:52:18,130 --> 00:52:19,600
+¿Y qué está pasando ahora?
+
+1113
+00:52:19,600 --> 00:52:21,440
+Pues, otra vez, con una línea de código como esta,
+
+1114
+00:52:21,440 --> 00:52:24,490
+primero os fijáis en lo que hay a la derecha del signo igual
+
+1115
+00:52:24,490 --> 00:52:26,470
+y luego pasamos a la izquierda del signo igual.
+
+1116
+00:52:26,470 --> 00:52:28,095
+¿Qué hay a la derecha del signo igual?
+
+1117
+00:52:28,095 --> 00:52:29,240
+Esta línea de aquí.
+
+1118
+00:52:29,240 --> 00:52:30,390
+¿Y qué significa?
+
+1119
+00:52:30,390 --> 00:52:35,610
+Coge el valor de la variable name, por ejemplo D-A-V-I-D espacio M-A-L-A-N.
+
+1120
+00:52:35,610 --> 00:52:38,700
+Luego quita el espacio en blanco de la izquierda y de la derecha.
+
+1121
+00:52:38,700 --> 00:52:40,920
+Eso va a devolver un valor.
+
+1122
+00:52:40,920 --> 00:52:44,790
+Va a devolver D-A-V-I-D espacio M-A-L-A-N sin ningún espacio en blanco
+
+1123
+00:52:44,790 --> 00:52:45,720
+a la izquierda ni a la derecha.
+
+1124
+00:52:45,720 --> 00:52:47,940
+¿Qué queréis hacer con ese valor de retorno?
+
+1125
+00:52:47,940 --> 00:52:50,850
+Queréis que Python lo ponga en formato de título, es decir,
+
+1126
+00:52:50,850 --> 00:52:54,330
+que recorra cada palabra de la cadena resultante
+
+1127
+00:52:54,330 --> 00:52:57,000
+y arregle la primera letra de la primera palabra, la primera letra
+
+1128
+00:52:57,000 --> 00:52:58,390
+de la segunda palabra, y así sucesivamente.
+
+1129
+00:52:58,390 --> 00:53:00,330
+Y luego —ahora ya podemos terminar la idea—
+
+1130
+00:53:00,330 --> 00:53:05,580
+copie todo de derecha a izquierda en esa misma variable name.
+
+1131
+00:53:05,580 --> 00:53:06,330
+¿Y sabéis qué?
+
+1132
+00:53:06,330 --> 00:53:08,340
+Puedo llevar esto incluso un paso más allá.
+
+1133
+00:53:08,340 --> 00:53:11,400
+¿Por qué no hacemos esto, si queremos?
+
+1134
+00:53:11,400 --> 00:53:16,890
+Voy a quitar todo eso y voy a poner strip y title
+
+1135
+00:53:16,890 --> 00:53:18,270
+directamente en esa primera línea.
+
+1136
+00:53:18,270 --> 00:53:21,380
+Y ahora hemos pasado de unas ocho líneas de código a cuatro.
+
+1137
+00:53:21,380 --> 00:53:22,740
+Es mucho más compacto.
+
+1138
+00:53:22,740 --> 00:53:23,880
+Es mucho más limpio.
+
+1139
+00:53:23,880 --> 00:53:26,250
+Y aunque personas razonables puedan no estar de acuerdo,
+
+1140
+00:53:26,250 --> 00:53:30,090
+se puede decir que es mejor porque es más fácil de leer.
+
+1141
+00:53:30,090 --> 00:53:32,670
+Menos líneas de código, menos ocasiones de equivocarse;
+
+1142
+00:53:32,670 --> 00:53:37,350
+simplemente me permite pasar al siguiente problema que tenga que resolver.
+
+1143
+00:53:37,350 --> 00:53:41,730
+Muy bien, voy a hacer una pausa aquí para ver si hay preguntas sobre estos métodos.
+
+1144
+00:53:41,730 --> 00:53:45,540
+Un método es una función integrada en un tipo de valor,
+
+1145
+00:53:45,540 --> 00:53:47,820
+como lo son estas funciones.
+
+1146
+00:53:47,820 --> 00:53:50,640
+O sobre las f-strings, que vimos hace un momento.
+
+1147
+00:53:50,640 --> 00:53:51,390
+PÚBLICO: Sí, hola.
+
+1148
+00:53:51,390 --> 00:53:52,410
+Gracias, David.
+
+1149
+00:53:52,410 --> 00:53:56,190
+¿Hay alguna forma de quitar los espacios que hay entre medias,
+
+1150
+00:53:56,190 --> 00:53:57,430
+los que haya podido añadir?
+
+1151
+00:53:57,430 --> 00:53:58,680
+DAVID MALAN: Respuesta corta: no.
+
+1152
+00:53:58,680 --> 00:54:01,060
+Si leéis la documentación en esa misma URL de antes,
+
+1153
+00:54:01,060 --> 00:54:05,090
+veréis que strip quita por la izquierda y por la derecha, pero no entre medias.
+
+1154
+00:54:05,090 --> 00:54:07,590
+De hecho, hay otras dos funciones que vienen con las cadenas.
+
+1155
+00:54:07,590 --> 00:54:10,560
+Una se llama lstrip y la otra rstrip,
+
+1156
+00:54:10,560 --> 00:54:12,378
+que os permiten hacer una cosa u otra.
+
+1157
+00:54:12,378 --> 00:54:14,670
+Si queremos empezar a quitar espacios del medio,
+
+1158
+00:54:14,670 --> 00:54:17,760
+vamos a tener que usar un truco completamente distinto.
+
+1159
+00:54:17,760 --> 00:54:22,380
+PÚBLICO: ¿Cuántas funciones se pueden combinar así, punto strip, punto title,
+
+1160
+00:54:22,380 --> 00:54:23,160
+todas combinadas?
+
+1161
+00:54:23,160 --> 00:54:24,930
+¿Cuántas podemos combinar?
+
+1162
+00:54:24,930 --> 00:54:26,970
+DAVID MALAN: Sí, muy buena pregunta.
+
+1163
+00:54:26,970 --> 00:54:30,177
+Técnicamente, tantas como queráis, pero llega un momento
+
+1164
+00:54:30,177 --> 00:54:32,760
+en que vuestro código va a empezar a quedar fatal, ¿verdad?
+
+1165
+00:54:32,760 --> 00:54:35,302
+Porque la línea de código se va a hacer larguísima.
+
+1166
+00:54:35,302 --> 00:54:38,130
+Al final quizá acabe saltando de línea una y otra vez.
+
+1167
+00:54:38,130 --> 00:54:41,220
+Así que llega un momento en que decís: no, no, son demasiadas.
+
+1168
+00:54:41,220 --> 00:54:44,340
+Y empezáis a dividirlo en varias líneas, como hice yo.
+
+1169
+00:54:44,340 --> 00:54:47,518
+Quizá reasignando el valor a la variable según haga falta.
+
+1170
+00:54:47,518 --> 00:54:49,060
+Y, de hecho, es una buena pregunta.
+
+1171
+00:54:49,060 --> 00:54:52,830
+Si me permitís cambiar de tema, [INAUDIBLE] a partir de tu pregunta: ¿qué opináis?
+
+1172
+00:54:52,830 --> 00:54:55,770
+Si pudierais bajar todos la mano un momento.
+
+1173
+00:54:55,770 --> 00:54:57,690
+Dejadme preguntar esto:
+
+1174
+00:54:57,690 --> 00:55:03,450
+la forma en que lo he hecho ahora, con strip, title e input
+
+1175
+00:55:03,450 --> 00:55:04,800
+todo en la misma línea,
+
+1176
+00:55:04,800 --> 00:55:07,290
+¿es mejor que mi enfoque anterior?
+
+1177
+00:55:07,290 --> 00:55:10,830
+En Zoom podéis usar el icono de Sí o el de No.
+
+1178
+00:55:10,830 --> 00:55:14,370
+Si creéis que esta versión es mejor, decid Sí.
+
+1179
+00:55:14,370 --> 00:55:19,060
+Si creéis que la versión anterior era mejor, por ejemplo,
+
+1180
+00:55:19,060 --> 00:55:23,310
+esta de aquí en la que lo teníamos todo separado, decid No.
+
+1181
+00:55:23,310 --> 00:55:26,610
+Y en un momento veremos por qué.
+
+1182
+00:55:26,610 --> 00:55:30,000
+Antes he dicho que personas razonables pueden no estar de acuerdo,
+
+1183
+00:55:30,000 --> 00:55:32,730
+y así es, sin duda.
+
+1184
+00:55:32,730 --> 00:55:35,520
+Hacerlo de una forma u otra no es necesariamente lo mejor,
+
+1185
+00:55:35,520 --> 00:55:37,800
+al menos si lo podéis justificar.
+
+1186
+00:55:37,800 --> 00:55:41,280
+Voy a volver a la versión más reciente.
+
+1187
+00:55:41,280 --> 00:55:45,360
+Muy bien, estamos viendo muchos Sí y muchos No.
+
+1188
+00:55:45,360 --> 00:55:48,900
+¿Por qué no le damos la palabra a alguien que haya dicho Sí, si puede ser?
+
+1189
+00:55:48,900 --> 00:55:52,710
+Alguien que vote Sí: ¿por qué crees que la versión actual de este código
+
+1190
+00:55:52,710 --> 00:55:57,330
+es, en efecto, mejor que la versión anterior, más larga?
+
+1191
+00:55:57,330 --> 00:55:59,110
+PÚBLICO: Creo que es más legible.
+
+1192
+00:55:59,110 --> 00:56:03,030
+Puedo decir: esta es la variable name.
+
+1193
+00:56:03,030 --> 00:56:07,360
+Recibe una entrada y luego quita el espacio y le pone formato de título.
+
+1194
+00:56:07,360 --> 00:56:08,320
+Y ya está.
+
+1195
+00:56:08,320 --> 00:56:09,600
+Tienes un hello, name.
+
+1196
+00:56:09,600 --> 00:56:10,860
+DAVID MALAN: Sí, creo que es bastante razonable.
+
+1197
+00:56:10,860 --> 00:56:12,660
+Es muy legible, al menos si tenéis la costumbre,
+
+1198
+00:56:12,660 --> 00:56:14,660
+como pasa en inglés, de leer de izquierda a derecha.
+
+1199
+00:56:14,660 --> 00:56:16,990
+Simplemente fluye de forma muy natural.
+
+1200
+00:56:16,990 --> 00:56:18,943
+La línea no es tan larga.
+
+1201
+00:56:18,943 --> 00:56:20,860
+Desde luego, cabe bien en la pantalla.
+
+1202
+00:56:20,860 --> 00:56:21,870
+Así que creo que es un buen argumento.
+
+1203
+00:56:21,870 --> 00:56:23,310
+Pero ¿qué tal un contraargumento?
+
+1204
+00:56:23,310 --> 00:56:27,810
+Alguien que haya votado No, si podemos darle la palabra a alguien que piense que esto es peor.
+
+1205
+00:56:27,810 --> 00:56:31,410
+PÚBLICO: Porque no es nada legible.
+
+1206
+00:56:31,410 --> 00:56:37,300
+Parece una línea muy larga.
+
+1207
+00:56:37,300 --> 00:56:39,170
+Así que creo que es mejor separarlo.
+
+1208
+00:56:39,170 --> 00:56:39,920
+DAVID MALAN: Sí.
+
+1209
+00:56:39,920 --> 00:56:41,580
+Creo que eso también es convincente, ¿verdad?
+
+1210
+00:56:41,580 --> 00:56:43,050
+Se está alargando un poco.
+
+1211
+00:56:43,050 --> 00:56:46,890
+Y aunque mi frase de aquí —What's your name?— es relativamente corta,
+
+1212
+00:56:46,890 --> 00:56:49,530
+os podéis imaginar que esto podría ponerse feo enseguida
+
+1213
+00:56:49,530 --> 00:56:52,350
+si le hiciera al usuario una pregunta más larga, lo que
+
+1214
+00:56:52,350 --> 00:56:56,070
+haría esta línea de código aún más larga y, por tanto, menos legible.
+
+1215
+00:56:56,070 --> 00:56:59,970
+Quizá no sea tan evidente para mí o para mis compañeros que estoy llamando a strip
+
+1216
+00:56:59,970 --> 00:57:01,530
+o que estoy llamando a title.
+
+1217
+00:57:01,530 --> 00:57:03,870
+Podría ser una especie de sorpresa inesperada.
+
+1218
+00:57:03,870 --> 00:57:05,460
+Así que creo que eso también es razonable.
+
+1219
+00:57:05,460 --> 00:57:07,570
+En resumen, aquí no hay una respuesta correcta.
+
+1220
+00:57:07,570 --> 00:57:10,680
+Y, de hecho, parte del proceso de mejorar como programador
+
+1221
+00:57:10,680 --> 00:57:14,168
+consiste en desarrollar vuestro propio estilo o en trabajar para una empresa
+
+1222
+00:57:14,168 --> 00:57:16,710
+que quizá establezca qué forma es mejor que la otra
+
+1223
+00:57:16,710 --> 00:57:18,930
+simplemente porque quiere que todo el mundo haga lo mismo,
+
+1224
+00:57:18,930 --> 00:57:22,080
+aunque personas razonables puedan no estar de acuerdo.
+
+1225
+00:57:22,080 --> 00:57:24,750
+Pero, al final, siempre que tengáis
+
+1226
+00:57:24,750 --> 00:57:28,710
+un argumento bastante bueno a favor de una forma u otra, en el fondo,
+
+1227
+00:57:28,710 --> 00:57:29,820
+eso es lo importante.
+
+1228
+00:57:29,820 --> 00:57:32,160
+Si hacéis las cosas simplemente porque no sabéis cuál es mejor,
+
+1229
+00:57:32,160 --> 00:57:33,180
+eso no está muy bien.
+
+1230
+00:57:33,180 --> 00:57:35,460
+Pero si empezáis a tener opiniones propias, y cuando lo hagáis,
+
+1231
+00:57:35,460 --> 00:57:38,610
+y vuestro jefe, vuestro profesor, vuestro compañero o vuestro amigo
+
+1232
+00:57:38,610 --> 00:57:41,312
+os cuestionan y os dicen: «Un momento, ¿por qué lo has hecho así?»,
+
+1233
+00:57:41,312 --> 00:57:43,770
+puede que no estén de acuerdo con vosotros, pero al menos tendréis una respuesta,
+
+1234
+00:57:43,770 --> 00:57:47,010
+y eso, en general, debería ser suficientemente convincente.
+
+1235
+00:57:47,010 --> 00:57:49,230
+Las cadenas vienen también con un montón de métodos más,
+
+1236
+00:57:49,230 --> 00:57:53,310
+entre ellos uno llamado split, que, como su nombre indica, puede
+
+1237
+00:57:53,310 --> 00:57:57,030
+dividir una cadena en varias subcadenas más pequeñas, por así decirlo.
+
+1238
+00:57:57,030 --> 00:57:59,040
+Por ejemplo, si el humano tiene la costumbre
+
+1239
+00:57:59,040 --> 00:58:02,130
+de escribir su nombre, luego un espacio y luego su apellido,
+
+1240
+00:58:02,130 --> 00:58:05,070
+y queréis saludarle solo por el nombre,
+
+1241
+00:58:05,070 --> 00:58:07,140
+podríamos aprovechar ese único espacio
+
+1242
+00:58:07,140 --> 00:58:09,930
+entre el nombre y el apellido y dividir esa cadena
+
+1243
+00:58:09,930 --> 00:58:11,760
+en dos subcadenas más pequeñas.
+
+1244
+00:58:11,760 --> 00:58:12,820
+¿Cómo podemos hacerlo?
+
+1245
+00:58:12,820 --> 00:58:14,820
+Pues, entre estas líneas, voy a
+
+1246
+00:58:14,820 --> 00:58:18,210
+comentar de antemano que vamos a poner "Split user's
+
+1247
+00:58:18,210 --> 00:58:22,230
+name into first name and last name".
+
+1248
+00:58:22,230 --> 00:58:25,920
+Y luego vamos a coger esa variable name, que ahora mismo contiene
+
+1249
+00:58:25,920 --> 00:58:28,590
+algo como, supuestamente, David, espacio, Malan,
+
+1250
+00:58:28,590 --> 00:58:32,130
+y voy a llamar a split y pasarle como argumento
+
+1251
+00:58:32,130 --> 00:58:35,820
+un único espacio en blanco, indicando así que, en efecto,
+
+1252
+00:58:35,820 --> 00:58:37,750
+quiero dividir por ese carácter.
+
+1253
+00:58:37,750 --> 00:58:41,363
+Resulta que split va a devolver una secuencia de valores, idealmente
+
+1254
+00:58:41,363 --> 00:58:42,780
+un nombre y luego un apellido.
+
+1255
+00:58:42,780 --> 00:58:45,330
+Y en Python podemos asignar los dos valores
+
+1256
+00:58:45,330 --> 00:58:47,940
+de esa secuencia a la vez a unas variables.
+
+1257
+00:58:47,940 --> 00:58:51,360
+Por ejemplo, first, coma, last, igual, y eso
+
+1258
+00:58:51,360 --> 00:58:53,220
+hará, de derecha a izquierda,
+
+1259
+00:58:53,220 --> 00:58:56,760
+que el primer valor vaya a la primera variable y el segundo valor
+
+1260
+00:58:56,760 --> 00:58:57,880
+a la segunda variable.
+
+1261
+00:58:57,880 --> 00:59:01,350
+Así que ahora, en mi última línea de código, puedo saludar
+
+1262
+00:59:01,350 --> 00:59:03,900
+no al nombre completo, algo como David Malan,
+
+1263
+00:59:03,900 --> 00:59:06,540
+sino que puedo poner simplemente Hello, first.
+
+1264
+00:59:06,540 --> 00:59:10,200
+Muy bien, voy a limpiar la ventana de terminal, ejecutar python Hello.py
+
+1265
+00:59:10,200 --> 00:59:10,807
+y pulsar Enter.
+
+1266
+00:59:10,807 --> 00:59:13,890
+Esta vez no me voy a molestar con espacios en blanco al principio, pero voy
+
+1267
+00:59:13,890 --> 00:59:19,290
+a escribir David espacio Malan y, cruzando los dedos como siempre, Hello,
+
+1268
+00:59:19,290 --> 00:59:21,720
+David es lo que vemos ahora.
+
+1269
+00:59:21,720 --> 00:59:25,530
+Muy bien, hemos visto muchísimo, muchísimos ejemplos hasta ahora con
+
+1270
+00:59:25,530 --> 00:59:29,430
+cadenas, pero, desde luego, los programas y los lenguajes de programación pueden
+
+1271
+00:59:29,430 --> 00:59:32,080
+manejar también otros tipos de datos.
+
+1272
+00:59:32,080 --> 00:59:36,000
+Así que pasemos a otro tipo de dato muy habitual
+
+1273
+00:59:36,000 --> 00:59:38,610
+en Python, y en programación en general:
+
+1274
+00:59:38,610 --> 00:59:41,160
+los enteros, conocidos en Python como int,
+
+1275
+00:59:41,160 --> 00:59:46,080
+I-N-T. Igual que str, S-T-R, es la abreviatura de string, int en Python es
+
+1276
+00:59:46,080 --> 00:59:47,210
+la abreviatura de integer, «entero».
+
+1277
+00:59:47,210 --> 00:59:48,210
+¿Y qué es un entero?
+
+1278
+00:59:48,210 --> 00:59:51,390
+Pues, igual que en matemáticas, es un número como menos 2,
+
+1279
+00:59:51,390 --> 00:59:55,605
+menos 1, 0, 1, 2, y así hasta menos infinito y
+
+1280
+00:59:55,605 --> 00:59:56,980
+hasta más infinito.
+
+1281
+00:59:56,980 --> 00:59:59,040
+Pero un entero no tiene coma decimal.
+
+1282
+00:59:59,040 --> 01:00:04,260
+Es simplemente un número como menos 2, menos 1, 0, 1, 2 y siguientes.
+
+1283
+01:00:04,260 --> 01:00:05,160
+Eso es un int.
+
+1284
+01:00:05,160 --> 01:00:09,360
+Por supuesto, en el mundo de las matemáticas usamos muchos símbolos.
+
+1285
+01:00:09,360 --> 01:00:12,300
+Y ya hemos visto el + antes, aunque lo usamos para otra cosa.
+
+1286
+01:00:12,300 --> 01:00:15,030
+Pero Python admite estos símbolos y más.
+
+1287
+01:00:15,030 --> 01:00:18,090
+Y Python os permite sumar números con +,
+
+1288
+01:00:18,090 --> 01:00:21,580
+restar números, multiplicar números, dividir números.
+
+1289
+01:00:21,580 --> 01:00:25,380
+Y el único que quizá os parezca un poco raro o desconocido
+
+1290
+01:00:25,380 --> 01:00:29,310
+es este signo de porcentaje, pero en este contexto no significa porcentaje.
+
+1291
+01:00:29,310 --> 01:00:32,400
+Si usáis un único signo de porcentaje en un programa de Python,
+
+1292
+01:00:32,400 --> 01:00:34,680
+eso es en realidad el llamado operador módulo,
+
+1293
+01:00:34,680 --> 01:00:38,400
+el operador que os permite obtener el resto de dividir
+
+1294
+01:00:38,400 --> 01:00:40,210
+un número entre otro.
+
+1295
+01:00:40,210 --> 01:00:43,230
+Veremos ejemplos de eso dentro de poco, pero los cuatro primeros
+
+1296
+01:00:43,230 --> 01:00:45,570
+quizá os resulten muy, muy familiares.
+
+1297
+01:00:45,570 --> 01:00:49,240
+Pues resulta que en Python no tenéis por qué...
+
+1298
+01:00:49,240 --> 01:00:54,480
+no tenéis por qué seguir escribiendo código en un archivo como Hello.py
+
+1299
+01:00:54,480 --> 01:00:56,700
+y luego ejecutarlo en una ventana de terminal.
+
+1300
+01:00:56,700 --> 01:00:59,610
+Una de las características de Python que gusta a mucha gente
+
+1301
+01:00:59,610 --> 01:01:02,250
+es que admite el llamado modo interactivo.
+
+1302
+01:01:02,250 --> 01:01:06,240
+O sea, podéis empezar a escribir código de Python y ejecutar al momento
+
+1303
+01:01:06,240 --> 01:01:08,965
+cada una de esas líneas de forma interactiva, sobre todo
+
+1304
+01:01:08,965 --> 01:01:11,340
+si no os importa guardar todas vuestras líneas de código.
+
+1305
+01:01:11,340 --> 01:01:14,590
+Solo queréis ejecutar código y obtener algunas respuestas.
+
+1306
+01:01:14,590 --> 01:01:18,400
+Así que, por ejemplo, voy a volver a VS Code, voy a cerrar Hello.py
+
+1307
+01:01:18,400 --> 01:01:22,050
+y voy a hacer clic en el triangulito de aquí, en la ventana de terminal,
+
+1308
+01:01:22,050 --> 01:01:24,880
+solo para hacerla mucho más grande, temporalmente, un momento.
+
+1309
+01:01:24,880 --> 01:01:30,450
+Así que ahora no estoy creando ningún archivo .py; simplemente voy a ejecutar python a secas
+
+1310
+01:01:30,450 --> 01:01:31,410
+en el prompt.
+
+1311
+01:01:31,410 --> 01:01:35,100
+Y veréis que, cuando lo hago, aparece una salida de aspecto críptico
+
+1312
+01:01:35,100 --> 01:01:38,890
+y la fecha y la hora en que se actualizó el programa por última vez, etcétera.
+
+1313
+01:01:38,890 --> 01:01:43,710
+Pero al final aparecen tres signos de mayor que, así.
+
+1314
+01:01:43,710 --> 01:01:46,740
+Es el modo interactivo de Python.
+
+1315
+01:01:46,740 --> 01:01:52,050
+Así que estoy ejecutando el intérprete de Python y, cada vez que escriba una línea de código
+
+1316
+01:01:52,050 --> 01:01:54,570
+en el intérprete, la va a ejecutar inmediatamente.
+
+1317
+01:01:54,570 --> 01:01:56,942
+No tengo que ejecutar python una y otra vez.
+
+1318
+01:01:56,942 --> 01:01:58,650
+Es como si, en el mundo humano,
+
+1319
+01:01:58,650 --> 01:02:01,635
+estuvierais al lado de alguien que habla otro idioma
+
+1320
+01:02:01,635 --> 01:02:04,260
+y simplemente estuvierais conversando con esa persona,
+
+1321
+01:02:04,260 --> 01:02:07,030
+y todo —la traducción— ocurriera al instante.
+
+1322
+01:02:07,030 --> 01:02:08,940
+¿Y qué podría hacer en modo interactivo?
+
+1323
+01:02:08,940 --> 01:02:11,760
+Pues podría hacer algo como 1 + 1, Enter.
+
+1324
+01:02:11,760 --> 01:02:13,380
+Eso es código de verdad, ¿vale?
+
+1325
+01:02:13,380 --> 01:02:16,590
+Quizá no lo veáis como código, pero si sabéis un poco de aritmética,
+
+1326
+01:02:16,590 --> 01:02:21,060
+conocéis los números y conocéis el +, eso es código de Python válido.
+
+1327
+01:02:21,060 --> 01:02:23,537
+Y podéis usar Python, en realidad, como una calculadora sofisticada.
+
+1328
+01:02:23,537 --> 01:02:24,870
+Pero también podría hacer otras cosas.
+
+1329
+01:02:24,870 --> 01:02:28,020
+Si quiero imprimirme Hello, world,
+
+1330
+01:02:28,020 --> 01:02:30,750
+también puedo imprimir esa línea de código de ahí:
+
+1331
+01:02:30,750 --> 01:02:31,530
+Hello, world.
+
+1332
+01:02:31,530 --> 01:02:33,600
+Así que es interactivo en el sentido de que, en cuanto
+
+1333
+01:02:33,600 --> 01:02:36,960
+ejecutáis una línea de código, zas, veis el resultado.
+
+1334
+01:02:36,960 --> 01:02:39,450
+En general no vamos a hacerlo así porque, al menos cuando
+
+1335
+01:02:39,450 --> 01:02:42,810
+enseñamos el lenguaje, solemos querer hacer las cosas paso a paso
+
+1336
+01:02:42,810 --> 01:02:45,513
+y queremos que podáis ver de dónde venimos.
+
+1337
+01:02:45,513 --> 01:02:48,180
+Y queremos poder probar las cosas una y otra vez, sobre todo
+
+1338
+01:02:48,180 --> 01:02:49,140
+si nos equivocamos.
+
+1339
+01:02:49,140 --> 01:02:51,690
+Pero sabed que esta es, en efecto, una característica de Python,
+
+1340
+01:02:51,690 --> 01:02:54,250
+el llamado modo interactivo.
+
+1341
+01:02:54,250 --> 01:02:57,015
+Pero centrémonos ahora un momento no solo en esa interactividad,
+
+1342
+01:02:57,015 --> 01:02:58,890
+sino en el hecho de que Python, al parecer,
+
+1343
+01:02:58,890 --> 01:03:03,310
+admite enteros, matemáticas y algunas de esas operaciones básicas.
+
+1344
+01:03:03,310 --> 01:03:06,430
+Y veamos si podemos hacer nuestra propia calculadora sencilla.
+
+1345
+01:03:06,430 --> 01:03:08,820
+Así que voy a abrir otra vez VS Code,
+
+1346
+01:03:08,820 --> 01:03:11,440
+voy a encoger la ventana de terminal
+
+1347
+01:03:11,440 --> 01:03:14,610
+y voy a crear un archivo nuevo llamado calculator.py.
+
+1348
+01:03:14,610 --> 01:03:17,950
+Para eso, recordad, puedo escribir code aquí abajo
+
+1349
+01:03:17,950 --> 01:03:21,540
+y el nombre del archivo que quiero crear, .py, Enter.
+
+1350
+01:03:21,540 --> 01:03:23,550
+Eso me abre una pestaña nueva arriba.
+
+1351
+01:03:23,550 --> 01:03:25,620
+Ya he cerrado Hello.py.
+
+1352
+01:03:25,620 --> 01:03:27,150
+Ahora estoy en calculator.py.
+
+1353
+01:03:27,150 --> 01:03:30,900
+Y vamos a hacer una calculadora sencilla que me haga alguna suma.
+
+1354
+01:03:30,900 --> 01:03:33,690
+Pero lo voy a hacer en un archivo para que podamos ir iterando
+
+1355
+01:03:33,690 --> 01:03:36,607
+y haciendo cambios, para bien o para mal, con el tiempo.
+
+1356
+01:03:36,607 --> 01:03:38,940
+Primero voy a declarar un par de variables.
+
+1357
+01:03:38,940 --> 01:03:42,840
+Voy a hacer lo típico de matemáticas y llamar a mi primera variable x,
+
+1358
+01:03:42,840 --> 01:03:45,840
+a la segunda y, y luego me voy a dar
+
+1359
+01:03:45,840 --> 01:03:48,720
+una tercera variable, z = x + y.
+
+1360
+01:03:48,720 --> 01:03:50,970
+Y luego voy a imprimir z.
+
+1361
+01:03:50,970 --> 01:03:54,858
+Este programa, hay que reconocerlo, no es muy emocionante ni interesante;
+
+1362
+01:03:54,858 --> 01:03:57,900
+de hecho, es algo menos interesante que imprimir cosas en la pantalla
+
+1363
+01:03:57,900 --> 01:04:01,110
+como antes con las cadenas, pero iremos construyendo sobre él
+
+1364
+01:04:01,110 --> 01:04:04,030
+y veremos qué otras características de Python podemos aprovechar.
+
+1365
+01:04:04,030 --> 01:04:07,410
+Así que, con suerte, si Python sabe matemáticas tan bien como yo,
+
+1366
+01:04:07,410 --> 01:04:13,140
+cuando ejecute python calculator.py debería ver, con suerte, que 1 + 2
+
+1367
+01:04:13,140 --> 01:04:15,600
+es, en efecto, 3.
+
+1368
+01:04:15,600 --> 01:04:18,510
+Muy bien, nada sorprendente ni muy interesante.
+
+1369
+01:04:18,510 --> 01:04:20,730
+Y, sinceramente, este no es el programa más útil,
+
+1370
+01:04:20,730 --> 01:04:24,840
+porque siempre va a calcular que 1 + 2 = 3.
+
+1371
+01:04:24,840 --> 01:04:28,170
+Hagamos al menos que este programa sea un poco más interactivo, ¿no?
+
+1372
+01:04:28,170 --> 01:04:31,590
+Ya sabemos, por ejemplos anteriores, cómo obtener una entrada del usuario.
+
+1373
+01:04:31,590 --> 01:04:33,540
+Recuperemos esa función input.
+
+1374
+01:04:33,540 --> 01:04:37,380
+Y hagamos esto: ahora, arriba del todo de mi código,
+
+1375
+01:04:37,380 --> 01:04:40,650
+vamos a cambiar x para que no sea siempre el número 1;
+
+1376
+01:04:40,650 --> 01:04:42,510
+vamos a cambiarla para que sea el valor de retorno
+
+1377
+01:04:42,510 --> 01:04:45,690
+que resulte de pedirle x al usuario.
+
+1378
+01:04:45,690 --> 01:04:48,730
+Y aquí puedo usar el inglés o el idioma humano que quiera.
+
+1379
+01:04:48,730 --> 01:04:49,890
+Voy a poner "What's x?".
+
+1380
+01:04:49,890 --> 01:04:52,410
+Igual que antes pregunté "What's your name?".
+
+1381
+01:04:52,410 --> 01:04:54,180
+Y voy a hacer lo mismo con y.
+
+1382
+01:04:54,180 --> 01:04:57,330
+Voy a volver a usar input, pero esta vez cambio la pregunta por
+
+1383
+01:04:57,330 --> 01:04:58,728
+"What's y?".
+
+1384
+01:04:58,728 --> 01:05:01,770
+Muy bien, llegados a este punto, creo que voy a dejar el resto del código
+
+1385
+01:05:01,770 --> 01:05:02,730
+igual.
+
+1386
+01:05:02,730 --> 01:05:06,450
+z = x + y y luego print z, pero lo bueno
+
+1387
+01:05:06,450 --> 01:05:10,140
+es que ahora creo que tengo una calculadora interactiva bastante maja.
+
+1388
+01:05:10,140 --> 01:05:12,510
+Ahora no va a hacer 1 + 2 todo el rato.
+
+1389
+01:05:12,510 --> 01:05:16,330
+Va a hacer lo que escriba el usuario más lo que escriba el usuario.
+
+1390
+01:05:16,330 --> 01:05:17,530
+Así que probémoslo.
+
+1391
+01:05:17,530 --> 01:05:19,080
+Voy a ejecutar ese programa.
+
+1392
+01:05:19,080 --> 01:05:20,110
+Muy bien, vamos allá.
+
+1393
+01:05:20,110 --> 01:05:26,670
+x va a ser 1, y va a ser 2 y, por supuesto, como todos sabemos, 1
+
+1394
+01:05:26,670 --> 01:05:30,762
++ 2 = tr...
+
+1395
+01:05:30,762 --> 01:05:31,980
+¿eh?
+
+1396
+01:05:31,980 --> 01:05:36,040
+¿Qué está pasando aquí?
+
+1397
+01:05:36,040 --> 01:05:40,720
+O vuestras clases de matemáticas os engañaron o os he engañado yo.
+
+1398
+01:05:40,720 --> 01:05:43,000
+¿Por qué no le damos la palabra a alguien para ver si
+
+1399
+01:05:43,000 --> 01:05:46,900
+nos ayuda a razonar cuál es el bug, cuál es el error?
+
+1400
+01:05:46,900 --> 01:05:48,970
+Anjali, si lo pronuncio bien.
+
+1401
+01:05:48,970 --> 01:05:52,960
+PÚBLICO: Creo que el problema es que está concatenando cadenas porque
+
+1402
+01:05:52,960 --> 01:05:54,935
+usas el operador + en lugar de sumar.
+
+1403
+01:05:54,935 --> 01:05:55,810
+DAVID MALAN: Perfecto.
+
+1404
+01:05:55,810 --> 01:05:57,040
+Una intuición perfecta.
+
+1405
+01:05:57,040 --> 01:06:01,060
+Hemos visto que el + se usa de forma algo distinta en el contexto de las cadenas,
+
+1406
+01:06:01,060 --> 01:06:03,940
+porque concatena, es decir, une las dos cadenas,
+
+1407
+01:06:03,940 --> 01:06:06,100
+y eso parece ser, en efecto, lo que está pasando aquí,
+
+1408
+01:06:06,100 --> 01:06:07,990
+aunque el usuario haya escrito un número.
+
+1409
+01:06:07,990 --> 01:06:09,910
+Pero lo interesante aquí es que, cuando
+
+1410
+01:06:09,910 --> 01:06:13,660
+obtenéis una entrada del usuario, como está usando el teclado de su Mac,
+
+1411
+01:06:13,660 --> 01:06:16,900
+su PC o su móvil, siempre va a ser texto.
+
+1412
+01:06:16,900 --> 01:06:19,030
+Puede parecer un número, pero, por defecto,
+
+1413
+01:06:19,030 --> 01:06:21,850
+llega del teclado como una cadena,
+
+1414
+01:06:21,850 --> 01:06:23,560
+es decir, como texto.
+
+1415
+01:06:23,560 --> 01:06:27,760
+Entonces, ¿cómo lo resolvemos si, al final,
+
+1416
+01:06:27,760 --> 01:06:30,190
+no queremos tratar esas entradas como cadenas,
+
+1417
+01:06:30,190 --> 01:06:32,110
+sino como números de verdad?
+
+1418
+01:06:32,110 --> 01:06:35,050
+Pues necesitamos otra función, y resulta que en Python
+
+1419
+01:06:35,050 --> 01:06:39,610
+a veces se puede convertir un tipo de dato en otro tipo de dato,
+
+1420
+01:06:39,610 --> 01:06:43,880
+por ejemplo, de cadena a int, haciendo algo así.
+
+1421
+01:06:43,880 --> 01:06:46,690
+Voy a volver a mi código y voy a cambiar
+
+1422
+01:06:46,690 --> 01:06:51,730
+x, antes de sumarla a y, para que sea la versión entera de x
+
+1423
+01:06:51,730 --> 01:06:56,030
+más la versión entera de y.
+
+1424
+01:06:56,030 --> 01:06:59,950
+Así que resulta que int no es solo un tipo de dato en Python,
+
+1425
+01:06:59,950 --> 01:07:02,590
+también es una función, y es una función
+
+1426
+01:07:02,590 --> 01:07:05,410
+que, si le pasáis una entrada, como una cadena,
+
+1427
+01:07:05,410 --> 01:07:09,790
+siempre que esa cadena parezca un número, como 1 o como 2,
+
+1428
+01:07:09,790 --> 01:07:13,450
+la convertirá en un número de verdad con el que podréis hacer operaciones
+
+1429
+01:07:13,450 --> 01:07:14,510
+matemáticas.
+
+1430
+01:07:14,510 --> 01:07:18,340
+Así que, si ahora vuelvo a mi ventana de terminal y ejecuto python...
+
+1431
+01:07:18,340 --> 01:07:19,870
+y dejadme que os enseñe otro truco.
+
+1432
+01:07:19,870 --> 01:07:21,580
+"calculator" es una palabra bastante larga.
+
+1433
+01:07:21,580 --> 01:07:22,930
+Es un poco pesado escribirla.
+
+1434
+01:07:22,930 --> 01:07:26,470
+Fijaos en lo que puedo hacer en mi ventana de terminal, en una interfaz de línea
+
+1435
+01:07:26,470 --> 01:07:27,460
+de comandos en general.
+
+1436
+01:07:27,460 --> 01:07:31,300
+Si empiezo a escribir C-A-L, de calculator, puedo
+
+1437
+01:07:31,300 --> 01:07:33,700
+pulsar Tab para que se complete.
+
+1438
+01:07:33,700 --> 01:07:36,550
+Así que en una ventana de terminal como esta se puede autocompletar.
+
+1439
+01:07:36,550 --> 01:07:39,663
+Escribid la primera letra o unas pocas letras y luego, zas, con Tab
+
+1440
+01:07:39,663 --> 01:07:41,080
+se os completa solo.
+
+1441
+01:07:41,080 --> 01:07:44,770
+O podéis volver atrás en el historial, como hice yo con las flechas arriba y abajo.
+
+1442
+01:07:44,770 --> 01:07:46,570
+Voy a ejecutarlo.
+
+1443
+01:07:46,570 --> 01:07:47,270
+What's x?
+
+1444
+01:07:47,270 --> 01:07:47,770
+1.
+
+1445
+01:07:47,770 --> 01:07:48,290
+What's x?
+
+1446
+01:07:48,290 --> 01:07:48,790
+2.
+
+1447
+01:07:48,790 --> 01:07:49,880
+Y ahí lo tenemos.
+
+1448
+01:07:49,880 --> 01:07:53,050
+Ahora tenemos una calculadora de uso general que admite
+
+1449
+01:07:53,050 --> 01:07:57,280
+no solo la suma de 1 y 2, sino de cualquier par
+
+1450
+01:07:57,280 --> 01:07:58,882
+de enteros que escriba el usuario.
+
+1451
+01:07:58,882 --> 01:08:00,340
+Y ahora voy a mejorar esto, ¿vale?
+
+1452
+01:08:00,340 --> 01:08:03,190
+Hemos visto cómo podemos mejorar el código
+
+1453
+01:08:03,190 --> 01:08:05,650
+y no sé si va a ser necesariamente mejor,
+
+1454
+01:08:05,650 --> 01:08:07,000
+pero probemos esto.
+
+1455
+01:08:07,000 --> 01:08:09,730
+¿De verdad necesito la variable z?
+
+1456
+01:08:09,730 --> 01:08:13,630
+Merece la pena fijarse en que estoy creando una variable llamada z
+
+1457
+01:08:13,630 --> 01:08:16,720
+y luego la uso inmediatamente en la línea de código siguiente.
+
+1458
+01:08:16,720 --> 01:08:20,770
+Eso no es muy convincente, porque si creáis una variable
+
+1459
+01:08:20,770 --> 01:08:23,470
+y luego la usáis inmediatamente, pero nunca más,
+
+1460
+01:08:23,470 --> 01:08:26,890
+¿de verdad hacía falta molestarse en introducir otro símbolo
+
+1461
+01:08:26,890 --> 01:08:30,279
+y otra variable para usarla una única vez?
+
+1462
+01:08:30,279 --> 01:08:31,090
+Pues quizá no.
+
+1463
+01:08:31,090 --> 01:08:33,729
+Quizá no necesitemos z de esta forma.
+
+1464
+01:08:33,729 --> 01:08:38,319
+Quizá debería hacer algo así.
+
+1465
+01:08:38,319 --> 01:08:41,140
+Quizá debería quitar z de aquí.
+
+1466
+01:08:41,140 --> 01:08:45,729
+Quizá debería cambiar esto para que sea int aquí arriba, cambiar
+
+1467
+01:08:45,729 --> 01:08:50,260
+esto para que sea int aquí arriba, y estoy haciendo algo bastante interesante.
+
+1468
+01:08:50,260 --> 01:08:53,680
+Aunque sea un poco de sintaxis nueva, fijaos en que
+
+1469
+01:08:53,680 --> 01:08:56,380
+podéis anidar funciones, por así decirlo.
+
+1470
+01:08:56,380 --> 01:09:01,330
+Podéis poner una llamada a una función, es decir, el uso de una función,
+
+1471
+01:09:01,330 --> 01:09:04,540
+dentro del uso de otra función, de modo que el valor de retorno
+
+1472
+01:09:04,540 --> 01:09:09,040
+de la función interior se convierte en el argumento
+
+1473
+01:09:09,040 --> 01:09:11,410
+o la entrada de la función exterior.
+
+1474
+01:09:11,410 --> 01:09:14,510
+Igual que en matemáticas, si tenéis paréntesis, paréntesis, paréntesis,
+
+1475
+01:09:14,510 --> 01:09:16,218
+probablemente vuestro profesor os enseñó a fijaros
+
+1476
+01:09:16,218 --> 01:09:18,430
+primero en lo que hay dentro de los paréntesis más interiores
+
+1477
+01:09:18,430 --> 01:09:19,603
+y luego ir hacia fuera.
+
+1478
+01:09:19,603 --> 01:09:20,770
+Lo mismo pasa en programación.
+
+1479
+01:09:20,770 --> 01:09:22,040
+Eso es lo que va a hacer Python.
+
+1480
+01:09:22,040 --> 01:09:24,729
+Primero va a mirar lo que hay dentro de los paréntesis,
+
+1481
+01:09:24,729 --> 01:09:26,920
+va a obtener la respuesta y luego
+
+1482
+01:09:26,920 --> 01:09:30,710
+le va a pasar el valor de retorno a la función más exterior.
+
+1483
+01:09:30,710 --> 01:09:34,600
+Así que lo que pasa ahora en la línea 1 es que primero se llama a la función input,
+
+1484
+01:09:34,600 --> 01:09:37,990
+luego su resultado, "1" entre comillas,
+
+1485
+01:09:37,990 --> 01:09:42,670
+se convierte en la entrada de la función int, y lo mismo en la línea 2.
+
+1486
+01:09:42,670 --> 01:09:47,300
+La salida de "What's y?" se convierte en la entrada de esta función int.
+
+1487
+01:09:47,300 --> 01:09:49,479
+Y ahora ya no hay z.
+
+1488
+01:09:49,479 --> 01:09:52,210
+Podría hacer simplemente print x + y.
+
+1489
+01:09:52,210 --> 01:09:56,410
+Y como me he molestado en convertir cada una de esas cadenas
+
+1490
+01:09:56,410 --> 01:09:58,720
+en un entero, creo que estamos bien.
+
+1491
+01:09:58,720 --> 01:10:01,570
+Así que voy a probarlo: python calculator.py, Enter.
+
+1492
+01:10:01,570 --> 01:10:05,170
+1 y 2, y seguimos obteniendo 3.
+
+1493
+01:10:05,170 --> 01:10:09,130
+No 12, o no 12 sino 1, 2: obtenemos, en efecto, 3.
+
+1494
+01:10:09,130 --> 01:10:11,350
+Y, además, nos hemos librado de la variable,
+
+1495
+01:10:11,350 --> 01:10:13,900
+porque, al parecer, no nos hacía falta,
+
+1496
+01:10:13,900 --> 01:10:15,490
+sobre todo si solo la usábamos una vez.
+
+1497
+01:10:15,490 --> 01:10:18,280
+Bueno, aquí también, bajad todos la mano un momento
+
+1498
+01:10:18,280 --> 01:10:19,930
+y dejadme preguntar como antes:
+
+1499
+01:10:19,930 --> 01:10:26,530
+esta versión, que ahora usa int alrededor de las llamadas a input
+
+1500
+01:10:26,530 --> 01:10:30,640
+y no usa z, ¿es mejor que la versión anterior?
+
+1501
+01:10:30,640 --> 01:10:32,560
+Si queréis votar Sí, adelante.
+
+1502
+01:10:32,560 --> 01:10:35,270
+O, si preferís la forma antigua, votad No.
+
+1503
+01:10:35,270 --> 01:10:40,455
+La forma antigua, y voy a deshacer todo esto mientras votamos, era así.
+
+1504
+01:10:43,510 --> 01:10:45,850
+Muy bien, y ahora vuelvo a la versión más reciente.
+
+1505
+01:10:45,850 --> 01:10:48,040
+Vamos a escuchar a alguien que haya votado Sí, alguien que
+
+1506
+01:10:48,040 --> 01:10:51,430
+piense que esta última versión es mejor.
+
+1507
+01:10:51,430 --> 01:10:57,130
+PÚBLICO: Creo que esta forma es mejor porque nos permite ver de inmediato
+
+1508
+01:10:57,130 --> 01:11:01,840
+que las variables x e y son enteros,
+
+1509
+01:11:01,840 --> 01:11:04,660
+así que sabemos qué esperar de ellas.
+
+1510
+01:11:04,660 --> 01:11:09,250
+Y además el argumento de print es más intuitivo.
+
+1511
+01:11:09,250 --> 01:11:12,330
+Evitamos llenar el código de cosas.
+
+1512
+01:11:12,330 --> 01:11:14,330
+DAVID MALAN: Creo que todas son buenas razones.
+
+1513
+01:11:14,330 --> 01:11:15,370
+Es bonito y conciso.
+
+1514
+01:11:15,370 --> 01:11:17,650
+Las líneas de código no son muy largas.
+
+1515
+01:11:17,650 --> 01:11:20,530
+No necesito saber qué es z porque no existe.
+
+1516
+01:11:20,530 --> 01:11:21,820
+Simplemente se ve print x + y.
+
+1517
+01:11:21,820 --> 01:11:22,390
+Eso me gusta.
+
+1518
+01:11:22,390 --> 01:11:25,990
+Pero ¿alguien que prefiera la forma antigua, en la que sí teníamos z
+
+1519
+01:11:25,990 --> 01:11:30,970
+y pasábamos de forma más explícita cada variable a la función int?
+
+1520
+01:11:30,970 --> 01:11:32,050
+PÚBLICO: Sí, hola.
+
+1521
+01:11:32,050 --> 01:11:36,100
+Creo que la versión anterior es mejor porque cuando...
+
+1522
+01:11:36,100 --> 01:11:39,370
+o sea, si el usuario introduce otra cosa que no sea,
+
+1523
+01:11:39,370 --> 01:11:43,570
+digamos, o sea, digamos que escribe 1 y 2, o sea,
+
+1524
+01:11:43,570 --> 01:11:46,780
+así será más fácil de depurar.
+
+1525
+01:11:46,780 --> 01:11:49,807
+DAVID MALAN: ¿Esta versión o...? ¿Esta versión de aquí o la versión antigua?
+
+1526
+01:11:49,807 --> 01:11:50,890
+PÚBLICO: La versión antigua.
+
+1527
+01:11:50,890 --> 01:11:52,098
+DAVID MALAN: Vale, es justo.
+
+1528
+01:11:52,098 --> 01:11:57,190
+Y, de hecho, hoy estoy teniendo mucho cuidado, todo lo que puedo, para no meter la pata.
+
+1529
+01:11:57,190 --> 01:12:01,050
+Hasta ahora solo he introducido enteros cuando espero enteros.
+
+1530
+01:12:01,050 --> 01:12:02,800
+Y Raoul, de hecho, está señalando algo
+
+1531
+01:12:02,800 --> 01:12:05,980
+a lo que volveremos en las próximas semanas: ¿cómo gestionamos los errores?
+
+1532
+01:12:05,980 --> 01:12:09,770
+¿Y si el usuario no escribe el número 1 o el número 2, o ni siquiera
+
+1533
+01:12:09,770 --> 01:12:10,270
+un número?
+
+1534
+01:12:10,270 --> 01:12:13,390
+¿Y si escribe una palabra como cat, C-A-T?
+
+1535
+01:12:13,390 --> 01:12:16,150
+Eso no es un número, y apuesto a que no puedo convertirlo en un entero.
+
+1536
+01:12:16,150 --> 01:12:18,110
+Pero hoy no me voy a centrar en eso.
+
+1537
+01:12:18,110 --> 01:12:20,110
+Simplemente voy a esperar que el usuario colabore.
+
+1538
+01:12:20,110 --> 01:12:21,740
+Pero no va a ser así.
+
+1539
+01:12:21,740 --> 01:12:24,280
+Y por eso quizá una de las formas nos prepararía mejor
+
+1540
+01:12:24,280 --> 01:12:26,020
+para gestionar esos errores.
+
+1541
+01:12:26,020 --> 01:12:28,495
+Pero, para lo que nos ocupa hoy, ¿cuál es mejor?
+
+1542
+01:12:28,495 --> 01:12:29,650
+Bah, a ver, me gustan las dos.
+
+1543
+01:12:29,650 --> 01:12:32,440
+Y creo que los dos habéis dado argumentos muy válidos,
+
+1544
+01:12:32,440 --> 01:12:36,250
+siempre que tengáis una justificación que parezca bastante razonable.
+
+1545
+01:12:36,250 --> 01:12:37,930
+A ver, eso es lo que importa al final.
+
+1546
+01:12:37,930 --> 01:12:41,500
+Pero se trata, de nuevo, de ir entendiendo los pros y los contras.
+
+1547
+01:12:41,500 --> 01:12:43,180
+¿Es mejor esta forma?
+
+1548
+01:12:43,180 --> 01:12:44,885
+Si lo es, ¿por qué sí o por qué no?
+
+1549
+01:12:44,885 --> 01:12:46,760
+Simplemente entender cuáles son esos pros y contras.
+
+1550
+01:12:46,760 --> 01:12:51,460
+Pero, en general, dar prioridad a la legibilidad es algo muy bueno.
+
+1551
+01:12:51,460 --> 01:12:54,740
+Hacer que vuestro código sea legible para otra persona es muy bueno,
+
+1552
+01:12:54,740 --> 01:12:57,608
+y muy bueno también para vosotros, para que, cuando os despertéis a la mañana siguiente
+
+1553
+01:12:57,608 --> 01:12:59,650
+o volváis la semana siguiente o el año siguiente,
+
+1554
+01:12:59,650 --> 01:13:02,290
+también podáis leer vuestro propio código sin tener que perder
+
+1555
+01:13:02,290 --> 01:13:04,270
+tiempo intentando recordar qué hicisteis.
+
+1556
+01:13:04,270 --> 01:13:08,500
+Y la sencillez también suele ser algo bueno: mantener el código sencillo.
+
+1557
+01:13:08,500 --> 01:13:10,960
+Así que, a medida que os sintáis más cómodos programando,
+
+1558
+01:13:10,960 --> 01:13:15,250
+puede que os tiente meter un programa entero en una sola línea larga.
+
+1559
+01:13:15,250 --> 01:13:17,740
+Por ejemplo, voy a hacer precisamente eso.
+
+1560
+01:13:17,740 --> 01:13:20,680
+Técnicamente, no necesitamos guardar x en una variable.
+
+1561
+01:13:20,680 --> 01:13:22,480
+No necesitamos guardar y en una variable.
+
+1562
+01:13:22,480 --> 01:13:24,460
+También podríamos hacer esto:
+
+1563
+01:13:24,460 --> 01:13:27,820
+podría quitar x e y por completo.
+
+1564
+01:13:27,820 --> 01:13:32,080
+Luego podría eliminar esto y dejarlo en una sola línea de código.
+
+1565
+01:13:32,080 --> 01:13:34,510
+Vale, en cierto sentido, quizá os inclinéis a pensar: «Vaya,
+
+1566
+01:13:34,510 --> 01:13:35,740
+qué bien queda.
+
+1567
+01:13:35,740 --> 01:13:38,410
+Lo has dejado en una sola línea de código sencilla».
+
+1568
+01:13:38,410 --> 01:13:40,520
+Yo diría que, en realidad, esto no es tan sencillo.
+
+1569
+01:13:40,520 --> 01:13:43,180
+Creo que estoy empezando a anidar demasiadas cosas.
+
+1570
+01:13:43,180 --> 01:13:46,330
+Tengo que pensar en print, en int y en input.
+
+1571
+01:13:46,330 --> 01:13:49,150
+Luego tengo que fijarme en que, vale, he abierto dos paréntesis
+
+1572
+01:13:49,150 --> 01:13:50,300
+y he cerrado dos.
+
+1573
+01:13:50,300 --> 01:13:51,040
+Hay un +.
+
+1574
+01:13:51,040 --> 01:13:53,680
+Me estáis haciendo pensar demasiado, y cada vez que me hacéis pensar
+
+1575
+01:13:53,680 --> 01:13:54,730
+estáis perdiendo el tiempo.
+
+1576
+01:13:54,730 --> 01:13:58,360
+Y cada vez que complicáis así el aspecto del código,
+
+1577
+01:13:58,360 --> 01:14:01,300
+simplemente vais a aumentar la probabilidad de cometer errores,
+
+1578
+01:14:01,300 --> 01:14:04,270
+errores sintácticos o errores lógicos en vuestro código.
+
+1579
+01:14:04,270 --> 01:14:07,810
+Así que, de todo lo que hemos hecho, esto es lo único de lo que diría
+
+1580
+01:14:07,810 --> 01:14:10,870
+que sí, es una línea y es bonita y compacta,
+
+1581
+01:14:10,870 --> 01:14:12,340
+pero simplemente no es lo bastante legible.
+
+1582
+01:14:12,340 --> 01:14:15,850
+Yo evitaría hacer esto, sobre todo porque dos de esas llamadas
+
+1583
+01:14:15,850 --> 01:14:18,040
+a funciones están pidiendo datos al usuario.
+
+1584
+01:14:18,040 --> 01:14:20,410
+Pero ahí también personas razonables pueden no estar de acuerdo;
+
+1585
+01:14:20,410 --> 01:14:23,830
+aun así, esa es la reacción visceral que deberíais tener a veces cuando
+
+1586
+01:14:23,830 --> 01:14:28,300
+el código empieza a ser un poco demasiado complicado, un poco demasiado ingenioso,
+
+1587
+01:14:28,300 --> 01:14:31,450
+quizá, por su propio bien.
+
+1588
+01:14:31,450 --> 01:14:34,270
+Muy bien, pues no solo tenemos acceso a los enteros.
+
+1589
+01:14:34,270 --> 01:14:38,920
+Permitidme proponer que pasemos de los enteros a un tipo de dato más,
+
+1590
+01:14:38,920 --> 01:14:40,360
+el float.
+
+1591
+01:14:40,360 --> 01:14:43,390
+Así que, de nuevo, una cadena es una secuencia de texto.
+
+1592
+01:14:43,390 --> 01:14:46,570
+Un int es un entero, como menos 1, 0 y 1.
+
+1593
+01:14:46,570 --> 01:14:50,860
+Un float es un número con coma decimal, propiamente llamado valor de coma
+
+1594
+01:14:50,860 --> 01:14:51,470
+flotante.
+
+1595
+01:14:51,470 --> 01:14:53,470
+Y podéis pensar en la coma flotante como
+
+1596
+01:14:53,470 --> 01:14:56,740
+el decimal que puede estar aquí o aquí, con cierto número de dígitos
+
+1597
+01:14:56,740 --> 01:14:57,820
+a la izquierda o a la derecha.
+
+1598
+01:14:57,820 --> 01:15:02,000
+Matemáticamente, es un número real, un número que tiene coma decimal.
+
+1599
+01:15:02,000 --> 01:15:04,750
+Así que ese es un tercer tipo de dato que admite Python.
+
+1600
+01:15:04,750 --> 01:15:07,270
+Ahora mismo, nuestra calculadora da por hecho, de forma un tanto ingenua,
+
+1601
+01:15:07,270 --> 01:15:09,820
+que el usuario solo va a escribir enteros,
+
+1602
+01:15:09,820 --> 01:15:12,970
+pero si quiero admitir también valores de coma flotante,
+
+1603
+01:15:12,970 --> 01:15:15,070
+creo que basta con hacer un par de ajustes.
+
+1604
+01:15:15,070 --> 01:15:17,270
+Así que voy a volver aquí a VS Code.
+
+1605
+01:15:17,270 --> 01:15:20,890
+Y en lugar de convertir simplemente lo que introduce el usuario, x e y, en
+
+1606
+01:15:20,890 --> 01:15:23,950
+enteros en las líneas 1 y 2, hagamos un cambio sencillo.
+
+1607
+01:15:23,950 --> 01:15:27,400
+Vamos a convertirlo en un float en la primera línea
+
+1608
+01:15:27,400 --> 01:15:30,640
+y en un float en la segunda línea, aquí.
+
+1609
+01:15:30,640 --> 01:15:35,410
+Ahora creo que, si bajo a mi ventana de terminal y ejecuto python calculator.py,
+
+1610
+01:15:35,410 --> 01:15:39,040
+escribimos un número como 1.2, con su punto decimal,
+
+1611
+01:15:39,040 --> 01:15:42,100
+y 3.4, con su punto decimal, y ahí lo tenemos.
+
+1612
+01:15:42,100 --> 01:15:44,510
+Tenemos 4.6 como respuesta final.
+
+1613
+01:15:44,510 --> 01:15:48,250
+Eso no habría funcionado antes, si solo esperaba enteros
+
+1614
+01:15:48,250 --> 01:15:51,550
+del usuario, pero ahora que espero valores de coma flotante
+
+1615
+01:15:51,550 --> 01:15:56,180
+y los tengo en cuenta, puedo hacer también aritmética de coma flotante.
+
+1616
+01:15:56,180 --> 01:15:59,020
+Pero supongamos que no quiero que la respuesta final
+
+1617
+01:15:59,020 --> 01:16:03,160
+sea un valor de coma flotante como 4.6.
+
+1618
+01:16:03,160 --> 01:16:05,930
+Me conformaría con redondear al entero más cercano.
+
+1619
+01:16:05,930 --> 01:16:08,800
+Así que quiero permitir que el usuario escriba valores de coma
+
+1620
+01:16:08,800 --> 01:16:11,120
+flotante, con decimales, pero, al final,
+
+1621
+01:16:11,120 --> 01:16:15,760
+solo quiero redondear el resultado al entero más cercano posible, por ejemplo.
+
+1622
+01:16:15,760 --> 01:16:20,830
+Pues resulta que aquí también Python incluye cierta funcionalidad integrada.
+
+1623
+01:16:20,830 --> 01:16:23,620
+Y, de hecho, si volvemos a esa URL de antes
+
+1624
+01:16:23,620 --> 01:16:26,560
+en la que aparecen todas las funciones integradas de Python,
+
+1625
+01:16:26,560 --> 01:16:29,200
+hay una llamada round que hace exactamente
+
+1626
+01:16:29,200 --> 01:16:31,510
+lo que esperaríamos: recibe como entrada un número
+
+1627
+01:16:31,510 --> 01:16:36,860
+y luego nos lo redondea, por ejemplo, al entero más cercano.
+
+1628
+01:16:36,860 --> 01:16:40,390
+Pero si miramos un poco más de cerca esa documentación, como podemos hacer aquí
+
+1629
+01:16:40,390 --> 01:16:41,710
+—os pongo un fragmento—,
+
+1630
+01:16:41,710 --> 01:16:45,400
+así es como aparece la función en la documentación.
+
+1631
+01:16:45,400 --> 01:16:48,550
+Y recordad que antes miramos la documentación de print,
+
+1632
+01:16:48,550 --> 01:16:51,550
+y esto es parecido en el sentido de que nos muestra no solo
+
+1633
+01:16:51,550 --> 01:16:54,880
+el nombre de la función, sino sus parámetros disponibles, es decir,
+
+1634
+01:16:54,880 --> 01:16:57,850
+las entradas que podemos darle al usar esta función.
+
+1635
+01:16:57,850 --> 01:17:00,280
+Pero esto también es un poco críptico, igual que lo era print,
+
+1636
+01:17:00,280 --> 01:17:01,640
+y añade algo de sintaxis.
+
+1637
+01:17:01,640 --> 01:17:02,290
+Así que veamos.
+
+1638
+01:17:02,290 --> 01:17:04,630
+El nombre de esta función es, por supuesto, round
+
+1639
+01:17:04,630 --> 01:17:07,450
+y su primer argumento es un número.
+
+1640
+01:17:07,450 --> 01:17:10,548
+Fijaos en que esta vez no hay asterisco, no hay *objects
+
+1641
+01:17:10,548 --> 01:17:11,590
+como había en print.
+
+1642
+01:17:11,590 --> 01:17:16,000
+La función round recibe un solo número como primer argumento, y punto.
+
+1643
+01:17:16,000 --> 01:17:18,820
+Ese es su parámetro posicional.
+
+1644
+01:17:18,820 --> 01:17:20,420
+Pero fijaos en esta sintaxis.
+
+1645
+01:17:20,420 --> 01:17:22,720
+Y esto es una convención en programación, o en tecnología
+
+1646
+01:17:22,720 --> 01:17:26,260
+en general: normalmente, cuando veis corchetes
+
+1647
+01:17:26,260 --> 01:17:28,630
+en documentación como esta, significa que estáis
+
+1648
+01:17:28,630 --> 01:17:30,370
+a punto de ver algo opcional.
+
+1649
+01:17:30,370 --> 01:17:32,350
+Y lo que significa esto es que, si queréis
+
+1650
+01:17:32,350 --> 01:17:37,480
+especificar con más precisión el número de dígitos al que queréis que la función round
+
+1651
+01:17:37,480 --> 01:17:43,760
+redondee, podéis indicarlo aquí añadiendo una coma y luego ese número.
+
+1652
+01:17:43,760 --> 01:17:48,190
+Así que, si leemos la documentación, si no especificáis un número de dígitos,
+
+1653
+01:17:48,190 --> 01:17:52,000
+sino solo el número que hay que redondear, redondea al entero más cercano.
+
+1654
+01:17:52,000 --> 01:17:55,990
+Pero supongamos que queréis redondear a las décimas o a las centésimas,
+
+1655
+01:17:55,990 --> 01:17:58,330
+es decir, a uno o dos dígitos después del punto decimal;
+
+1656
+01:17:58,330 --> 01:18:04,167
+podríais pasar además coma 1 o coma 2 para ser más precisos.
+
+1657
+01:18:04,167 --> 01:18:06,250
+Eso es lo que dice ahí la documentación.
+
+1658
+01:18:06,250 --> 01:18:10,460
+Veamos si podemos traducir esto a código de verdad.
+
+1659
+01:18:10,460 --> 01:18:13,630
+Así que, si vuelvo ahora a VS Code y tengo en cuenta
+
+1660
+01:18:13,630 --> 01:18:18,350
+que quiero redondear x e y, puedo hacerlo de un par de formas.
+
+1661
+01:18:18,350 --> 01:18:22,630
+Podría hacer round x + y, pero, ¿sabéis?,
+
+1662
+01:18:22,630 --> 01:18:25,210
+la verdad es que preferiría dividirlo ahora en dos líneas.
+
+1663
+01:18:25,210 --> 01:18:28,300
+No tengo por qué, y aquí personas razonables pueden no estar de acuerdo,
+
+1664
+01:18:28,300 --> 01:18:31,330
+pero me gustaría volver a un escenario en el que imprima z,
+
+1665
+01:18:31,330 --> 01:18:34,270
+para poder decir de forma un poco más clara, para mí y para los demás,
+
+1666
+01:18:34,270 --> 01:18:38,890
+que z = el resultado redondeado de x + y.
+
+1667
+01:18:38,890 --> 01:18:41,060
+No es necesariamente la mejor forma de hacerlo,
+
+1668
+01:18:41,060 --> 01:18:44,690
+pero me siento un poco más cómodo separando mis ideas de una en una,
+
+1669
+01:18:44,690 --> 01:18:47,882
+sobre todo si quiero empezar a comentar cada uno de estos bloques de código.
+
+1670
+01:18:47,882 --> 01:18:49,840
+Muy bien, voy a bajar a mi ventana de terminal
+
+1671
+01:18:49,840 --> 01:18:52,120
+y ejecutar python calculator.py.
+
+1672
+01:18:52,120 --> 01:18:52,840
+What's x?
+
+1673
+01:18:52,840 --> 01:18:54,490
+Pongamos otra vez 1.2.
+
+1674
+01:18:54,490 --> 01:18:56,260
+Luego pongamos 3.4.
+
+1675
+01:18:56,260 --> 01:18:59,980
+Antes era 4.6, pero ahora se ha
+
+1676
+01:18:59,980 --> 01:19:04,540
+redondeado hacia arriba al entero más cercano, que por supuesto va a ser 5.
+
+1677
+01:19:04,540 --> 01:19:09,050
+Muy bien, ¿y si quisiera cambiar esto un poco más?
+
+1678
+01:19:09,050 --> 01:19:11,830
+¿Y si quisiera admitir números realmente grandes,
+
+1679
+01:19:11,830 --> 01:19:15,872
+números grandes, independientemente del redondeo? Hagamos algo así.
+
+1680
+01:19:15,872 --> 01:19:17,830
+Voy a ejecutar python calculator.py
+
+1681
+01:19:17,830 --> 01:19:22,270
+otra vez y voy a sumar 999 + 1.
+
+1682
+01:19:22,270 --> 01:19:25,030
+Y fijaos en que no tengo que escribir puntos decimales:
+
+1683
+01:19:25,030 --> 01:19:27,340
+aunque estoy convirtiendo a float, mi programa
+
+1684
+01:19:27,340 --> 01:19:30,840
+simplemente me permite escribir puntos decimales, pero no estoy obligado.
+
+1685
+01:19:30,840 --> 01:19:34,110
+La respuesta aquí, por supuesto, debería ser, y de hecho es, 1000,
+
+1686
+01:19:34,110 --> 01:19:35,670
+redondeemos o no.
+
+1687
+01:19:35,670 --> 01:19:38,470
+Así que esto es simplemente aritmética con enteros.
+
+1688
+01:19:38,470 --> 01:19:44,640
+Pero en Estados Unidos solemos dar formato a los números largos poniendo comas
+
+1689
+01:19:44,640 --> 01:19:47,580
+después o antes de cada grupo de tres dígitos.
+
+1690
+01:19:47,580 --> 01:19:50,660
+Otros países lo hacen al revés y usan puntos y comas en su lugar.
+
+1691
+01:19:50,660 --> 01:19:51,660
+Es una opción del sistema.
+
+1692
+01:19:51,660 --> 01:19:53,700
+Podéis cambiarla en vuestro Mac, PC
+
+1693
+01:19:53,700 --> 01:19:57,000
+o dispositivo para Python o cualquier lenguaje, pero yo
+
+1694
+01:19:57,000 --> 01:20:01,200
+estoy usando aquí el sistema estadounidense, que es el punto para los decimales
+
+1695
+01:20:01,200 --> 01:20:02,940
+y la coma como separador.
+
+1696
+01:20:02,940 --> 01:20:07,890
+¿Y si quisiera que la salida fuera 1,000?
+
+1697
+01:20:07,890 --> 01:20:12,180
+Solo para que quede un poco más claro que es mil y no algo como 100.
+
+1698
+01:20:12,180 --> 01:20:14,580
+Es aún más útil cuando es, por ejemplo, un millón:
+
+1699
+01:20:14,580 --> 01:20:18,060
+1,000,000.
+
+1700
+01:20:18,060 --> 01:20:19,950
+¿No estaría bien que pudiéramos mostrar automáticamente
+
+1701
+01:20:19,950 --> 01:20:21,540
+también esos números así?
+
+1702
+01:20:21,540 --> 01:20:23,700
+Pues resulta que podemos.
+
+1703
+01:20:23,700 --> 01:20:28,410
+Hay una forma de indicar en Python que
+
+1704
+01:20:28,410 --> 01:20:30,540
+queremos incluir comas así.
+
+1705
+01:20:30,540 --> 01:20:34,800
+Y aquí tenemos ocasión de recuperar a nuestra vieja amiga, la f-string.
+
+1706
+01:20:34,800 --> 01:20:37,440
+Primero voy a hacer algo no muy productivo.
+
+1707
+01:20:37,440 --> 01:20:38,760
+Primero voy a hacer esto.
+
+1708
+01:20:38,760 --> 01:20:41,610
+Voy a imprimir el valor de z, pero, un momento.
+
+1709
+01:20:41,610 --> 01:20:44,850
+No puedo poner simplemente "z", porque eso va a imprimir literalmente z
+
+1710
+01:20:44,850 --> 01:20:45,820
+en la pantalla.
+
+1711
+01:20:45,820 --> 01:20:49,050
+Así que voy a rodearla con esas llaves, como hice antes,
+
+1712
+01:20:49,050 --> 01:20:50,550
+pero eso tampoco bastaba.
+
+1713
+01:20:50,550 --> 01:20:54,060
+Tenía que añadir literalmente una f al principio de mi cadena
+
+1714
+01:20:54,060 --> 01:20:56,940
+para decirle a Python que es una f-string, una cadena de formato.
+
+1715
+01:20:56,940 --> 01:21:01,650
+Eso ahora va a imprimir, sin mucho interés, simplemente el valor de z
+
+1716
+01:21:01,650 --> 01:21:02,320
+en sí.
+
+1717
+01:21:02,320 --> 01:21:06,270
+Así que me estoy complicando muchísimo solo para imprimir z, cuando en realidad podría haber
+
+1718
+01:21:06,270 --> 01:21:07,890
+pasado z como único argumento.
+
+1719
+01:21:07,890 --> 01:21:11,820
+Pero, solo para asegurarme de que no lo he roto, hagámoslo otra vez.
+
+1720
+01:21:11,820 --> 01:21:14,190
+999 + 1, Enter.
+
+1721
+01:21:14,190 --> 01:21:15,300
+Vale, sigue siendo 1000.
+
+1722
+01:21:15,300 --> 01:21:16,950
+Así que no he empeorado nada.
+
+1723
+01:21:16,950 --> 01:21:20,460
+Pero fijaos —y esta sintaxis, por desgracia, es un poco críptica—,
+
+1724
+01:21:20,460 --> 01:21:22,380
+fijaos en que puedo hacer esto.
+
+1725
+01:21:22,380 --> 01:21:27,450
+Puedo poner dos puntos después de la z y luego una coma.
+
+1726
+01:21:27,450 --> 01:21:29,763
+Hay que reconocer que esto parece muy críptico, e incluso yo
+
+1727
+01:21:29,763 --> 01:21:32,430
+tengo que consultar constantemente cosas así en la documentación
+
+1728
+01:21:32,430 --> 01:21:33,750
+para recordar la sintaxis.
+
+1729
+01:21:33,750 --> 01:21:35,460
+Pero aquí, voy a ejecutarlo otra vez.
+
+1730
+01:21:35,460 --> 01:21:41,250
+python calculator.py, 999, 1, y ahora fijaos
+
+1731
+01:21:41,250 --> 01:21:43,928
+en que el número se ha formateado automáticamente.
+
+1732
+01:21:43,928 --> 01:21:45,720
+Si estuviera en otro país o configuración regional,
+
+1733
+01:21:45,720 --> 01:21:49,620
+podría perfectamente cambiarlo para usar puntos en lugar de comas, o
+
+1734
+01:21:49,620 --> 01:21:50,290
+viceversa.
+
+1735
+01:21:50,290 --> 01:21:52,990
+Pero en este caso, simplemente ocurre de forma automática.
+
+1736
+01:21:52,990 --> 01:21:56,310
+Así que ahí también vemos un indicio de lo que significa realmente dar formato a una cadena.
+
+1737
+01:21:56,310 --> 01:21:57,720
+Hay aún más potencia,
+
+1738
+01:21:57,720 --> 01:22:00,633
+más capacidades integradas en eso.
+
+1739
+01:22:00,633 --> 01:22:02,550
+Muy bien, voy a hacer una pausa aquí para ver si hay
+
+1740
+01:22:02,550 --> 01:22:10,200
+alguna pregunta sobre los float, sobre el redondeo o sobre este uso de las f-strings.
+
+1741
+01:22:10,200 --> 01:22:11,700
+PÚBLICO: Sí, tengo una pregunta.
+
+1742
+01:22:11,700 --> 01:22:14,760
+Al usar floats, ¿hay algún límite
+
+1743
+01:22:14,760 --> 01:22:16,860
+en el número de decimales que pueden tener?
+
+1744
+01:22:16,860 --> 01:22:18,360
+DAVID MALAN: Muy buena pregunta.
+
+1745
+01:22:18,360 --> 01:22:21,150
+Los floats, sí, y es un problema al que volveremos dentro de poco.
+
+1746
+01:22:21,150 --> 01:22:25,590
+Los floats no pueden representar números con una precisión infinita.
+
+1747
+01:22:25,590 --> 01:22:28,112
+En pocas palabras, porque los ordenadores tienen una memoria limitada.
+
+1748
+01:22:28,112 --> 01:22:29,820
+Solo tienen una cantidad finita de memoria.
+
+1749
+01:22:29,820 --> 01:22:34,200
+Vosotros y yo solo tenemos una cantidad finita de hardware dentro del ordenador,
+
+1750
+01:22:34,200 --> 01:22:36,540
+así que en algún momento van a tener que redondear.
+
+1751
+01:22:36,540 --> 01:22:38,190
+Ahora mismo estoy redondeando automáticamente.
+
+1752
+01:22:38,190 --> 01:22:40,732
+En la práctica, los ordenadores acabarán teniendo que hacerlo por nosotros,
+
+1753
+01:22:40,732 --> 01:22:44,010
+pero dentro de poco lo veremos como un problema fundamental.
+
+1754
+01:22:44,010 --> 01:22:47,385
+Permitidme volver un momento a unos últimos ejemplos con float
+
+1755
+01:22:47,385 --> 01:22:50,010
+antes de presentar unos últimos ejemplos que nos permitan no solo
+
+1756
+01:22:50,010 --> 01:22:52,290
+usar funciones, sino crear las nuestras.
+
+1757
+01:22:52,290 --> 01:22:56,940
+Propongo que probemos también un poco de división.
+
+1758
+01:22:56,940 --> 01:22:59,250
+Propongo que modifiquemos ahora esta calculadora
+
+1759
+01:22:59,250 --> 01:23:01,740
+para que siga recibiendo un par de floats, pero ahora hagamos
+
+1760
+01:23:01,740 --> 01:23:04,050
+algo un poco más sencillo que...
+
+1761
+01:23:04,050 --> 01:23:07,085
+un poco distinto de esto: simplemente x dividido entre y.
+
+1762
+01:23:07,085 --> 01:23:09,210
+Y voy a quitar mi cadena de formato
+
+1763
+01:23:09,210 --> 01:23:12,383
+y dejarlo sencillo de momento, imprimiendo z sin más.
+
+1764
+01:23:12,383 --> 01:23:13,800
+¿Y qué vamos a ver aquí?
+
+1765
+01:23:13,800 --> 01:23:15,092
+Pues una división sencilla.
+
+1766
+01:23:15,092 --> 01:23:19,920
+Así que python calculator.py, hagamos algo como 2 dividido entre 3,
+
+1767
+01:23:19,920 --> 01:23:21,960
+y, por supuesto, obtengo 0.66666.
+
+1768
+01:23:21,960 --> 01:23:25,600
+Y, en cuanto a la pregunta de Ethan de hace un momento, parece que sí es finito.
+
+1769
+01:23:25,600 --> 01:23:30,180
+Aquí no redondea de forma rara, pero solo parece que veo cierto número de dígitos.
+
+1770
+01:23:30,180 --> 01:23:34,170
+Eso es inevitable al usar un float de esta forma.
+
+1771
+01:23:34,170 --> 01:23:37,620
+En cambio, para que lo sepáis, hoy en día los enteros en Python
+
+1772
+01:23:37,620 --> 01:23:39,690
+pueden ser tan grandes como queráis.
+
+1773
+01:23:39,690 --> 01:23:41,910
+A diferencia de otros lenguajes, hoy en Python no hay límite superior
+
+1774
+01:23:41,910 --> 01:23:44,550
+para lo grande que puede ser un int, pero sí
+
+1775
+01:23:44,550 --> 01:23:48,225
+hay un límite en la precisión que puede tener un valor de coma flotante.
+
+1776
+01:23:48,225 --> 01:23:50,850
+Muy bien, ahora que tengo funcionando una división sencilla,
+
+1777
+01:23:50,850 --> 01:23:52,380
+vamos a redondearla.
+
+1778
+01:23:52,380 --> 01:23:57,060
+Estaría bien redondear este número tan largo, 0.6666666 y demás,
+
+1779
+01:23:57,060 --> 01:23:59,190
+a, quizá, solo dos decimales.
+
+1780
+01:23:59,190 --> 01:24:02,460
+Ya hemos visto cómo hacerlo con round, al menos en su documentación.
+
+1781
+01:24:02,460 --> 01:24:04,980
+Vamos a redondearlo, pero no al int más cercano,
+
+1782
+01:24:04,980 --> 01:24:09,810
+pasándole solo x dividido entre y, que es un único argumento una vez hechas
+
+1783
+01:24:09,810 --> 01:24:13,350
+las cuentas dentro de los paréntesis; no quiero pasarle un solo argumento.
+
+1784
+01:24:13,350 --> 01:24:17,100
+Quiero pasarle dos para poder especificar ndigits,
+
+1785
+01:24:17,100 --> 01:24:21,030
+el número de dígitos, que, como recordaréis, era el segundo parámetro de round.
+
+1786
+01:24:21,030 --> 01:24:23,240
+Voy a ejecutar python calculator.py.
+
+1787
+01:24:23,240 --> 01:24:24,240
+Haré lo mismo:
+
+1788
+01:24:24,240 --> 01:24:27,300
+2 y luego 3, 0.67.
+
+1789
+01:24:27,300 --> 01:24:31,130
+Así que aquí también vemos una forma de redondear, ahora no solo al entero más cercano,
+
+1790
+01:24:31,130 --> 01:24:34,160
+sino a un número determinado de dígitos.
+
+1791
+01:24:34,160 --> 01:24:36,300
+Pero hay otra forma de hacerlo.
+
+1792
+01:24:36,300 --> 01:24:40,920
+Y, de hecho, esto nos recuerda otra vez el ejemplo de la f-string.
+
+1793
+01:24:40,920 --> 01:24:42,270
+Voy a cambiar esto.
+
+1794
+01:24:42,270 --> 01:24:45,740
+Supongamos que no os acordáis de la función round o que, por algún motivo,
+
+1795
+01:24:45,740 --> 01:24:46,940
+no queréis usarla.
+
+1796
+01:24:46,940 --> 01:24:49,340
+Lo que queréis es usar simplemente una cadena de formato.
+
+1797
+01:24:49,340 --> 01:24:50,510
+Pues vamos a ello.
+
+1798
+01:24:50,510 --> 01:24:55,280
+Voy a poner "z", pero rodeada de esas llaves.
+
+1799
+01:24:55,280 --> 01:24:58,850
+Voy a añadir la f al principio y, de nuevo, esto todavía no tiene interés.
+
+1800
+01:24:58,850 --> 01:25:02,300
+Esto simplemente va a imprimir z, pero estoy añadiendo mucha más complejidad
+
+1801
+01:25:02,300 --> 01:25:03,920
+para convertirla en una f-string.
+
+1802
+01:25:03,920 --> 01:25:08,940
+Pero fijaos en que puedo hacer otra cosa después del nombre de la variable, después de los dos puntos.
+
+1803
+01:25:08,940 --> 01:25:11,300
+Si esto fuera a ser un entero grande,
+
+1804
+01:25:11,300 --> 01:25:15,200
+quizá querría usar una coma, como antes, para separar cada grupo de tres cifras
+
+1805
+01:25:15,200 --> 01:25:15,950
+con comas.
+
+1806
+01:25:15,950 --> 01:25:16,580
+Pero no es el caso.
+
+1807
+01:25:16,580 --> 01:25:20,120
+Voy a usar otra secuencia de caracteres.
+
+1808
+01:25:20,120 --> 01:25:25,190
+Voy a poner .2f, y esta es otra de esas cosas tan crípticas que tengo
+
+1809
+01:25:25,190 --> 01:25:28,040
+que consultar constantemente, porque se me olvidan si no las uso a menudo.
+
+1810
+01:25:28,040 --> 01:25:32,030
+Así que no os dejéis intimidar si esto os parece especialmente raro, pero esta es,
+
+1811
+01:25:32,030 --> 01:25:33,950
+según la documentación, la forma de
+
+1812
+01:25:33,950 --> 01:25:37,830
+indicar con una f-string cuántos dígitos queréis imprimir.
+
+1813
+01:25:37,830 --> 01:25:39,980
+Así que voy a ejecutar esta versión de la calculadora.
+
+1814
+01:25:39,980 --> 01:25:43,170
+Escribo 2 y luego 3, y obtenemos exactamente lo mismo.
+
+1815
+01:25:43,170 --> 01:25:45,350
+Pero, de nuevo, esto encaja con lo que decía
+
+1816
+01:25:45,350 --> 01:25:49,580
+de que en programación muchísimas veces podemos resolver el mismo problema
+
+1817
+01:25:49,580 --> 01:25:51,030
+de varias formas.
+
+1818
+01:25:51,030 --> 01:25:56,240
+Este es simplemente el enfoque con f-string para ese mismo problema.
+
+1819
+01:25:56,240 --> 01:25:57,630
+Muy bien, ¿cuál es mejor?
+
+1820
+01:25:57,630 --> 01:25:58,310
+Depende.
+
+1821
+01:25:58,310 --> 01:26:00,200
+En este caso, son bastante equivalentes.
+
+1822
+01:26:00,200 --> 01:26:03,260
+Aunque os podéis imaginar que a veces sea útil usar una función
+
+1823
+01:26:03,260 --> 01:26:07,340
+para poder pasar un argumento como ndigits como segundo argumento,
+
+1824
+01:26:07,340 --> 01:26:10,700
+o podéis imaginar que simplemente decidís de antemano que queréis .2
+
+1825
+01:26:10,700 --> 01:26:13,370
+y luego lo escribís así.
+
+1826
+01:26:13,370 --> 01:26:17,300
+Pasemos ahora de centrarnos en las cadenas, los enteros y los
+
+1827
+01:26:17,300 --> 01:26:19,880
+floats a centrarnos en las propias funciones.
+
+1828
+01:26:19,880 --> 01:26:21,860
+Hoy empezamos centrándonos en cómo
+
+1829
+01:26:21,860 --> 01:26:24,230
+usar las funciones que vienen con Python.
+
+1830
+01:26:24,230 --> 01:26:26,990
+Pero ¿no estaría bien poder inventar vuestras propias funciones,
+
+1831
+01:26:26,990 --> 01:26:29,330
+sobre todo si, como decíamos antes, os encontráis
+
+1832
+01:26:29,330 --> 01:26:32,210
+resolviendo el mismo tipo de problema una y otra vez?
+
+1833
+01:26:32,210 --> 01:26:34,700
+Está bien que Python venga con la función print,
+
+1834
+01:26:34,700 --> 01:26:37,130
+porque es muy útil poder imprimir cosas en la pantalla,
+
+1835
+01:26:37,130 --> 01:26:40,130
+pero ¿no estaría bien poder imprimir cosas concretas en la pantalla
+
+1836
+01:26:40,130 --> 01:26:42,170
+simplemente llamando a vuestra propia función?
+
+1837
+01:26:42,170 --> 01:26:44,100
+Pues permitidme proponer que hagamos esto.
+
+1838
+01:26:44,100 --> 01:26:49,760
+Voy a volver aquí a VS Code y propongo que volvamos a Hello.py.
+
+1839
+01:26:49,760 --> 01:26:52,820
+Voy a volver a abrir Hello.py donde lo dejamos antes
+
+1840
+01:26:52,820 --> 01:26:54,620
+y ahora voy a proponer
+
+1841
+01:26:54,620 --> 01:26:58,460
+que veamos cómo podemos empezar a mejorarlo todavía más creando
+
+1842
+01:26:58,460 --> 01:26:59,330
+nuestra propia función.
+
+1843
+01:26:59,330 --> 01:27:03,380
+Hoy he escrito un montón de programas que simplemente dicen hello
+
+1844
+01:27:03,380 --> 01:27:05,360
+y en todos uso print.
+
+1845
+01:27:05,360 --> 01:27:08,090
+Pero ¿no habría estado bien si, desde el principio de hoy,
+
+1846
+01:27:08,090 --> 01:27:12,620
+pudiéramos llamar a una función llamada hello que dijera hello por nosotros?
+
+1847
+01:27:12,620 --> 01:27:15,080
+Los creadores de Python, hace años, no
+
+1848
+01:27:15,080 --> 01:27:18,020
+pensaron que hiciera falta una función especial solo para decir hello,
+
+1849
+01:27:18,020 --> 01:27:19,820
+pero a mí me gustaría que existiera.
+
+1850
+01:27:19,820 --> 01:27:21,980
+Digo hello tantas veces que simplemente quiero
+
+1851
+01:27:21,980 --> 01:27:23,600
+poder llamar a una función hello.
+
+1852
+01:27:23,600 --> 01:27:25,550
+Así que aquí voy a empezar de cero.
+
+1853
+01:27:25,550 --> 01:27:27,680
+Voy a borrar todo mi código de antes
+
+1854
+01:27:27,680 --> 01:27:32,510
+y voy a fingir por un momento que existe una función llamada hello.
+
+1855
+01:27:32,510 --> 01:27:34,250
+Y voy a hacer lo mismo que antes.
+
+1856
+01:27:34,250 --> 01:27:36,740
+Voy a obtener el nombre del usuario con la función input,
+
+1857
+01:27:36,740 --> 01:27:39,110
+preguntando "What's your name?".
+
+1858
+01:27:39,110 --> 01:27:42,230
+Y ahora voy a llamar a una función hello
+
+1859
+01:27:42,230 --> 01:27:45,260
+y luego voy a imprimir el nombre del usuario.
+
+1860
+01:27:45,260 --> 01:27:50,190
+Reconozco que hello no existe, así que van a pasar cosas malas,
+
+1861
+01:27:50,190 --> 01:27:51,440
+pero veamos qué.
+
+1862
+01:27:51,440 --> 01:27:53,210
+Voy a bajar a mi ventana de terminal.
+
+1863
+01:27:53,210 --> 01:27:55,700
+Voy a ejecutar python Hello.py.
+
+1864
+01:27:55,700 --> 01:27:59,030
+Creo que la primera línea irá bien, porque antes funcionaba.
+
+1865
+01:27:59,030 --> 01:28:01,280
+Y, en efecto, me está pidiendo mi nombre.
+
+1866
+01:28:01,280 --> 01:28:02,780
+Así que escribo David.
+
+1867
+01:28:02,780 --> 01:28:05,090
+La segunda línea de código, al parecer, llama
+
+1868
+01:28:05,090 --> 01:28:08,840
+a una función que parece llamarse hello; ¿por qué es una función?
+
+1869
+01:28:08,840 --> 01:28:11,820
+Porque lleva un paréntesis de apertura y uno de cierre justo después.
+
+1870
+01:28:11,820 --> 01:28:14,300
+Y así es como han sido todas las funciones que hemos usado.
+
+1871
+01:28:14,300 --> 01:28:16,340
+Pero Python no va a reconocer esta.
+
+1872
+01:28:16,340 --> 01:28:18,890
+Cuando pulso Enter, me sale un NameError.
+
+1873
+01:28:18,890 --> 01:28:21,950
+name 'hello' is not defined. Did you mean: 'help'?
+
+1874
+01:28:21,950 --> 01:28:26,120
+No quería decir eso, aunque es oportuno, porque lo que necesito ahora mismo es ayuda,
+
+1875
+01:28:26,120 --> 01:28:29,540
+pero ¿por qué me encuentro con este error?
+
+1876
+01:28:29,540 --> 01:28:31,440
+Porque la función sencillamente no existe.
+
+1877
+01:28:31,440 --> 01:28:33,350
+Entonces, ¿cómo hago que esta función exista?
+
+1878
+01:28:33,350 --> 01:28:39,440
+Pues tengo que crearla yo mismo usando esta palabra clave, def, def de define, «definir».
+
+1879
+01:28:39,440 --> 01:28:43,610
+Así que aquí también, igual que str es la abreviatura de string e int la de integer,
+
+1880
+01:28:43,610 --> 01:28:45,830
+def es la abreviatura de define.
+
+1881
+01:28:45,830 --> 01:28:50,330
+Si queréis definir, crear, inventar vuestras propias funciones, y cuando queráis hacerlo,
+
+1882
+01:28:50,330 --> 01:28:53,870
+podéis hacerlo usando esta palabra clave de Python.
+
+1883
+01:28:53,870 --> 01:28:58,310
+Así que voy a volver a mi código y propongo que la definamos
+
+1884
+01:28:58,310 --> 01:28:59,900
+quizá de esta forma.
+
+1885
+01:28:59,900 --> 01:29:02,660
+Arriba del todo de mi archivo, primero me voy a tomar
+
+1886
+01:29:02,660 --> 01:29:05,150
+un momento para definir una función llamada hello
+
+1887
+01:29:05,150 --> 01:29:10,430
+usando def hello, abro paréntesis, cierro paréntesis, dos puntos.
+
+1888
+01:29:10,430 --> 01:29:15,110
+Lo que significa esto es que Python va a tratar cada línea de código
+
+1889
+01:29:15,110 --> 01:29:20,240
+que sangre debajo de esta como el significado de esta nueva función, hello.
+
+1890
+01:29:20,240 --> 01:29:23,030
+Así que def es importante, y también el espacio.
+
+1891
+01:29:23,030 --> 01:29:26,577
+Yo elijo el nombre de la función, y voy a llamarla hello.
+
+1892
+01:29:26,577 --> 01:29:29,660
+Los paréntesis sin nada dentro significan que, de momento, esta función
+
+1893
+01:29:29,660 --> 01:29:32,540
+no va a recibir ninguna entrada; tampoco hay argumentos.
+
+1894
+01:29:32,540 --> 01:29:35,810
+Los dos puntos significan: atentos, que viene una sangría.
+
+1895
+01:29:35,810 --> 01:29:38,750
+Todo lo que esté sangrado debajo de esta línea de código
+
+1896
+01:29:38,750 --> 01:29:40,310
+va a formar parte de esta función.
+
+1897
+01:29:40,310 --> 01:29:42,920
+Va a ser una función cortísima —una línea de código—:
+
+1898
+01:29:42,920 --> 01:29:46,040
+simplemente va a imprimir "hello".
+
+1899
+01:29:46,040 --> 01:29:51,830
+Pero ahora, en las líneas 1 y 2, he inventado mi propia función hello.
+
+1900
+01:29:51,830 --> 01:29:54,740
+Fijaos en estos puntos que han aparecido aquí como por arte de magia.
+
+1901
+01:29:54,740 --> 01:29:56,660
+Es simplemente una opción de mi editor de texto,
+
+1902
+01:29:56,660 --> 01:30:00,470
+VS Code en este caso, que me deja muy claro que he
+
+1903
+01:30:00,470 --> 01:30:04,160
+pulsado la barra espaciadora cuatro veces o, lo que es lo mismo, la tecla Tab una vez,
+
+1904
+01:30:04,160 --> 01:30:07,018
+que se convierte automáticamente en cuatro espacios.
+
+1905
+01:30:07,018 --> 01:30:10,310
+En general, tendré que asegurarme de que todo mi código sangrado
+
+1906
+01:30:10,310 --> 01:30:14,150
+esté alineado para que Python sepa que todo forma parte de lo mismo.
+
+1907
+01:30:14,150 --> 01:30:16,770
+Pero en este caso es fácil, porque es una sola línea.
+
+1908
+01:30:16,770 --> 01:30:20,810
+Pero ahora, gracias a las líneas 1 y 2, la función hello
+
+1909
+01:30:20,810 --> 01:30:24,920
+existirá sin duda cuando esté listo para usarla en la línea 6.
+
+1910
+01:30:24,920 --> 01:30:29,180
+Así que voy a bajar a mi ventana de terminal y ejecutar python Hello.py, Enter.
+
+1911
+01:30:29,180 --> 01:30:30,570
+Ahí va otra vez mi nombre.
+
+1912
+01:30:30,570 --> 01:30:35,120
+Y ahora, cuando pulso Enter, veo hello, David.
+
+1913
+01:30:35,120 --> 01:30:37,190
+Muy bien, aunque hemos ido un poco hacia atrás, ¿no?
+
+1914
+01:30:37,190 --> 01:30:39,960
+Esto no queda ni de lejos tan bonito como antes.
+
+1915
+01:30:39,960 --> 01:30:44,840
+Creo que probablemente podemos hacerlo mejor mejorando más las cosas.
+
+1916
+01:30:44,840 --> 01:30:47,510
+Pero ¿por qué no pensamos cómo podríamos,
+
+1917
+01:30:47,510 --> 01:30:50,480
+digamos, parametrizar esta misma función?
+
+1918
+01:30:50,480 --> 01:30:55,010
+Es decir, ¿podemos personalizar hello para que reciba como entrada el nombre del usuario
+
+1919
+01:30:55,010 --> 01:31:00,020
+y así podamos decir no solo hello, sino también el nombre de la persona, todo en una línea, todo
+
+1920
+01:31:00,020 --> 01:31:01,070
+de corrido?
+
+1921
+01:31:01,070 --> 01:31:02,450
+Pues creo que podemos.
+
+1922
+01:31:02,450 --> 01:31:05,400
+Propongo que lo hagamos de la siguiente manera.
+
+1923
+01:31:05,400 --> 01:31:10,100
+Arriba, en mi código, dentro de estos paréntesis,
+
+1924
+01:31:10,100 --> 01:31:12,350
+voy a inventarme mi propio nombre de parámetro.
+
+1925
+01:31:12,350 --> 01:31:14,510
+Aquí tengo total libertad y voy
+
+1926
+01:31:14,510 --> 01:31:17,780
+a decir que el nombre de mi parámetro será la palabra to.
+
+1927
+01:31:17,780 --> 01:31:18,500
+¿Por qué?
+
+1928
+01:31:18,500 --> 01:31:22,970
+Porque quiero que mi función suene como el verbo que representa:
+
+1929
+01:31:22,970 --> 01:31:23,690
+hello.
+
+1930
+01:31:23,690 --> 01:31:25,610
+Pero ¿a quién queréis saludar?
+
+1931
+01:31:25,610 --> 01:31:27,860
+Pues voy a llamar to al parámetro
+
+1932
+01:31:27,860 --> 01:31:30,860
+de esta función, simplemente porque en inglés me suena bien.
+
+1933
+01:31:30,860 --> 01:31:32,900
+hello to, «hola a»: ¿a quién queréis saludar?
+
+1934
+01:31:32,900 --> 01:31:36,050
+Por eso llamo to a este parámetro en lugar de algo
+
+1935
+01:31:36,050 --> 01:31:38,360
+más sencillo como x, y o z.
+
+1936
+01:31:38,360 --> 01:31:40,798
+Muy bien, ¿y qué quiero hacer con la palabra to?
+
+1937
+01:31:40,798 --> 01:31:42,590
+Pues puedo hacer un par de cosas distintas.
+
+1938
+01:31:42,590 --> 01:31:45,320
+Hemos visto muchísimas formas de implementar hello.
+
+1939
+01:31:45,320 --> 01:31:48,000
+Voy a añadir ahí una coma por la gramática.
+
+1940
+01:31:48,000 --> 01:31:52,700
+Y luego voy a poner la palabra to después, como segundo argumento
+
+1941
+01:31:52,700 --> 01:31:53,715
+de la función hello.
+
+1942
+01:31:53,715 --> 01:31:56,090
+Hay otras formas de hacerlo, y hemos visto muchísimas,
+
+1943
+01:31:56,090 --> 01:31:58,940
+pero esta me parece bastante clara, diría yo.
+
+1944
+01:31:58,940 --> 01:32:00,380
+¿Qué va a pasar ahora?
+
+1945
+01:32:00,380 --> 01:32:03,470
+Pues creo que no necesito esta línea de print de más.
+
+1946
+01:32:03,470 --> 01:32:07,040
+Creo que lo que voy a hacer es esto: voy a
+
+1947
+01:32:07,040 --> 01:32:12,740
+imprimir, no el nombre de la persona a mano, sino que voy a poner
+
+1948
+01:32:12,740 --> 01:32:15,410
+hello, paréntesis, name.
+
+1949
+01:32:15,410 --> 01:32:16,880
+Entonces, ¿qué estoy haciendo ahora?
+
+1950
+01:32:16,880 --> 01:32:20,690
+En las líneas 1 y 2 estoy definiendo mi propia función llamada hello,
+
+1951
+01:32:20,690 --> 01:32:23,240
+pero esta vez esa función está diseñada
+
+1952
+01:32:23,240 --> 01:32:26,750
+para recibir un parámetro, un único parámetro, como entrada.
+
+1953
+01:32:26,750 --> 01:32:29,810
+Y estoy usando el valor de ese parámetro, que
+
+1954
+01:32:29,810 --> 01:32:33,470
+he llamado to, para meterlo en print y así ver no solo
+
+1955
+01:32:33,470 --> 01:32:35,780
+hello, sino también el nombre de esa persona.
+
+1956
+01:32:35,780 --> 01:32:37,070
+¿Qué hago en la línea 5?
+
+1957
+01:32:37,070 --> 01:32:39,140
+Lo de siempre: simplemente obtengo el nombre del usuario.
+
+1958
+01:32:39,140 --> 01:32:42,140
+En la línea 6 no solo llamo a hello, sino que le paso
+
+1959
+01:32:42,140 --> 01:32:46,500
+como entrada la variable name como argumento
+
+1960
+01:32:46,500 --> 01:32:48,912
+para que eso sea lo que se le pase a hello.
+
+1961
+01:32:48,912 --> 01:32:50,870
+Y lo que pasa aquí es, básicamente, esto:
+
+1962
+01:32:50,870 --> 01:32:54,710
+aunque la variable se llama name aquí, cuando se llama
+
+1963
+01:32:54,710 --> 01:33:00,920
+a la función, el ordenador da por hecho que ese mismo valor ahora se llama to.
+
+1964
+01:33:00,920 --> 01:33:04,760
+Así que name se copia, en esencia, a otra variable llamada
+
+1965
+01:33:04,760 --> 01:33:11,420
+to, para que, en el contexto de hello, pueda saludar a esa variable.
+
+1966
+01:33:11,420 --> 01:33:15,140
+Y en un momento veremos qué pasa si no tenemos esto claro.
+
+1967
+01:33:15,140 --> 01:33:17,600
+Voy a ejecutar python Hello.py, Enter.
+
+1968
+01:33:17,600 --> 01:33:18,540
+What's your name?
+
+1969
+01:33:18,540 --> 01:33:20,060
+Y ahora cruzo los dedos.
+
+1970
+01:33:20,060 --> 01:33:20,840
+Enter.
+
+1971
+01:33:20,840 --> 01:33:21,750
+Ahí lo tenemos.
+
+1972
+01:33:21,750 --> 01:33:25,700
+Volvemos a estar en marcha, pero ahora tengo mi propia función personalizada llamada hello
+
+1973
+01:33:25,700 --> 01:33:28,550
+que me permite saludar a una persona concreta.
+
+1974
+01:33:28,550 --> 01:33:30,980
+Y aquí es donde las cosas pueden ponerse realmente sofisticadas.
+
+1975
+01:33:30,980 --> 01:33:34,220
+¿Y si quisierais que vuestra función hello saludara a alguien concreto
+
+1976
+01:33:34,220 --> 01:33:37,070
+pero, ¿sabéis qué?, si no sabéis a quién queréis saludar,
+
+1977
+01:33:37,070 --> 01:33:38,840
+quisierais saludar al mundo entero?
+
+1978
+01:33:38,840 --> 01:33:41,300
+Podéis dar valores por defecto a los parámetros.
+
+1979
+01:33:41,300 --> 01:33:42,060
+Ya lo hemos visto.
+
+1980
+01:33:42,060 --> 01:33:45,530
+Recordad que print tenía un valor por defecto para sep,
+
+1981
+01:33:45,530 --> 01:33:46,550
+el separador.
+
+1982
+01:33:46,550 --> 01:33:49,700
+Había un valor por defecto para end, el final de línea.
+
+1983
+01:33:49,700 --> 01:33:52,280
+Nosotros también podemos hacerlo, y esta es la sintaxis.
+
+1984
+01:33:52,280 --> 01:33:56,390
+Si queréis que el valor de este parámetro por defecto,
+
+1985
+01:33:56,390 --> 01:34:00,620
+si el programador no lo indica, sea "world",
+
+1986
+01:34:00,620 --> 01:34:05,155
+lo hacéis literalmente en la misma línea en la que definís la función.
+
+1987
+01:34:05,155 --> 01:34:07,280
+Y reconozco que empieza a parecer más críptico,
+
+1988
+01:34:07,280 --> 01:34:10,580
+pero sigo definiendo simplemente una función llamada hello, que
+
+1989
+01:34:10,580 --> 01:34:13,820
+recibe un parámetro llamado to, aunque le asigno
+
+1990
+01:34:13,820 --> 01:34:19,340
+con el signo igual un valor por defecto, "world", por si el programador
+
+1991
+01:34:19,340 --> 01:34:22,310
+no llama a hello con un argumento.
+
+1992
+01:34:22,310 --> 01:34:23,660
+Y podemos verlo aquí.
+
+1993
+01:34:23,660 --> 01:34:26,750
+Voy a cambiar mi código para usar hello de dos formas.
+
+1994
+01:34:26,750 --> 01:34:31,880
+En la línea 5 voy a llamar a hello de forma muy sencilla, sin argumentos.
+
+1995
+01:34:31,880 --> 01:34:33,710
+Luego, en la línea 6, voy a obtener el nombre.
+
+1996
+01:34:33,710 --> 01:34:36,320
+En la línea 7 voy a llamar a hello con un argumento.
+
+1997
+01:34:36,320 --> 01:34:39,060
+Así que veréis hello usado de dos formas.
+
+1998
+01:34:39,060 --> 01:34:41,960
+Voy a ejecutar python Hello.py.
+
+1999
+01:34:41,960 --> 01:34:43,310
+Escribo mi nombre.
+
+2000
+01:34:43,310 --> 01:34:44,630
+Anda, qué interesante.
+
+2001
+01:34:44,630 --> 01:34:47,120
+Fijaos en que ya veo hello, world, pero eso
+
+2002
+01:34:47,120 --> 01:34:52,070
+es lo esperado, porque la línea 5 se ejecuta antes que la 6; pero, en cuanto escribo mi nombre,
+
+2003
+01:34:52,070 --> 01:34:55,940
+el programa va a ser un poco más educado y me va a saludar
+
+2004
+01:34:55,940 --> 01:34:57,180
+personalmente.
+
+2005
+01:34:57,180 --> 01:35:01,550
+Así que ahí también vemos, con una sintaxis relativamente sencilla pero nueva,
+
+2006
+01:35:01,550 --> 01:35:05,990
+cómo podéis implementar una funcionalidad muy parecida en espíritu a la que la función
+
+2007
+01:35:05,990 --> 01:35:07,860
+print nos daba automáticamente.
+
+2008
+01:35:07,860 --> 01:35:10,940
+Ahora tenéis el control para hacerlo vosotros mismos.
+
+2009
+01:35:10,940 --> 01:35:12,980
+Pero dejadme señalar también esto.
+
+2010
+01:35:12,980 --> 01:35:15,530
+Uno de los objetivos principales de definir vuestras propias funciones
+
+2011
+01:35:15,530 --> 01:35:18,680
+es, en primer lugar, evitar tener que repetiros una y otra vez.
+
+2012
+01:35:18,680 --> 01:35:21,890
+No tenéis que reinventar la rueda constantemente
+
+2013
+01:35:21,890 --> 01:35:24,480
+ni usar la función print una y otra y otra vez
+
+2014
+01:35:24,480 --> 01:35:25,850
+si solo queréis decir hello.
+
+2015
+01:35:25,850 --> 01:35:29,780
+¿No estaría bien ahora poder mover este código
+
+2016
+01:35:29,780 --> 01:35:34,010
+que escribí para definir la función hello? Y, solo para darle dramatismo,
+
+2017
+01:35:34,010 --> 01:35:37,760
+voy a pulsar Enter un montón de veces, 50 líneas más abajo,
+
+2018
+01:35:37,760 --> 01:35:41,240
+y poner mi definición de hello mucho más abajo en este archivo.
+
+2019
+01:35:41,240 --> 01:35:41,840
+¿Por qué?
+
+2020
+01:35:41,840 --> 01:35:44,720
+Pues por aquello de «ojos que no ven, corazón que no siente»,
+
+2021
+01:35:44,720 --> 01:35:48,800
+porque si ahora vuelvo al principio de mi programa, ahora
+
+2022
+01:35:48,800 --> 01:35:51,240
+podéis dar por hecho que, ah, hello es una función.
+
+2023
+01:35:51,240 --> 01:35:51,740
+¿Por qué?
+
+2024
+01:35:51,740 --> 01:35:54,740
+Porque está ahí, en la línea 1, y tiene un paréntesis de apertura y uno de
+
+2025
+01:35:54,740 --> 01:35:57,560
+cierre, lo que hasta ahora significaba: llama a esta función.
+
+2026
+01:35:57,560 --> 01:36:00,200
+Y luego, en la línea 2, obtenemos una variable del usuario
+
+2027
+01:36:00,200 --> 01:36:04,620
+cuando escribe su nombre y luego llamamos a hello, pasándole ese valor.
+
+2028
+01:36:04,620 --> 01:36:07,790
+Bueno, llegados a este punto, puedo dar por hecho que hello existe,
+
+2029
+01:36:07,790 --> 01:36:11,360
+aunque esté mucho más abajo en el archivo o, como veremos en próximas semanas,
+
+2030
+01:36:11,360 --> 01:36:13,970
+incluso aunque esté en un archivo completamente distinto.
+
+2031
+01:36:13,970 --> 01:36:15,500
+Pero aquí hay un problema.
+
+2032
+01:36:15,500 --> 01:36:19,190
+Voy a ejecutar esta versión de Hello.py.
+
+2033
+01:36:19,190 --> 01:36:23,270
+Fijaos en que, en cuanto ejecuto el intérprete, python Hello.py,
+
+2034
+01:36:23,270 --> 01:36:26,360
+veo un NameError: name 'hello' is not defined.
+
+2035
+01:36:26,360 --> 01:36:28,280
+Otra vez: Did you mean: 'help'?
+
+2036
+01:36:28,280 --> 01:36:29,480
+Bueno, otra vez, muy apropiado.
+
+2037
+01:36:29,480 --> 01:36:33,500
+Sí que necesito algo de ayuda, pero no quería llamar a la función help.
+
+2038
+01:36:33,500 --> 01:36:36,650
+El problema, sin embargo, es que Python me está tomando al pie de la letra.
+
+2039
+01:36:36,650 --> 01:36:40,610
+He definido mi función hello aquí abajo del todo,
+
+2040
+01:36:40,610 --> 01:36:42,500
+pero intento usarla aquí arriba.
+
+2041
+01:36:42,500 --> 01:36:43,465
+Y eso no está permitido.
+
+2042
+01:36:43,465 --> 01:36:45,590
+El intérprete de Python os va a tomar al pie de la letra
+
+2043
+01:36:45,590 --> 01:36:47,810
+y, si usáis una función, ya tiene
+
+2044
+01:36:47,810 --> 01:36:50,390
+que existir en el momento en que la llamáis.
+
+2045
+01:36:50,390 --> 01:36:51,600
+Entonces, ¿cómo lo arreglo?
+
+2046
+01:36:51,600 --> 01:36:53,270
+Pues, al parecer, no puedo hacer eso.
+
+2047
+01:36:53,270 --> 01:36:57,440
+Tengo que definir las funciones que quiera arriba del todo de mi archivo,
+
+2048
+01:36:57,440 --> 01:36:59,720
+pero eso también podría meterme en algún lío
+
+2049
+01:36:59,720 --> 01:37:04,640
+con el tiempo, porque si tengo que definir siempre una función por encima de donde quiero
+
+2050
+01:37:04,640 --> 01:37:07,010
+usarla, es como escribir el código al revés:
+
+2051
+01:37:07,010 --> 01:37:09,218
+estáis escribiendo constantemente funciones aquí arriba, aquí arriba,
+
+2052
+01:37:09,218 --> 01:37:12,450
+aquí arriba, en lugar de escribir el código de forma lógica, de arriba abajo.
+
+2053
+01:37:12,450 --> 01:37:16,190
+Así que voy a arreglarlo de una forma más estándar, que es esta.
+
+2054
+01:37:16,190 --> 01:37:20,990
+En general, sí que conviene poner la parte principal de vuestro código
+
+2055
+01:37:20,990 --> 01:37:22,530
+arriba del todo del archivo.
+
+2056
+01:37:22,530 --> 01:37:27,110
+Y, de hecho, voy a llegar al punto de definir una función llamada main.
+
+2057
+01:37:27,110 --> 01:37:29,540
+No es obligatorio, pero es una convención,
+
+2058
+01:37:29,540 --> 01:37:31,910
+y simplemente le indica a quien lo lee que esta
+
+2059
+01:37:31,910 --> 01:37:33,620
+es la parte principal de mi programa.
+
+2060
+01:37:33,620 --> 01:37:38,030
+Ahora voy a quitar mi llamada vacía a hello y dejar solo una versión,
+
+2061
+01:37:38,030 --> 01:37:39,110
+con hello(name).
+
+2062
+01:37:39,110 --> 01:37:42,260
+Y luego, aquí abajo, un par de líneas más abajo,
+
+2063
+01:37:42,260 --> 01:37:45,030
+definiré mi función hello.
+
+2064
+01:37:45,030 --> 01:37:47,870
+Por desgracia, ahora que he reordenado así las funciones,
+
+2065
+01:37:47,870 --> 01:37:51,890
+poniendo la parte principal de mi código arriba y hello abajo
+
+2066
+01:37:51,890 --> 01:37:55,310
+para que mi lógica fluya de arriba abajo, si ejecuto
+
+2067
+01:37:55,310 --> 01:37:57,680
+python Hello.py, Enter,
+
+2068
+01:37:57,680 --> 01:38:00,290
+no pasa absolutamente nada.
+
+2069
+01:38:00,290 --> 01:38:02,630
+Si lo vuelvo a hacer, no pasa absolutamente nada.
+
+2070
+01:38:02,630 --> 01:38:04,520
+Pero ¿por qué demonios pasa esto?
+
+2071
+01:38:04,520 --> 01:38:06,740
+Pues porque haber definido una función llamada
+
+2072
+01:38:06,740 --> 01:38:09,230
+main y una función llamada hello
+
+2073
+01:38:09,230 --> 01:38:11,420
+no significa que haya llamado de verdad
+
+2074
+01:38:11,420 --> 01:38:13,340
+—es decir, usado— a ninguna de las dos.
+
+2075
+01:38:13,340 --> 01:38:16,970
+Sí, uso hello dentro de main, pero nadie
+
+2076
+01:38:16,970 --> 01:38:20,210
+le está diciendo a Python que use o llame a main.
+
+2077
+01:38:20,210 --> 01:38:24,770
+Así que, para ordenar esto, lo último que tengo que hacer en este archivo,
+
+2078
+01:38:24,770 --> 01:38:28,100
+al parecer, es llamar a mi función main.
+
+2079
+01:38:28,100 --> 01:38:30,890
+Y, de hecho, llamar así a mi función main
+
+2080
+01:38:30,890 --> 01:38:33,890
+me saca del apuro, porque ahora defino primero main,
+
+2081
+01:38:33,890 --> 01:38:35,450
+pero todavía no llamo a hello.
+
+2082
+01:38:35,450 --> 01:38:38,760
+Después defino hello, pero no llamo a hello a continuación.
+
+2083
+01:38:38,760 --> 01:38:42,170
+Solo llamo a main al final del todo de este archivo,
+
+2084
+01:38:42,170 --> 01:38:45,090
+lo que hace que se ejecute este código de aquí arriba,
+
+2085
+01:38:45,090 --> 01:38:47,690
+lo que hace que se ejecute este código de aquí abajo,
+
+2086
+01:38:47,690 --> 01:38:50,870
+y, por tanto, me permite organizar mi archivo
+
+2087
+01:38:50,870 --> 01:38:55,520
+y ordenar mis funciones como quiera, incluida main arriba del todo,
+
+2088
+01:38:55,520 --> 01:38:59,930
+y resolver, al final, ese problema de que Python no sepa qué está pasando.
+
+2089
+01:38:59,930 --> 01:39:02,780
+Ahora es importante señalar que definí mi función
+
+2090
+01:39:02,780 --> 01:39:05,690
+hello para que recibiera un argumento, to, y luego
+
+2091
+01:39:05,690 --> 01:39:08,390
+le pasé a esa función el valor de la variable
+
+2092
+01:39:08,390 --> 01:39:11,570
+a la que quería saludar, es decir, la variable llamada name.
+
+2093
+01:39:11,570 --> 01:39:14,420
+Porque supongamos que lo hubiera hecho de forma algo distinta.
+
+2094
+01:39:14,420 --> 01:39:17,670
+Supongamos que no hubiera definido hello para que recibiera un argumento,
+
+2095
+01:39:17,670 --> 01:39:21,560
+así que simplemente quito la mención a to y su valor por defecto, "world".
+
+2096
+01:39:21,560 --> 01:39:25,070
+Y vuelvo arriba, a mi función main, y simplemente
+
+2097
+01:39:25,070 --> 01:39:28,193
+llamo a hello sin pasarle ningún argumento.
+
+2098
+01:39:28,193 --> 01:39:30,360
+Y ahora voy a hacer un cambio más,
+
+2099
+01:39:30,360 --> 01:39:32,760
+técnicamente un error más: voy
+
+2100
+01:39:32,760 --> 01:39:37,720
+a intentar imprimir ingenuamente el valor de name en la función hello.
+
+2101
+01:39:37,720 --> 01:39:40,380
+Así que, para que quede claro, en mi función main, en la línea 2,
+
+2102
+01:39:40,380 --> 01:39:43,740
+estoy definiendo mi variable llamada name y asignándole el valor de retorno
+
+2103
+01:39:43,740 --> 01:39:45,480
+de la función input, lo que introduce el usuario.
+
+2104
+01:39:45,480 --> 01:39:47,010
+Luego simplemente llamo a hello.
+
+2105
+01:39:47,010 --> 01:39:50,700
+En mi función hello, que ahora ya no recibe ningún argumento,
+
+2106
+01:39:50,700 --> 01:39:54,180
+llamo a print, pasándole hello con la coma
+
+2107
+01:39:54,180 --> 01:39:56,970
+y luego, inmediatamente, name, la variable
+
+2108
+01:39:56,970 --> 01:39:58,740
+en la que guardé lo que introdujo el usuario.
+
+2109
+01:39:58,740 --> 01:40:02,232
+Pero la pega es que name ahora solo existe en main.
+
+2110
+01:40:02,232 --> 01:40:05,190
+Así que fijaos en lo que pasa cuando intento ejecutar esta versión del programa
+
+2111
+01:40:05,190 --> 01:40:07,170
+con python Hello.py.
+
+2112
+01:40:07,170 --> 01:40:08,220
+Pulso Enter.
+
+2113
+01:40:08,220 --> 01:40:10,500
+Me pide mi nombre, D-A-V-I-D, Enter.
+
+2114
+01:40:10,500 --> 01:40:11,340
+Y, ¡argh!
+
+2115
+01:40:11,340 --> 01:40:12,450
+Un NameError.
+
+2116
+01:40:12,450 --> 01:40:15,400
+name 'name' is not defined.
+
+2117
+01:40:15,400 --> 01:40:19,050
+Así que resulta que esto es, en realidad, una cuestión de lo que se llama ámbito.
+
+2118
+01:40:19,050 --> 01:40:23,970
+El ámbito se refiere a que una variable solo existe en el contexto en el que la habéis definido.
+
+2119
+01:40:23,970 --> 01:40:28,080
+Así que, como he definido esta variable, name, en mi función main,
+
+2120
+01:40:28,080 --> 01:40:31,020
+solo puedo usar esa variable en mi función main.
+
+2121
+01:40:31,020 --> 01:40:34,380
+No puedo usarla como he intentado aquí, en mi función hello.
+
+2122
+01:40:34,380 --> 01:40:36,930
+No existe en ese llamado ámbito.
+
+2123
+01:40:36,930 --> 01:40:42,010
+Y por eso ahora, si retrocedo y deshago todos esos cambios,
+
+2124
+01:40:42,010 --> 01:40:45,690
+veréis que estoy pasando a propósito name desde mi función main
+
+2125
+01:40:45,690 --> 01:40:47,340
+a mi función hello.
+
+2126
+01:40:47,340 --> 01:40:50,260
+Y ahora, en la función hello, técnicamente tiene otro nombre.
+
+2127
+01:40:50,260 --> 01:40:52,380
+En ese contexto se llama to, pero no pasa nada.
+
+2128
+01:40:52,380 --> 01:40:55,950
+Cada función es libre de poner nombre a sus propias variables
+
+2129
+01:40:55,950 --> 01:40:58,230
+o a sus propios argumentos, pero esta es una forma
+
+2130
+01:40:58,230 --> 01:41:01,630
+de pasarle a la función hello el valor de esa variable
+
+2131
+01:41:01,630 --> 01:41:04,530
+para que hello también pueda imprimirlo.
+
+2132
+01:41:04,530 --> 01:41:07,410
+Y hay un último toque que podemos añadir aquí.
+
+2133
+01:41:07,410 --> 01:41:10,590
+Ahora que hemos implementado hello, os fijaréis en que hello solo
+
+2134
+01:41:10,590 --> 01:41:12,120
+tiene lo que se llama un efecto secundario.
+
+2135
+01:41:12,120 --> 01:41:14,580
+Solo imprime algo en la pantalla.
+
+2136
+01:41:14,580 --> 01:41:19,980
+Pero ¿y si también quiero que mi función no tenga un efecto secundario como tal,
+
+2137
+01:41:19,980 --> 01:41:22,300
+sino que me devuelva un valor?
+
+2138
+01:41:22,300 --> 01:41:25,740
+Recordad que la función input devuelve un valor:
+
+2139
+01:41:25,740 --> 01:41:27,510
+la cadena que escribió el usuario.
+
+2140
+01:41:27,510 --> 01:41:30,060
+Recordad que la función int devuelve un valor.
+
+2141
+01:41:30,060 --> 01:41:33,960
+La función float devuelve un valor a partir de lo que se le pasó.
+
+2142
+01:41:33,960 --> 01:41:37,260
+Pues aquí podéis usar una última palabra clave, literalmente
+
+2143
+01:41:37,260 --> 01:41:40,890
+return, para devolver vosotros mismos un valor de forma explícita.
+
+2144
+01:41:40,890 --> 01:41:43,890
+De hecho, voy a volver aquí a VS Code y
+
+2145
+01:41:43,890 --> 01:41:47,820
+creo que vamos a volver a centrarnos en calculator.py
+
+2146
+01:41:47,820 --> 01:41:53,190
+y ver si podemos implementar otra versión de calculator.py que
+
+2147
+01:41:53,190 --> 01:41:56,410
+tenga nuestra propia función, y que incluso devuelva un valor.
+
+2148
+01:41:56,410 --> 01:41:59,800
+Así que voy a abrir calculator.py
+
+2149
+01:41:59,800 --> 01:42:03,100
+y creo que esta vez voy a tirarlo todo, como antes,
+
+2150
+01:42:03,100 --> 01:42:06,600
+y simplemente voy a empezar a practicar lo que estamos predicando.
+
+2151
+01:42:06,600 --> 01:42:09,120
+Defino una función llamada main, que ahora va
+
+2152
+01:42:09,120 --> 01:42:11,070
+a ser la parte principal de mi función.
+
+2153
+01:42:11,070 --> 01:42:13,980
+Ahora vamos a declarar una variable llamada x
+
+2154
+01:42:13,980 --> 01:42:19,350
+y asignarle la versión convertida de lo que introduzca el usuario después de preguntarle
+
+2155
+01:42:19,350 --> 01:42:20,430
+"What's x?".
+
+2156
+01:42:20,430 --> 01:42:23,490
+Así que, de nuevo, una línea de código muy parecida a las que hemos hecho antes.
+
+2157
+01:42:23,490 --> 01:42:27,023
+Y supongamos ahora que lo que quiero hacer es elevar este valor al cuadrado.
+
+2158
+01:42:27,023 --> 01:42:29,190
+Quiero coger el número que ha escrito el usuario
+
+2159
+01:42:29,190 --> 01:42:30,840
+y elevarlo a 2.
+
+2160
+01:42:30,840 --> 01:42:32,790
+Así que 2 al cuadrado sería 4.
+
+2161
+01:42:32,790 --> 01:42:34,410
+3 al cuadrado sería 9.
+
+2162
+01:42:34,410 --> 01:42:36,840
+4 al cuadrado sería 16, y así sucesivamente.
+
+2163
+01:42:36,840 --> 01:42:39,450
+¿Y cómo implemento una función literalmente
+
+2164
+01:42:39,450 --> 01:42:42,960
+llamada square que, en realidad, no viene integrada en Python?
+
+2165
+01:42:42,960 --> 01:42:45,660
+Bueno, voy a suponer por un momento que sí existe, y
+
+2166
+01:42:45,660 --> 01:42:47,530
+voy a poner algo como esto:
+
+2167
+01:42:47,530 --> 01:42:50,670
+voy a imprimir, qué tal,
+
+2168
+01:42:50,670 --> 01:42:57,720
+"x squared is", coma, square de x.
+
+2169
+01:42:57,720 --> 01:42:59,170
+Entonces, ¿qué he hecho?
+
+2170
+01:42:59,170 --> 01:43:02,710
+He definido una función llamada main y he escrito dos líneas.
+
+2171
+01:43:02,710 --> 01:43:05,190
+La primera de esas líneas le pide al usuario un valor,
+
+2172
+01:43:05,190 --> 01:43:09,330
+x, lo convierte en int y lo guarda en una variable llamada x.
+
+2173
+01:43:09,330 --> 01:43:12,930
+En la línea 3, luego pongo "x squared is" y luego
+
+2174
+01:43:12,930 --> 01:43:16,620
+le paso un segundo argumento a la función print: el valor de retorno
+
+2175
+01:43:16,620 --> 01:43:18,780
+que tenga una función square.
+
+2176
+01:43:18,780 --> 01:43:22,230
+Pero square no existe, y os lo voy a enseñar aquí:
+
+2177
+01:43:22,230 --> 01:43:30,090
+si ahora llamo a main abajo del todo y ejecuto python calculator.py,
+
+2178
+01:43:30,090 --> 01:43:35,100
+veré que x es 2 y luego veo un montón de errores, un NameError:
+
+2179
+01:43:35,100 --> 01:43:37,090
+name 'square' is not defined.
+
+2180
+01:43:37,090 --> 01:43:39,810
+Así que no es una errata, es simplemente que la función no existe.
+
+2181
+01:43:39,810 --> 01:43:41,790
+Pero creo que puedo hacer que exista aquí.
+
+2182
+01:43:41,790 --> 01:43:45,180
+Voy a definir otra función llamada square.
+
+2183
+01:43:45,180 --> 01:43:47,400
+Esta va a recibir un número y lo
+
+2184
+01:43:47,400 --> 01:43:50,370
+voy a llamar de forma genérica n, como haría cualquier programador,
+
+2185
+01:43:50,370 --> 01:43:52,260
+simplemente para representar un número cualquiera.
+
+2186
+01:43:52,260 --> 01:43:56,010
+¿Y qué quiero hacer para elevar n al cuadrado?
+
+2187
+01:43:56,010 --> 01:43:59,380
+Pues un número al cuadrado no es más que él mismo por él mismo,
+
+2188
+01:43:59,380 --> 01:44:00,720
+así que voy a hacer esto:
+
+2189
+01:44:00,720 --> 01:44:02,340
+n por n.
+
+2190
+01:44:02,340 --> 01:44:06,180
+Pero no basta con hacer la cuenta, n por n.
+
+2191
+01:44:06,180 --> 01:44:09,990
+Vais a tener que devolver el valor real de n por n,
+
+2192
+01:44:09,990 --> 01:44:11,970
+y esa es nuestra nueva palabra clave.
+
+2193
+01:44:11,970 --> 01:44:14,100
+Fijaos en lo que pasa ahora cuando hago esto.
+
+2194
+01:44:14,100 --> 01:44:16,230
+python calculator.py, Enter.
+
+2195
+01:44:16,230 --> 01:44:20,250
+x, pongamos, será 2: x squared is 4.
+
+2196
+01:44:20,250 --> 01:44:24,020
+Ahora voy a poner que x es 3.
+
+2197
+01:44:24,020 --> 01:44:26,010
+x squared is 9.
+
+2198
+01:44:26,010 --> 01:44:30,060
+Así que he implementado mi propia función que devuelve el cuadrado de un valor
+
+2199
+01:44:30,060 --> 01:44:33,180
+y, como uso la palabra clave return, eso
+
+2200
+01:44:33,180 --> 01:44:36,120
+garantiza que puedo pasar el valor de retorno de esto, igual
+
+2201
+01:44:36,120 --> 01:44:40,140
+que el valor de retorno de input, int o float, a otra función,
+
+2202
+01:44:40,140 --> 01:44:41,460
+como print.
+
+2203
+01:44:41,460 --> 01:44:44,520
+Y aquí también va a haber muchísimas formas de resolver el mismo problema.
+
+2204
+01:44:44,520 --> 01:44:47,490
+De hecho, puedo elevar n a 2.
+
+2205
+01:44:47,490 --> 01:44:49,620
+No hemos visto esta sintaxis antes, pero si
+
+2206
+01:44:49,620 --> 01:44:54,220
+usáis dos asteriscos así, dos estrellas, eso eleva lo que hay a la izquierda
+
+2207
+01:44:54,220 --> 01:44:55,590
+a la potencia de la derecha.
+
+2208
+01:44:55,590 --> 01:44:58,290
+O resulta que en Python hay una función llamada
+
+2209
+01:44:58,290 --> 01:45:00,480
+pow para elevar algo a una potencia, que
+
+2210
+01:45:00,480 --> 01:45:04,200
+recibe dos argumentos: el primero es el número y el segundo
+
+2211
+01:45:04,200 --> 01:45:05,140
+es el exponente.
+
+2212
+01:45:05,140 --> 01:45:09,810
+Así que ahí también hay muchísimas formas de resolver ese mismo problema
+
+2213
+01:45:09,810 --> 01:45:11,290
+también.
+
+2214
+01:45:11,290 --> 01:45:13,020
+Entonces, al final, ¿qué hemos hecho aquí?
+
+2215
+01:45:13,020 --> 01:45:15,960
+Primero presentamos las funciones —estas acciones o verbos, muchas de las cuales
+
+2216
+01:45:15,960 --> 01:45:19,000
+vienen integradas en Python y que podéis usar sin más en vuestro propio código—.
+
+2217
+01:45:19,000 --> 01:45:22,290
+Luego presentamos las variables, con las que podéis guardar esos valores de retorno
+
+2218
+01:45:22,290 --> 01:45:24,120
+y luego, quizá, hacer algo más con ellos.
+
+2219
+01:45:24,120 --> 01:45:25,350
+Y, al final del día, también.
+
+2220
+01:45:25,350 --> 01:45:28,260
+Ahora tenéis la capacidad de crear, de inventar vuestras propias funciones
+
+2221
+01:45:28,260 --> 01:45:30,750
+para resolver problemas sencillos como hello o, en las semanas
+
+2222
+01:45:30,750 --> 01:45:36,590
+que vienen, problemas mucho más sofisticados, más difíciles y también más divertidos.
